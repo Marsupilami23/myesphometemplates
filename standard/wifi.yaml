@@ -3,6 +3,7 @@
 # are hereby referenced to be defined by its parent.
 
 substitutions:
+  api_key: api_key_"${device_location_name}"_"${device_type_name}"
   # WiFi Substitutions
   api_key: !secret api_key_front_post_light
   wifi_ssid: !secret wifi_ssid
