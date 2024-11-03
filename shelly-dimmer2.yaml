@@ -39,6 +39,9 @@ substitutions:
   package_version: "2024.8.01"
   package_url: "github://Marsupilami23/esphometemplates/shelly-dimmer2.yaml@main"
 
+  # Device Specific API substitution
+  api_key: !secret api_key_front_post_light
+  
 # Allow importing this package
 dashboard_import:
   package_import_url: ${package_url}
