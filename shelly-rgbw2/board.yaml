@@ -1,0 +1,8 @@
+# NOTE: This file is not a stand-alone package. It is part of
+# a 'root' device template and expects the substitutions that
+# are hereby referenced to be defined by its parent.
+
+# Board and preferences
+esp8266:
+  board: esp01_1m
+  restore_from_flash: true

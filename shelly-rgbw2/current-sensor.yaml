@@ -1,0 +1,20 @@
+# NOTE: This file is not a stand-alone package. It is part of
+# a 'root' device template and expects the substitutions that
+# are hereby referenced to be defined by its parent.
+
+sensor:
+  - platform: adc
+    pin: A0
+    name: Current
+    id: current
+    unit_of_measurement: "A"
+    entity_category: "diagnostic"
+    icon: "mdi:lightning-bolt"
+    device_class: "current"
+    state_class: "measurement"
+    accuracy_decimals: 5
+    update_interval: 1s
+    filters:
+      - calibrate_linear:
+        - 0.3877 -> 0.0
+        - 0.4541 -> 2.5
