@@ -71,10 +71,10 @@ packages:
     refresh: 0d
     files:
       - kauf-rgbww-bulbs/board.yaml
-      - kauf-rgbww-bulbs/standard/project.yaml
-      - kauf-rgbww-bulbs/standard/diagnostics.yaml
-      - kauf-rgbww-bulbs/standard/wifi.yaml
-      - kauf-rgbww-bulbs/standard/scripts.yaml
+      - kauf-rgbww-bulbs/project.yaml
+      - standard/diagnostics.yaml
+      - standard/wifi.yaml
+
 
 # https://esphome.io/components/external_components.html
 external_components:

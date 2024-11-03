@@ -54,14 +54,14 @@ packages:
     ref: main
     refresh: 0d
     files:
-      - shelly-dimmer2/standard/project.yaml
-      - shelly-dimmer2/standard/diagnostics.yaml
-      - shelly-dimmer2/standard/wifi.yaml
+      - shelly-dimmer2/project.yaml
       - shelly-dimmer2/board.yaml
       - shelly-dimmer2/scripts.yaml
       - shelly-dimmer2/temperature.yaml
       - shelly-dimmer2/switches.yaml
       - shelly-dimmer2/buttons.yaml
+      - standard/diagnostics.yaml
+      - standard/wifi.yaml
 
 # Use the shelly_dimmer built-in platform
 light:
