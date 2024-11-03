@@ -2,9 +2,9 @@
 substitutions:
   device_site: "home"
   device_location_code: "hallway"
-  device_location_name: "Hallway"
+  device_location_name: "hallway"
   device_type_code: "rgbww"
-  device_type_name: "Light"
+  device_type_name: "light"
   device_number: "001"
   device_ip: 0.0.0.0
   # substitutions can be changed here if you are using this file directly in the ESPHome dashboard.  The better approach is
