@@ -23,7 +23,7 @@ substitutions:
   device_model: "BLF15"
   device_make: "KAUF"
   package_version: "2022.6.10"
-  package_url: "github://Marsupilami23/esphometemplates/kauf-bulb.yaml@main"
+  package_url: "github://Marsupilami23/myesphometemplates/kauf-bulb.yaml@main"
   #firmware_url: ""
 
   disable_entities:  "true"    # set to "false" to have all entities show up in Home Assistant automatically
@@ -71,7 +71,7 @@ dashboard_import:
 # Import packages
 packages:
   kauf_package:
-    url: https://github.com/Marsupilami23/esphometemplates/
+    url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: 0d
     files:
