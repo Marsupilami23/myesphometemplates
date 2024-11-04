@@ -38,6 +38,7 @@ substitutions:
   device_make: "Shelly"
   package_version: "2024.8.01"
   package_url: "github://Marsupilami23/esphometemplates/shelly-dimmer2.yaml@main"
+  firmware_url: "https://github.com/jamesturton/shelly-dimmer-stm32/releases/download/v51.7/shelly-dimmer-stm32_v51.7.bin"
 
   # Device Specific API substitution
   api_key: !secret api_key_front_post_light
