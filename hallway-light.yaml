@@ -1,4 +1,10 @@
-# https://esphome.io/guides/configuration-types.html#substitutions
+# ESPHome formware template for Shelly Dimmer2
+# 
+# initial code taken from
+# https://github.com/esphome/issues/issues/3487
+# Analysis from:
+# https://github.com/arendst/Tasmota/issues/6914
+
 substitutions:
   device_site: "home"
   device_location_code: "hallway"
