@@ -39,6 +39,11 @@ substitutions:
   package_version: "2024.8.01"
   package_url: "github://Marsupilami23/myesphometemplates/shelly-dimmer2.yaml@main"
   firmware_url: "https://github.com/jamesturton/shelly-dimmer-stm32/releases/download/v51.7/shelly-dimmer-stm32_v51.7.bin"
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "5NsWgrtmXPYG3UMEHuIaANNGJLkMqa+nvbJpL+SCbwI="
   
 # Allow importing this package
 dashboard_import:
@@ -47,19 +52,24 @@ dashboard_import:
 
 # Import packages
 packages:
+  standard_package:
+    url: http://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: 0d
+    files:
+      - standard/project.yaml
+      - standard/diagnostics.yaml
+      - standard/wifi.yaml
   shelly_package:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: 0d
     files:
-      - shelly-dimmer2/project.yaml
       - shelly-dimmer2/board.yaml
       - shelly-dimmer2/scripts.yaml
       - shelly-dimmer2/temperature.yaml
       - shelly-dimmer2/switches.yaml
       - shelly-dimmer2/buttons.yaml
-      - standard/diagnostics.yaml
-      - standard/wifi.yaml
 
 # Use the shelly_dimmer built-in platform
 light:
