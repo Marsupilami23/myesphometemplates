@@ -1,6 +1,6 @@
 # Allow importing this package
 dashboard_import:
-  package_import_url: "github://Marsupilami23/esphometemplates/shelly-dimmer2/buttons.yaml@main"
+  package_import_url: "github://Marsupilami23/myesphometemplates/shelly-dimmer2/buttons.yaml@main"
   import_full_config: false
 
 # Define virtual control buttons
