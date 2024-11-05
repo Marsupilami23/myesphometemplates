@@ -4,7 +4,7 @@
 
 substitutions:
   # WiFi Substitutions
-  api_key: !secret api_key_"${device_location_code}"_"${device_type_code}"
+  api_key: !secret api_key
   wifi_ssid: !secret wifi_ssid
   wifi_password: !secret wifi_password
   ota_password: !secret ota_password
