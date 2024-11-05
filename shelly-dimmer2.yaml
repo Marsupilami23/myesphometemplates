@@ -37,7 +37,7 @@ substitutions:
   device_model: "Dimmer2"
   device_make: "Shelly"
   package_version: "2024.8.01"
-  package_url: "github://Marsupilami23/esphometemplates/shelly-dimmer2.yaml@main"
+  package_url: "github://Marsupilami23/myesphometemplates/shelly-dimmer2.yaml@main"
   firmware_url: "https://github.com/jamesturton/shelly-dimmer-stm32/releases/download/v51.7/shelly-dimmer-stm32_v51.7.bin"
 
   # Device Specific API substitution
@@ -51,7 +51,7 @@ dashboard_import:
 # Import packages
 packages:
   shelly_package:
-    url: https://github.com/Marsupilami23/esphometemplates/
+    url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: 0d
     files:
