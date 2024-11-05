@@ -47,19 +47,24 @@ dashboard_import:
 
 # Import packages
 packages:
+  standard_package:
+    url: http://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: 0d
+    files:
+      - standard/project.yaml
+      - standard/diagnostics.yaml
+      - standard/wifi.yaml
   shelly_package:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: 0d
     files:
-      - shelly-dimmer2/project.yaml
       - shelly-dimmer2/board.yaml
       - shelly-dimmer2/scripts.yaml
       - shelly-dimmer2/temperature.yaml
       - shelly-dimmer2/switches.yaml
       - shelly-dimmer2/buttons.yaml
-      - standard/diagnostics.yaml
-      - standard/wifi.yaml
 
 # Use the shelly_dimmer built-in platform
 light:
