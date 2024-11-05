@@ -1,6 +1,6 @@
 # Allow importing this package
 dashboard_import:
-  package_import_url: "github://Marsupilami23/esphometemplates/shelly-dimmer2/board.yaml@main"
+  package_import_url: "github://Marsupilami23/myesphometemplates/shelly-dimmer2/board.yaml@main"
   import_full_config: false
 
 # Board and preferences
