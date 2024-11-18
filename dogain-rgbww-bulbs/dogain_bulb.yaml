@@ -253,7 +253,7 @@ script:
           lambda: return ( id(global_quick_boot_count) >= "${sub_reboot_req} );
       then:
        - lambda: |-
-        		ESP_LOGD("CHANGE_ME.yaml", "quick boot count variable is now "${sub_reboot_req, overwriting credentials and rebooting") ;
+        		ESP_LOGD("dogain-rgbwww-bulb.yaml", "quick boot count variable is now "${sub_reboot_req, overwriting credentials and rebooting") ;
         		
         		// turn on red light
         		auto call = id(rgbww_light).turn_on();
@@ -274,7 +274,7 @@ script:
            // overwrite wifi credentials
            wifi::global_wifi_component->save_wifi_sta("${name}-setup","${wifi_password}" );
      - lambda: |-
-         ESP_LOGD("CHANGE_ME.yaml", "quick boot count variable is now %d. Need "${sub_reboot_req}" to overwrite credentials", id(global_quick_boot_count));
+         ESP_LOGD("dogain-rgbww-bulb.yaml", "quick boot count variable is now %d. Need "${sub_reboot_req}" to overwrite credentials", id(global_quick_boot_count));
          id(global_quick_boot_count) += 1;
          global_quick_boot_count->loop();
          global_preferences->sync();
@@ -290,9 +290,9 @@ script:
             call.perform();
 
     - delay: 10s
-    - lambda: ESP_LOGD("CHANGE_ME.yaml", "quick boot script, 10 seconds up");
+    - lambda: ESP_LOGD("dogain-rgbww-bulb.yaml", "quick boot script, 10 seconds up");
     - wait_until: wifi.connected
-    - lambda: ESP_LOGD("CHANGE_ME.yaml", "quick boot script, wifi connected");
+    - lambda: ESP_LOGD("dogain-rgbww-bulb.yaml", "quick boot script, wifi connected");
     - lambda: |-
         id(global_quick_boot_count+  = 0;
         global_quick_boot_count->loop();
