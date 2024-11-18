@@ -1,3 +1,0 @@
-packages:
-  Kauf.Bulb-f: !include kauf-bulb-factory.yaml
-  Kauf.4m: github://KaufHA/kauf-rgbww-bulbs/config/kauf-bulb-4m-base.yaml
