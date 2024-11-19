@@ -1,0 +1,9 @@
+# Cree Sample YAML file.
+substitutions:
+  device_location_code: "frontyard"
+  device_location_name: "Front Yard Post Lamp"
+  device_type_code: "2cbulb"
+  device_type_name: "bulb"
+
+  packages:
+    cree.st19: github://Marsupilami23/cree-st19-bulbs.yaml
