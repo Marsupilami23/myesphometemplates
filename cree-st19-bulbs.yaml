@@ -73,7 +73,7 @@ packages:
       - cree-st19-bulbs/status-led.yaml
 
 light:
-  - platform: st19_light
+  - platform: cwww
     name: "${device_location_name} ${device_type_name}"
     default_transition_length: "${sub_default_transition_length}"
     cold_white: pwm_cw_output
