@@ -27,7 +27,7 @@ script:
                 ESP_LOGD("cree-st19-bulbs.yaml", "quick boot count variable is now ${sub_reboot_req}, overwriting credentials and rebooting");
 
                 // turn on cold white light
-                auto call = id(st19_light).turn_on();
+                auto call = id(cwww).turn_on();
                 call.set_cw(1.0);
                 call.set_save(false);
                 call.perform();
@@ -61,7 +61,7 @@ script:
             lambda: return ( id(global_quick_boot_count) > 2 );
           then:
             - lambda: |-
-                auto call = id(st19_light).turn_on();
+                auto call = id(cwww).turn_on();
                 call.set_brightness(0.5);
                 call.set_cw(1.0);
                 call.set_save(false);
