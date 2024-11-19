@@ -77,3 +77,7 @@ light:
     name: "Warm White"
     id: light_ww
     output: pwm_ww_output
+  - platform: monochromatic
+    name: "Cold White"
+    id: light_ww
+    output: pwm_cw_output
