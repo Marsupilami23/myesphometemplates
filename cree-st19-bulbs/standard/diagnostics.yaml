@@ -48,7 +48,7 @@ sensor:
     name: Free Memory
     lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
     unit_of_measurement: "kB"
-    status_class: measurement
+    state_class: measurement
     entity_category: "diagnostic"
     disabled_by_default: true
 
