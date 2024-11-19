@@ -56,7 +56,7 @@ packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
-    refresh: 0d
+    refresh: always
     files:
       - cree-st19-bulbs/standard/project.yaml
       - cree-st19-bulbs/standard/diagnostics.yaml
@@ -64,7 +64,7 @@ packages:
   cree_st19_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
-    refresh: 0d
+    refresh: always
     files:
       - cree-st19-bulbs/board.yaml
       - cree-st19-bulbs/current-sensor.yaml
