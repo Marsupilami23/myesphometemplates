@@ -7,5 +7,10 @@ output:
   # Channel 1 (CW)
   - platform: libretiny_pwm
     id: pwm_cw_output
-    pin: "${sub_cw_pin}
-    frequency: 1000 Hz
+    pin: "${sub_cw_pin}"
+    frequency: "${sub_cw_freq}"
+
+  - platform: libretiny_pwm
+    id: pwm_ww_output
+    pin: "${sub_ww_pin}"
+    frequency: "${sub_ww_freq}"
