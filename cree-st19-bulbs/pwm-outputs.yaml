@@ -1,0 +1,10 @@
+# NOTE: This file is not a stand-alone package. It is part of
+# a 'root' device template and expects the substitutions that
+# are hereby referenced to be defined by its parent.
+
+# Maps the PWM Channels
+output:
+  # Channel 1 (CW)
+  - platform: libretiny_pwm
+    id: pwm_cw_output
+    pin: "${sub_cw_gpio}
