@@ -60,7 +60,7 @@ script:
           condition:
             lambda: return ( id(global_quick_boot_count) > 2 );
           then:
-            - labmda: |-
+            - lambda: |-
                 auto call = id(st19_light).turn_on();
                 call.set_brightness(0.5);
                 call.set_cw(1.0);
