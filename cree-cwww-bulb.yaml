@@ -6,19 +6,19 @@
 # https://github.com/arendst/Tasmota/issues/6914
 
 substitutions:
-  name: CHNAGE ME
-  friendly_name: CHANGE ME
-  api_key: "CHANCE ME"
+  api_key: "Change me"
+  # Required import substitutions
+  device_site: "home"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "changeme"
+  device_type_name: "Change Me"
+  device_number: "000"
+  device_ip: "0.0.0.0"
+
   disable_entities: "true"
   disable_webserver: "false"
-  wifi_ap_timeout: 2min
-  wifi_ssid: !secret wifi_ssid
-  wifi_password: !secret wifi_password
-  ota_password: !secret ota_password
-  project_name: CREE.CWWW
-  project_ver_num: "1.0"
-  project_ver_let: a
-
+  
   sub_on_turn_on: script_do_nothing
   sub_on_turn_off: script_do_nothing
 
@@ -39,3 +39,30 @@ substitutions:
   sub_api_reboot_timeout: 0s
   light_restore_mode: RESTORE_DEFAULT_ON
 
+    # Project Substitutions (not intended for user substitutions
+  device_model: "St19"
+  device_make: "CREE"
+  package_version: "2024.11.18"
+  package_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulb.yaml@main"
+
+# Allow importing this package
+dashbord_import:
+  package_import_url: "${package_url}"
+  import_full_config: false
+
+# Import packages:
+packages:
+  standard_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: 0d
+    files:
+      - cree-st19-bulbs/standard/project.yaml
+      - cree-st19-bulbs/standard/diagnostic.yaml
+      - cree-st19-bulbs/standard/wifi.yaml
+  cree_st19_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: 0d
+    files:
+      - cree-st19-bulbs/board.yaml
