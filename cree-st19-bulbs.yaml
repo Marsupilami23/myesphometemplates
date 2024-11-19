@@ -67,3 +67,4 @@ packages:
     refresh: 0d
     files:
       - cree-st19-bulbs/board.yaml
+      - cree-st19-bulbs/current-sensor.yaml
