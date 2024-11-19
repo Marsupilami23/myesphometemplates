@@ -26,12 +26,13 @@ sensor:
 ota:
   - platform: esphome
     id: my_ota
-    safe_mode: true
     password: "${ota_password}"
     on_error:
       then:
         - button.press: restart_button
-
+safe_mode:
+  num_attempts: 
+  
 # Enable WIFI and AP for capitve portal
 wifi:
   fast_connect: false
