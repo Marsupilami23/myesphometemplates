@@ -29,7 +29,7 @@ text_sensor:
     name: "Uptime"
     id: uptime_human
     icon: "mdi:timer-check-outline"
-    update_intervals: 60s
+    update_interval: 60s
     entity_category: "diagnostic"
     disabled_by_default: true
 
