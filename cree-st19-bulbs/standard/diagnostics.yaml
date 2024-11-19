@@ -84,7 +84,7 @@ button:
   - platform: restart
     name: "Reboot Device"
     id: button_restart
-    icone: mdi:power-cycle
+    icon: mdi:power-cycle
     entity_category: "diagnostic"
 
   # Provide a button to reset all defined flash settings.
