@@ -31,7 +31,7 @@ ota:
       then:
         - button.press: restart_button
 safe_mode:
-  num_attempts: 
+  num_attempts: "${sub_ota_num_attempts}"
   
 # Enable WIFI and AP for capitve portal
 wifi:
