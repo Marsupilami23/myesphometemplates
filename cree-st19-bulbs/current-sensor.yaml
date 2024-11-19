@@ -4,7 +4,7 @@
 
 sensor: 
   - platform: adc
-    pin: "${sub_adc_gpio}"
+    pin: "${sub_adc_pin}"
     name: Current
     id: current
     unit_of_measurement: "A"
