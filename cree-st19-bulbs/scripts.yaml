@@ -1,3 +1,68 @@
-substitutions:
+#substitutions:
   # Timing Configurations
   
+script:
+  - id: script_save_changes
+    mode: restart
+    then:
+      - delay: 3s
+      - lambda: global_preferences->();
+
+  - id: script_do_nothing
+    then:
+      lambda: return;
+
+  # increment global_quick_boot_count if bulb stays on less than 10 seconds or never connects to wifi
+  # reset wifi credentials if the counter gets to $sub_reboot_req
+  - id: script_quick_boot
+    then:
+
+      # if quick boot count is $sub_reboot_req, overwrite wifi credentials to force AP
+      - if:
+          condition:
+            lambda: return ( id (global_quick_boot_count) >= "${sub_reboot_req}" );
+          then:
+
+            - lambda: |-
+                ESP_LOGD("cree-st19-bulbs.yaml", "quick boot count variable is now ${sub_reboot_req}, overwriting credentials and rebooting");
+
+                // turn on cold white light
+                auto call = id(st19_light).turn_on();
+                call.set_cw(1.0);
+                call.set_save(false);
+                call.perform();
+
+                // reset counter and immediately save
+                id(global_quick_boot_count) = 0;
+                global_quick_boot_count->loop();
+                global_preferences->sync();
+
+            # Short delay
+            - delay: 5s
+      - lambda: |-
+          ESP_LOGD("cree-st19-bulbs.yaml", "quick boot count variable is now %d. Need ${sub_reboot_req} to override credentials", id(global_quick_boot_count));
+          id(global_quick_boot_count) += 1;
+          global_quick_boot_count->loop();
+          global_preferences->sync();
+
+      # if quick boot count gets over 1 (don't flash on first occurance in case it's an accident), flash light to indicate we are in process
+      - if:
+          condition:
+            lambda: return ( id(global_quick_boot_count) > 2 );
+          then:
+            - labmda: |-
+                auto call = id(st19_light).turn_on();
+                call.set_brightness(0.5);
+                call.set_cw(1.0)
+                call.set_save(false);
+                call.perform();
+
+      # Wait 10 seconds
+      - delay: 10s
+      - lambda: ESP_LOGD("cree-st19-bulbs.yaml", "quick boot script, 10 seconds are up");
+
+      # Any time boot is greater than 10 seconds and also connects to wifi, reset quick boot count to 0
+      - lambda: |-
+          id(global_quick_boot_count) = 0;
+          global_quick_boot_count->loop();
+          global_preferences->sync();
