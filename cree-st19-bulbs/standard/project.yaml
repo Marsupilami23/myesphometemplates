@@ -37,7 +37,7 @@ esphome:
     - priority: 900.0
       then:
         - lambda |-
-          id(cpu_speed) = ESP.getCpuFreqMHz();
+            id(cpu_speed) = ESP.getCpuFreqMHz();
 
 text_sensor:
   # Show firmware template version
