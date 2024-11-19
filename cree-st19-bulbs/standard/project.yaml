@@ -3,10 +3,10 @@
 # are hereby referenced to be defined by it's parent.
 
 substitutions:
-# Generated name and unique device id for the device
-# Not intended for user substitutions
-device_name: "${device_location_name} - ${device_type_name} - ${device_number}"
-device_code: "${device_site}-${device_location_code}-${device_type_code}-${device_number}"
+  # Generated name and unique device id for the device
+  # Not intended for user substitutions
+  device_name: "${device_location_name} - ${device_type_name} - ${device_number}"
+  device_code: "${device_site}-${device_location_code}-${device_type_code}-${device_number}"
 
 # Define a globale variable for CPU speed
 globals:
