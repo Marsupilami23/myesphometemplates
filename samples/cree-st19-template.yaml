@@ -1,7 +1,7 @@
 # Cree Sample YAML file.
 substitutions:
-  device_location_code: "frontyard"
-  device_location_name: "Front Yard Post Lamp"
+  device_location_code: "frontyardpost"
+  device_location_name: "Front Yard Post"
   device_type_code: "2cbulb"
   device_type_name: "bulb"
 
