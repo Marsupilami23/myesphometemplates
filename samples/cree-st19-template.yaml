@@ -3,7 +3,7 @@ substitutions:
   device_location_code: "frontyardpost"
   device_location_name: "Front Yard Post"
   device_type_code: "2cbulb"
-  device_type_name: "bulb"
+  device_type_name: "Light"
 
   packages:
     cree.st19: github://Marsupilami23/cree-st19-bulbs.yaml
