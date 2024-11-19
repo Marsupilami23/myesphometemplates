@@ -24,7 +24,8 @@ substitutions:
 
   sub_cw_pin: GPIO26
   sub_ww_pin: GPIO24
-
+  sub_adc_pin: GPIO23
+  
   sub_warm_white_temp: 2800 Kelvin
   sub_cold_white_temp: 6600 Kelvin
 
