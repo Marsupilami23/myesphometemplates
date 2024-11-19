@@ -1,0 +1,3 @@
+# Allow importing this package
+dashboard_import:
+  package_import_url: "${package_url}"
