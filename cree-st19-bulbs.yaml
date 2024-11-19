@@ -71,3 +71,9 @@ packages:
       - cree-st19-bulbs/pwm-outputs.yaml
       - cree-st19-bulbs/scripts.yaml
       - cree-st19-bulbs/status-led.yaml
+
+light:
+  - platform: monochromatic
+    name: "Warm White"
+    id: light_ww
+    output: pwm_ww_output
