@@ -59,7 +59,7 @@ packages:
     refresh: 0d
     files:
       - cree-st19-bulbs/standard/project.yaml
-      - cree-st19-bulbs/standard/diagnostic.yaml
+      - cree-st19-bulbs/standard/diagnostics.yaml
       - cree-st19-bulbs/standard/wifi.yaml
   cree_st19_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
