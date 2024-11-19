@@ -1,5 +1,6 @@
 # Cree Sample YAML file.
 substitutions:
+  api_key: ""
   device_location_code: "frontyardpost"
   device_location_name: "Front Yard Post"
   device_type_code: "2cbulb"
