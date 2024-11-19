@@ -7,4 +7,4 @@ substitutions:
   device_type_name: "Light"
 
   packages:
-    cree.st19: github://Marsupilami23/myesphometemplates/cree-st19-bulbs.yaml
+    cree.st19: github://Marsupilami23/myesphometemplates/cree-st19-bulbs.yaml@main
