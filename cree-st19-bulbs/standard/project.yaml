@@ -25,7 +25,7 @@ globals:
 
 # Setup the integration and define some project variables
 esphome:
-  name: ${device_code}
+  name: "${device_code}"
   friendly_name: "${device_name}"
   comment: "${device_model} by ${device_make}"
   name_add_mac_suffix: false
