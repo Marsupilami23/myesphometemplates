@@ -36,7 +36,7 @@ esphome:
   on_boot:
     - priority: 900.0
       then:
-        - lambda |-
+        - lambda: |-
             id(cpu_speed) = ESP.getCpuFreqMHz();
 
 text_sensor:
