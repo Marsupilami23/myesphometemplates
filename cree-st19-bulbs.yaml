@@ -74,6 +74,7 @@ packages:
 
 light:
   - platform: cwww
+    id: st19_light
     name: "${device_location_name} ${device_type_name}"
     default_transition_length: "${sub_default_transition_length}"
     cold_white: pwm_cw_output
