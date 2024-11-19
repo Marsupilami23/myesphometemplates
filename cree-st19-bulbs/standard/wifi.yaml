@@ -10,6 +10,8 @@ substitutions:
 
 # Enable Home Assistant API
 api:
+  id: cree_api
+  reboot_timeout: "${sub_api_reboot_timeout}"
   encryption:
     key: "${api_key}"
 
@@ -22,8 +24,13 @@ sensor:
 
 # Enable OTA
 ota:
-  safe_mode: true
-  password: "${ota_password}"
+  - platform: esphome
+    id: my_ota
+    safe_mode: true
+    password: "${ota_password}"
+    on_error:
+      then:
+        - button.press: restart_button
 
 # Enable WIFI and AP for capitve portal
 wifi:
