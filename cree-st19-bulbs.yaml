@@ -75,3 +75,4 @@ packages:
 light:
   - platform: cwww
     name: "${device_location_name} ${device_type_name}"
+    cold_white: "${pwm
