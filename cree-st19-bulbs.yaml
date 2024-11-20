@@ -73,7 +73,7 @@ packages:
 
 light:
   - platform: cwww
-    id: cold_white
+    id: cw_light
     name: "${device_location_name} ${device_type_name}" Cold White
     cold_white: pwm_cw_output
     default_transition_length: "${sub_default_transition_length}"
@@ -85,7 +85,7 @@ light:
       - script.execute: "${sub_on_turn_off}"
 
   - platform: cwww
-    id: warm_white
+    id: ww_light
     name: "${device_location_name} ${device_type_name}" Warm White
     warm_white: pwm_ww_output
     warm_white_color_temperature: "${sub_warm_white_temp}"
