@@ -41,17 +41,6 @@ binary_sensor:
     disabled_by_default: true
 
 sensor:
-  # Device Memory
-  - platform: template
-    id: esp_memory
-    icon: mdi:memory
-    name: Free Memory
-    lambda: return heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024;
-    unit_of_measurement: "kB"
-    state_class: measurement
-    entity_category: "diagnostic"
-    disabled_by_default: true
-
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
   - platform: uptime
