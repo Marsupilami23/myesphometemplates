@@ -55,9 +55,10 @@ dashboard_import:
 external_components:
   - source:
     type: git
-    url: https://github.com/KaufHA/common
+    url: https://github.com/KaufHA/common/components/
+      - component: wifi
     ref: 2024.10.15
-  refresh: never
+  refresh: always
 
 # Import packages:
 packages:
