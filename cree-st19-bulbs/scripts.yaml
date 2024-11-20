@@ -20,7 +20,7 @@ script:
       # if quick boot count is $sub_reboot_req, overwrite wifi credentials to force AP
       - if:
           condition:
-            lambda: return ( id(global_quick_boot_count) >= "${sub_reboot_req}" );
+            lambda: return ( id(global_quick_boot_count) >= $sub_reboot_req );
           then:
 
             - lambda: |-
