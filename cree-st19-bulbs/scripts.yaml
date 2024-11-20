@@ -2,7 +2,7 @@
 substitutions:
   # Timing Configurations
   timing_timer_duration: "5s"
-  timing_dimmer_step: "0.5%"
+  timing_dimming_step: "0.5%"
   timing_dimming_time_ms: "10"
   master_light: "cw_light"
 
