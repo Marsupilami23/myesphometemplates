@@ -139,7 +139,7 @@ script:
 
         lights[i]->make_call()
           .from_light_color_values(color_values)
-          .set_transition_length(uint)transition_length_ms)
+          .set_transition_length((uint)transition_length_ms)
           .perform();
         }
             
