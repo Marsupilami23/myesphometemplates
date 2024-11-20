@@ -1,79 +1,146 @@
-#substitutions:
+# This file was copied from https://github.com/mariodivece/esphometemplates/blob/main/shelly-rgbw2/scripts-4ch.yaml
+substitutions:
   # Timing Configurations
-  
-script:
-  - id: script_save_changes
+  timing_timer_duration: "5s"
+  timing_dimmer_step: "0.5%"
+  timing_dimming_time_ms: "10"
+  master_light: "cw_light"
+
+  # Allow importing of this package
+  dashboard_import:
+    package_import_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulbs/scripts.yaml@main"
+    import_full_config: false
+
+  script:
+
+    # Stops both, dim-up and dim-down limiting timers.
+    - id: script_stop_dimming
+      then:
+        - script.stop: script_dimming_timer
+        - script.stop: script_start_dimming_down
+        - script.stop: script_start_dimming_up
+
+    # Simple timer that limits the maximum time dim-down is executed.
+    - id: script_dimming_timer
+      mode: restart
+        then:
+          - delay: "${timing_timer_duration}"
+
+    # Executes while timer is running, light is on and brightness is in range
+    - id: script_start_dimming_down
+      mode: single
+      then: 
+        - script.stop: script_start_dimming_up
+        - script.execute: script_dimming_timer
+        - if:
+            condition:
+              light.is_off: "${master_light}"
+             then:
+               light.turn_on: "${master_light}"
+        - script.execute:
+            id: script_sync_lights
+            transition_length_ms: -1
+        - while:
+            condition:
+                and:
+                  # only run while timer is running and brightness >= 0%
+                  - script.is_running: script_dimming_timer
+                  - lambda: |-
+                      auto color_values = id(${master_light}).remote_values;
+                      return color_values.get_brightness() > 0.0;
+            then:
+              - light.dim_relative:
+                  id: "${master_light}"
+                  relative_brightness: -"${timing_dimming_step}"
+                  transition_length: "${timing_dimming_time_ms}"ms
+              - script.execute:
+                  id: script_sync_lights
+                  transition_length_ms: "${timing_dimming_time_ms}"
+              - delay: "${timing_dimming_time_ms}"ms
+              
+  - id: script_start_dimming_up
+    mode: single
+    then:
+      - script.stop: script_start_dimming_down
+      - script.execute: script_dimming_timer
+      - if:
+          condition:
+            light.is_off: "${master_light}"
+          then:
+            light.turn_on: "${master_light}"
+      - script.execute:
+          id: script_sync_lights
+          transition_length_ms: -1
+      - while:
+          # Only run while timer is running and brightness ,+ 100%.
+          condition:
+            and:
+              - script.is_running: script_dimming_timer
+              - lambda: |-
+                  auto color_values = id(${master_light}).remote_values;
+                  return color_values.get_brightness() < 1.0;
+          then:
+            - llight.dim_relative:
+                id: "${master_light}"
+                relative_brightness: "${timing_dimming_step}"
+                transition_length: "${timing_dimming_time_ms}"ms
+            - script.execute:
+                id: script_sync_lights
+                transition_length_ms: "${timing_dimming_time_ms}"
+            - delay: "${timing_dimming_time_ms}"
+
+  # Toggles the light on or off, depending on current state
+  - id: script_dimmer_toggle
+    mode: single
+    then:
+      - script.execute: script_stop_dimming
+      - if:
+          condition:
+            light.is_on: "${master_light}"
+          then:
+            - light.turn_off: "${master_light}"
+            - script.execute:
+                id: script_sync_lights
+                transition_length_ms: -1
+          else:
+            - light.turn_on:
+                id: "${master_light}"
+                brightness: !lambda |-
+                  return id(${master_light}).remote_values.get_brightness();
+            - script.execute:
+                id: script_sync_lights
+                transition_length_ms: -1
+
+  # Makes all Lights the same state as master light
+  # using the immediate (current) values and not target (remote) values.
+  - id: script_sync_lights
     mode: restart
+    parameters:
+      # -1 is default transition length, anything else is expressed in ms
+      transition_length_ms: int
     then:
-      - delay: 3s
-      - lambda: global_preferences->sync();
-      
-  - id: script_do_nothing
-    then:
-      lambda: return;
+      lambda: |-
+        auto master_state = id(${master_light});
+        transition_length_ms = transition_length_ms < 0
+          ? master_state->get_default_transition_length()
+          : ${timing_dimming_time_ms};
 
-  # increment global_quick_boot_count if bulb stays on less than 10 seconds or never connects to wifi
-  # reset wifi credentials if the counter gets to $sub_reboot_req
-  - id: script_quick_boot
-    then:
+        auto color_values = master_state->remote_values;
 
-      # if quick boot count is $sub_reboot_req, overwrite wifi credentials to force AP
-      - if:
-          condition:
-            lambda: return ( id(global_quick_boot_count) >= $sub_reboot_req );
-          then:
+        LightState* lights[] = {
+          id(cw_light),
+          id(ww_light)
+        };
 
-            - lambda: |-
-                ESP_LOGD("cree-st19-bulbs.yaml", "quick boot count variable is now ${sub_reboot_req}, overwriting credentials and rebooting");
+        for (int i = 0; i < 4; i++) {
+          // skip over the master light via reference comparison
+          if (lights[i] == master_state) {
+            continue;
+        }
 
-                // turn on cold white light
-                auto call = id(cwww_light).turn_on();
-                call.set_brightness(0.6);
-                call.set_cold_white(1.0);
-                call.set_save(false);
-                call.perform();
-
-                // reset counter and immediately save
-                id(global_quick_boot_count) = 0;
-                global_quick_boot_count->loop();
-                global_preferences->sync();
-
-            # Short delay
-            - delay: 2s
-
-            # wait until attempt to load credentials has been made, that way we know the new ones can be saved properly.
-            #- wait_until:
-            #    lambda: return ( wifi_wificomponent_id->tried_loading_creds );
-
-            # the save_wifi_sta function reboots.
-            #- lambda: |-
-            #    // overwrite wifi credentials
-            #    wifi::global_wifi_component->save_wifi_sta("${device_code}-setup","${wifi_password}");
-                
-      - lambda: |-
-                ESP_LOGD("cree-st19-bulbs.yaml", "quick boot count variable is now %d. Need ${sub_reboot_req} to override credentials", id(global_quick_boot_count));
-                id(global_quick_boot_count) += 1;
-                global_quick_boot_count->loop();
-                global_preferences->sync();
-
-      # if quick boot count gets over 1 (don't flash on first occurance in case it's an accident), flash light to indicate we are in process
-      - if:
-          condition:
-            lambda: return ( id(global_quick_boot_count) > 2 );
-          then:
-            - lambda: |-
-                auto call = id(cwww_light).turn_on();
-                call.set_brightness(0.5);
-                call.set_cold_white(1.0);
-                call.set_save(false);
-                call.perform();
-
-      # Wait 10 seconds
-      - delay: 10s
-      - lambda: ESP_LOGD("cree-st19-bulbs.yaml", "quick boot script, 10 seconds are up");
-
-      # Any time boot is greater than 10 seconds and also connects to wifi, reset quick boot count to 0
-      - lambda: |-
-          id(global_quick_boot_count) = 0;
-          global_quick_boot_count->loop();
-          global_preferences->sync();
+        lights[i]->make_call()
+          .from_light_color_values(color_values)
+          .set_transition_length(uint)transition_length_ms)
+          .perform();
+        }
+            
