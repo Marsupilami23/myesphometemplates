@@ -51,6 +51,14 @@ dashboard_import:
   package_import_url: "${package_url}"
   import_full_config: false
 
+# https://esphome.io/components/external_components.html
+external_components:
+  - source:
+    type: git
+    url: https://github.com/KaufHA/common
+    ref: 2024.10.15
+  refresh: never
+
 # Import packages:
 packages:
   standard_packages:
