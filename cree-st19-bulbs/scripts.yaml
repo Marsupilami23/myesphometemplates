@@ -55,7 +55,7 @@ script:
             - script.execute:
                 id: script_sync_lights
                 transition_length_ms: ${timing_dimming_time_ms}
-            - delay: "${timing_dimming_time_ms}"ms
+            - delay: ${timing_dimming_time_ms}"ms
               
 - id: script_start_dimming_up
   mode: single
@@ -81,12 +81,12 @@ script:
         then:
           - llight.dim_relative:
               id: "${master_light}"
-              relative_brightness: "${timing_dimming_step}"
-              transition_length: "${timing_dimming_time_ms}"ms
+              relative_brightness: ${timing_dimming_step}
+              transition_length: ${timing_dimming_time_ms}ms
           - script.execute:
               id: script_sync_lights
-              transition_length_ms: "${timing_dimming_time_ms}"
-          - delay: "${timing_dimming_time_ms}"
+              transition_length_ms: ${timing_dimming_time_ms}
+          - delay: ${timing_dimming_time_ms}
 
   # Toggles the light on or off, depending on current state
   - id: script_dimmer_toggle
