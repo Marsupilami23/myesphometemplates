@@ -22,8 +22,8 @@ script:
   # Simple timer that limits the maximum time dim-down is executed.
   - id: script_dimming_timer
     mode: restart
-      then:
-        - delay: "${timing_timer_duration}"
+    then:
+      - delay: "${timing_timer_duration}"
 
   # Executes while timer is running, light is on and brightness is in range
   - id: script_start_dimming_down
