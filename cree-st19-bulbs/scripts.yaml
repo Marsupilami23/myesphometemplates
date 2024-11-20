@@ -42,13 +42,13 @@ script:
             - delay: 2s
 
             # wait until attempt to load credentials has been made, that way we know the new ones can be saved properly.
-            - wait_until:
-                lambda: return ( wifi_wificomponent_id->tried_loading_creds );
+            #- wait_until:
+            #    lambda: return ( wifi_wificomponent_id->tried_loading_creds );
 
             # the save_wifi_sta function reboots.
-            - lambda: |-
-                // overwrite wifi credentials
-                wifi::global_wifi_component->save_wifi_sta("${device_code}-setup","${wifi_password}");
+            #- lambda: |-
+            #    // overwrite wifi credentials
+            #    wifi::global_wifi_component->save_wifi_sta("${device_code}-setup","${wifi_password}");
                 
       - lambda: |-
                 ESP_LOGD("cree-st19-bulbs.yaml", "quick boot count variable is now %d. Need ${sub_reboot_req} to override credentials", id(global_quick_boot_count));
