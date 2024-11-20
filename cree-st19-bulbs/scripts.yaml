@@ -55,7 +55,7 @@ script:
             - script.execute:
                 id: script_sync_lights
                 transition_length_ms: ${timing_dimming_time_ms}
-            - delay: ${timing_dimming_time_ms}"ms
+            - delay: ${timing_dimming_time_ms}ms
               
   - id: script_start_dimming_up
     mode: single
