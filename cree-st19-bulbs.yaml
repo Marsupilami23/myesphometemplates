@@ -55,7 +55,7 @@ dashboard_import:
 external_components:
   - source:
       type: git
-      url: https://github.com/KaufHA/common
+      url: https://github.com/esphome/esphome
     components: [ wifi ]
     refresh: always
 
