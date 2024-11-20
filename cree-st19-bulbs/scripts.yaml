@@ -49,12 +49,12 @@ script:
                     return color_values.get_brightness() > 0.0;
           then:
             - light.dim_relative:
-                id: "${master_light}"
-                relative_brightness: -"${timing_dimming_step}"
-                transition_length: "${timing_dimming_time_ms}"ms
+                id: ${master_light}
+                relative_brightness: -${timing_dimming_step}
+                transition_length: ${timing_dimming_time_ms}ms
             - script.execute:
                 id: script_sync_lights
-                transition_length_ms: "${timing_dimming_time_ms}"
+                transition_length_ms: ${timing_dimming_time_ms}
             - delay: "${timing_dimming_time_ms}"ms
               
 - id: script_start_dimming_up
