@@ -7,7 +7,7 @@ substitutions:
   master_light: "cw_light"
 
   # Allow importing of this package
-  dashboard_import:
+dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulbs/scripts.yaml@main"
   import_full_config: false
 
