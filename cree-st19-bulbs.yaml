@@ -80,16 +80,12 @@ packages:
       - cree-st19-bulbs/scripts.yaml
 
 light:
-  - platform: cwww
-    id: cwww_light
-    name: "${device_location_name} ${device_type_name}"
-    cold_white: pwm_cw_output
-    warm_white: pwm_ww_output
-    default_transition_length: "${sub_default_transition_length}"
-    cold_white_color_temperature: "${sub_cold_white_temp}"
-    warm_white_color_temperature: "${sub_warm_white_temp}"
-    restore_mode: "${light_restore_mode}"
-    on_turn_on:
-      - script.execute: "${sub_on_turn_on}"
-    on_turn_off:
-      - script.execute: "${sub_on_turn_off}"
+  - platform: monochromatic
+    name: "Cold White"
+    id: cw_light
+    output: pwm_cw_output
+
+  - platform: monochromatic
+    name: "Warm White"
+    id: ww_light
+    output: pwm_ww_output
