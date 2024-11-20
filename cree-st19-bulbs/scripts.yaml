@@ -8,86 +8,85 @@ substitutions:
 
   # Allow importing of this package
   dashboard_import:
-    package_import_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulbs/scripts.yaml@main"
-    import_full_config: false
+  package_import_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulbs/scripts.yaml@main"
+  import_full_config: false
 
-  script:
-
-    # Stops both, dim-up and dim-down limiting timers.
-    - id: script_stop_dimming
-      then:
-        - script.stop: script_dimming_timer
-        - script.stop: script_start_dimming_down
-        - script.stop: script_start_dimming_up
-
-    # Simple timer that limits the maximum time dim-down is executed.
-    - id: script_dimming_timer
-      mode: restart
-        then:
-          - delay: "${timing_timer_duration}"
-
-    # Executes while timer is running, light is on and brightness is in range
-    - id: script_start_dimming_down
-      mode: single
-      then: 
-        - script.stop: script_start_dimming_up
-        - script.execute: script_dimming_timer
-        - if:
-            condition:
-              light.is_off: "${master_light}"
-             then:
-               light.turn_on: "${master_light}"
-        - script.execute:
-            id: script_sync_lights
-            transition_length_ms: -1
-        - while:
-            condition:
-                and:
-                  # only run while timer is running and brightness >= 0%
-                  - script.is_running: script_dimming_timer
-                  - lambda: |-
-                      auto color_values = id(${master_light}).remote_values;
-                      return color_values.get_brightness() > 0.0;
-            then:
-              - light.dim_relative:
-                  id: "${master_light}"
-                  relative_brightness: -"${timing_dimming_step}"
-                  transition_length: "${timing_dimming_time_ms}"ms
-              - script.execute:
-                  id: script_sync_lights
-                  transition_length_ms: "${timing_dimming_time_ms}"
-              - delay: "${timing_dimming_time_ms}"ms
-              
-  - id: script_start_dimming_up
-    mode: single
+script:
+  # Stops both, dim-up and dim-down limiting timers.
+  - id: script_stop_dimming
     then:
+      - script.stop: script_dimming_timer
       - script.stop: script_start_dimming_down
+      - script.stop: script_start_dimming_up
+
+  # Simple timer that limits the maximum time dim-down is executed.
+  - id: script_dimming_timer
+    mode: restart
+      then:
+        - delay: "${timing_timer_duration}"
+
+  # Executes while timer is running, light is on and brightness is in range
+  - id: script_start_dimming_down
+    mode: single
+    then: 
+      - script.stop: script_start_dimming_up
       - script.execute: script_dimming_timer
       - if:
           condition:
             light.is_off: "${master_light}"
-          then:
-            light.turn_on: "${master_light}"
+           then:
+              light.turn_on: "${master_light}"
       - script.execute:
           id: script_sync_lights
           transition_length_ms: -1
       - while:
-          # Only run while timer is running and brightness ,+ 100%.
           condition:
-            and:
-              - script.is_running: script_dimming_timer
-              - lambda: |-
-                  auto color_values = id(${master_light}).remote_values;
-                  return color_values.get_brightness() < 1.0;
+              and:
+                # only run while timer is running and brightness >= 0%
+                - script.is_running: script_dimming_timer
+                - lambda: |-
+                    auto color_values = id(${master_light}).remote_values;
+                    return color_values.get_brightness() > 0.0;
           then:
-            - llight.dim_relative:
+            - light.dim_relative:
                 id: "${master_light}"
-                relative_brightness: "${timing_dimming_step}"
+                relative_brightness: -"${timing_dimming_step}"
                 transition_length: "${timing_dimming_time_ms}"ms
             - script.execute:
                 id: script_sync_lights
                 transition_length_ms: "${timing_dimming_time_ms}"
-            - delay: "${timing_dimming_time_ms}"
+            - delay: "${timing_dimming_time_ms}"ms
+              
+- id: script_start_dimming_up
+  mode: single
+  then:
+    - script.stop: script_start_dimming_down
+    - script.execute: script_dimming_timer
+    - if:
+        condition:
+          light.is_off: "${master_light}"
+        then:
+          light.turn_on: "${master_light}"
+    - script.execute:
+        id: script_sync_lights
+        transition_length_ms: -1
+    - while:
+        # Only run while timer is running and brightness ,+ 100%.
+        condition:
+          and:
+            - script.is_running: script_dimming_timer
+            - lambda: |-
+                auto color_values = id(${master_light}).remote_values;
+                return color_values.get_brightness() < 1.0;
+        then:
+          - llight.dim_relative:
+              id: "${master_light}"
+              relative_brightness: "${timing_dimming_step}"
+              transition_length: "${timing_dimming_time_ms}"ms
+          - script.execute:
+              id: script_sync_lights
+              transition_length_ms: "${timing_dimming_time_ms}"
+          - delay: "${timing_dimming_time_ms}"
 
   # Toggles the light on or off, depending on current state
   - id: script_dimmer_toggle
