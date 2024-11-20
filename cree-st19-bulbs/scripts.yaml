@@ -28,7 +28,8 @@ script:
 
                 // turn on cold white light
                 auto call = id(cwww_light).turn_on();
-                call.set_cw(1.0);
+                call.set_brightness(0.6);
+                call.set_cwww(1.0, 0.0);
                 call.set_save(false);
                 call.perform();
 
@@ -63,7 +64,7 @@ script:
             - lambda: |-
                 auto call = id(cwww_light).turn_on();
                 call.set_brightness(0.5);
-                call.set_cw(1.0);
+                call.set_cwww(1.0);
                 call.set_save(false);
                 call.perform();
 
