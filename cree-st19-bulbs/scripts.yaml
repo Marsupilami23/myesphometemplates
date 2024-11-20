@@ -79,7 +79,7 @@ script:
                   auto color_values = id(${master_light}).remote_values;
                   return color_values.get_brightness() < 1.0;
           then:
-            - llight.dim_relative:
+            - light.dim_relative:
                 id: "${master_light}"
                 relative_brightness: ${timing_dimming_step}
                 transition_length: ${timing_dimming_time_ms}ms
