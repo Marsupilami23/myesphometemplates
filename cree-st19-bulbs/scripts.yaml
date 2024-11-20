@@ -6,8 +6,8 @@ script:
     mode: restart
     then:
       - delay: 3s
-      - lambda: global_preferences->();
-
+      - lambda: global_preferences->sync();
+      
   - id: script_do_nothing
     then:
       lambda: return;
