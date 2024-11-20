@@ -56,7 +56,6 @@ external_components:
   - source:
       type: git
       url: https://github.com/KaufHA/common
-      ref: 2024.10.15
     components: [ wifi ]
     refresh: always
 
