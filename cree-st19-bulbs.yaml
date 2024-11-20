@@ -58,7 +58,7 @@ external_components:
       url: https://github.com/KaufHA/common
       ref: 2024.10.15
     components: [ wifi ]
-  refresh: always
+    refresh: always
 
 # Import packages:
 packages:
