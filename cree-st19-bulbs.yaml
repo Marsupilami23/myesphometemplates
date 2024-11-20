@@ -54,10 +54,10 @@ dashboard_import:
 # https://esphome.io/components/external_components.html
 external_components:
   - source:
-    type: git
-    url: https://github.com/KaufHA/common/components/
-      - component: wifi
-    ref: 2024.10.15
+      type: git
+      url: https://github.com/KaufHA/common
+      ref: 2024.10.15
+    components: [ wifi ]
   refresh: always
 
 # Import packages:
