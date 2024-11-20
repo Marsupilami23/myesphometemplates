@@ -34,8 +34,8 @@ script:
       - if:
           condition:
             light.is_off: "${master_light}"
-           then:
-              light.turn_on: "${master_light}"
+          then:
+            light.turn_on: "${master_light}"
       - script.execute:
           id: script_sync_lights
           transition_length_ms: -1
