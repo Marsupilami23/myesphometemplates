@@ -41,8 +41,6 @@ substitutions:
   light_restore_mode: RESTORE_DEFAULT_ON
 
     # Project Substitutions (not intended for user substitutions
-  device_model: "ST19"
-  device_make: "CREE"
   package_version: "2024.11.18"
   package_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulb.yaml@main"
 
