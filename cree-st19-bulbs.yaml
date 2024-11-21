@@ -79,7 +79,6 @@ packages:
       - cree-st19-bulbs/pwm-outputs.yaml
       - cree-st19-bulbs/scripts.yaml
       - cree-st19-bulbs/virtual_buttons.yaml
-      - cree-st19-bulbs/status-led.yaml
 
 light:
   - platform: monochromatic
@@ -91,3 +90,7 @@ light:
     name: "Warm White"
     id: ww_light
     output: pwm_ww_output
+
+  - platform: status_led
+    name: "Switch state"
+    pin: pwm_cw_output
