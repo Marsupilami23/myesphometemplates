@@ -61,9 +61,3 @@ sensor:
     lambda: |-
       return (id(cpu_speed));
     entity_category: diagnostic
-
-binary_sensor:
-  - platform: template
-    name: "${device_name) 4MiB"
-    id: sensor_4m
-    disabled_by_default: $disable_entities
