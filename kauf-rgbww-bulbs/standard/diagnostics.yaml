@@ -41,6 +41,11 @@ binary_sensor:
     id: sensor_status
     disabled_by_default: true
 
+  - platform: template
+    name: "${device_name) 4MiB"
+    id: sensor_4m
+    disabled_by_default: $disable_entities
+    
 sensor:
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
