@@ -90,7 +90,3 @@ light:
     name: "Warm White"
     id: ww_light
     output: pwm_ww_output
-
-  - platform: status_led
-    name: "Switch state"
-    pin: "${sub_cw_pin}"
