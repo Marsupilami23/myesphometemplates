@@ -94,7 +94,7 @@ light:
     default_transition_length: 0ms
     icon: mdi:store-cog
     aux: true
-    name: "${device_code} Warm RGB"
+    name: "${device_name} Warm RGB"
     forced_hash: 4077116474
     forced_addr: 28
     global_addr: global_forced_addr
@@ -108,7 +108,7 @@ light:
     default_transition_length: 0ms
     icon: mdi:store-cog-outline
     aux: true
-    name: "${device_code} Cold RGB"
+    name: "${device_name} Cold RGB"
     forced_hash: 301094535
     forced_addr: 40
     global_addr: global_forced_addr
@@ -119,7 +119,7 @@ light:
   - platform: kauf_rgbww
     id: kauf_light
     default_transition_length: $sub_default_transition_length
-    name: "${device_code}"
+    name: "${device_name}"
     red: pwm_red
     green: pwm_green
     blue: pwm_blue
@@ -143,7 +143,7 @@ light:
 select:
 
   - platform: template
-    name: "${device_code} Effect"
+    name: "${device_name} Effect"
     id: effect
     optimistic: true
     options:
@@ -164,7 +164,7 @@ select:
     global_addr: global_forced_addr
 
   - platform: template
-    name: "${device_code} DDP Debug"
+    name: "${device_name} DDP Debug"
     id: select_ddp_debug
     optimistic: true
     options:
