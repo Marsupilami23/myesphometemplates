@@ -93,4 +93,4 @@ light:
 
   - platform: status_led
     name: "Switch state"
-    pin: "#{sub_cw_pin}"
+    pin: "${sub_cw_pin}"
