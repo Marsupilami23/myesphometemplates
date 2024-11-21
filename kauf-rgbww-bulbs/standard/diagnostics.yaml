@@ -1,0 +1,5 @@
+binary_sensor:
+  - platform: template
+    name: $friendly_name 4MiB
+    id: sensor_4m
+    disabled_by_default: $disable_entities
