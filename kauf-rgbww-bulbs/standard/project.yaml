@@ -1,3 +1,11 @@
+substitutions:
+  # Generated name and unique device id for the device
+  # Not intended for user substitutions
+  device_name: "${device_location_name} - ${device_type_name} - ${device_number}"
+  device_code: "${device_site}-${device_location_code}-${device_type_code}-${device_number}"
+  device_model: "ST19"
+  device_make: "CREE"
+  
 # https://esphome.io/guides/automations.html#global-variables
 globals:
   - id: global_forced_addr
