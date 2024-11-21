@@ -1,1 +1,10 @@
+# Kauf RGBWW Sample YAML file.
+substitutions:
+  api_key: ""
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "rgbww"
+  device_type_name: "Light Bulb"
 
+packages:
+  Kauf.RGBWW: github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs.yaml@main
