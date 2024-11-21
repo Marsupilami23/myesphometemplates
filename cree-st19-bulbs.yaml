@@ -19,9 +19,6 @@ substitutions:
   disable_entities: "true"
   disable_webserver: "false"
   
-  sub_on_turn_on: script_do_nothing
-  sub_on_turn_off: script_do_nothing
-
   sub_cw_pin: GPIO26
   sub_ww_pin: GPIO24
   sub_adc_pin: GPIO23
@@ -40,8 +37,7 @@ substitutions:
   sub_api_reboot_timeout: 0s
   light_restore_mode: RESTORE_DEFAULT_ON
 
-    # Project Substitutions (not intended for user substitutions
-  package_version: "2024.11.18"
+  # Project Substitutions (not intended for user substitutions)
   package_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulb.yaml@main"
 
 # Allow importing this package
@@ -75,7 +71,6 @@ packages:
       - cree-st19-bulbs/board.yaml
       - cree-st19-bulbs/current-sensor.yaml
       - cree-st19-bulbs/pwm-outputs.yaml
-      - cree-st19-bulbs/virtual_buttons.yaml
 
 light:
   - platform: monochromatic
