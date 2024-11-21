@@ -76,24 +76,24 @@ packages:
     ref: main
     refresh: always
     files:
-      - kauf-rgbww-bulbs/standard/project.yaml
-      - kauf-rgbww-bulbs/standard/diagnostics.yaml
-      - kauf-rgbww-bulbs/standard/wifi.yaml
+      - dogain-rgbww-bulbs/standard/project.yaml
+      - dogain-rgbww-bulbs/standard/diagnostics.yaml
+      - dogain-rgbww-bulbs/standard/wifi.yaml
   kauf_rgbww_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - kauf-rgbww-bulbs/board.yaml
-      - kauf-rgbww-bulbs/current-sensor.yaml
-      - kauf-rgbww-bulbs/pwm-outputs.yaml
-      - kauf-rgbww-bulbs/scripts.yaml
+      - dogain-rgbww-bulbs/board.yaml
+      - dogain-rgbww-bulbs/current-sensor.yaml
+      - dogain-rgbww-bulbs/pwm-outputs.yaml
+      - dogain-rgbww-bulbs/scripts.yaml
 
 # https://esphome.io/components/light/index.html
 light:
 
   # Additive RGB light for Warm White
-  - platform: kauf_rgbww
+  - platform: dogain_rgbww
     id: warm_rgb
     entity_category: config
     default_transition_length: 0ms
@@ -107,7 +107,7 @@ light:
     restore_mode: RESTORE_DEFAULT_OFF
 
   # Additive RGB light for Cold White
-  - platform: kauf_rgbww
+  - platform: dogain_rgbww
     id: cold_rgb
     entity_category: config
     default_transition_length: 0ms
@@ -121,8 +121,8 @@ light:
     restore_mode: RESTORE_DEFAULT_OFF
 
   # Main RGBWW light
-  - platform: kauf_rgbww
-    id: kauf_light
+  - platform: dogain_rgbww
+    id: dogain_light
     default_transition_length: $sub_default_transition_length
     name: "${device_name}"
     red: pwm_red
@@ -159,8 +159,8 @@ select:
     icon: mdi:string-lights
     on_value:
       - lambda: |-
-          if ( x == "WLED / DDP" ) { id(kauf_light).set_use_wled(true); }
-          else                     { id(kauf_light).set_use_wled(false); }
+          if ( x == "WLED / DDP" ) { id(dogain_light).set_use_wled(true); }
+          else                     { id(dogain_light).set_use_wled(false); }
       - script.execute: script_save_changes
 
     entity_category: config
@@ -183,6 +183,6 @@ select:
     disabled_by_default: $disable_entities
     set_action:
       - lambda: |-
-          if      ( x == "Print no packets" )        { id(kauf_light).set_ddp_debug(0); }
-          else if ( x == "Print imperfect packets" ) { id(kauf_light).set_ddp_debug(1); }
-          else if ( x == "Print all packets" )       { id(kauf_light).set_ddp_debug(2); }
+          if      ( x == "Print no packets" )        { id(dogain_light).set_ddp_debug(0); }
+          else if ( x == "Print imperfect packets" ) { id(dogain_light).set_ddp_debug(1); }
+          else if ( x == "Print all packets" )       { id(dogain_light).set_ddp_debug(2); }
