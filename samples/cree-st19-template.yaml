@@ -1,10 +1,17 @@
 # Cree Sample YAML file.
 substitutions:
   api_key: ""
-  device_location_code: "frontyardpost"
-  device_location_name: "Front Yard Post"
-  device_type_code: "2cbulb"
-  device_type_name: "Light"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "lghtblb"
+  device_type_name: "Light Bulb"
+  device_number: "001"
+  device_ip: "0.0.0.0"
 
 packages:
-  cree.st19: github://Marsupilami23/myesphometemplates/cree-st19-bulbs.yaml@main
+  cree_st19_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - cree-st19-bulbs.yaml
