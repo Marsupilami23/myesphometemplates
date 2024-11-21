@@ -1,1 +1,28 @@
-
+# PWM outputs for each LED channel
+# https://esphome.io/components/output/esp8266_pwm.html
+output:
+  - platform: esp8266_pwm
+    pin: $sub_red_pin
+    frequency: $sub_red_freq
+    id: pwm_red
+    max_power: $sub_max_power
+  - platform: esp8266_pwm
+    pin: $sub_green_pin
+    frequency: $sub_green_freq
+    id: pwm_green
+    max_power: $sub_max_power
+  - platform: esp8266_pwm
+    pin: $sub_blue_pin
+    frequency: $sub_blue_freq
+    id: pwm_blue
+    max_power: $sub_max_power
+  - platform: esp8266_pwm
+    pin: $sub_cw_pin
+    frequency: $sub_cw_freq
+    id: pwm_cw
+    max_power: $sub_max_power
+  - platform: esp8266_pwm
+    pin: $sub_ww_pin
+    frequency: $sub_ww_freq
+    id: pwm_ww
+    max_power: $sub_max_power
