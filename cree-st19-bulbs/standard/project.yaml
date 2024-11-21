@@ -9,7 +9,7 @@ substitutions:
   device_code: "${device_site}-${device_location_code}-${device_type_code}-${device_number}"
   device_model: "ST19"
   device_make: "CREE"
-  package_version: "2024.11.18"
+  package_version: "2024.11.20"
   
 # Define a globale variable for CPU speed
 globals:
