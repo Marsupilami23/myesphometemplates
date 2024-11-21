@@ -1,0 +1,4 @@
+status_led:
+  pin:
+    number: "${sub_cw_pin}"
+    
