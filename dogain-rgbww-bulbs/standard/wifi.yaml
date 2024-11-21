@@ -34,13 +34,5 @@ wifi:
   ap:
     ssid: "${device_code}-setup"
     password: "${wifi_password}"
-    
-web_server:
-  disable: "${disable_webserver}"
-  sensor_4m: "${sub_4m}"
-  version: 3
-  include_internal: true
-  ota: true
-  js_url: https//kaufha.com/v2/www.js
 
 captive_portal:
