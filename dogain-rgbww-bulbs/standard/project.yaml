@@ -5,7 +5,7 @@ substitutions:
   device_name: "${device_location_name} - ${device_type_name}"
   device_code: "${device_location_code}-${device_type_code}"
   device_model: "RGBWW"
-  device_make: "KAUF"
+  device_make: "DOGAIN"
   package_version: "2024.11.20"
 
 # https://esphome.io/guides/automations.html#global-variables
