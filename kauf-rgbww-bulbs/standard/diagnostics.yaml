@@ -1,3 +1,11 @@
+# NOTE: This file is not a stand-alone package. it is part of
+# a 'root' device template and expects the substitutions that
+# are hereby referenced to be defined by it's parent.
+
+substitutions:
+  log_level: INFO
+  timezone: "America/Los_Angeles"
+  
 binary_sensor:
   - platform: template
     name: $friendly_name 4MiB
