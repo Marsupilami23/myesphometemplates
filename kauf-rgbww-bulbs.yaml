@@ -18,16 +18,22 @@ substitutions:
 
   disable_entities: "true"
   disable_webserver: "false"
-  
-  sub_cw_pin: GPIO26
-  sub_ww_pin: GPIO24
-  sub_adc_pin: GPIO23
+
+  sub_red_pin:     GPIO04
+  sub_green_pin:   GPIO12
+  sub_blue_pin:    GPIO14
+  sub_cw_pin:      GPIO05
+  sub_ww_pin:      GPIO13
+  #sub_adc_pin: GPIO23
   
   sub_warm_white_temp: 2800 Kelvin
   sub_cold_white_temp: 6600 Kelvin
 
-  sub_cw_freq: 400hz
-  sub_ww_freq: 400hz
+  sub_red_freq:   200 hz
+  sub_green_freq: 200 hz
+  sub_blue_freq:  200 hz
+  sub_cw_freq:    400 hz
+  sub_ww_freq:    400 hz
 
   sub_reboot_req: '9'
   sub_ota_num_attempts: '15'
