@@ -1,167 +1,130 @@
+
+# ESPHome firmware template for CREE C/W Bulb
+# 
+# initial code taken from
+# https://github.com/esphome/issues/issues/3487
+# Analysis from:
+# https://github.com/arendst/Tasmota/issues/6914
+
 substitutions:
-  name: CHANGE_ME
-  friendly_name: CHANGE ME
+  api_key: "Change me"
+  # Required import substitutions
+  device_site: "home"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "changeme"
+  device_type_name: "Change Me"
+  device_number: "000"
+  device_ip: "0.0.0.0"
+
   disable_entities: "true"
   disable_webserver: "false"
-  wifi_ap_timeout: 2min
-  wifi_ssid: !secret wifi_ssid
-  wifi_password: !secret wifi_password
-  ota_password: !secret ota_password
-  project_name: Dogain.RGBWW
-  project_ver_num: "1.0"
-  project_ver_let: a
+
+  sub_4m: "false"
   
-  sub_on_turn_on: script_do_nothing
+  sub_on_turn_on:  script_do_nothing
   sub_on_turn_off: script_do_nothing
   
-  sub_red_pin: GPIO14
-  sub_green_pin: GPIO12
-  sub_blue_pin: GPIO13
-  sub_cw_pin: GPIO04
-  sub_ww_pin: GPIO05
+  sub_red_pin:     GPIO04
+  sub_green_pin:   GPIO12
+  sub_blue_pin:    GPIO14
+  sub_cw_pin:      GPIO05
+  sub_ww_pin:      GPIO13
+  sub_adc_pin:     GPIO17
   
   sub_warm_white_temp: 2800 Kelvin
   sub_cold_white_temp: 6600 Kelvin
-  
-  sub_red_freq: 200hz
-  sub_green_freq: 200hz
-  sub_blue_freq: 200hz
-  sub_cw_freq: 400hz
-  sub_ww_freq: 400hz
-  
+
+  sub_red_freq:   200 hz
+  sub_green_freq: 200 hz
+  sub_blue_freq:  200 hz
+  sub_cw_freq:    400 hz
+  sub_ww_freq:    400 hz
+
   sub_reboot_req: '9'
   sub_ota_num_attempts: '15'
-  
+
   sub_max_power: '0.8'
   sub_default_transition_length: 250ms
   sub_api_reboot_timeout: 0s
-  light_resorce_mode: RESTORE_DEFAULT_ON
-  
-esp8266:
-  board: esp01_1m
-  restore_from_flash: true
+  light_restore_mode: RESTORE_DEFAULT_ON
 
-preferences:
-  flash_write_interval: 1m
-    
-globals:
-  - id: global_forced_addr
-    type: int
-    restore_value: no
-    initial_value: '12345'
-  - id: global_quick_boot_count
-    type: int
-    restore_value: yes
-    initial_value: '0'
-    
-esphome:
-  name: "${name}"
-  project:
-    name: "${project_name}"
-    version: "${project_ver_num}(${project_ver_let})
-  on_boot:
-    then:
-      - script.execute: fast_boot_script
-  min_version: 2024.10.0
+  # Project Substitutions (not intended for user substitutions)
+  package_url: "github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs.yaml@main"
 
-button:
-  - platform: restart
-    id: restart_button
-    name: "${friendly_name}" Restart Firmware
-    entity_category: diagnostic
-    disabled_by_default: "${disable_entities}"
-    
-wifi:
-  ssid: "${wifi_ssid}"
-  password: "${wifi_password}"
-  forced_addr: 0
-  global_addr: global_forced_addr
-  ap:
-    ap_timeout: "${wifi_ap_timeout}"
-    ssid: "${name}-setup}"
-    password: "{$wifi_password}"
-    
-capitive_portal:
+# Allow importing this package
+dashboard_import:
+  package_import_url: "${package_url}"
+  import_full_config: false
 
-logger:
+# https://esphome.io/components/external_components.html
+external_components:
+  - source:
+      type: git
+      url: https://github.com/KaufHA/common
+      ref: v2024.11.20
+    refresh: never
+  - source:
+      type: git
+      url: https://github.com/KaufHA/kauf-rgbww-bulbs
+    refresh: always
 
-api:
-  id: dogain_api
-  reboot_timeout: "${sub_api_reboot_timeout}"
-  encryption:
-    key: "CHANGEME"
+# Import packages:
+packages:
+  standard_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - kauf-rgbww-bulbs/standard/project.yaml
+      - kauf-rgbww-bulbs/standard/diagnostics.yaml
+      - kauf-rgbww-bulbs/standard/wifi.yaml
+  kauf_rgbww_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - kauf-rgbww-bulbs/board.yaml
+      - kauf-rgbww-bulbs/current-sensor.yaml
+      - kauf-rgbww-bulbs/pwm-outputs.yaml
+      - kauf-rgbww-bulbs/scripts.yaml
 
-ota:
-  - platform: esphome
-    password: "${ota_password}"
-    on_error:
-      then:
-        - button.press: restart_button
-
-safe_mode:
-  num_attempts: "${sub_ota_num_attempts}"
-
-web_server:
-  diable: "{$diable_webserver}"
-  
-output:
-  - platform: esp8266_pwm
-    pin: "${sub_red_pin}"
-    frequency: "${sub_red_freq}"
-    id: pwm_red
-    max_power: "${sub_max_power}"
-  - platform: esp8266_pwm
-    pin: "${sub_green_pin}"
-    frequency: "${sub_green_freq}"
-    id: pwm_green
-    max_power: "${sub_max_power}"
-  - platform: esp8266_pwm
-    pin: "${sub_blue_pin}"
-    frequency: "${sub_blue_freq}"
-    id: pwn_blue
-    max_power: "${sub_max_power}"
-  - platform: esp8266_pwm
-    pin: "${sub_cw_pin}"
-    frequency: "${sub_cw_freq}"
-    id: pwm_cw
-    max_frequency: "${sub_max_power}"
-  - platform: esp8266_pwm
-    pin: "${sub_ww_pin}"
-    frequency: "${sub_ww_freq}"
-    id: pwm_ww
-    max_frequency: "${sub_max_power}"
-
+# https://esphome.io/components/light/index.html
 light:
-  - platform: rgbww
+
+  # Additive RGB light for Warm White
+  - platform: kauf_rgbww
     id: warm_rgb
     entity_category: config
     default_transition_length: 0ms
     icon: mdi:store-cog
     aux: true
-    name: "${friendly_name}" Warm RGB
+    name: "${device_name} Warm RGB"
     forced_hash: 4077116474
     forced_addr: 28
     global_addr: global_forced_addr
-    disabled_by_default: "${disable_entities}"
+    disabled_by_default: $disable_entities
     restore_mode: RESTORE_DEFAULT_OFF
-    
-  - platform: rgbww
+
+  # Additive RGB light for Cold White
+  - platform: kauf_rgbww
     id: cold_rgb
-    entity_category: cofig
+    entity_category: config
     default_transition_length: 0ms
     icon: mdi:store-cog-outline
     aux: true
-    name: "${friendly_name}" Cold RGB
+    name: "${device_name} Cold RGB"
     forced_hash: 301094535
     forced_addr: 40
     global_addr: global_forced_addr
-    disabled_by_default: "${disabled_entities}"
+    disabled_by_default: $disable_entities
     restore_mode: RESTORE_DEFAULT_OFF
 
-  - platform: rgbww
-    id: rgbww_light
-    defaut_transition_length: "${sub_default_transition_length}"
-    name: "${friendly_name}"
+  # Main RGBWW light
+  - platform: kauf_rgbww
+    id: kauf_light
+    default_transition_length: $sub_default_transition_length
+    name: "${device_name}"
     red: pwm_red
     green: pwm_green
     blue: pwm_blue
@@ -169,20 +132,23 @@ light:
     cold_white: pwm_cw
     warm_rgb: warm_rgb
     cold_rgb: cold_rgb
-    warm_white_color_temperature: "${sub_warm_white_temp}"
-    cold_white_color_temperature: "${sub_cold_white_temp}"
+    warm_white_color_temperature: $sub_warm_white_temp
+    cold_white_color_temperature: $sub_cold_white_temp
     forced_hash: 2723974766
     forced_addr: 52
     global_addr: global_forced_addr
-    restore_mode: "${light_restore_mode}"
+    restore_mode: $light_restore_mode
     on_turn_on:
-      - script.execute: "${sub_on_turn_on}"
+      - script.execute: $sub_on_turn_on
     on_turn_off:
-      - script.execute: "${sub_on_turn_off}"
+      - script.execute: $sub_on_turn_off
 
+# https://esphome.io/components/select/index.html
+# https://esphome.io/components/select/template.html
 select:
+
   - platform: template
-    name: "${friendly_name}" Effect
+    name: "${device_name} Effect"
     id: effect
     optimistic: true
     options:
@@ -193,8 +159,8 @@ select:
     icon: mdi:string-lights
     on_value:
       - lambda: |-
-          if ( x == "WLED / DDP" { id(rgbww_light).set_use_wled(true); }
-          else						   { id(rgbww_light).set_use_wled(false); }
+          if ( x == "WLED / DDP" ) { id(kauf_light).set_use_wled(true); }
+          else                     { id(kauf_light).set_use_wled(false); }
       - script.execute: script_save_changes
 
     entity_category: config
@@ -203,97 +169,20 @@ select:
     global_addr: global_forced_addr
 
   - platform: template
-    name: "${friendly_name}" DDP Debug
+    name: "${device_name} DDP Debug"
     id: select_ddp_debug
     optimistic: true
     options:
       - "Print no packets"
       - "Print imperfect packets"
       - "Print all packets"
-    initial_options: "Print no packets"
+    initial_option: "Print no packets"
     restore_value: false
     icon: mdi:play-network
     entity_category: diagnostic
-    disabled_by_default: "${disabled_entities}"
+    disabled_by_default: $disable_entities
     set_action:
       - lambda: |-
-          if        ( x == "Print no packets" )            { id(rgbww_light).set_ddp_debug(0); }
-          else if ( x == "Print imperfect packets" ) { id{rgbww_light).set_ddp_debug(1); }
-          else if ( x == "Print all packets" )			 { id(rgbww_light).set_ddp_debug(2); }
-
-sensor:
-  - platform: uptime
-    name: "${friendly_name}" Uptime
-    update_interval: 60s
-    entity_category: diagnostic
-    disabled_by_default: "${disable_entities}"
-
-text_sensor:
-  - platform: wifi_info
-    ip_address:
-      name: "${friendly_name}" IP Address
-      entity_category: diagnostic
-      disabled_by_default: "${disabled_entities}"
-
-script:
-  - id: script_save_changes
-    mode: restart
-    then:
-      - delay: 3s
-      - lambda: global_preferences->sync();
-      
-  - id: script_do_nothing
-    then:
-      lambda: return;
-      
-  - id: script_quick_reboot
-    then:
-     - if:
-        condition:
-          lambda: return ( id(global_quick_boot_count) >= "${sub_reboot_req} );
-      then:
-       - lambda: |-
-        		ESP_LOGD("dogain-rgbwww-bulb.yaml", "quick boot count variable is now "${sub_reboot_req, overwriting credentials and rebooting") ;
-        		
-        		// turn on red light
-        		auto call = id(rgbww_light).turn_on();
-        		call.set_brightness(0.6);
-        		call.set_rgb(1.0, 0.0, 0.0);
-        		call.set_save(false);
-        		call.perform();
-        		
-        		// reset counter and immediately save
-        		id(global_quick_boot_count)  = 0;
-        		global_quick_boot_count->loop();
-        		global_preferences->sync();
-        		
-       - delay: 25
-       - wait_until:
-           lambda: return ( wifi_wificomponent_id->tried_loading_creds );
-       - lambda: |-
-           // overwrite wifi credentials
-           wifi::global_wifi_component->save_wifi_sta("${name}-setup","${wifi_password}" );
-     - lambda: |-
-         ESP_LOGD("dogain-rgbww-bulb.yaml", "quick boot count variable is now %d. Need "${sub_reboot_req}" to overwrite credentials", id(global_quick_boot_count));
-         id(global_quick_boot_count) += 1;
-         global_quick_boot_count->loop();
-         global_preferences->sync();
-    - if:
-       condition:
-         lambda: return ( id(global_quick_boot_count) > 2 );
-      then:
-        - lambda |-
-            auto call = id(rgbww_light).turn_on();
-            call.set_brightness(5.0);
-            call.set_rgb(1.0, 0,0, 0,0);
-            call.set_save(false);
-            call.perform();
-
-    - delay: 10s
-    - lambda: ESP_LOGD("dogain-rgbww-bulb.yaml", "quick boot script, 10 seconds up");
-    - wait_until: wifi.connected
-    - lambda: ESP_LOGD("dogain-rgbww-bulb.yaml", "quick boot script, wifi connected");
-    - lambda: |-
-        id(global_quick_boot_count+  = 0;
-        global_quick_boot_count->loop();
-        global_preferences->sync();
+          if      ( x == "Print no packets" )        { id(kauf_light).set_ddp_debug(0); }
+          else if ( x == "Print imperfect packets" ) { id(kauf_light).set_ddp_debug(1); }
+          else if ( x == "Print all packets" )       { id(kauf_light).set_ddp_debug(2); }
