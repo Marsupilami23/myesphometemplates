@@ -15,6 +15,16 @@ globals:
     restore_value: no
     initial_value: "0"
 
+  - id: global_forced_addr
+    type: int
+    restore_value: no
+    initial_value: '12345'
+    
+  - id: global_quick_boot_count
+    type: int
+    restore_value: yes
+    initial_value: '0'
+
 # Setup the integration and define some project variables
 esphome:
   name: "${device_code}"
@@ -51,3 +61,9 @@ sensor:
     lambda: |-
       return (id(cpu_speed));
     entity_category: diagnostic
+
+binary_sensor:
+  - platform: template
+    name: "${device_name) 4MiB"
+    id: sensor_4m
+    disabled_by_default: $disable_entities
