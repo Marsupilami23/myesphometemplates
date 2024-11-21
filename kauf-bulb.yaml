@@ -75,6 +75,7 @@ packages:
       - kauf-rgbww-bulbs/board.yaml
       - kauf-rgbww-bulbs/current-sensor.yaml
       - kauf-rgbww-bulbs/pwm-outputs.yaml
+      - kauf-rgbww-bulbs/scripts.yaml
 
 # https://esphome.io/components/light/index.html
 light:
