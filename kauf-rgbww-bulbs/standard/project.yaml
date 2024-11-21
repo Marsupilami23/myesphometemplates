@@ -1,1 +1,31 @@
+# https://esphome.io/guides/automations.html#global-variables
+globals:
+  - id: global_forced_addr
+    type: int
+    restore_value: no
+    initial_value: '12345'
+  - id: global_quick_boot_count
+    type: int
+    restore_value: yes
+    initial_value: '0'
 
+
+# https://esphome.io/components/esphome.html
+esphome:
+
+  name: $name
+
+  project:
+    name: $project_name
+    version: $project_ver_num($project_ver_let)
+
+  on_boot:
+    then:
+        # set default values for template sensors, otherwise they are unknown.
+      - binary_sensor.template.publish:
+          id: sensor_4m
+          state: $sub_4m
+
+      - script.execute: script_quick_boot
+
+  min_version: 2024.11.0
