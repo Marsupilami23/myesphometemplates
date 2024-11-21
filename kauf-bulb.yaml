@@ -55,14 +55,6 @@ substitutions:
   light_restore_mode: RESTORE_DEFAULT_ON  # change power-on action for main light entity (https://esphome.io/components/light/index.html#base-light-configuration)
 
 
-# https://esphome.io/components/esp8266.html
-esp8266:
-  board: esp01_1m
-  restore_from_flash: true
-  start_free: 76
-  global_addr: global_forced_addr
-
-
 # https://esphome.io/components/external_components.html
 external_components:
   - source:
