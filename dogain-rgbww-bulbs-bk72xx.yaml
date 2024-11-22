@@ -101,11 +101,6 @@ light:
     icon: mdi:store-cog
     aux: true
     name: "${device_name} Warm RGB"
-    forced_hash: 4077116474
-    forced_addr: 28
-    global_addr: global_forced_addr
-    disabled_by_default: $disable_entities
-    restore_mode: RESTORE_DEFAULT_OFF
 
   # Additive RGB light for Cold White
   - platform: rgbww
@@ -115,11 +110,6 @@ light:
     icon: mdi:store-cog-outline
     aux: true
     name: "${device_name} Cold RGB"
-    forced_hash: 301094535
-    forced_addr: 40
-    global_addr: global_forced_addr
-    disabled_by_default: $disable_entities
-    restore_mode: RESTORE_DEFAULT_OFF
 
   # Main RGBWW light
   - platform: rgbww
@@ -135,9 +125,6 @@ light:
     cold_rgb: cold_rgb
     warm_white_color_temperature: $sub_warm_white_temp
     cold_white_color_temperature: $sub_cold_white_temp
-    forced_hash: 2723974766
-    forced_addr: 41
-    global_addr: global_forced_addr
     restore_mode: $light_restore_mode
     on_turn_on:
       - script.execute: $sub_on_turn_on
@@ -163,11 +150,7 @@ select:
           if ( x == "WLED / DDP" ) { id(dogain_light).set_use_wled(true); }
           else                     { id(dogain_light).set_use_wled(false); }
       - script.execute: script_save_changes
-
     entity_category: config
-    forced_hash: 5841966
-    forced_addr: 66
-    global_addr: global_forced_addr
 
   - platform: template
     name: "${device_name} DDP Debug"
