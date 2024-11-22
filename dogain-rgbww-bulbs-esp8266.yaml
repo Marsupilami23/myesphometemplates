@@ -135,7 +135,7 @@ light:
     warm_white_color_temperature: $sub_warm_white_temp
     cold_white_color_temperature: $sub_cold_white_temp
     forced_hash: 2723974766
-    forced_addr: 52
+    forced_addr: 28
     global_addr: global_forced_addr
     restore_mode: $light_restore_mode
     on_turn_on:
@@ -165,7 +165,7 @@ select:
 
     entity_category: config
     forced_hash: 5841966
-    forced_addr: 70
+    forced_addr: 41
     global_addr: global_forced_addr
 
   - platform: template
