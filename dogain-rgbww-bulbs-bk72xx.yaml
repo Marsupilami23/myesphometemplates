@@ -26,12 +26,12 @@ substitutions:
   sub_on_turn_on:  script_do_nothing
   sub_on_turn_off: script_do_nothing
   
-  sub_red_pin:     GPIO14
-  sub_green_pin:   GPIO12
-  sub_blue_pin:    GPIO13
-  sub_cw_pin:      GPIO04
-  sub_ww_pin:      GPIO05
-  sub_adc_pin:     GPIO17
+  sub_red_pin:     GPIO26
+  sub_green_pin:   GPIO24
+  sub_blue_pin:    GPIO07
+  sub_cw_pin:      GPIO06
+  sub_ww_pin:      GPIO08
+  sub_adc_pin:     GPIO
   
   sub_warm_white_temp: 2800 Kelvin
   sub_cold_white_temp: 6600 Kelvin
