@@ -94,7 +94,7 @@ packages:
 light:
 
   # Additive RGB light for Warm White
-  - platform: rgbww
+  - platform: monochromatic
     id: warm_rgb
     entity_category: config
     default_transition_length: 0ms
@@ -103,7 +103,7 @@ light:
     name: "${device_name} Warm RGB"
 
   # Additive RGB light for Cold White
-  - platform: rgbww
+  - platform: monochromatic
     id: cold_rgb
     entity_category: config
     default_transition_length: 0ms
