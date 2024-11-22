@@ -50,7 +50,7 @@ substitutions:
   light_restore_mode: RESTORE_DEFAULT_ON
 
   # Project Substitutions (not intended for user substitutions)
-  package_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs.yaml@main"
+  package_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266.yaml@main"
 
 # Allow importing this package
 dashboard_import:
