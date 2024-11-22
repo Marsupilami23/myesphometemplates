@@ -31,7 +31,7 @@ substitutions:
   sub_blue_pin:    GPIO07
   sub_cw_pin:      GPIO06
   sub_ww_pin:      GPIO08
-  sub_adc_pin:     GPIO
+  sub_adc_pin:     GPIO17
   
   sub_warm_white_temp: 2800 Kelvin
   sub_cold_white_temp: 6600 Kelvin
