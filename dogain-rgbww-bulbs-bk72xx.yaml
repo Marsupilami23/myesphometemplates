@@ -21,10 +21,10 @@ substitutions:
   disable_entities: "true"
   disable_webserver: "false"
 
-  sub_4m: "false"
+  # sub_4m: "false"
   
-  sub_on_turn_on:  script_do_nothing
-  sub_on_turn_off: script_do_nothing
+  # sub_on_turn_on:  script_do_nothing
+  # sub_on_turn_off: script_do_nothing
   
   sub_red_pin:     GPIO26
   sub_green_pin:   GPIO24
