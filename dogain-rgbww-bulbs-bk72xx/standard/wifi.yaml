@@ -41,8 +41,8 @@ wifi:
     password: "${wifi_password}"
 
 web_server:
-  disable: "${disable_webserver}"
-  sensor_4m: "${sub_4m}"
+#  disable: "${disable_webserver}"
+#  sensor_4m: "${sub_4m}"
   version: 3
   include_internal: true
   ota: true
