@@ -88,7 +88,7 @@ packages:
       - dogain-rgbww-bulbs-bk72xx/board.yaml
       - dogain-rgbww-bulbs-bk72xx/current-sensor.yaml
       - dogain-rgbww-bulbs-bk72xx/pwm-outputs.yaml
-      - dogain-rgbww-bulbs-bk72xx/scripts.yaml
+      # - dogain-rgbww-bulbs-bk72xx/scripts.yaml
 
 # https://esphome.io/components/light/index.html
 light:
