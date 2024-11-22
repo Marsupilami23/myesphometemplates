@@ -93,7 +93,7 @@ packages:
 light:
 
   # Additive RGB light for Warm White
-  - platform: dogain_rgbww
+  - platform: rgbww
     id: warm_rgb
     entity_category: config
     default_transition_length: 0ms
@@ -107,7 +107,7 @@ light:
     restore_mode: RESTORE_DEFAULT_OFF
 
   # Additive RGB light for Cold White
-  - platform: dogain_rgbww
+  - platform: rgbww
     id: cold_rgb
     entity_category: config
     default_transition_length: 0ms
@@ -121,7 +121,7 @@ light:
     restore_mode: RESTORE_DEFAULT_OFF
 
   # Main RGBWW light
-  - platform: dogain_rgbww
+  - platform: rgbww
     id: dogain_light
     default_transition_length: $sub_default_transition_length
     name: "${device_name}"
