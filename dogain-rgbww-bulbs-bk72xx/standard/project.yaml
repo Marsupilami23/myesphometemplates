@@ -9,11 +9,11 @@ substitutions:
   package_version: "2024.11.20"
 
 # https://esphome.io/guides/automations.html#global-variables
-globals:
-  - id: global_quick_boot_count
-    type: int
-    restore_value: yes
-    initial_value: '0'
+#globals:
+#  - id: global_quick_boot_count
+#    type: int
+#    restore_value: yes
+#    initial_value: '0'
 
 
 # https://esphome.io/components/esphome.html
