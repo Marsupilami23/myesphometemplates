@@ -126,10 +126,10 @@ light:
     warm_white_color_temperature: $sub_warm_white_temp
     cold_white_color_temperature: $sub_cold_white_temp
     restore_mode: $light_restore_mode
-    on_turn_on:
-      - script.execute: $sub_on_turn_on
-    on_turn_off:
-      - script.execute: $sub_on_turn_off
+#    on_turn_on:
+#      - script.execute: $sub_on_turn_on
+#    on_turn_off:
+#      - script.execute: $sub_on_turn_off
 
 # https://esphome.io/components/select/index.html
 # https://esphome.io/components/select/template.html
