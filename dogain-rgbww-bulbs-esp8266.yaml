@@ -38,8 +38,8 @@ substitutions:
   sub_red_freq:   200 hz
   sub_green_freq: 200 hz
   sub_blue_freq:  200 hz
-  sub_cw_freq:    400 hz
-  sub_ww_freq:    400 hz
+  sub_cw_freq:    200 hz
+  sub_ww_freq:    200 hz
 
   sub_reboot_req: '9'
   sub_ota_num_attempts: '15'
