@@ -22,7 +22,7 @@ script:
           then:
 
             - lambda: |-
-                ESP_LOGD("dogain-rgbww-bulbs-esp8266.yaml", "quick boot count variable is now $sub_reboot_req, overwriting credentials and rebooting");
+                ESP_LOGD("dogain-rgbww-bulbs-bk72xx.yaml", "quick boot count variable is now $sub_reboot_req, overwriting credentials and rebooting");
 
                 // turn on red light
                 auto call = id(dogain_light).turn_on();
@@ -52,7 +52,7 @@ script:
 
       # increment quick boot counter so it will stay incremented if device reboots
       - lambda: |-
-          ESP_LOGD("dogain-rgbww-bulbs-esp8266.yaml", "quick boot count variable is now %d.  Need $sub_reboot_req to overwrite credentials", id(global_quick_boot_count));
+          ESP_LOGD("dogain-rgbww-bulbs-bk72xx.yaml", "quick boot count variable is now %d.  Need $sub_reboot_req to overwrite credentials", id(global_quick_boot_count));
           id(global_quick_boot_count) += 1;
           global_quick_boot_count->loop();
           global_preferences->sync();
@@ -72,11 +72,11 @@ script:
 
       # wait 10 seconds
       - delay: 10s
-      - lambda: ESP_LOGD("dogain-rgbww-bulbs-esp8266.yaml", "quick boot script, 10 seconds up");
+      - lambda: ESP_LOGD("dogain-rgbww-bulbs-bk72xx.yaml", "quick boot script, 10 seconds up");
 
       # wait until wifi is connected
       - wait_until: wifi.connected
-      - lambda: ESP_LOGD("dogain-rgbww-bulbs-esp8266.yaml", "quick boot script, wifi connected");
+      - lambda: ESP_LOGD("dogain-rgbww-bulbs-bk72xx.yaml", "quick boot script, wifi connected");
 
       # any time boot is greater than 10 seconds and also connects to wifi, reset quick boot count to 0
       - lambda: |-
