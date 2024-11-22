@@ -51,7 +51,7 @@ substitutions:
   light_restore_mode: RESTORE_DEFAULT_ON
 
   # Project Substitutions (not intended for user substitutions)
-  package_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266.yaml@main"
+  package_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-bk72xx.yaml@main"
 
 # Allow importing this package
 dashboard_import:
@@ -77,49 +77,49 @@ packages:
     ref: main
     refresh: always
     files:
-      - dogain-rgbww-bulbs-esp8266/standard/project.yaml
-      - dogain-rgbww-bulbs-esp8266/standard/diagnostics.yaml
-      - dogain-rgbww-bulbs-esp8266/standard/wifi.yaml
+      - dogain-rgbww-bulbs-bk72xx/standard/project.yaml
+      - dogain-rgbww-bulbs-bk72xx/standard/diagnostics.yaml
+      - dogain-rgbww-bulbs-bk72xx/standard/wifi.yaml
   kauf_rgbww_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - dogain-rgbww-bulbs-esp8266/board.yaml
-      - dogain-rgbww-bulbs-esp8266/current-sensor.yaml
-      - dogain-rgbww-bulbs-esp8266/pwm-outputs.yaml
-      - dogain-rgbww-bulbs-esp8266/scripts.yaml
+      - dogain-rgbww-bulbs-bk72xx/board.yaml
+      - dogain-rgbww-bulbs-bk72xx/current-sensor.yaml
+      - dogain-rgbww-bulbs-bk72xx/pwm-outputs.yaml
+      - dogain-rgbww-bulbs-bk72xx/scripts.yaml
 
 # https://esphome.io/components/light/index.html
 light:
 
   # Additive RGB light for Warm White
-  #- platform: rgbww
-  #  id: warm_rgb
-  #  entity_category: config
-  #  default_transition_length: 0ms
-  #  icon: mdi:store-cog
-  #  aux: true
-  #  name: "${device_name} Warm RGB"
-  #  forced_hash: 4077116474
-  #  forced_addr: 28
-  #  global_addr: global_forced_addr
-  #  disabled_by_default: $disable_entities
-  #  restore_mode: RESTORE_DEFAULT_OFF
+  - platform: rgbww
+    id: warm_rgb
+    entity_category: config
+    default_transition_length: 0ms
+    icon: mdi:store-cog
+    aux: true
+    name: "${device_name} Warm RGB"
+    forced_hash: 4077116474
+    forced_addr: 28
+    global_addr: global_forced_addr
+    disabled_by_default: $disable_entities
+    restore_mode: RESTORE_DEFAULT_OFF
 
   # Additive RGB light for Cold White
-  #- platform: rgbww
-  #  id: cold_rgb
-  #  entity_category: config
-  #  default_transition_length: 0ms
-  #  icon: mdi:store-cog-outline
-  #  aux: true
-  #  name: "${device_name} Cold RGB"
-  #  forced_hash: 301094535
-  #  forced_addr: 40
-  #  global_addr: global_forced_addr
-  #  disabled_by_default: $disable_entities
-  #  restore_mode: RESTORE_DEFAULT_OFF
+  - platform: rgbww
+    id: cold_rgb
+    entity_category: config
+    default_transition_length: 0ms
+    icon: mdi:store-cog-outline
+    aux: true
+    name: "${device_name} Cold RGB"
+    forced_hash: 301094535
+    forced_addr: 40
+    global_addr: global_forced_addr
+    disabled_by_default: $disable_entities
+    restore_mode: RESTORE_DEFAULT_OFF
 
   # Main RGBWW light
   - platform: rgbww
@@ -131,12 +131,12 @@ light:
     blue: pwm_blue
     warm_white: pwm_ww
     cold_white: pwm_cw
-    # warm_rgb: warm_rgb
-    # cold_rgb: cold_rgb
+    warm_rgb: warm_rgb
+    cold_rgb: cold_rgb
     warm_white_color_temperature: $sub_warm_white_temp
     cold_white_color_temperature: $sub_cold_white_temp
     forced_hash: 2723974766
-    forced_addr: 28
+    forced_addr: 41
     global_addr: global_forced_addr
     restore_mode: $light_restore_mode
     on_turn_on:
@@ -166,7 +166,7 @@ select:
 
     entity_category: config
     forced_hash: 5841966
-    forced_addr: 39
+    forced_addr: 66
     global_addr: global_forced_addr
 
   - platform: template
