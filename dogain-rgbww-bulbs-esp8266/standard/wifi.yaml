@@ -7,7 +7,7 @@ substitutions:
 
 # Enable Home Assistant API
 api:
-  id: kauf_api
+  id: dogain_api
   reboot_timeout: "${sub_api_reboot_timeout}"
   encryption:
     key: "${api_key}"
