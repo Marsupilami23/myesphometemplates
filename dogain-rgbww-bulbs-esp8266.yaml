@@ -93,32 +93,32 @@ packages:
 light:
 
   # Additive RGB light for Warm White
-  - platform: rgbww
-    id: warm_rgb
-    entity_category: config
-    default_transition_length: 0ms
-    icon: mdi:store-cog
-    aux: true
-    name: "${device_name} Warm RGB"
-    forced_hash: 4077116474
-    forced_addr: 28
-    global_addr: global_forced_addr
-    disabled_by_default: $disable_entities
-    restore_mode: RESTORE_DEFAULT_OFF
+  #- platform: rgbww
+  #  id: warm_rgb
+  #  entity_category: config
+  #  default_transition_length: 0ms
+  #  icon: mdi:store-cog
+  #  aux: true
+  #  name: "${device_name} Warm RGB"
+  #  forced_hash: 4077116474
+  #  forced_addr: 28
+  #  global_addr: global_forced_addr
+  #  disabled_by_default: $disable_entities
+  #  restore_mode: RESTORE_DEFAULT_OFF
 
   # Additive RGB light for Cold White
-  - platform: rgbww
-    id: cold_rgb
-    entity_category: config
-    default_transition_length: 0ms
-    icon: mdi:store-cog-outline
-    aux: true
-    name: "${device_name} Cold RGB"
-    forced_hash: 301094535
-    forced_addr: 40
-    global_addr: global_forced_addr
-    disabled_by_default: $disable_entities
-    restore_mode: RESTORE_DEFAULT_OFF
+  #- platform: rgbww
+  #  id: cold_rgb
+  #  entity_category: config
+  #  default_transition_length: 0ms
+  #  icon: mdi:store-cog-outline
+  #  aux: true
+  #  name: "${device_name} Cold RGB"
+  #  forced_hash: 301094535
+  #  forced_addr: 40
+  #  global_addr: global_forced_addr
+  #  disabled_by_default: $disable_entities
+  #  restore_mode: RESTORE_DEFAULT_OFF
 
   # Main RGBWW light
   - platform: rgbww
@@ -130,8 +130,8 @@ light:
     blue: pwm_blue
     warm_white: pwm_ww
     cold_white: pwm_cw
-    warm_rgb: warm_rgb
-    cold_rgb: cold_rgb
+    # warm_rgb: warm_rgb
+    # cold_rgb: cold_rgb
     warm_white_color_temperature: $sub_warm_white_temp
     cold_white_color_temperature: $sub_cold_white_temp
     forced_hash: 2723974766
