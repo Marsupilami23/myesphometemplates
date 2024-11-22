@@ -1,4 +1,4 @@
-# Cree Sample YAML file.
+# DOGAIN RGBWW Bulb Sample YAML file.
 substitutions:
   api_key: ""
   device_location_code: "changeme"
@@ -9,9 +9,9 @@ substitutions:
   device_ip: "0.0.0.0"
 
 packages:
-  cree_st19_packages:
+  DOGAIN_RGBWW_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - dogain-rgbww-bulbs-esp8266.yaml
+      - dogain-rgbww-bulbs-bk72xx.yaml
