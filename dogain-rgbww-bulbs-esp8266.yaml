@@ -50,7 +50,7 @@ substitutions:
   light_restore_mode: RESTORE_DEFAULT_ON
 
   # Project Substitutions (not intended for user substitutions)
-  package_url: "github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs.yaml@main"
+  package_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs.yaml@main"
 
 # Allow importing this package
 dashboard_import:
@@ -76,18 +76,18 @@ packages:
     ref: main
     refresh: always
     files:
-      - dogain-rgbww-bulbs/standard/project.yaml
-      - dogain-rgbww-bulbs/standard/diagnostics.yaml
-      - dogain-rgbww-bulbs/standard/wifi.yaml
+      - dogain-rgbww-bulbs-esp8266/standard/project.yaml
+      - dogain-rgbww-bulbs-esp8266/standard/diagnostics.yaml
+      - dogain-rgbww-bulbs-esp8266/standard/wifi.yaml
   kauf_rgbww_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - dogain-rgbww-bulbs/board.yaml
-      - dogain-rgbww-bulbs/current-sensor.yaml
-      - dogain-rgbww-bulbs/pwm-outputs.yaml
-      - dogain-rgbww-bulbs/scripts.yaml
+      - dogain-rgbww-bulbs-esp8266/board.yaml
+      - dogain-rgbww-bulbs-esp8266/current-sensor.yaml
+      - dogain-rgbww-bulbs-esp8266/pwm-outputs.yaml
+      - dogain-rgbww-bulbs-esp8266/scripts.yaml
 
 # https://esphome.io/components/light/index.html
 light:
