@@ -5,4 +5,7 @@ dashboard_import:
   
 bk72xx:
   board: wblc5
+  restore_from_flash: true
+  start_free: 76
+  global_addr: global_forced_addr
 
