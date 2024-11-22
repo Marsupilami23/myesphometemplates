@@ -1,5 +1,3 @@
-
-
 # NOTE: This file is not a stand-alone package. it is part of
 # a 'root' device template and expects the substitutions that
 # are hereby referenced to be defined by it's parent.
