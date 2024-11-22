@@ -1,1 +1,189 @@
 
+
+# ESPHome firmware template for CREE C/W Bulb
+# 
+# initial code taken from
+# https://github.com/esphome/issues/issues/3487
+# Analysis from:
+# https://github.com/arendst/Tasmota/issues/6914
+
+substitutions:
+  api_key: "Change me"
+  # Required import substitutions
+  device_site: "home"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "changeme"
+  device_type_name: "Change Me"
+  device_number: "000"
+  device_ip: "0.0.0.0"
+
+  disable_entities: "true"
+  disable_webserver: "false"
+
+  sub_4m: "false"
+  
+  sub_on_turn_on:  script_do_nothing
+  sub_on_turn_off: script_do_nothing
+  
+  sub_red_pin:     GPIO14
+  sub_green_pin:   GPIO12
+  sub_blue_pin:    GPIO13
+  sub_cw_pin:      GPIO04
+  sub_ww_pin:      GPIO05
+  sub_adc_pin:     GPIO17
+  
+  sub_warm_white_temp: 2800 Kelvin
+  sub_cold_white_temp: 6600 Kelvin
+
+  sub_red_freq:   200 hz
+  sub_green_freq: 200 hz
+  sub_blue_freq:  200 hz
+  sub_cw_freq:    200 hz
+  sub_ww_freq:    200 hz
+
+  sub_reboot_req: '9'
+  sub_ota_num_attempts: '15'
+
+  sub_max_power: '0.8'
+  sub_default_transition_length: 250ms
+  sub_api_reboot_timeout: 0s
+  light_restore_mode: RESTORE_DEFAULT_ON
+
+  # Project Substitutions (not intended for user substitutions)
+  package_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266.yaml@main"
+
+# Allow importing this package
+dashboard_import:
+  package_import_url: "${package_url}"
+  import_full_config: false
+
+# https://esphome.io/components/external_components.html
+external_components:
+  - source:
+      type: git
+      url: https://github.com/KaufHA/common
+      ref: v2024.11.20
+    refresh: never
+  - source:
+      type: git
+      url: https://github.com/KaufHA/kauf-rgbww-bulbs
+    refresh: always
+
+# Import packages:
+packages:
+  standard_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - dogain-rgbww-bulbs-esp8266/standard/project.yaml
+      - dogain-rgbww-bulbs-esp8266/standard/diagnostics.yaml
+      - dogain-rgbww-bulbs-esp8266/standard/wifi.yaml
+  kauf_rgbww_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - dogain-rgbww-bulbs-esp8266/board.yaml
+      - dogain-rgbww-bulbs-esp8266/current-sensor.yaml
+      - dogain-rgbww-bulbs-esp8266/pwm-outputs.yaml
+      - dogain-rgbww-bulbs-esp8266/scripts.yaml
+
+# https://esphome.io/components/light/index.html
+light:
+
+  # Additive RGB light for Warm White
+  #- platform: rgbww
+  #  id: warm_rgb
+  #  entity_category: config
+  #  default_transition_length: 0ms
+  #  icon: mdi:store-cog
+  #  aux: true
+  #  name: "${device_name} Warm RGB"
+  #  forced_hash: 4077116474
+  #  forced_addr: 28
+  #  global_addr: global_forced_addr
+  #  disabled_by_default: $disable_entities
+  #  restore_mode: RESTORE_DEFAULT_OFF
+
+  # Additive RGB light for Cold White
+  #- platform: rgbww
+  #  id: cold_rgb
+  #  entity_category: config
+  #  default_transition_length: 0ms
+  #  icon: mdi:store-cog-outline
+  #  aux: true
+  #  name: "${device_name} Cold RGB"
+  #  forced_hash: 301094535
+  #  forced_addr: 40
+  #  global_addr: global_forced_addr
+  #  disabled_by_default: $disable_entities
+  #  restore_mode: RESTORE_DEFAULT_OFF
+
+  # Main RGBWW light
+  - platform: rgbww
+    id: dogain_light
+    default_transition_length: $sub_default_transition_length
+    name: "${device_name}"
+    red: pwm_red
+    green: pwm_green
+    blue: pwm_blue
+    warm_white: pwm_ww
+    cold_white: pwm_cw
+    # warm_rgb: warm_rgb
+    # cold_rgb: cold_rgb
+    warm_white_color_temperature: $sub_warm_white_temp
+    cold_white_color_temperature: $sub_cold_white_temp
+    forced_hash: 2723974766
+    forced_addr: 28
+    global_addr: global_forced_addr
+    restore_mode: $light_restore_mode
+    on_turn_on:
+      - script.execute: $sub_on_turn_on
+    on_turn_off:
+      - script.execute: $sub_on_turn_off
+
+# https://esphome.io/components/select/index.html
+# https://esphome.io/components/select/template.html
+select:
+
+  - platform: template
+    name: "${device_name} Effect"
+    id: effect
+    optimistic: true
+    options:
+      - "None"
+      - "WLED / DDP"
+    initial_option: "None"
+    restore_value: true
+    icon: mdi:string-lights
+    on_value:
+      - lambda: |-
+          if ( x == "WLED / DDP" ) { id(dogain_light).set_use_wled(true); }
+          else                     { id(dogain_light).set_use_wled(false); }
+      - script.execute: script_save_changes
+
+    entity_category: config
+    forced_hash: 5841966
+    forced_addr: 39
+    global_addr: global_forced_addr
+
+  - platform: template
+    name: "${device_name} DDP Debug"
+    id: select_ddp_debug
+    optimistic: true
+    options:
+      - "Print no packets"
+      - "Print imperfect packets"
+      - "Print all packets"
+    initial_option: "Print no packets"
+    restore_value: false
+    icon: mdi:play-network
+    entity_category: diagnostic
+    disabled_by_default: $disable_entities
+    set_action:
+      - lambda: |-
+          if      ( x == "Print no packets" )        { id(dogain_light).set_ddp_debug(0); }
+          else if ( x == "Print imperfect packets" ) { id(dogain_light).set_ddp_debug(1); }
+          else if ( x == "Print all packets" )       { id(dogain_light).set_ddp_debug(2); }
