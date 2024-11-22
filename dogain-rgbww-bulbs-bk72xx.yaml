@@ -112,7 +112,7 @@ light:
   #  name: "${device_name} Cold RGB"
 
   # Main RGBWW light
-  - platform: kauf_rgbww
+  - platform: rgbww
     id: dogain_light
     default_transition_length: $sub_default_transition_length
     name: "${device_name}"
