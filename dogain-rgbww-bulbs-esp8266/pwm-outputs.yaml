@@ -1,4 +1,3 @@
-
 # PWM outputs for each LED channel
 # https://esphome.io/components/output/esp8266_pwm.html
 output:
