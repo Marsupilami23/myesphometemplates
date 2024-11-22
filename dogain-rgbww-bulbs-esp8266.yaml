@@ -165,7 +165,7 @@ select:
 
     entity_category: config
     forced_hash: 5841966
-    forced_addr: 41
+    forced_addr: 39
     global_addr: global_forced_addr
 
   - platform: template
