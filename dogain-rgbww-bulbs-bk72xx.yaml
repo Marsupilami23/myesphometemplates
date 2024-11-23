@@ -78,7 +78,7 @@ packages:
       - dogain-rgbww-bulbs-bk72xx/standard/project.yaml
       - dogain-rgbww-bulbs-bk72xx/standard/diagnostics.yaml
       - dogain-rgbww-bulbs-bk72xx/standard/wifi.yaml
-  kauf_rgbww_bk72xx_packages:
+  dogain_rgbww_bk72xx_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
