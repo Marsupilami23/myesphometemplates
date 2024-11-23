@@ -107,7 +107,7 @@ light:
     id: cold_rgb
     entity_category: config
     default_transition_length: 0ms
-   icon: mdi:store-cog-outline
+    icon: mdi:store-cog-outline
     aux: true
     name: "${device_name} Cold RGB"
 
