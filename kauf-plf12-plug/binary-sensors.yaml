@@ -1,1 +1,44 @@
+# https://esphome.io/components/binary_sensor/index.html
+binary_sensor:
 
+    # button input toggles relay and thereby power led
+    # https://esphome.io/components/binary_sensor/gpio.html
+  - platform: gpio
+    id: button_in
+    name: $friendly_name Button
+    pin:
+      number: $sub_button_pin
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    on_press:
+      - lambda: |-
+          // store time of press and clear duration sensor
+          id(global_press_time) = millis();
+          id(sensor_press_duration).publish_state(0);
+
+          // toggle if configured for toggle on press
+          if (id(select_button).state == "Toggle on Press") {
+            id(relay).toggle(); }
+      - script.execute: $sub_on_press
+      - script.execute: script_30s_timer
+    on_release:
+      - lambda: |-
+          // set duration sensor
+          id(sensor_press_duration).publish_state(millis() - id(global_press_time) + id(number_debounce).state);
+
+          // toggle if configured on release and toggle check script is not running.
+          if (  (id(select_button).state == "Toggle on Release") && !id($sub_toggle_check).is_running() ) {
+            id(relay).toggle();
+          }
+      - script.execute: $sub_on_release
+      - script.stop: script_30s_timer
+    filters:
+      - delayed_on: !lambda return id(number_debounce).state;
+
+    # indicates whether plugged-in device is running based on configurable threshold.
+    # https://esphome.io/components/binary_sensor/template.html
+  - platform: template
+    id: in_use
+    name: $friendly_name Device In Use
