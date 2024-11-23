@@ -94,17 +94,17 @@ light:
   - platform: rgb
     name: dogain_light
     id: dogain_light
-    red: "${sub_red_pin}"
-    green: "${sub_green_pin}"
-    blue: "${sub_blue_pin}"
+    red: pwm_red
+    green: pwm_green
+    blue: pwm_blue
     default_transition_length: "${sub_default_transition_length}"
     restore_mode: RESTORE_DEFAULT_OFF
 
   - platform: cwww
     name: dogain_cwww
     id: dogain_cwww
-    warm_white: "${sub_ww_pin}"
-    cold_white: "${sub_cw_pin}"
+    warm_white: pwm_ww
+    cold_white: pwm_cw
     cold_white_color_temperature: "${sub_cold_white_temp}"
     warm_white_color_temperature: "${sub_warm_white_temp}"
     default_transition_length: "${sub_default_transition_length}"
