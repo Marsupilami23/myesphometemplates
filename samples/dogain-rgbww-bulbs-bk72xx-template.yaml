@@ -1,0 +1,18 @@
+
+# DOGAIN RGBWW Bulb Sample YAML file.
+substitutions:
+  api_key: ""
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "lghtblb"
+  device_type_name: "Light Bulb"
+  device_number: "001"
+  device_ip: "0.0.0.0"
+
+packages:
+  DOGAIN_RGBWW_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - dogain-rgbww-bulbs-bk72xx.yaml
