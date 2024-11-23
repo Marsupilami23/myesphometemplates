@@ -14,4 +14,4 @@ packages:
     ref: main
     refresh: always
     files:
-      - dogain-rgbww-bulbs-bk72xx.yaml
+      - dogain-rgbww-bulbs-esp8266.yaml
