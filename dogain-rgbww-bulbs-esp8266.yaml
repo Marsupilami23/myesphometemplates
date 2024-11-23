@@ -79,7 +79,7 @@ packages:
       - dogain-rgbww-bulbs-esp8266/standard/project.yaml
       - dogain-rgbww-bulbs-esp8266/standard/diagnostics.yaml
       - dogain-rgbww-bulbs-esp8266/standard/wifi.yaml
-  kauf_rgbww_packages:
+  dogain_rgbww_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
