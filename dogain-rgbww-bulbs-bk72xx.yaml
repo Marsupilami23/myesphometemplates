@@ -46,7 +46,7 @@ substitutions:
   sub_ota_num_attempts: '15'
 
   sub_max_power: '0.8'
-  sub_default_transition_length: 250ms
+  sub_default_transition_length: 3s
   sub_api_reboot_timeout: 0s
   light_restore_mode: RESTORE_DEFAULT_ON
 
@@ -93,80 +93,21 @@ dashboard_import:
 # https://esphome.io/components/light/index.html
 light:
 
-  # Additive RGB light for Warm White
-  #- platform: kauf_rgbww
-  #  id: warm_rgb
-  #  entity_category: config
-  #  default_transition_length: 0ms
-  #  icon: mdi:store-cog
-  #  aux: true
-  #  name: "${device_name} Warm RGB"
-
-  # Additive RGB light for Cold White
-  #- platform: kauf_rgbww
-  #  id: cold_rgb
-  #  entity_category: config
-  #  default_transition_length: 0ms
-  #  icon: mdi:store-cog-outline
-  #  aux: true
-  #  name: "${device_name} Cold RGB"
-
-  # Main RGBWW light
-  - platform: kauf_rgbww
+  - platform: rgb
+    name: dogain_light
     id: dogain_light
-    default_transition_length: $sub_default_transition_length
-    name: "${device_name}"
-    red: pwm_red
-    green: pwm_green
-    blue: pwm_blue
-    warm_white: pwm_ww
-    cold_white: pwm_cw
-   # warm_rgb: warm_rgb
-   # cold_rgb: cold_rgb
-    warm_white_color_temperature: $sub_warm_white_temp
-    cold_white_color_temperature: $sub_cold_white_temp
-    restore_mode: $light_restore_mode
-#    on_turn_on:
-#      - script.execute: $sub_on_turn_on
-#    on_turn_off:
-#      - script.execute: $sub_on_turn_off
+    red: "${sub_red_pin}"
+    green: "${sub_gree_pin}"
+    blue: "${sub_blue_pin}"
+    default_transition_length: "${sub_default_transition_length}"
+    restore_mode: RESTORE_DEFAULT_OFF
 
-# https://esphome.io/components/select/index.html
-# https://esphome.io/components/select/template.html
-#select:
-
-  #- platform: template
-  #  name: "${device_name} Effect"
-  #  id: effect
-  #  optimistic: true
-  #  options:
-  #    - "None"
-  #    - "WLED / DDP"
-  #  initial_option: "None"
-  #  restore_value: true
-  #  icon: mdi:string-lights
-  #  on_value:
-  #    - lambda: |-
-  #        if ( x == "WLED / DDP" ) { id(dogain_light).set_use_wled(true); }
-  #        else                     { id(dogain_light).set_use_wled(false); }
-  #    - script.execute: script_save_changes
-  #  entity_category: config
-
-  #- platform: template
-  #  name: "${device_name} DDP Debug"
-  #  id: select_ddp_debug
-  #  optimistic: true
-  #  options:
-  #    - "Print no packets"
-  #    - "Print imperfect packets"
-  #    - "Print all packets"
-  #  initial_option: "Print no packets"
-  #  restore_value: false
-  #  icon: mdi:play-network
-  #  entity_category: diagnostic
-  #  disabled_by_default: $disable_entities
-  #  set_action:
-  #    - lambda: |-
-  #        if      ( x == "Print no packets" )        { id(dogain_light).set_ddp_debug(0); }
-  #        else if ( x == "Print imperfect packets" ) { id(dogain_light).set_ddp_debug(1); }
-  #        else if ( x == "Print all packets" )       { id(dogain_light).set_ddp_debug(2); }
+  - platform: cwww
+    name: dogain_cwww
+    id: dogain_cwww
+    warm_white: "${sub_ww_pin}"
+    cold_white: "${sub_cw_pin}"
+    cold_white_color_temperature: "${sub_cold_white_temp}"
+    warm_white_color_temperature: "${sub_warm_white_temp}"
+    default_transition_length: "${sub_default_transition_length}"
+    restore_mode: RESTORE_DEFAULT_OFF
