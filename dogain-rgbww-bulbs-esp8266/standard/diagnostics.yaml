@@ -6,6 +6,11 @@ substitutions:
   log_level: INFO
   timezone: "America/Los_Angeles"
 
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266/standard/diagnostics.yaml@main"
+  import_full_config: false
+
 # Enable logging bia network and disable serial port
 logger:
   level: "${log_level}"
