@@ -5,6 +5,11 @@ substitutions:
   ota_password: !secret ota_password
   disable_webserver: "false"
 
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs/standard/wifi.yaml@main"
+  import_full_config: false
+  
 # Enable Home Assistant API
 api:
   id: kauf_api
