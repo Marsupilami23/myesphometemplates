@@ -7,6 +7,11 @@ substitutions:
   device_make: "DOGAIN"
   package_version: "2024.11.20"
 
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266/standard/project.yaml@main"
+  import_full_config: false
+
 # https://esphome.io/guides/automations.html#global-variables
 globals:
   - id: global_forced_addr
