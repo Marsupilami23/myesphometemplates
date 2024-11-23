@@ -1,3 +1,8 @@
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs/scripts.yaml@main"
+  import_full_config: false
+
 # https://esphome.io/guides/automations.html#script-component
 script:
   - id: script_save_changes
