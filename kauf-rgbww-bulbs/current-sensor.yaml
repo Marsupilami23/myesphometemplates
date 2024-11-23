@@ -2,6 +2,11 @@
 # a 'root' device template and expects the substitutions that
 # are hereby referenced to be defined by its parent.
 
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs/current-sensor.yaml@main"
+  import_full_config: false
+
 sensor: 
   - platform: adc
     pin: "${sub_adc_pin}"
