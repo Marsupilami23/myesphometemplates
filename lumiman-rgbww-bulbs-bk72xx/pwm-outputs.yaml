@@ -1,3 +1,8 @@
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/lumiman-rgbww-bulbs-bk72xx/pwm-outputs.yaml@main"
+  import_full_config: false
+
 # PWM outputs for each LED channel
 # https://esphome.io/components/output/esp8266_pwm.html
 output:
