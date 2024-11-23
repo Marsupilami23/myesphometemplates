@@ -10,6 +10,11 @@ substitutions:
   device_model: "ST19"
   device_make: "CREE"
   package_version: "2024.11.20"
+
+# Allow importing of this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulbs/standard/project.yaml@main"
+  import_full_config: false
   
 # Define a globale variable for CPU speed
 globals:
