@@ -8,14 +8,11 @@ substitutions:
   device_make: "DOGAIN"
   package_version: "2024.11.20"
 
-# https://esphome.io/guides/automations.html#global-variables
-#globals:
-#  - id: global_quick_boot_count
-#    type: int
-#    restore_value: yes
-#    initial_value: '0'
-
-
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-bk72xx/standard/project.yaml@main"
+  import_full_config: false
+  
 # https://esphome.io/components/esphome.html
 esphome:
   name: "${device_code}"
@@ -26,10 +23,3 @@ esphome:
   project:
     name: "${device_make}.${device_model}"
     version: "${package_version}"
-  #on_boot:
-    #then:
-        # set default values for template sensors, otherwise they are unknown.
-   #   - binary_sensor.template.publish:
-  #        id: sensor_4m
- #         state: $sub_4m
-#      - script.execute: script_quick_boot
