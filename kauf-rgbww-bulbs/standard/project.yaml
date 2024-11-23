@@ -7,6 +7,11 @@ substitutions:
   device_make: "KAUF"
   package_version: "2024.11.20"
 
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs/standard/project.yaml@main"
+  import_full_config: false
+
 # https://esphome.io/guides/automations.html#global-variables
 globals:
   - id: global_forced_addr
