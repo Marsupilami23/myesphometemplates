@@ -1,5 +1,3 @@
-
-
 # ESPHome firmware template for CREE C/W Bulb
 # 
 # initial code taken from
@@ -71,7 +69,7 @@ dashboard_import:
 #   refresh: always
 
 # Import packages:
- packages:
+packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
@@ -80,7 +78,7 @@ dashboard_import:
       - dogain-rgbww-bulbs-bk72xx/standard/project.yaml
       - dogain-rgbww-bulbs-bk72xx/standard/diagnostics.yaml
       - dogain-rgbww-bulbs-bk72xx/standard/wifi.yaml
-  kauf_rgbww_packages:
+  kauf_rgbww_bk72xx_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
