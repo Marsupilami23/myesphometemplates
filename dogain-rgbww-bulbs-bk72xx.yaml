@@ -59,19 +59,19 @@ dashboard_import:
   import_full_config: false
 
 # https://esphome.io/components/external_components.html
-external_components:
- - source:
-     type: git
-     url: https://github.com/KaufHA/common
-     ref: v2024.11.20
-   refresh: never
- - source:
-     type: git
-     url: https://github.com/KaufHA/kauf-rgbww-bulbs
-   refresh: always
+#external_components:
+# - source:
+#     type: git
+#     url: https://github.com/KaufHA/common
+#     ref: v2024.11.20
+#   refresh: never
+# - source:
+#     type: git
+#     url: https://github.com/KaufHA/kauf-rgbww-bulbs
+#   refresh: always
 
 # Import packages:
-packages:
+ packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
@@ -94,22 +94,22 @@ packages:
 light:
 
   # Additive RGB light for Warm White
-  - platform: kauf_rgbww
-    id: warm_rgb
-    entity_category: config
-    default_transition_length: 0ms
-    icon: mdi:store-cog
-    aux: true
-    name: "${device_name} Warm RGB"
+  #- platform: kauf_rgbww
+  #  id: warm_rgb
+  #  entity_category: config
+  #  default_transition_length: 0ms
+  #  icon: mdi:store-cog
+  #  aux: true
+  #  name: "${device_name} Warm RGB"
 
   # Additive RGB light for Cold White
-  - platform: kauf_rgbww
-    id: cold_rgb
-    entity_category: config
-    default_transition_length: 0ms
-    icon: mdi:store-cog-outline
-    aux: true
-    name: "${device_name} Cold RGB"
+  #- platform: kauf_rgbww
+  #  id: cold_rgb
+  #  entity_category: config
+  #  default_transition_length: 0ms
+  #  icon: mdi:store-cog-outline
+  #  aux: true
+  #  name: "${device_name} Cold RGB"
 
   # Main RGBWW light
   - platform: kauf_rgbww
@@ -121,8 +121,8 @@ light:
     blue: pwm_blue
     warm_white: pwm_ww
     cold_white: pwm_cw
-    warm_rgb: warm_rgb
-    cold_rgb: cold_rgb
+   # warm_rgb: warm_rgb
+   # cold_rgb: cold_rgb
     warm_white_color_temperature: $sub_warm_white_temp
     cold_white_color_temperature: $sub_cold_white_temp
     restore_mode: $light_restore_mode
