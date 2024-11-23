@@ -1,0 +1,7 @@
+# Allow importing this package
+dashboard_import:
+  package_import_url: "${package_url}"
+  import_full_config: false
+  
+bk72xx:
+  board: wb2l
