@@ -1,0 +1,105 @@
+# ESPHome firmware template for CREE C/W Bulb
+# 
+# initial code taken from
+# https://github.com/esphome/issues/issues/3487
+# Analysis from:
+# https://github.com/arendst/Tasmota/issues/6914
+
+substitutions:
+  api_key: "Change me"
+  # Required import substitutions
+  device_site: "home"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "changeme"
+  device_type_name: "Change Me"
+  device_number: "000"
+  device_ip: "0.0.0.0"
+
+  disable_entities: "true"
+  disable_webserver: "false"
+
+  # sub_4m: "false"
+  
+  # sub_on_turn_on:  script_do_nothing
+  # sub_on_turn_off: script_do_nothing
+  
+  sub_red_pin:     GPIO26
+  sub_green_pin:   GPIO24
+  sub_blue_pin:    GPIO07
+  sub_cw_pin:      GPIO06
+  sub_ww_pin:      GPIO08
+  sub_adc_pin:     GPIO23
+  
+  sub_warm_white_temp: 2800 Kelvin
+  sub_cold_white_temp: 6600 Kelvin
+
+  sub_red_freq:   200 hz
+  sub_green_freq: 200 hz
+  sub_blue_freq:  200 hz
+  sub_cw_freq:    200 hz
+  sub_ww_freq:    200 hz
+
+  sub_reboot_req: '9'
+  sub_ota_num_attempts: '15'
+
+  sub_max_power: '0.8'
+  sub_default_transition_length: 3s
+  sub_api_reboot_timeout: 0s
+  light_restore_mode: RESTORE_DEFAULT_ON
+
+  # Project Substitutions (not intended for user substitutions)
+  package_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-bk72xx.yaml@main"
+
+# Allow importing this package
+dashboard_import:
+  package_import_url: "${package_url}"
+  import_full_config: false
+
+# https://esphome.io/components/external_components.html
+#external_components:
+# - source:
+#     type: git
+#     url: https://github.com/KaufHA/common
+#     ref: v2024.11.20
+#   refresh: never
+# - source:
+#     type: git
+#     url: https://github.com/KaufHA/kauf-rgbww-bulbs
+#   refresh: always
+
+# Import packages:
+packages:
+  standard_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - lumiman-rgbww-bulbs-bk72xx/standard/project.yaml
+      - lumiman-rgbww-bulbs-bk72xx/standard/diagnostics.yaml
+      - lumiman-rgbww-bulbs-bk72xx/standard/wifi.yaml
+  lumiman_rgbww_bk72xx_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - lumiman-rgbww-bulbs-bk72xx/board.yaml
+      - lumiman-rgbww-bulbs-bk72xx/current-sensor.yaml
+      - lumiman-rgbww-bulbs-bk72xx/pwm-outputs.yaml
+      # - dogain-rgbww-bulbs-bk72xx/scripts.yaml
+
+# https://esphome.io/components/light/index.html
+light:
+
+  - platform: rgbww
+    name: dogain_light
+    id: dogain_light
+    red: pwm_red
+    green: pwm_green
+    blue: pwm_blue
+    cold_white: pwm_cw
+    warm_white: pwm_ww
+    cold_white_color_temperature: "${sub_cold_white_temp}"
+    warm_white_color_temperature: "${sub_warm_white_temp}"
+    default_transition_length: "${sub_default_transition_length}"
+    restore_mode: RESTORE_DEFAULT_OFF
