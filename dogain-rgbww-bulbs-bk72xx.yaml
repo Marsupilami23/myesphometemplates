@@ -18,11 +18,6 @@ substitutions:
 
   disable_entities: "true"
   disable_webserver: "false"
-
-  # sub_4m: "false"
-  
-  # sub_on_turn_on:  script_do_nothing
-  # sub_on_turn_off: script_do_nothing
   
   sub_red_pin:     GPIO26
   sub_green_pin:   GPIO24
@@ -56,18 +51,6 @@ dashboard_import:
   package_import_url: "${package_url}"
   import_full_config: false
 
-# https://esphome.io/components/external_components.html
-#external_components:
-# - source:
-#     type: git
-#     url: https://github.com/KaufHA/common
-#     ref: v2024.11.20
-#   refresh: never
-# - source:
-#     type: git
-#     url: https://github.com/KaufHA/kauf-rgbww-bulbs
-#   refresh: always
-
 # Import packages:
 packages:
   standard_packages:
@@ -86,7 +69,6 @@ packages:
       - dogain-rgbww-bulbs-bk72xx/board.yaml
       - dogain-rgbww-bulbs-bk72xx/current-sensor.yaml
       - dogain-rgbww-bulbs-bk72xx/pwm-outputs.yaml
-      # - dogain-rgbww-bulbs-bk72xx/scripts.yaml
 
 # https://esphome.io/components/light/index.html
 light:
