@@ -91,20 +91,14 @@ packages:
 # https://esphome.io/components/light/index.html
 light:
 
-  - platform: rgb
+  - platform: rgbww
     name: dogain_light
     id: dogain_light
     red: pwm_red
     green: pwm_green
     blue: pwm_blue
-    default_transition_length: "${sub_default_transition_length}"
-    restore_mode: RESTORE_DEFAULT_OFF
-
-  - platform: cwww
-    name: dogain_cwww
-    id: dogain_cwww
-    warm_white: pwm_ww
     cold_white: pwm_cw
+    warm_white: pwm_ww
     cold_white_color_temperature: "${sub_cold_white_temp}"
     warm_white_color_temperature: "${sub_warm_white_temp}"
     default_transition_length: "${sub_default_transition_length}"
