@@ -1,7 +1,6 @@
 # Allow importing this package
 dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266/board.yaml@main"
-
   import_full_config: false
   
 esp8266:
