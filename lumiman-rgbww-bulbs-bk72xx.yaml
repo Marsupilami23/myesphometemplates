@@ -26,8 +26,8 @@ substitutions:
   
   sub_red_pin:     GPIO07
   sub_green_pin:   GPIO24
-  sub_blue_pin:    GPIO26
-  sub_cw_pin:      GPIO06
+  sub_blue_pin:    GPIO06
+  sub_cw_pin:      GPIO26
   sub_ww_pin:      GPIO08
   sub_adc_pin:     GPIO23
   
