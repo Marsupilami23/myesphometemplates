@@ -2,6 +2,11 @@
 # a 'root' device template and expects the substitutions that
 # are hereby referenced to be defined by its parent.
 
+# Allow importing of this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/cree-st19-bulbs/pwm-outputs.yaml@main"
+  import_full_config: false
+
 # Maps the PWM Channels
 output:
   # Channel 1 (CW)
