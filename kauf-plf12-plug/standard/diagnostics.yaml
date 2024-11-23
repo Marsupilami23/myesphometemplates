@@ -1,6 +1,10 @@
+# Allow importing of this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/standard/diagnostics.yaml@main"
+  import_full_config: false
+
 # https://esphome.io/components/sensor/index.html
 sensor:   # Power monitoring sensors output to Home Assistant
-
     # https://esphome.io/components/sensor/hlw8012.html
   - platform: kauf_hlw8012
     id: hlw_main
@@ -11,16 +15,12 @@ sensor:   # Power monitoring sensors output to Home Assistant
     cf1_pin: $sub_pm_cf1_pin
     current_resistor: $current_resistor_val
     voltage_divider: $voltage_divider_val
-
     update_interval: $sub_update_interval
-
     timeout:                         $sub_hlw_timeout
     early_publish_percent:           $sub_early_publish_percent
     early_publish_percent_min_power: $sub_early_publish_percent_min_power
     early_publish_absolute:          $sub_early_publish_absolute
-
     model: $sub_hlw_model
-
     power:
       name: $friendly_name Power
       unit_of_measurement: W
@@ -36,7 +36,6 @@ sensor:   # Power monitoring sensors output to Home Assistant
               else return return_val;
       on_value:   # set or clear in_use template binary sensor depending on whether power usage is over threshold
         - lambda: id(in_use).publish_state(x >= id(threshold).state);
-
     current:
       name: $friendly_name Current
       unit_of_measurement: A
@@ -46,7 +45,6 @@ sensor:   # Power monitoring sensors output to Home Assistant
             - $current_cal_val1_in -> $current_cal_val1_out
             - $current_cal_val2_in -> $current_cal_val2_out
         - lambda: return x * id(scale_current).state/100.0f;
-
     voltage:
       name: $friendly_name Voltage
       unit_of_measurement: V
