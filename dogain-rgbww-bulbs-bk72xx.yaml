@@ -95,7 +95,7 @@ light:
     name: dogain_light
     id: dogain_light
     red: "${sub_red_pin}"
-    green: "${sub_gree_pin}"
+    green: "${sub_green_pin}"
     blue: "${sub_blue_pin}"
     default_transition_length: "${sub_default_transition_length}"
     restore_mode: RESTORE_DEFAULT_OFF
