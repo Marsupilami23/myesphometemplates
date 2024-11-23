@@ -1,6 +1,6 @@
 # Allow importing this package
 dashboard_import:
-  package_import_url: "${package_url}"
+  package_import_url: "github://Marsupilami23/myesphometemplates/lumiman-rgbww-bulbs-bk72xx/board.yaml@main"
   import_full_config: false
   
 bk72xx:
