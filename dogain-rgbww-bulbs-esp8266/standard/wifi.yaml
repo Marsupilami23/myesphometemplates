@@ -5,6 +5,12 @@ substitutions:
   ota_password: !secret ota_password
   disable_webserver: "false"
 
+# Allow importing this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266/standard/wifi.yaml@main"
+  import_full_config: false
+
+
 # Enable Home Assistant API
 api:
   id: dogain_api
