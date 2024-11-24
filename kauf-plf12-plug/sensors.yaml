@@ -1,7 +1,7 @@
 # Allow importing of this package
 dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/sensors.yaml@main"
-  import_full_config: false
+  import_full_config: true
 
 # https://esphome.io/components/sensor/index.html
 sensor:   # Power monitoring sensors output to Home Assistant
