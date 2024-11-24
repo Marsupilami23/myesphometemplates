@@ -1,4 +1,6 @@
 substitutions:
+  api_key: ""
+  device_location: "home"
   device_location_code: "changeme"
   device_location_name: "Change Me"
   device_type_code: "snsr"
