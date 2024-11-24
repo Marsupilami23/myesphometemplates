@@ -7,7 +7,7 @@ substitutions:
   device_type_name: "Smart Plug"
   device_ip: "0.0.0.0"
   name: "${device_location_code}-${device_type_code}"
-  frendly_name: "${device_location_name} - (device_type_name}"
+  friendly_name: "${device_location_name} - ${device_type_name}"
   device_model: "PLF12"
   device_make: "KAUF"
   wifi_ssid: !secret wifi_ssid
