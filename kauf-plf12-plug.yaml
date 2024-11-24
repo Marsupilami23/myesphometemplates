@@ -124,8 +124,94 @@ packages:
       - kauf-plf12-plug/scripts.yaml
       - kauf-plf12-plug/pwm-outputs.yaml
       - kauf-plf12-plug/buttons.yaml
-      - kauf-plf12-plug/switches.yaml
       - kauf-plf12-plug/sensors.yaml
+
+switch:
+  # relay output
+  # https://esphome.io/components/switch/gpio.html
+  - platform: gpio
+    id: relay
+    name: $device_name
+    pin: $sub_relay_pin
+    entity_category: ''
+    forced_hash: 41191675
+    forced_addr: 2
+    global_addr: global_forced_addr
+    restore_mode: $sub_restore_mode
+    on_turn_on:
+        - script.execute: script_set_power_leds
+        - script.execute: $sub_on_turn_on
+    on_turn_off:
+        - script.execute: script_set_power_leds
+        - script.execute: $sub_on_turn_off
+
+    # https://esphome.io/components/switch/template.html
+  - platform: template
+    id: switch_no_hass
+    name: $device_name No HASS
+    optimistic: true
+    entity_category: config
+    disabled_by_default: $disable_entities
+    icon: mdi:toggle-switch-off-outline
+    restore_mode: RESTORE_DEFAULT_ON
+    on_turn_on:
+      - lambda: |-
+          id(kauf_api).set_reboot_timeout(0);  // 0 disables auto rebooting and also new status led blinking.  doesn't stop current status led blinking
+          id(kauf_api).status_clear_warning(); // stops current status led blinking, timeout 0 keeps it from restarting
+      - script.execute: script_save_changes
+    on_turn_off:
+      - lambda: id(kauf_api).set_reboot_timeout(900000);
+      - script.execute: script_save_changes
+    forced_hash: 657159011
+    forced_addr: 42
+    global_addr: global_forced_addr
+
+  - platform: template
+    id: blue_led
+    name: $device_name Blue LED
+    optimistic: true
+    entity_category: config
+    disabled_by_default: $disable_entities
+    icon: mdi:led-outline
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - lambda: id(blue_led_pwm).set_level(id(blue_led_brightness).state/100);
+    on_turn_off:
+      - lambda: id(blue_led_pwm).set_level(0.0);
+    forced_hash: 1329407616
+    forced_addr: 44
+    global_addr: global_forced_addr
+
+  - platform: template
+    id: red_led
+    name: $device_name Red LED
+    optimistic: true
+    entity_category: config
+    disabled_by_default: $disable_entities
+    icon: mdi:led-outline
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - lambda: id(red_led_pwm).set_level(id(red_led_brightness).state/100);
+    on_turn_off:
+      - lambda: id(red_led_pwm).set_level(0.0);
+    forced_hash: 261191305
+    forced_addr: 48
+    global_addr: global_forced_addr
+
+  - platform: template
+    id: switch_early_publish
+    name: $device_name Early Publish
+    optimistic: true
+    entity_category: config
+    disabled_by_default: $disable_entities
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on:
+      - lambda: id(hlw_main).enable_early_publish();
+    on_turn_off:
+      - lambda: id(hlw_main).disable_early_publish();
+    forced_hash: 1334841796
+    forced_addr: 62
+    global_addr: global_forced_addr
 
 # emulate status_led
 # https://esphome.io/guides/automations.html#interval-component
