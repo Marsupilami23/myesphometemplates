@@ -4,6 +4,9 @@ substitutions:
   wifi_password: !secret wifi_password
   ota_password: !secret ota_password
   sub_wifi_ap_timeout: 2min
+  sub_reboot_req: '9'
+  sub_ota_num_attempts: '15'
+
 
 # Allow importing this package
 dashboard_import:
