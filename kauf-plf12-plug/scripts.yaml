@@ -2,3 +2,122 @@
 dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/scripts.yaml@main"
   import_full_config: false
+
+# https://esphome.io/guides/automations.html#script-component
+script:
+
+    # sets LEDs to proper state based on LED configuration and relay state
+  - id: script_set_power_leds
+    then:
+      - lambda: |-
+          // if blue led follows power status
+          if ( (id(select_bled).state == "Power Status") || (id(select_bled).state == "Error and Power") ) {
+            id(blue_led).publish_state(id(relay).state); }
+
+          // if blue led follows inverse of power status
+          else if ( (id(select_bled).state == "Invert Power Status") || (id(select_bled).state == "Error and Invert Power") ) {
+            id(blue_led).publish_state(!id(relay).state); }
+
+          // if red led follows power status
+          if ( (id(select_rled).state == "Power Status") || (id(select_rled).state == "Error and Power") ) {
+            id(red_led).publish_state(id(relay).state); }
+
+          // if red led follows inverse of power status
+          else if ( (id(select_rled).state == "Invert Power Status") || (id(select_rled).state == "Error and Invert Power") ) {
+            id(red_led).publish_state(!id(relay).state); }
+
+      - script.execute: script_save_changes
+
+  - id: blink_status_led
+    mode: queued
+    then:
+
+      - lambda: |-
+          // turn on blue LED if configured for error status
+          if ( (id(select_bled).state == "Error Status")  ||
+               (id(select_bled).state == "Error and Power") ||
+               (id(select_bled).state == "Error and Invert Power") ) {
+            id(blue_led).turn_on(); }
+
+          // turn on red LED if configured for error status
+          if ( (id(select_rled).state == "Error Status")  ||
+               (id(select_rled).state == "Error and Power") ||
+               (id(select_rled).state == "Error and Invert Power") ) {
+            id(red_led).turn_on(); }
+
+      - delay: 350ms
+
+      - lambda: |-
+          // turn off blue LED if configured for error status
+          if ( (id(select_bled).state == "Error Status")  ||
+               (id(select_bled).state == "Error and Power") ||
+               (id(select_bled).state == "Error and Invert Power") ) {
+            id(blue_led).turn_off(); }
+
+          // turn off red LED if configured for error status
+          if ( (id(select_rled).state == "Error Status")  ||
+               (id(select_rled).state == "Error and Power") ||
+               (id(select_rled).state == "Error and Invert Power") ) {
+            id(red_led).turn_off(); }
+
+      - delay: 1150ms
+
+      - if:
+          condition:
+            - lambda: return ( ( (App.get_app_state() & STATUS_LED_ERROR) != 0u) || ((App.get_app_state() & STATUS_LED_WARNING) != 0u) );
+          then:
+            - script.execute: blink_status_led      # repeat as long as error/warning exists
+          else:
+            - script.execute: script_set_power_leds # done with status LED, restore light power status
+
+  - id: script_setting_reboot
+    mode: restart          # only reboot plug settings are static for 10s.  Another change restarts timer.
+    then:
+      - lambda: ESP_LOGCONFIG("kauf-plug.yaml","Setting change requiring reboot detected, rebooting in 10 seconds to effect change.");
+      - delay: 10s
+      - button.press: restart_button
+
+  - id: script_30s_timer
+    then:
+      - delay: !lambda return (30000-id(number_debounce).state);
+      - script.execute: $sub_on_hold_30s
+
+  - id: on_wifi_connect
+    then:
+
+        # wait until wifi connects
+      - wait_until: wifi.connected
+
+      - lambda: |-
+          ESP_LOGD("KAUF on_boot","------------------->>>>>>>>>>>>>>>>>   wifi connected, cranking ap timeout back up");
+          wifi_wificomponent_id->set_ap_timeout(2147483647);
+
+  - id: script_force_ap
+    then:
+      - logger.log: "------------------->>>>>>>>>>>>>>>>>   HELD BUTTON 30 SECONDS, FORCING AP"
+
+      # overwrite software defined credentials to force ap to turn on.
+      - lambda: wifi::global_wifi_component->save_wifi_sta("initial_ap","asdfasdfasdfasdf");
+
+      # blink LED for 10s then restart to get captive portal to turn on.
+      - script.execute: blink_led
+      - delay: 10s
+      - button.press: restart_button
+
+    # blink LED forever.  Used when button is held to re-enable AP.  Stops blinking because plug restarts.
+  - id: blink_led
+    mode: queued
+    then:
+      - switch.toggle: blue_led
+      - delay: 333ms
+      - script.execute: blink_led
+
+  - id: script_do_nothing
+    then:
+      - lambda: return;
+
+  - id: script_save_changes
+    mode: restart
+    then:
+      - delay: 3s
+      - lambda: global_preferences->sync();
