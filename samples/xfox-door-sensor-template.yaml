@@ -1,17 +1,15 @@
-# DOGAIN RGBWW Bulb Sample YAML file.
+# XFOX Door Sensor Sample YAML file.
 substitutions:
   api_key: ""
   device_location_code: "changeme"
   device_location_name: "Change Me"
-  device_type_code: "lghtblb"
-  device_type_name: "Light Bulb"
-  device_number: "001"
-  device_ip: "0.0.0.0"
+  device_type_code: "snsr"
+  device_type_name: "Sensor"
 
 packages:
-  DOGAIN_RGBWW_packages:
+  XFOX_DOOR_SENSOR_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - dogain-rgbww-bulbs-bk72xx.yaml
+      - xfox-door-sensor.yaml
