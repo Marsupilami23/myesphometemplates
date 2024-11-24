@@ -1,15 +1,7 @@
 substitutions:
-  
-  name: "${device_location_code}-${device_type_code}"
-  friendly_name: "${device_location_name} - ${device_type_name}"
-  api_key: "V67uaiLmKeJLf+WnySS1DG870DDL97ZA9yq7eNCjX+s="
   disable_entities: "true"
-  disable_webserver: "false"
   wifi_ap_timeout: 2min
-  wifi_ssid: !secret wifi_ssid
-  wifi_password: !secret wifi_password
-  ota_password: !secret ota_password
-  project_name: XFOX.DoorSensor
+
 
   sub_on_turn_on: script_do_nothing
   sub_on_turn_off: script_do_nothing
