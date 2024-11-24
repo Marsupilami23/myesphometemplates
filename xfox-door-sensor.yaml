@@ -52,19 +52,6 @@ esphome:
         - component.update: update_time
         - script.execute: script_deep_sleep
 
-  # Standard components
-<<: !include standard/globals.yaml
-<<: !include standard/wifi.yaml
-<<: !include standard/captive_portal.yaml
-<<: !include standard/logger.yaml
-<<: !include standard/mdns.yaml
-<<: !include standard/web_server.yaml
-<<: !include standard/api.yaml
-<<: !include standard/ota.yaml
-<<: !include standard/safe_mode.yaml
-  # Scripts
-<<: !include scripts/scripts.yaml
-
 external_components:
   - source:
       type: git
@@ -78,7 +65,16 @@ packages:
     ref: main
     refresh: always
     files:
+      - xfox-door-sensor/standard/api.yaml
+      - xfox-door-sensor/standard/captive_portal.yaml
+      - xfox-door-sensor/standard/esphome.yaml
+      - xfox-door-sensor/standard/logger.yaml
+      - xfox-door-sensor/standard/mdns.yaml
+      - xfox-door-sensor/standard/ota.yaml
+      - xfox-door-sensor/standard/safe_mode.yaml
+      - xfox-door-sensor/standard/web_server.yaml
       - xfox-door-sensor/standard/wifi.yaml
+      - xfox-door-sensor/scripts
       
 button:
   - platform: restart
