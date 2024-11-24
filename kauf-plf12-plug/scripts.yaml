@@ -73,7 +73,7 @@ script:
   - id: script_setting_reboot
     mode: restart          # only reboot plug settings are static for 10s.  Another change restarts timer.
     then:
-      - lambda: ESP_LOGCONFIG("kauf-plug.yaml","Setting change requiring reboot detected, rebooting in 10 seconds to effect change.");
+      - lambda: ESP_LOGCONFIG("kauf-plf12-plug.yaml","Setting change requiring reboot detected, rebooting in 10 seconds to effect change.");
       - delay: 10s
       - button.press: restart_button
 
