@@ -82,3 +82,9 @@ sensor:   # Power monitoring sensors output to Home Assistant
     disabled_by_default: $disable_entities
     unit_of_measurement: ms
     icon: mdi:timer-outline
+
+# clock input from Home Assistant used to calculate total daily energy
+# https://esphome.io/components/time.html#home-assistant-time-source
+time:
+  - platform: homeassistant
+    id: homeassistant_time
