@@ -22,7 +22,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
     early_publish_absolute:          $sub_early_publish_absolute
     model: $sub_hlw_model
     power:
-      name: $friendly_name Power
+      name: $device_name Power
       unit_of_measurement: W
       id: wattage
       filters:
@@ -37,7 +37,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
       on_value:   # set or clear in_use template binary sensor depending on whether power usage is over threshold
         - lambda: id(in_use).publish_state(x >= id(threshold).state);
     current:
-      name: $friendly_name Current
+      name: $device_name Current
       unit_of_measurement: A
       id: current
       filters:
@@ -46,7 +46,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
             - $current_cal_val2_in -> $current_cal_val2_out
         - lambda: return x * id(scale_current).state/100.0f;
     voltage:
-      name: $friendly_name Voltage
+      name: $device_name Voltage
       unit_of_measurement: V
       id: voltage
       filters:
@@ -58,7 +58,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
     # Reports the total Power so-far each day, resets at midnight
     # https://esphome.io/components/sensor/total_daily_energy.html
   - platform: total_daily_energy
-    name: $friendly_name Total Daily Energy
+    name: $device_name Total Daily Energy
     power_id: wattage
     filters:
         - multiply: 0.001  ## convert Wh to kWh
@@ -69,14 +69,14 @@ sensor:   # Power monitoring sensors output to Home Assistant
 
     # https://esphome.io/components/sensor/uptime.html
   - platform: uptime
-    name: $friendly_name Uptime
+    name: $device_name Uptime
     update_interval: 60s
     entity_category: diagnostic
     disabled_by_default: $disable_entities
 
     # https://esphome.io/components/sensor/template.html
   - platform: template
-    name: $friendly_name Button Press Duration
+    name: $device_name Button Press Duration
     id: sensor_press_duration
     entity_category: diagnostic
     disabled_by_default: $disable_entities
@@ -88,3 +88,11 @@ sensor:   # Power monitoring sensors output to Home Assistant
 time:
   - platform: homeassistant
     id: homeassistant_time
+
+# Send IP Address to HA
+# https://esphome.io/components/text_sensor/wifi_info.html
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "${device_name} IP Address"
+      disabled_by_default: $disable_entities
