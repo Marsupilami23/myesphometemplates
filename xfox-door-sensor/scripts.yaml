@@ -14,7 +14,7 @@ script:
             - switch.is_off: manual_mode
           then:
             - output.turn_off: activity_led_output
-            - deep_sleep.allow
+            - deep_sleep_libretiny.allow
     mode: restart
 
   - id: script_do_nothing
