@@ -1,3 +1,13 @@
+substitutions:
+  api_key: "Change me"
+  # Required import substitutions
+  device_site: "home"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "plg"
+  device_type_name: "Smart Plug"
+  device_ip: "0.0.0.0"
+
   # https://esphome.io/components/switch/gpio.html?highlight=restore_mode
   sub_restore_mode: RESTORE_DEFAULT_ON  # overwrite to change boot up behavior of relay
 
