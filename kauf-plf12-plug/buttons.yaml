@@ -8,7 +8,7 @@ dashboard_import:
 button:
   - platform: restart
     id: restart_button
-    name: $friendly_name Restart Firmware
+    name: $device_name Restart Firmware
     entity_category: diagnostic
     disabled_by_default: $disable_entities
 
@@ -17,7 +17,7 @@ button:
 select:
 
   - platform: template
-    name: $friendly_name Button Config
+    name: $device_name Button Config
     id: select_button
     optimistic: true
     options:
@@ -35,7 +35,7 @@ select:
       - script.execute: script_save_changes
 
   - platform: template
-    name: $friendly_name Blue LED Config
+    name: $device_name Blue LED Config
     id: select_bled
     optimistic: true
     entity_category: config
@@ -63,7 +63,7 @@ select:
       - script.execute: script_set_power_leds
 
   - platform: template
-    name: $friendly_name Red LED Config
+    name: $device_name Red LED Config
     id: select_rled
     optimistic: true
     entity_category: config
@@ -92,7 +92,7 @@ select:
 
   # change update interval for power monitoring sensors
   - platform: template
-    name: $friendly_name Monitoring Update Interval
+    name: $device_name Monitoring Update Interval
     id: select_monitor_interval
     optimistic: true
     options:
@@ -122,7 +122,7 @@ select:
           else if ( x == "2s"  ) { id(hlw_main).set_update_interval(2000); }
 
   - platform: template
-    name: $friendly_name Boot State
+    name: $device_name Boot State
     id: select_boot_state
     optimistic: true
     options:
