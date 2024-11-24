@@ -1,7 +1,7 @@
 # Allow importing of this package
-dashboard_import:
-  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/binary-sensors.yaml@main"
-  import_full_config: false
+#dashboard_import:
+#  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/binary-sensors.yaml@main"
+#  import_full_config: false
 
 # https://esphome.io/components/binary_sensor/index.html
 binary_sensor:
