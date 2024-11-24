@@ -9,7 +9,7 @@ dashboard_import:
     # https://esphome.io/components/switch/gpio.html
   - platform: gpio
     id: relay
-    name: $friendly_name
+    name: $device_name
     pin: $sub_relay_pin
     entity_category: ''
     forced_hash: 41191675
@@ -26,7 +26,7 @@ dashboard_import:
     # https://esphome.io/components/switch/template.html
   - platform: template
     id: switch_no_hass
-    name: $friendly_name No HASS
+    name: $device_name No HASS
     optimistic: true
     entity_category: config
     disabled_by_default: $disable_entities
@@ -46,7 +46,7 @@ dashboard_import:
 
   - platform: template
     id: blue_led
-    name: $friendly_name Blue LED
+    name: $device_name Blue LED
     optimistic: true
     entity_category: config
     disabled_by_default: $disable_entities
@@ -62,7 +62,7 @@ dashboard_import:
 
   - platform: template
     id: red_led
-    name: $friendly_name Red LED
+    name: $device_name Red LED
     optimistic: true
     entity_category: config
     disabled_by_default: $disable_entities
@@ -78,7 +78,7 @@ dashboard_import:
 
   - platform: template
     id: switch_early_publish
-    name: $friendly_name Early Publish
+    name: $device_name Early Publish
     optimistic: true
     entity_category: config
     disabled_by_default: $disable_entities
