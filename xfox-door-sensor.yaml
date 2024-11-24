@@ -1,4 +1,9 @@
 substitutions:
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "snsr"
+  device_type_name: "Sensor"
+
   disable_entities: "true"
   wifi_ap_timeout: 2min
 
