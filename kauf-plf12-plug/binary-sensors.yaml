@@ -9,7 +9,7 @@ binary_sensor:
     # https://esphome.io/components/binary_sensor/gpio.html
   - platform: gpio
     id: button_in
-    name: $friendly_name Button
+    name: $device_name Button
     pin:
       number: $sub_button_pin
       mode:
@@ -45,4 +45,4 @@ binary_sensor:
     # https://esphome.io/components/binary_sensor/template.html
   - platform: template
     id: in_use
-    name: $friendly_name Device In Use
+    name: $device_name Device In Use
