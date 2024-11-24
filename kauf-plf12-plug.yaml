@@ -94,7 +94,7 @@ substitutions:
 # Allow importing this package
 dashboard_import:
   package_import_url: "${package_url}"
-  import_full_config: false
+  import_full_config: true
 
 # https://esphome.io/components/external_components.html
 external_components:
