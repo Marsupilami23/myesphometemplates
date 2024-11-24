@@ -6,9 +6,9 @@ substitutions:
   disable_webserver: "false"
 
 # Allow importing of this package
-#dashboard_import:
-#  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/standard/wifi.yaml@main"
-#  import_full_config: false
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/standard/wifi.yaml@main"
+  import_full_config: false
 
 # Enable Home Assistant API
 api:
