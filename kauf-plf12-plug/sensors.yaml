@@ -27,7 +27,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
     model: $sub_hlw_model
 
     power:
-      name: $friendly_name Power
+      name: $device_name Power
       unit_of_measurement: W
       id: wattage
       filters:
@@ -43,7 +43,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
         - lambda: id(in_use).publish_state(x >= id(threshold).state);
 
     current:
-      name: $friendly_name Current
+      name: $device_name Current
       unit_of_measurement: A
       id: current
       filters:
@@ -53,7 +53,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
         - lambda: return x * id(scale_current).state/100.0f;
 
     voltage:
-      name: $friendly_name Voltage
+      name: $device_name Voltage
       unit_of_measurement: V
       id: voltage
       filters:
@@ -65,7 +65,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
     # Reports the total Power so-far each day, resets at midnight
     # https://esphome.io/components/sensor/total_daily_energy.html
   - platform: total_daily_energy
-    name: $friendly_name Total Daily Energy
+    name: $device_name Total Daily Energy
     power_id: wattage
     filters:
         - multiply: 0.001  ## convert Wh to kWh
@@ -76,14 +76,14 @@ sensor:   # Power monitoring sensors output to Home Assistant
 
     # https://esphome.io/components/sensor/uptime.html
   - platform: uptime
-    name: $friendly_name Uptime
+    name: $device_name Uptime
     update_interval: 60s
     entity_category: diagnostic
     disabled_by_default: $disable_entities
 
     # https://esphome.io/components/sensor/template.html
   - platform: template
-    name: $friendly_name Button Press Duration
+    name: $device_name Button Press Duration
     id: sensor_press_duration
     entity_category: diagnostic
     disabled_by_default: $disable_entities
@@ -94,7 +94,7 @@ sensor:   # Power monitoring sensors output to Home Assistant
 # https://esphome.io/components/number/template.html
 number:      # used as a threshold for whether the plugged-in devices is running.
   - platform: template
-    name: $friendly_name Use Threshold
+    name: $device_name Use Threshold
     min_value: 1
     max_value: 100
     step: 1
@@ -115,7 +115,7 @@ number:      # used as a threshold for whether the plugged-in devices is running
       - lambda: id(in_use).publish_state(id(wattage).state >= x);
 
   - platform: template
-    name: $friendly_name Blue LED Brightness
+    name: $device_name Blue LED Brightness
     min_value: 1
     max_value: 100
     step: 1
@@ -136,7 +136,7 @@ number:      # used as a threshold for whether the plugged-in devices is running
     global_addr: global_forced_addr
 
   - platform: template
-    name: $friendly_name Red LED Brightness
+    name: $device_name Red LED Brightness
     min_value: 1
     max_value: 100
     step: 1
@@ -157,7 +157,7 @@ number:      # used as a threshold for whether the plugged-in devices is running
     global_addr: global_forced_addr
 
   - platform: template
-    name: $friendly_name Scale Power
+    name: $device_name Scale Power
     min_value: 50
     max_value: 200
     step: .1
@@ -178,7 +178,7 @@ number:      # used as a threshold for whether the plugged-in devices is running
       - lambda: id(wattage).publish_state(id(wattage).get_raw_state());
 
   - platform: template
-    name: $friendly_name Scale Current
+    name: $device_name Scale Current
     min_value: 50
     max_value: 200
     step: .1
@@ -199,7 +199,7 @@ number:      # used as a threshold for whether the plugged-in devices is running
       - lambda: id(current).publish_state(id(current).get_raw_state());
 
   - platform: template
-    name: $friendly_name Scale Voltage
+    name: $device_name Scale Voltage
     min_value: 50
     max_value: 200
     step: .1
@@ -220,7 +220,7 @@ number:      # used as a threshold for whether the plugged-in devices is running
       - lambda: id(voltage).publish_state(id(voltage).get_raw_state());
 
   - platform: template
-    name: $friendly_name Debounce Time
+    name: $device_name Debounce Time
     min_value: $sub_min_debounce
     max_value: 2000
     step: 1
