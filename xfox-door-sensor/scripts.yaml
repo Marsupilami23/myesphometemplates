@@ -1,0 +1,72 @@
+script:
+  - id: script_deep_sleep
+    then:
+      - deep_sleep.prevent
+      - delay: 10s
+      - script.execute: script_check_deep_sleep
+    mode: restart
+
+  - id: script_check_deep_sleep
+    then:
+      - deep_sleep.prevent
+      - if:
+          condition:
+            - switch.is_off: manual_mode
+          then:
+            - output.turn_off: activity_led_output
+            - deep_sleep.allow
+    mode: restart
+
+  - id: script_do_nothing
+    then:
+      lambda: return;
+
+  - id: script_quick_boot
+    then:
+      - if:
+          condition:
+            lambda: return ( id(global_quick_boot_count) >= $sub_reboot_req );
+          then:
+
+            - lambda: |-
+                ESP_LOGD("xfox-door-sensor.yaml", "quick boot count variable is now $sub_reboot_req, overwriting credentials and rebooting");
+
+                // turn on status light
+                auto call = id(activity_led).turn_on();
+                call.set_save(false);
+                call.perform();
+
+                // reset counter and immediately save
+                id(global_quick_boot_count) = 0;
+                global_quick_boot_count->loop();
+                global_preferences->sync();
+
+            - delay: 5s
+
+      - lambda: |-
+          ESP_LOGD("xfox-door-sensor.yaml", "quick boot count variable is now %d. Need $sub_reboot_req to override credentials", id(global_quick_boot_count));
+          id(global_quick_boot_count) += 1;
+          global_quick_boot_count->loop();
+          global_preferences->sync();
+
+      - if:
+          condition:
+            lambda: return ( id(global_quick_boot_count) > 2);
+          then:
+            - lambda: |-
+                auto call = id(activity_led).turn_on();
+                call.set_save(false);
+                call.perform();
+
+      - delay: 10s
+      - lambda: ESP_LOGD("xfox-door-sensor.yaml", "quick boot script, 10 seconds up");
+      - lambda: |-
+          id(global_quick_boot_count) = 0;
+          global_quick_boot_count->loop();
+          global_preferences->sync();
+
+  - id: script_save_changes
+    mode: restart
+    then:
+      - delay: 3s
+      - lambda: global_preferences->sync();
