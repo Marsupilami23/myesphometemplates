@@ -1,7 +1,7 @@
 # Allow importing of this package
-#dashboard_import:
-#  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/buttons.yaml@main"
-#  import_full_config: false
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/buttons.yaml@main"
+  import_full_config: false
 
   # https://esphome.io/components/button/index.html
 # https://esphome.io/components/button/restart.html
