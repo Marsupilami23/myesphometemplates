@@ -86,7 +86,7 @@ substitutions:
 
   sub_reboot_req: '9'
   sub_ota_num_attempts: '15'
-
+  sub_api_reboot_timeout: 0s
 
  # Project Substitutions (not intended for user substitutions)
   package_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug.yaml@main"
