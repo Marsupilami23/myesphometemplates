@@ -71,7 +71,15 @@ external_components:
       url: https://github.com/szupi-ipuzs/esphome-external-components
       ref: main
     components: [ deep_sleep_libretiny ]
-
+    
+packages:
+  standard_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - xfox-door-sensor/standard/wifi.yaml
+      
 button:
   - platform: restart
     id: restart_button
