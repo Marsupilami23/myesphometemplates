@@ -102,7 +102,7 @@ external_components:
       type: git
       url: https://github.com/KaufHA/common
       ref: v2024.11.20
-    refresh: never
+    refresh: always
 
 # Import packages:
 packages:
