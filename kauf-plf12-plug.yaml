@@ -121,7 +121,7 @@ packages:
     files:
       - kauf-plf12-plug/board.yaml
       - kauf-plf12-plug/binary-sensors.yaml
-      - kauf-plf12-plug/swithces.yaml
+      - kauf-plf12-plug/switches.yaml
       - kauf-plf12-plug/scripts.yaml
       - kauf-plf12-plug/pwm-outputs.yaml
       - kauf-plf12-plug/buttons.yaml
