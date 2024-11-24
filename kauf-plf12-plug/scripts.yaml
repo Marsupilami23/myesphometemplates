@@ -1,0 +1,4 @@
+# Allow importing of this package
+dashboard_import:
+  package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/scripts.yaml@main"
+  import_full_config: false
