@@ -7,8 +7,6 @@ substitutions:
   device_type_name: "Sensor"
 
   disable_entities: "true"
-  wifi_ap_timeout: 2min
-
 
   sub_on_turn_on: script_do_nothing
   sub_on_turn_off: script_do_nothing
@@ -20,35 +18,7 @@ substitutions:
   sub_batt_lvl_gpio: GPIO23
   sub_reset_button_gpio: GPIO22
 
-  sub_reboot_req: '9'
-  sub_ota_num_attempts: '15'
-
   sub_max_power: '0.8'
-  sub_api_reboot_timeout: 0s
-
-bk72xx:
-  board: generic-bk7231n-qfn32-tuya
-  family: bk7231n
-
-esphome:
-  name: "${name}"
-  project:
-    name: "${project_name}"
-    version: "${project_ver_num}(${project_ver_let})"
-  on_boot:
-    - priority: 600.0
-      then:
-        - component.update: VCC
-        - switch.turn_on: batt_dv
-    - priority: 100.0
-      then:
-        - output.turn_on: activity_led_output
-    - priority: -100
-      then:
-        - component.update: VCC
-        - component.update: homeassistant_time
-        - component.update: update_time
-        - script.execute: script_deep_sleep
 
 external_components:
   - source:
@@ -63,21 +33,19 @@ packages:
     ref: main
     refresh: always
     files:
-      - xfox-door-sensor/standard/api.yaml
-      - xfox-door-sensor/standard/captive_portal.yaml
-      - xfox-door-sensor/standard/esphome.yaml
-      - xfox-door-sensor/standard/logger.yaml
-      - xfox-door-sensor/standard/mdns.yaml
-      - xfox-door-sensor/standard/ota.yaml
-      - xfox-door-sensor/standard/safe_mode.yaml
-      - xfox-door-sensor/standard/web_server.yaml
+      - xfox-door-sensor/standard/project.yaml
       - xfox-door-sensor/standard/wifi.yaml
-      - xfox-door-sensor/scripts
+  xfox_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - xfox-door-sensor/scripts.yaml
       
 button:
   - platform: restart
     id: restart_button
-    name: $friendly_name Restart Firmware
+    name: "${device_name} Restart Firmware"
     entity_category: diagnostic
     disabled_by_default: $disable_entities
 
@@ -88,7 +56,7 @@ text_sensor:
 
   - platform: wifi_info
     ip_address:
-      name: $friendly_name IP Address
+      name: "${device_name} IP Address"
       entity_category: diagnostic
       disabled_by_default: "${disable_entities}"
 
@@ -112,7 +80,7 @@ output:
 binary_sensor:
   - platform: gpio
     device_class: door
-    name: $friendly_name
+    name: "${device_name}"
     pin:
       number: "${sub_binary_sensor_gpio}"
       allow_other_uses: true
