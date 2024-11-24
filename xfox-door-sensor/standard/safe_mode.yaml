@@ -1,0 +1,2 @@
+safe_mode:
+  num_attempts: "${sub_ota_num_attempts}"

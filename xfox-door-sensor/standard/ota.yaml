@@ -1,0 +1,9 @@
+ota:
+  - platform: esphome
+    id: my_ota
+    password: "${ota_password}"
+    on_error:
+      then:
+        - button.press: restart_button
+    on_begin:
+      - output.turn_on: activity_led_output

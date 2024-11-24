@@ -1,0 +1,5 @@
+api:
+  id: xfox_api
+  reboot_timeout: "${sub_api_reboot_timeout}"
+  encryption:
+    key: "${api_key}"

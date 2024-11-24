@@ -1,0 +1,19 @@
+esphome:
+  name: "${name}"
+  project:
+    name: "${project_name}"
+    version: "${project_ver_num}(${project_ver_let})"
+  on_boot:
+    - priority: 600.0
+      then:
+        - component.update: VCC
+        - switch.turn_on: batt_dv
+    - priority: 100.0
+      then:
+        - output.turn_on: activity_led_output
+    - priority: -100
+      then:
+        - component.update: VCC
+        - component.update: homeassistant_time
+        - component.update: update_time
+        - script.execute: script_deep_sleep

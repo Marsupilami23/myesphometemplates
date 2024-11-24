@@ -1,1 +1,11 @@
-
+wifi:
+  ssid: "${wifi_ssid}"
+  password: "${wifi_password}"
+  ap:
+    ap_timeout: "${wifi_ap_timeout}"
+    ssid: "${name}-setup"
+    password: "${wifi_password}"
+  on_connect:
+    - lambda: |-
+        if (id(first_connect_ms_int) == 0) id(first_connect_ms_int) = esphome::millis();
+    - component.update: first_connect_ms
