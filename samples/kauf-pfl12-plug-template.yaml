@@ -1,16 +1,67 @@
 # Kauf PLF12 Plug Sample YAML file.
 substitutions:
   api_key: ""
-  device_location_code: "mktlts"
-  device_location_name: "Backyard Market Lights"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
   device_type_code: "plg"
   device_type_name: "Smart Plug"
   device_ip: "0.0.0.0"
+  name: "${device_location_code}-${device_type_code}"
+  frendly_name: "${device_location_name} - (device_type_name}"
+  device_model: "PLF12"
+  device_make: "KAUF"
+  wifi_ssid: !secret wifi_ssid
+  wifi_password: !secret wifi_password
+  ota_password: !secret ota_password
+  disable_webserver: "false"
+  sub_ota_num_attempts: '15'
+  sub_api_reboot_timeout: 0s
 
 packages:
-  kauf_plf12_packages:
-    url: https://github.com/Marsupilami23/myesphometemplates/
-    ref: main
-    refresh: always
-    files:
-      - kauf-plf12-plug.yaml
+  Kauf.PLF10: github://KaufHA/PLF10/kauf-plug.yaml
+  Kauf.PLF12-Base: github://KaufHA/PLF12/config/kauf-plf12-base.yaml
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  comment: "${device_model} plug by ${device_make}"
+  name_add_mac_suffix: false
+  min_version: "2024.11.0"
+  project:
+    name: "${device_make}.${device_model}"
+    version: "${package_version}"
+  on_boot:
+    then:
+        # set default values for template sensors, otherwise they are unknown.
+      - script.execute: script_set_power_leds
+      - script.execute: on_wifi_connect
+
+api:
+  id: kauf_api
+  reboot_timeout: "${sub_api_reboot_timeout}"
+  encryption:
+    key: "${api_key}"
+
+# Enable OTA
+ota:
+  - platform: esphome
+    id: my_ota
+    password: "${ota_password}"
+    on_error:
+      then:
+        - button.press: restart_button
+
+safe_mode:
+  num_attempts: "${sub_ota_num_attempts}"
+  
+# Enable WIFI and AP for capitve portal
+wifi:
+  fast_connect: false
+  power_save_mode: none
+  ssid: "${wifi_ssid}"
+  password: "${wifi_password}"
+  ap:
+    ssid: "${name}-setup"
+    password: "${wifi_password}"
+  forced_addr: 8
+  global_addr: global_forced_addr
