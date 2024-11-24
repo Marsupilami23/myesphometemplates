@@ -38,7 +38,7 @@ preferences:
 esphome:
   name: "${device_code}"
   friendly_name: "${device_name}"
-  comment: "${device_model} bulb by ${device_make}"
+  comment: "${device_model} plug by ${device_make}"
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   project:
