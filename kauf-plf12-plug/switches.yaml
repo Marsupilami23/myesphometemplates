@@ -3,10 +3,9 @@ dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug/switches.yaml@main"
   import_full_config: false
 
-  switch:
-
-    # relay output
-    # https://esphome.io/components/switch/gpio.html
+switch:
+  # relay output
+  # https://esphome.io/components/switch/gpio.html
   - platform: gpio
     id: relay
     name: $device_name
