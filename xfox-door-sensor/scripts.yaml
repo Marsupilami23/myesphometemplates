@@ -1,14 +1,14 @@
 script:
   - id: script_deep_sleep
     then:
-      - deep_sleep.prevent
+      - deep_sleep_libretiny.prevent
       - delay: 10s
       - script.execute: script_check_deep_sleep
     mode: restart
 
   - id: script_check_deep_sleep
     then:
-      - deep_sleep.prevent
+      - deep_sleep_libretiny.prevent
       - if:
           condition:
             - switch.is_off: manual_mode
