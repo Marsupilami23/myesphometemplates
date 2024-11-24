@@ -84,6 +84,45 @@ substitutions:
   sub_default_debounce: "100"
   sub_min_debounce:     "50"
 
+ # Project Substitutions (not intended for user substitutions)
+  package_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug.yaml@main"
+
+# Allow importing this package
+dashboard_import:
+  package_import_url: "${package_url}"
+  import_full_config: false
+
+# https://esphome.io/components/external_components.html
+external_components:
+  - source:
+      type: git
+      url: https://github.com/KaufHA/common
+      ref: v2024.11.20
+    refresh: never
+
+# Import packages:
+packages:
+  standard_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - kauf-plf12-plug/standard/project.yaml
+      - kauf-plf12-plug/standard/diagnostics.yaml
+      - kauf-plf12-plug/standard/wifi.yaml
+  cree_st19_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - kauf-plf12-plug/board.yaml
+      - kauf-plf12-plug/current-sensor.yaml
+      - kauf-plf12-plug/pwm-outputs.yaml
+      - kauf-plf12-plug/binary-sensors.yaml
+      - kauf-plf12-plug/sensors.yaml
+      - kauf-plf12-plug/switches.yaml
+      - kauf-plf12-plug/scripts.yaml
+
 # emulate status_led
 # https://esphome.io/guides/automations.html#interval-component
 interval:
