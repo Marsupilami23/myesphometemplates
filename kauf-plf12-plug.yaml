@@ -40,24 +40,24 @@ substitutions:
   # substitutions for power monitoring calibration.  Allows end users to change calibration in their yaml and still
   # incorporate this file as a package to get all the updates we release.
   current_resistor_val: "0.001"
-  voltage_divider_val:  "2401"
-  sub_hlw_model:         HLW8012
+  voltage_divider_val:  "2001"
+  sub_hlw_model:         BL0937
   power_cal_val1_in:    "0.0"
   power_cal_val1_out:   "0.0"
-  power_cal_val2_in:    "333.8"
-  power_cal_val2_out:   "60"
+  power_cal_val2_in:    "879.4"
+  power_cal_val2_out:   "750"
   current_cal_val1_in:  "0.0"
   current_cal_val1_out: "0.0"
-  current_cal_val2_in:  "0.6"
-  current_cal_val2_out: "0.515"
+  current_cal_val2_in:  "6.8"
+  current_cal_val2_out: "3.5"
   voltage_cal_val1_in:  "0.0"
   voltage_cal_val1_out: "0.0"
-  voltage_cal_val2_in:  "302.1"
-  voltage_cal_val2_out: "117.1"
+  voltage_cal_val2_in:  "132.7"
+  voltage_cal_val2_out: "119.1"
 
-  sub_default_scale_power: "100"
-  sub_default_scale_current: "100"
-  sub_default_scale_voltage: "100"
+  sub_default_scale_power: "87"
+  sub_default_scale_current: "162"
+  sub_default_scale_voltage: "85"
 
   # set default power monitoring update interval in yaml.
   # this will only be effective as long as the select entity is set to "YAML Configured"
@@ -81,8 +81,8 @@ substitutions:
   sub_relay_pin:    GPIO4
 
   # debounce specifications
-  sub_default_debounce: "100"
-  sub_min_debounce:     "50"
+  sub_default_debounce: "20"
+  sub_min_debounce:     "10"
 
  # Project Substitutions (not intended for user substitutions)
   package_url: "github://Marsupilami23/myesphometemplates/kauf-plf12-plug.yaml@main"
