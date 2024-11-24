@@ -29,10 +29,10 @@ external_components:
 
 external_components:
   - source:
-    type: git
-    url: https://github.com/Marsupilami23/myesphometemplates
-    ref: main
-  components: [ api ]
+      type: git
+      url: https://github.com/Marsupilami23/myesphometemplates
+      ref: main
+    components: [ api ]
 
 packages:
   standard_packages:
