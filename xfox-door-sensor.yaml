@@ -25,8 +25,15 @@ external_components:
       type: git
       url: https://github.com/Marsupilami23/myesphometemplates/
       ref: main
-    #components: [ deep_sleep_libretiny, api ]
-    
+    components: [ deep_sleep_libretiny ]
+
+external_components:
+  - source:
+    type: git
+    url: https://github.com/Marsupilami23/myesphometemplates
+    ref: main
+  components: [ api }
+
 packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
