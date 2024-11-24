@@ -1,0 +1,16 @@
+# Kauf PLF12 Plug Sample YAML file.
+substitutions:
+  api_key: ""
+  device_location_code: "mktlts"
+  device_location_name: "Backyard Market Lights"
+  device_type_code: "plg"
+  device_type_name: "Smart Plug"
+  device_ip: "0.0.0.0"
+
+packages:
+  kauf_plf12_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - kauf-plf12-plug.yaml
