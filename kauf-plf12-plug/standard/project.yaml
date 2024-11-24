@@ -18,7 +18,7 @@ globals:
     type: int
     restore_value: no
     initial_value: '12345'
-  - id: global_quick_boot_count
+  - id: global_press_time
     type: int
     restore_value: no
     initial_value: '0'
