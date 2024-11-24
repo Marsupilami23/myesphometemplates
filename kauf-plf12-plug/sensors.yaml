@@ -1,0 +1,232 @@
+# https://esphome.io/components/sensor/index.html
+sensor:   # Power monitoring sensors output to Home Assistant
+
+    # https://esphome.io/components/sensor/hlw8012.html
+  - platform: kauf_hlw8012
+    id: hlw_main
+    sel_pin:
+      number: $sub_pm_sel_pin
+      inverted: True
+    cf_pin: $sub_pm_cf_pin
+    cf1_pin: $sub_pm_cf1_pin
+    current_resistor: $current_resistor_val
+    voltage_divider: $voltage_divider_val
+
+    update_interval: $sub_update_interval
+
+    timeout:                         $sub_hlw_timeout
+    early_publish_percent:           $sub_early_publish_percent
+    early_publish_percent_min_power: $sub_early_publish_percent_min_power
+    early_publish_absolute:          $sub_early_publish_absolute
+
+    model: $sub_hlw_model
+
+    power:
+      name: $friendly_name Power
+      unit_of_measurement: W
+      id: wattage
+      filters:
+        - calibrate_linear:
+            - $power_cal_val1_in -> $power_cal_val1_out
+            - $power_cal_val2_in -> $power_cal_val2_out
+        - lambda: |-
+              // filter out extremely large values that are incorrect
+              float return_val = x * id(scale_power).state/100.0f;
+              if ( return_val > 5000.0f) return {};
+              else return return_val;
+      on_value:   # set or clear in_use template binary sensor depending on whether power usage is over threshold
+        - lambda: id(in_use).publish_state(x >= id(threshold).state);
+
+    current:
+      name: $friendly_name Current
+      unit_of_measurement: A
+      id: current
+      filters:
+        - calibrate_linear:
+            - $current_cal_val1_in -> $current_cal_val1_out
+            - $current_cal_val2_in -> $current_cal_val2_out
+        - lambda: return x * id(scale_current).state/100.0f;
+
+    voltage:
+      name: $friendly_name Voltage
+      unit_of_measurement: V
+      id: voltage
+      filters:
+        - calibrate_linear:
+            - $voltage_cal_val1_in -> $voltage_cal_val1_out
+            - $voltage_cal_val2_in -> $voltage_cal_val2_out
+        - lambda: return x * id(scale_voltage).state/100.0f;
+
+    # Reports the total Power so-far each day, resets at midnight
+    # https://esphome.io/components/sensor/total_daily_energy.html
+  - platform: total_daily_energy
+    name: $friendly_name Total Daily Energy
+    power_id: wattage
+    filters:
+        - multiply: 0.001  ## convert Wh to kWh
+    unit_of_measurement: kWh
+    forced_hash: 1903527169
+    forced_addr: 6
+    global_addr: global_forced_addr
+
+    # https://esphome.io/components/sensor/uptime.html
+  - platform: uptime
+    name: $friendly_name Uptime
+    update_interval: 60s
+    entity_category: diagnostic
+    disabled_by_default: $disable_entities
+
+    # https://esphome.io/components/sensor/template.html
+  - platform: template
+    name: $friendly_name Button Press Duration
+    id: sensor_press_duration
+    entity_category: diagnostic
+    disabled_by_default: $disable_entities
+    unit_of_measurement: ms
+    icon: mdi:timer-outline
+
+    # https://esphome.io/components/number/index.html
+# https://esphome.io/components/number/template.html
+number:      # used as a threshold for whether the plugged-in devices is running.
+  - platform: template
+    name: $friendly_name Use Threshold
+    min_value: 1
+    max_value: 100
+    step: 1
+    initial_value: 3
+    id: threshold
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    unit_of_measurement: Watt(s)
+    mode: box
+    disabled_by_default: $disable_entities
+    forced_hash: 3932521563
+    forced_addr: 4
+    global_addr: global_forced_addr
+    set_action:
+      - script.execute: script_save_changes
+    on_value:        # set or clear in_use template binary sensor depending on whether power usage is above threshold
+      - lambda: id(in_use).publish_state(id(wattage).state >= x);
+
+  - platform: template
+    name: $friendly_name Blue LED Brightness
+    min_value: 1
+    max_value: 100
+    step: 1
+    initial_value: 75
+    id: blue_led_brightness
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    unit_of_measurement: "%"
+    mode: slider
+    icon: mdi:brightness-percent
+    set_action:
+      - script.execute: script_save_changes
+    on_value:
+      - lambda: if ( id(blue_led).state ) id(blue_led_pwm).set_level(x/100);
+    forced_hash: 2635887862
+    forced_addr: 46
+    global_addr: global_forced_addr
+
+  - platform: template
+    name: $friendly_name Red LED Brightness
+    min_value: 1
+    max_value: 100
+    step: 1
+    initial_value: 75
+    id: red_led_brightness
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    unit_of_measurement: "%"
+    mode: slider
+    icon: mdi:brightness-percent
+    set_action:
+      - script.execute: script_save_changes
+    on_value:
+      - lambda: if ( id(red_led).state ) id(red_led_pwm).set_level(x/100);
+    forced_hash: 4192312897
+    forced_addr: 50
+    global_addr: global_forced_addr
+
+  - platform: template
+    name: $friendly_name Scale Power
+    min_value: 50
+    max_value: 200
+    step: .1
+    initial_value: $sub_default_scale_power
+    id: scale_power
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    unit_of_measurement: "%"
+    mode: box
+    disabled_by_default: $disable_entities
+    forced_hash: 3565176138
+    forced_addr: 56
+    global_addr: global_forced_addr
+    set_action:
+      - script.execute: script_save_changes
+    on_value:   # republish value. Sensor automation applies new scaling factor.
+      - lambda: id(wattage).publish_state(id(wattage).get_raw_state());
+
+  - platform: template
+    name: $friendly_name Scale Current
+    min_value: 50
+    max_value: 200
+    step: .1
+    initial_value: $sub_default_scale_current
+    id: scale_current
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    unit_of_measurement: "%"
+    mode: box
+    disabled_by_default: $disable_entities
+    forced_hash: 2293595686
+    forced_addr: 58
+    global_addr: global_forced_addr
+    set_action:
+      - script.execute: script_save_changes
+    on_value:   # republish value. Sensor automation applies new scaling factor.
+      - lambda: id(current).publish_state(id(current).get_raw_state());
+
+  - platform: template
+    name: $friendly_name Scale Voltage
+    min_value: 50
+    max_value: 200
+    step: .1
+    initial_value: $sub_default_scale_voltage
+    id: scale_voltage
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    unit_of_measurement: "%"
+    mode: box
+    disabled_by_default: $disable_entities
+    forced_hash: 254525215
+    forced_addr: 60
+    global_addr: global_forced_addr
+    set_action:
+      - script.execute: script_save_changes
+    on_value:   # republish value. Sensor automation applies new scaling factor.
+      - lambda: id(voltage).publish_state(id(voltage).get_raw_state());
+
+  - platform: template
+    name: $friendly_name Debounce Time
+    min_value: $sub_min_debounce
+    max_value: 2000
+    step: 1
+    initial_value: $sub_default_debounce
+    id: number_debounce
+    entity_category: config
+    optimistic: true
+    restore_value: true
+    unit_of_measurement: "ms"
+    mode: box
+    disabled_by_default: $disable_entities
+    forced_hash: 2232959069
+    forced_addr: 40
+    global_addr: global_forced_addr
