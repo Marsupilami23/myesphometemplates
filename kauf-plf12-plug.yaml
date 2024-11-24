@@ -120,7 +120,6 @@ packages:
     refresh: always
     files:
       - kauf-plf12-plug/board.yaml
-      - kauf-plf12-plug/binary-sensors.yaml
       - kauf-plf12-plug/scripts.yaml
       - kauf-plf12-plug/pwm-outputs.yaml
       - kauf-plf12-plug/buttons.yaml
