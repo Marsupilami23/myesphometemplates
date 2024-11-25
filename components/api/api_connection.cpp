@@ -9,9 +9,7 @@
 #include "esphome/core/log.h"
 #include "esphome/core/version.h"
 
-#ifdef USE_DEEP_SLEEP
-namespace esphome::deep_sleep {
-extern bool global_has_deep_sleep;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+#ifdef USE_DEEP_SLEEP namespace esphome::deep_sleep { extern bool global_has_deep_sleep; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 }
 #endif
 #ifdef USE_HOMEASSISTANT_TIME
