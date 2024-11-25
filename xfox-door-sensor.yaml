@@ -16,7 +16,7 @@ substitutions:
   sub_activity_led_gpio: GPIO26
   sub_batt_dv_gpio: GPIO14
   sub_batt_lvl_gpio: GPIO23
-  sub_reset_button_gpio: GPIO22
+  sub_reset_button_gpio: GPIO07
 
   sub_max_power: '0.8'
 
@@ -45,14 +45,6 @@ packages:
       - xfox-door-sensor/scripts.yaml
 
 globals:
-  - id: globals_forced_addr
-    type: int
-    restore_value: no
-    initial_value: '12345'
-  - id: global_quick_boot_count
-    type: int
-    restore_value: yes
-    initial_value: '0'
   - id: first_connect_ms_int
     type: uint32_t
     initial_value: '0'
@@ -65,10 +57,6 @@ button:
     disabled_by_default: $disable_entities
 
 text_sensor:
-  - platform: libretiny
-    version:
-      name: LibreTiny Version
-
   - platform: wifi_info
     ip_address:
       name: "${device_name} IP Address"
@@ -120,7 +108,7 @@ binary_sensor:
       number: "${sub_reset_button_gpio}"
       inverted: true
       allow_other_uses: true
-    name: "Reset Button"
+    name: "Bottom Button"
     icon: mdi:button-pointer
     on_state:
       - script.execute: script_check_deep_sleep
