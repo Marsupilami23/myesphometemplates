@@ -8,9 +8,6 @@ substitutions:
 
   disable_entities: "true"
 
-  sub_on_turn_on: script_do_nothing
-  sub_on_turn_off: script_do_nothing
-
   # Add GPIO Pins Here
   sub_binary_sensor_gpio: GPIO08
   sub_activity_led_gpio: GPIO26
