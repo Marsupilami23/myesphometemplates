@@ -13,7 +13,7 @@ substitutions:
   sub_activity_led_gpio: GPIO26
   sub_batt_dv_gpio: GPIO14
   sub_batt_lvl_gpio: GPIO23
-  sub_reset_button_gpio: GPIO07
+  sub_reset_button_gpio: GPIO22
 
   sub_max_power: '0.8'
 
