@@ -35,6 +35,7 @@ packages:
     files:
       - xfox-door-sensor/standard/project.yaml
       - xfox-door-sensor/standard/wifi.yaml
+      - xfox-door-sensor/standard/diagnostics.yaml
   xfox_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
