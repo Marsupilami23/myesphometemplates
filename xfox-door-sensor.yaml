@@ -103,7 +103,7 @@ binary_sensor:
     id: bottom_button
     pin:
       number: "${sub_reset_button_gpio}"
-      inverted: true
+      inverted: false
       allow_other_uses: true
     name: "Bottom Button"
     icon: mdi:button-pointer
