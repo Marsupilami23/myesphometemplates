@@ -73,12 +73,9 @@ packages:
       - cree-st19-bulbs/pwm-outputs.yaml
 
 light:
-  - platform: monochromatic
-    name: "Cold White"
-    id: cw_light
-    output: pwm_cw_output
-
-  - platform: monochromatic
-    name: "Warm White"
-    id: ww_light
-    output: pwm_ww_output
+  - platform: cwww
+    name: cwww_light
+    cold_white: pwm_cw_output
+    warm_white: pwm_ww_output
+    cold_white_color_temperature: "${sub_cold_white_temp}"
+    warm_white_color_temperature: "${sub_warm_white_temp}"
