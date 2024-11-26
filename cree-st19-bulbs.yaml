@@ -79,3 +79,4 @@ light:
     warm_white: pwm_ww_output
     cold_white_color_temperature: "${sub_cold_white_temp}"
     warm_white_color_temperature: "${sub_warm_white_temp}"
+    default_transition_length: "${sub_default_transition_length}"
