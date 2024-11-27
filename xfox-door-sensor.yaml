@@ -158,6 +158,10 @@ sensor:
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
     icon: mdi:battery
+    on_value_changed:
+      - if: value < 10%
+      then:
+        
 
   - platform: template
     name: first_connect_ms
