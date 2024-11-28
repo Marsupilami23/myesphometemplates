@@ -158,10 +158,6 @@ sensor:
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
     icon: mdi:battery
-    on_value_changed:
-      - if: value < 10%
-      then:
-        script.execute: script_deep_sleep
 
   - platform: template
     name: first_connect_ms
