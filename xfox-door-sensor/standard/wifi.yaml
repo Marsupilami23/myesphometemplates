@@ -23,8 +23,6 @@ api:
 mqtt:
   broker: 192.168.1.235
   port: 1883
-  discovery_prefix: ${mqtt_prefix}/homeassistant
-  log_topic: ${mqtt_prefix}/logs
   
 # Enable OTA
 ota:
