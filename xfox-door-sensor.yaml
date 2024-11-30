@@ -22,7 +22,7 @@ external_components:
       type: git
       url: https://github.com/Marsupilami23/myesphometemplates
       ref: main
-    components: [ api, deep_sleep_libretiny, mqtt ]
+    components: [ api, deep_sleep_libretiny ]
     refresh: always
 
 packages:
