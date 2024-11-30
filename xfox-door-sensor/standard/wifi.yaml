@@ -14,15 +14,11 @@ dashboard_import:
   import_full_config: false
 
 # Enable Home Assistant API
-#api:
-#  id: xfox_api
-#  reboot_timeout: "${sub_api_reboot_timeout}"
-#  encryption:
-#    key: "${api_key}"
-
-mqtt:
-  broker: 192.168.1.235
-  port: 1883
+api:
+  id: xfox_api
+  reboot_timeout: "${sub_api_reboot_timeout}"
+  encryption:
+  key: "${api_key}"
     
 # Enable OTA
 ota:
