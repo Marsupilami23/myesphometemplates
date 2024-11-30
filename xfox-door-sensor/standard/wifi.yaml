@@ -24,7 +24,7 @@ mqtt:
   broker: "${hassio_mqtt_broker}"
   port: 1883
   username: "${xfox_mqtt_username}"
-  password: "${xfox_mqtt_password}"
+  password: ""
   discovery: False
   discover_ip: True
   
