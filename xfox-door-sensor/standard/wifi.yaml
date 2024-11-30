@@ -38,7 +38,7 @@ safe_mode:
   
 # Enable WIFI and AP for capitve portal
 wifi:
-  fast_connect: false
+  fast_connect: true
   ssid: "${wifi_ssid}"
   password: "${wifi_password}"
   ap:
