@@ -91,7 +91,7 @@ binary_sensor:
             - switch.is_off: manual_mode
           then:
             - output.turn_on: activity_led_output
-            - delay: 1000ms
+            - delay: 5000ms
             - output.turn_off: activity_led_output
           else:
             - light.turn_on:
