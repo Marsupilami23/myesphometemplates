@@ -13,6 +13,9 @@ substitutions:
   sub_batt_lvl_gpio:      GPIO23
   sub_reset_button_gpio:  GPIO20
 
+  # Max power
+  sub_max_power: "0.8"
+
   
 
 packages:
