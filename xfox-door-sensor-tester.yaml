@@ -152,7 +152,7 @@ light:
     id: activity_led
     icon: mdi:lamp
     effects:
-      - putlse:
+      - pulse:
       - pulse:
           transition_length:
             on_length: 1s
