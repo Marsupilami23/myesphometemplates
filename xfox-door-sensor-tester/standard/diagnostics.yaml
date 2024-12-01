@@ -1,3 +1,17 @@
+button:
+  - platform: restart
+    id: restart_button
+    name: "${device_name} Restart Firmware"
+    entity_category: diagnostic
+    disabled_by_default: $disable_entities
+    
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "${device_name} IP Address"
+      entity_category: diagnostic
+      disabled_by_default: "${disable_entities}"
+
 logger:
   baud_rate: 0
   
