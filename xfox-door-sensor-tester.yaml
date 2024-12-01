@@ -16,8 +16,6 @@ substitutions:
   # Max power
   sub_max_power: "0.8"
 
-  
-
 packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
@@ -33,3 +31,10 @@ packages:
     refresh: always
     files:
       - xfox-door-sensor-tester/board.yaml
+      
+button:
+  - platform: restart
+    id: restart_button
+    name: "${device_name} Restart Firmware"
+    entity_category: diagnostic
+    disabled_by_default: $disable_entities
