@@ -153,7 +153,6 @@ light:
     icon: mdi:lamp
     effects:
       - pulse:
-      - pulse:
           transition_length:
             on_length: 1s
             off_length: 2s
