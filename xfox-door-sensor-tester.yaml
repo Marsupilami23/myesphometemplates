@@ -6,6 +6,8 @@ substitutions:
   device_type_code: "snsr"
   device_type_name: "Sensor"
 
+  disable_entities: "true"
+
   # GPIO pin designations
   sub_binary_sensor_gpio: GPIO08
   sub_activity_led_gpio:  GPIO26
