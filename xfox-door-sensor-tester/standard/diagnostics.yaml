@@ -1,5 +1,6 @@
 logger:
-
+  baud_rate: 0
+  
 uart:
   tx_pin: GPIO00
   rx_pin: GPIO01
