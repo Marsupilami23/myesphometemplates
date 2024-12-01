@@ -1,0 +1,150 @@
+substitutions:
+  api_key: ""
+  device_site: "home"
+  device_location_code: "changeme"
+  device_location_name: "Change Me"
+  device_type_code: "snsr"
+  device_type_name: "Sensor"
+
+  disable_entities: "true"
+
+  # Add GPIO Pins Here
+  sub_binary_sensor_gpio: GPIO08
+  sub_activity_led_gpio:  GPIO26
+  sub_batt_dv_gpio:       GPIO14
+  sub_batt_lvl_gpio:      GPIO23
+  sub_reset_button_gpio:  GPIO20
+
+  sub_max_power: '0.8'
+
+packages:
+  standard_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - xfox-door-sensor-tester/standard/project.yaml
+      - xfox-door-sensor-tester/standard/wifi.yaml
+      - xfox-door-sensor-tester/standard/diagnostics.yaml
+  xfox_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: main
+    refresh: always
+    files:
+      - xfox-door-sensor-tester/board.yaml
+      - xfox-door-sensor-tester/scripts.yaml
+
+globals:
+  - id: first_connect_ms_int
+    type: uint32_t
+    initial_value: '0'
+
+button:
+  - platform: restart
+    id: restart_button
+    name: "${device_name} Restart Firmware"
+    entity_category: diagnostic
+    disabled_by_default: $disable_entities
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "${device_name} IP Address"
+      entity_category: diagnostic
+      disabled_by_default: "${disable_entities}"
+
+  - platform: template
+    id: update_time
+    name: "Current Time"
+    lambda: |-
+      char str[17];
+      time_t currTime = id(homeassistant_time).now().timestamp;
+      strftime(str, sizeof(str), "%Y-%m-%d %H:%M", localtime(&currTime));
+      return { str };
+    icon: "mdi:clock"
+
+output:
+  - platform: libretiny_pwm
+    id: activity_led_output
+    frequency: 1000 Hz
+    pin:
+      number: "${sub_activity_led_gpio}"
+
+binary_sensor:
+  - platform: gpio
+    device_class: door
+    name: "${device_name}"
+    pin:
+      number: "${sub_binary_sensor_gpio}"
+      allow_other_uses: true
+    icon: mdi:door
+
+  - platform: gpio
+    id: bottom_button
+    pin:
+      number: "${sub_reset_button_gpio}"
+      inverted: true
+      allow_other_uses: true
+    name: "Bottom Button"
+    icon: mdi:button-pointer
+    
+switch:
+  - platform: gpio
+    id: batt_dv
+    pin: $sub_batt_dv_gpio
+
+sensor:
+  - platform: adc
+    pin: $sub_batt_lvl_gpio
+    id: "VCC"
+    name: "Battery Level"
+    filters:
+      - multiply: 2.4
+      - clamp:
+          min_value: 0.0
+          max_value: 3.0
+          ignore_out_of_range: true
+    on_value:
+      then:
+        - component.update: battery_level
+    icon: mdi:battery
+
+  - platform: template
+    name: "Battery Level (%)"
+    unit_of_measurement: '%'
+    update_interval: 86400s
+    id: battery_level
+    lambda: |-
+      return ((id(VCC).state /3.0) * 100.00);
+    icon: mdi:battery
+
+  - platform: template
+    name: first_connect_ms
+    id: first_connect_ms
+    lambda: |-
+      return id(first_connect_ms_int);
+
+  - platform: internal_temperature
+    name: Internal Temperature
+    icon: mdi:thermometer
+
+light:
+  - platform: monochromatic
+    name: "Activity LED"
+    output: activity_led_output
+    id: activity_led
+    icon: mdi:lamp
+    effects:
+      - strobe:
+      - pulse:
+          transition_length:
+            on_length: 1s
+            off_length: 2s
+          update_interval: 3s
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    on_time_sync:
+      then:
+        - component.update: update_time
