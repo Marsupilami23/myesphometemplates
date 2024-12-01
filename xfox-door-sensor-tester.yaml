@@ -69,3 +69,20 @@ binary_sensor:
                 effect: pulse
       - script.execute: script_deep_sleep
     icon: mdi:door
+
+  - platform: gpio
+    id: bottom_button
+    pin:
+      number: "${sub_reset_button_gpio}"
+      inverted: true
+      allow_other_uses: true
+    name: "Bottom Button"
+    icon: mdi:button-pointer
+    on_state:
+      - script.execute: script_check_deep_sleep
+    on_multi_click:
+      - timing:
+          - on for at least 1s
+        then:
+          - switch.toggle: manual_mode
+
