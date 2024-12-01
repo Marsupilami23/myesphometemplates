@@ -1,6 +1,6 @@
 logger:
 
 uart:
-  tx_pin: GPIO11
-  rx_pin: GPIO10
+  tx_pin: GPIO00
+  rx_pin: GPIO01
   baud_rate: 9600
