@@ -76,7 +76,7 @@ binary_sensor:
     name: "${device_name}"
     pin:
       number: "${sub_binary_sensor_gpio}"
-      allow_other_uses: true
+      # allow_other_uses: true
     icon: mdi:door
 
   - platform: gpio
