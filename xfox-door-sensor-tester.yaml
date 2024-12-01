@@ -84,11 +84,10 @@ binary_sensor:
     on_state:
       - script.execute: script_check_deep_sleep
     on_click:
-      - timing:
-          min_length: 50ms
-          max_length: 350ms
-        then:
-          - switch.toggle: manual_mode
+      min_length: 50ms
+      max_length: 350ms
+      then:
+        - switch.toggle: manual_mode
 
 switch:
   - platform: gpio
