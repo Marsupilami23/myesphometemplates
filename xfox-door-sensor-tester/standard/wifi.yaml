@@ -1,38 +1,57 @@
-
 substitutions:
-  # Generated name and unique device id for the device
-  # Not intended for user substitutions
-  device_name: "${device_location_name} - ${device_type_name}"
-  device_code: "${device_location_code}-${device_type_code}"
-  device_model: "Door Sensor"
-  device_make: "XFOX"
-  package_version: "2024.11.20"
+  # WIFI Substitutions
+  wifi_ssid: !secret wifi_ssid
+  wifi_password: !secret wifi_password
+  ota_password: !secret ota_password
+  sub_wifi_ap_timeout: 2min
+  sub_reboot_req: '9'
+  sub_ota_num_attempts: '15'
+  sub_api_reboot_timeout: 0s
 
 # Allow importing this package
 dashboard_import:
-  package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-bk72xx/standard/project.yaml@main"
+  package_import_url: "github://Marsupilami23/myesphometemplates/xfox-door-sensor/standard/wifi.yaml@main"
   import_full_config: false
+
+# Enable Home Assistant API
+api:
+  id: xfox_api
+  reboot_timeout: "${sub_api_reboot_timeout}"
+  encryption:
+    key: "${api_key}"
+
+mqtt:
+  broker: !secret hassio_mqtt_broker
+  port: 1883
+  username: !secret xfox_mqtt_username
+  password: !secret xfox_mqtt_password
+  discovery: False
+  discover_ip: True
   
-# https://esphome.io/components/esphome.html
-esphome:
-  name: "${device_code}"
-  friendly_name: "${device_name}"
-  comment: "${device_model} by ${device_make}"
-  name_add_mac_suffix: false
-  min_version: "2024.11.0"
-  project:
-    name: "${device_make}.${device_model}"
-    version: "${package_version}"
-  on_boot:
-    - priority: 600.0
+# Enable OTA
+ota:
+  - platform: esphome
+    id: my_ota
+    password: "${ota_password}"
+    on_error:
       then:
-        - component.update: VCC
-        - switch.turn_on: batt_dv
-    - priority: 100.0
-      then:
-        - output.turn_on: activity_led_output
-    - priority: -100
-      then:
-        - component.update: VCC
-        - component.update: homeassistant_time
-        - component.update: update_time
+        - button.press: restart_button
+          
+safe_mode:
+  num_attempts: "${sub_ota_num_attempts}"
+  
+# Enable WIFI and AP for capitve portal
+wifi:
+  fast_connect: true
+  ssid: "${wifi_ssid}"
+  password: "${wifi_password}"
+  ap:
+    ap_timeout: "${sub_wifi_ap_timeout}"
+    ssid: "${device_code}-setup"
+    password: "${wifi_password}"
+  on_connect:
+    - lambda: |-
+        if (id(first_connect_ms_int) == 0) id(first_connect_ms_int) = esphome::millis();
+    - component.update: first_connect_ms
+
+captive_portal:
