@@ -41,6 +41,7 @@ packages:
     refresh: always
     files:
       - xfox-door-sensor-tester/board.yaml
+      - xfox-door-sensor-tester/scripts.yaml
 
 # Adds a restart function throught the yaml and a button in HA      
 button:
