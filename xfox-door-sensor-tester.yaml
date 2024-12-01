@@ -31,10 +31,41 @@ packages:
     refresh: always
     files:
       - xfox-door-sensor-tester/board.yaml
-      
+
+# Adds a restart function throught the yaml and a button in HA      
 button:
   - platform: restart
     id: restart_button
     name: "${device_name} Restart Firmware"
     entity_category: diagnostic
     disabled_by_default: $disable_entities
+
+# Adds Activity LED function and maps to GPIO pin.
+output:
+  - platform: libretiny_pwm
+    id: activity_led_output
+    frequency: 1000 Hz
+    pin:
+      number: "${sub_activity_led_gpio}"
+
+binary_sensor:
+  - platform: gpio
+    device_class: door
+    name: "${device_name}"
+    pin:
+      number: "${sub_binary_sensor_gpio}"
+      allow_other_uses: true
+    on_state:
+      - if:
+          condition:
+            - switch.is_off: manual_mode
+          then:
+            - output.turn_on: activity_led_output
+            - delay: 5000ms
+            - output.turn_off: activity_led_output
+          else:
+            - light.turn_on:
+                id: activity_led
+                effect: pulse
+      - script.execute: script_deep_sleep
+    icon: mdi:door
