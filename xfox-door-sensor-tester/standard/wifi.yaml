@@ -1,3 +1,4 @@
+
 substitutions:
   # WIFI Substitutions
   wifi_ssid: !secret wifi_ssid
@@ -19,12 +20,35 @@ api:
   reboot_timeout: "${sub_api_reboot_timeout}"
   encryption:
     key: "${api_key}"
+
+mqtt:
+  broker: !secret hassio_mqtt_broker
+  port: 1883
+  username: !secret xfox_mqtt_username
+  password: !secret xfox_mqtt_password
+  discovery: False
+  discover_ip: True
   
 # Enable OTA
 ota:
   - platform: esphome
     id: my_ota
     password: "${ota_password}"
+    on_error:
+      then:
+        - button.press: restart_button
+    on_begin:
+      then:
+        - output.turn_on: activity_led_output
+        - mqtt.publish:
+            topic: begining/update
+            payload: "Begining Firmware Update!"
+        - deep_sleep_libretiny.prevent: deep_sleep_lt
+    on_end:
+      then:
+        - mqtt.publish:
+            topic: finished/update
+            payload: "Updating Firmware Has Been Completed!"
           
 safe_mode:
   num_attempts: "${sub_ota_num_attempts}"
@@ -38,8 +62,9 @@ wifi:
     ap_timeout: "${sub_wifi_ap_timeout}"
     ssid: "${device_code}-setup"
     password: "${wifi_password}"
-
-web_server:
-  include_internal: true
+  on_connect:
+    - lambda: |-
+        if (id(first_connect_ms_int) == 0) id(first_connect_ms_int) = esphome::millis();
+    - component.update: first_connect_ms
 
 captive_portal:
