@@ -83,7 +83,7 @@ binary_sensor:
     icon: mdi:button-pointer
     on_state:
       - script.execute: script_check_deep_sleep
-    on_multi_click:
+    on_click:
       - timing:
           - on for at least 1s
         then:
