@@ -85,7 +85,8 @@ binary_sensor:
       - script.execute: script_check_deep_sleep
     on_click:
       - timing:
-          - on for at least 1s
+          min_length: 50ms
+          max_length: 350ms
         then:
           - switch.toggle: manual_mode
 
