@@ -6,6 +6,15 @@ substitutions:
   device_type_code: "snsr"
   device_type_name: "Sensor"
 
+  # GPIO pin designations
+  sub_binary_sensor_gpio: GPIO08
+  sub_activity_led_gpio:  GPIO26
+  sub_batt_dv_gpio:       GPIO14
+  sub_batt_lvl_gpio:      GPIO23
+  sub_reset_button_gpio:  GPIO20
+
+  
+
 packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
