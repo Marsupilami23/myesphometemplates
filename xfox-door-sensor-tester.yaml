@@ -43,14 +43,6 @@ packages:
       - xfox-door-sensor-tester/board.yaml
       - xfox-door-sensor-tester/scripts.yaml
 
-# Adds a restart function throught the yaml and a button in HA      
-button:
-  - platform: restart
-    id: restart_button
-    name: "${device_name} Restart Firmware"
-    entity_category: diagnostic
-    disabled_by_default: $disable_entities
-
 # Adds Activity LED function and maps to GPIO pin.
 output:
   - platform: libretiny_pwm
