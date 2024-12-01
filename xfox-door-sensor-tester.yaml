@@ -153,6 +153,7 @@ light:
     icon: mdi:lamp
     effects:
       - pulse:
+          name: "WiFi Enabled LED"
           transition_length:
             on_length: 1s
             off_length: 2s
