@@ -8,14 +8,15 @@ substitutions:
 
   disable_entities: "true"
 
-  # Add GPIO Pins Here
+  # GPIO pin designations
   sub_binary_sensor_gpio: GPIO08
   sub_activity_led_gpio:  GPIO26
   sub_batt_dv_gpio:       GPIO14
   sub_batt_lvl_gpio:      GPIO23
   sub_reset_button_gpio:  GPIO20
 
-  sub_max_power: '0.8'
+  # Max power
+  sub_max_power: "0.8"
 
 external_components:
   - source:
@@ -31,17 +32,18 @@ packages:
     ref: main
     refresh: always
     files:
-      - xfox-door-sensor/standard/project.yaml
-      - xfox-door-sensor/standard/wifi.yaml
-      - xfox-door-sensor/standard/diagnostics.yaml
+      - xfox-door-sensor-tester/standard/project.yaml
+      - xfox-door-sensor-tester/standard/wifi.yaml
+      - xfox-door-sensor-tester/standard/diagnostics.yaml
   xfox_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - xfox-door-sensor/board.yaml
-      - xfox-door-sensor/scripts.yaml
+      - xfox-door-sensor-tester/board.yaml
+      - xfox-door-sensor-tester/scripts.yaml
 
+# Adds Activity LED function and maps to GPIO pin.
 output:
   - platform: libretiny_pwm
     id: activity_led_output
@@ -67,6 +69,8 @@ binary_sensor:
           else:
             - light.turn_on:
                 id: activity_led
+            - light.turn_on:
+                id: activity_led
                 effect: pulse
       - script.execute: script_deep_sleep
     icon: mdi:door
@@ -81,11 +85,11 @@ binary_sensor:
     icon: mdi:button-pointer
     on_state:
       - script.execute: script_check_deep_sleep
-    on_multi_click:
-      - timing:
-          - on for at least 1s
-        then:
-          - switch.toggle: manual_mode
+    on_click:
+      min_length: 50ms
+      max_length: 350ms
+      then:
+        - switch.toggle: manual_mode
 
 switch:
   - platform: gpio
@@ -94,7 +98,7 @@ switch:
 
   - platform: template
     optimistic: True
-    name: Manual mode
+    name: Manual Mode
     id: manual_mode
     on_turn_off:
       - script.execute: script_check_deep_sleep
