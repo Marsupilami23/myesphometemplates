@@ -36,7 +36,7 @@ esphome:
         - component.update: VCC
         - component.update: homeassistant_time
         - component.update: update_time
-        - script.execute: script_
+        - script.execute: script_deep_sleep
 
 globals:
   - id: first_connect_ms_int
