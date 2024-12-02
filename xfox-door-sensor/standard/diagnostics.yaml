@@ -1,7 +1,3 @@
-globals:
-  - id: first_connect_ms_int
-    type: uint32_t
-    initial_value: '0'
 
 button:
   - platform: restart
@@ -28,7 +24,6 @@ text_sensor:
     icon: "mdi:clock"
 
 logger:
-baud_rate: 0
 
 uart:
   tx_pin: GPIO11
