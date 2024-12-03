@@ -68,4 +68,13 @@ wifi:
         if (id(first_connect_ms_int) == 0) id(first_connect_ms_int) = esphome::millis();
     - component.update: first_connect_ms
 
+time:
+  - platform: sntp
+    id: local_time
+    timezone: Americas/Los_Angeles
+    servers:
+      - 0.pool.ntp.org
+      - 1.pool.ntp.org
+      - 2.pool.ntp.org
+
 captive_portal:
