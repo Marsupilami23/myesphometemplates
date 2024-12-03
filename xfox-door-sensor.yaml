@@ -7,12 +7,14 @@ substitutions:
   # Craftroom (cftrm), Guest Room (gstrm), Middle Bathroom (mdlbr), Master Bedroom (mstrbdrm),
   # Master Bathroom (mstrbr)
   device_location_code: "changeme"
-  # Device type codes: Door Sensor (drsnr), Window Sensor (wdwsnr), RGB Light Bulb (rgblb),
+  # Device location code: Door (dr), Window (wdw), Lamp (lmp)  
+  device_location_code: "changeme"
+  # Device type codes: Sensor (snsr), Window Sensor (wdwsnr), RGB Light Bulb (rgblb),
   # Warm/Cold Light Bulb (wclb), Light Switch (ltswtch)
-  device_type_code: "drsnr"
+  device_type_code: "changeme"
   # Used for Friendly Name
   device_location_name: "Change Me"
-  device_type_name: "Sensor"
+  device_type_name: "Change Me"
   
   disable_entities: "true"
 
