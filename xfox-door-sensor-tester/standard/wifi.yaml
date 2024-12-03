@@ -9,11 +9,6 @@ substitutions:
   sub_ota_num_attempts: '15'
   sub_api_reboot_timeout: 0s
 
-# Allow importing this package
-dashboard_import:
-  package_import_url: "github://Marsupilami23/myesphometemplates/xfox-door-sensor/standard/wifi.yaml@main"
-  import_full_config: false
-
 # Enable Home Assistant API
 #api:
 #  id: xfox_api
