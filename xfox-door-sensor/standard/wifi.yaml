@@ -13,13 +13,23 @@ dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/xfox-door-sensor/standard/wifi.yaml@main"
   import_full_config: false
 
-# Enable Home Assistant API
-api:
-  id: xfox_api
-  reboot_timeout: "${sub_api_reboot_timeout}"
-  encryption:
-    key: "${api_key}"
-
+mqtt:
+  broker: !secret hassio_mqtt_broker
+  port: 1883
+  username: !secret xfox_mqtt_username
+  password: !secret xfox_mqtt_password
+  discovery: true
+  birth_message:
+    topic: device/status
+    payload: "online"
+  will_message:
+    topic: device/status
+    payload: "offline"
+  on_connect:
+    - mqtt.publish:
+        topic: device/status
+        payload: "connection successfull"
+  
 # Enable OTA
 ota:
   - platform: esphome
@@ -31,8 +41,15 @@ ota:
     on_begin:
       then:
         - output.turn_on: activity_led_output
+        - mqtt.publish:
+            topic: begining/update
             payload: "Begining Firmware Update!"
         - deep_sleep_libretiny.prevent: deep_sleep_lt
+    on_end:
+      then:
+        - mqtt.publish:
+            topic: finished/update
+            payload: "Updating Firmware Has Been Completed!"
           
 safe_mode:
   num_attempts: "${sub_ota_num_attempts}"
