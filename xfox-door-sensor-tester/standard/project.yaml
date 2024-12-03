@@ -1,3 +1,4 @@
+
 substitutions:
   # Generated name and unique device id for the device
   # Not intended for user substitutions
@@ -17,6 +18,21 @@ esphome:
   project:
     name: "${device_make}.${device_model}"
     version: "${package_version}"
+  on_boot:
+    # https://esphome.io/components/esphome.html#on-boot
+    - priority: 600.0 # 600.0: This is where most sensors are set up.
+      then:
+        - component.update: VCC
+        - switch.turn_on: batt_dv # start measuring voltage
+    - priority: 100.0
+      then:
+        - output.turn_on: activity_led_output
+    - priority: -100 # 200.0: Network connections like MQTT/native API are set up at this priority.
+      then:
+        - component.update: VCC
+        - component.update: homeassistant_time
+        - component.update: update_time
+        - script.execute: script_deep_sleep
 
 globals:
   - id: first_connect_ms_int
