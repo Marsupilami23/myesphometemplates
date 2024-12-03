@@ -1,3 +1,4 @@
+
 button:
   - platform: restart
     id: restart_button
@@ -22,9 +23,9 @@ text_sensor:
       return { str };
     icon: "mdi:clock"
 
+logger:
+
 uart:
   tx_pin: GPIO11
   rx_pin: GPIO10
   baud_rate: 115200
-
-logger:
