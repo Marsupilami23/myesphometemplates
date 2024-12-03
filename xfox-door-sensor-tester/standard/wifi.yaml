@@ -34,7 +34,7 @@ mqtt:
   will_message:
     topic: device/status
     payload: "offline"
-  on_connected:
+  on_connect:
     - mqtt.publish:
         topic: device/status
         payload: "connection successfull"
