@@ -32,16 +32,16 @@ packages:
     ref: main
     refresh: always
     files:
-      - xfox-door-sensor-tester/standard/project.yaml
-      - xfox-door-sensor-tester/standard/wifi.yaml
-      - xfox-door-sensor-tester/standard/diagnostics.yaml
+      - xfox-door-sensor/standard/project.yaml
+      - xfox-door-sensor/standard/wifi.yaml
+      - xfox-door-sensor/standard/diagnostics.yaml
   xfox_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - xfox-door-sensor-tester/board.yaml
-      - xfox-door-sensor-tester/scripts.yaml
+      - xfox-door-sensor/board.yaml
+      - xfox-door-sensor/scripts.yaml
 
 # Adds Activity LED function and maps to GPIO pin.
 output:
