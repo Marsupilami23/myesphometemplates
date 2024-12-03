@@ -20,24 +20,6 @@ api:
   encryption:
     key: "${api_key}"
 
-mqtt:
-  broker: !secret hassio_mqtt_broker
-  port: 1883
-  username: !secret xfox_mqtt_username
-  password: !secret xfox_mqtt_password
-  discovery: False
-  discover_ip: True
-  birth_message:
-    topic: device/status
-    payload: "online"
-  will_message:
-    topic: device/status
-    payload: "offline"
-  on_connected:
-    - mqtt.publish:
-        topic: device/status
-        payload: "connection successfull"
-  
 # Enable OTA
 ota:
   - platform: esphome
@@ -49,15 +31,8 @@ ota:
     on_begin:
       then:
         - output.turn_on: activity_led_output
-        - mqtt.publish:
-            topic: begining/update
             payload: "Begining Firmware Update!"
         - deep_sleep_libretiny.prevent: deep_sleep_lt
-    on_end:
-      then:
-        - mqtt.publish:
-            topic: finished/update
-            payload: "Updating Firmware Has Been Completed!"
           
 safe_mode:
   num_attempts: "${sub_ota_num_attempts}"
