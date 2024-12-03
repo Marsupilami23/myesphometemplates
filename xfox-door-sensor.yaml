@@ -5,6 +5,7 @@ substitutions:
   device_location_name: "Change Me"
   device_type_code: "snsr"
   device_type_name: "Sensor"
+  unique_id: ""
 
   disable_entities: "true"
 
