@@ -157,13 +157,6 @@ light:
             off_length: 2s
           update_interval: 3s
 
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-    on_time_sync:
-      then:
-        - component.update: update_time
-
 deep_sleep_libretiny:
   id: deep_sleep_lt
   sleep_duration: 24h
