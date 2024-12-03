@@ -13,7 +13,7 @@ mqtt:
   port: 1883
   username: !secret xfox_mqtt_username
   password: !secret xfox_mqtt_password
-  discovery: false
+  discovery: true
   birth_message:
     topic: device/status
     payload: "online"
