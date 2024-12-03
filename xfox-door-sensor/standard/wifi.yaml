@@ -27,6 +27,16 @@ mqtt:
   password: !secret xfox_mqtt_password
   discovery: False
   discover_ip: True
+  birth_message:
+    topic: device/status
+    payload: "online"
+  will_message:
+    topic: device/status
+    payload: "offline"
+  on_connected:
+    - mqtt.publish:
+        topic: device/status
+        payload: "connection successfull"
   
 # Enable OTA
 ota:
@@ -54,7 +64,7 @@ safe_mode:
   
 # Enable WIFI and AP for capitve portal
 wifi:
-  fast_connect: true
+  fast_connect: false
   ssid: "${wifi_ssid}"
   password: "${wifi_password}"
   ap:
