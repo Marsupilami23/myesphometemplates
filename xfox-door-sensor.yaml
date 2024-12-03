@@ -6,7 +6,7 @@ substitutions:
   # Dining Room (dngrm), Kitchen (ktcn), Office Space (offspc), Hallway (hlwy),
   # Craftroom (cftrm), Guest Room (gstrm), Middle Bathroom (mdlbr), Master Bedroom (mstrbdrm),
   # Master Bathroom (mstrbr)
-  device_location_code: "changeme"
+  device_room_code: "changeme"
   # Device location code: Door (dr), Window (wdw), Lamp (lmp)  
   device_location_code: "changeme"
   # Device type codes: Sensor (snsr), Window Sensor (wdwsnr), RGB Light Bulb (rgblb),
