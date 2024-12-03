@@ -122,9 +122,6 @@ sensor:
     on_value:
       then:
         - component.update: battery_level
-        - mqtt.publish:
-          topic: !lambda |-
-            if (id(VCC).state
     icon: mdi:battery
 
   - platform: template
