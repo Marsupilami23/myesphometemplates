@@ -7,11 +7,6 @@ substitutions:
   device_make: "XFOX"
   package_version: "2024.11.20"
 
-# Allow importing this package
-dashboard_import:
-  package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-bk72xx/standard/project.yaml@main"
-  import_full_config: false
-  
 # https://esphome.io/components/esphome.html
 esphome:
   name: "${device_code}"
