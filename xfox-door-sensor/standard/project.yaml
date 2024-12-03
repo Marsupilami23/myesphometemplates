@@ -2,7 +2,7 @@ substitutions:
   # Generated name and unique device id for the device
   # Not intended for user substitutions
   device_name: "${device_location_name} ${device_type_name}"
-  device_code: "${device_location_code}-${device_type_code}"
+  device_code: "${device_location_code}-${device__code}-${device_type_code}"
   device_model: "Door Sensor"
   device_make: "XFOX"
   package_version: "2024.11.20"
