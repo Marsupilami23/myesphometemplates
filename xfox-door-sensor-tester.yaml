@@ -69,8 +69,6 @@ binary_sensor:
           else:
             - light.turn_on:
                 id: activity_led
-            - light.turn_on:
-                id: activity_led
                 effect: pulse
       - script.execute: script_deep_sleep
     icon: mdi:door
