@@ -15,11 +15,9 @@ mqtt:
   password: !secret xfox_mqtt_password
   discovery: true
   birth_message:
-    topic: device/status
-    payload: "online"
+    topic: 
   will_message:
-    topic: device/status
-    payload: "offline"
+    topic: 
   on_connect:
     - mqtt.publish:
         topic: device/status
