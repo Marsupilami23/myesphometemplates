@@ -13,8 +13,6 @@ substitutions:
   device_location_name: "Change Me"
   device_type_code: "changeme"
   device_type_name: "Change Me"
-  device_number: "000"
-  device_ip: "0.0.0.0"
 
   disable_entities: "true"
   disable_webserver: "false"
