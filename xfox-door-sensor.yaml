@@ -61,6 +61,7 @@ output:
     frequency: 1000 Hz
     pin:
       number: "${sub_activity_led_gpio}"
+      inverted: true
 
 binary_sensor:
   - platform: gpio
