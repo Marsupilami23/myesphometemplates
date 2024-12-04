@@ -14,6 +14,9 @@ esphome:
   comment: "${device_model} by ${device_make}"
   name_add_mac_suffix: false
   min_version: "2024.11.0"
+  project:
+    name: "${device_make}.${device_model}"
+    version: "${package_version}"
   on_boot:
     # https://esphome.io/components/esphome.html#on-boot
     - priority: 600.0 # 600.0: This is where most sensors are set up.
