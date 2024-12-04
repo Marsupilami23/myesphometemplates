@@ -16,8 +16,10 @@ mqtt:
   discovery: true
   birth_message:
     topic: 
+    payload:
   will_message:
-    topic: 
+    topic:
+    payload:
   on_connect:
     - mqtt.publish:
         topic: device/status
