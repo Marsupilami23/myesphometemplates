@@ -13,6 +13,7 @@ substitutions:
   # Warm/Cold Light Bulb (wclb), Light Switch (ltswtch)
   device_type_code: "changeme"
   # Used for Friendly Name
+  device_room_name: "Change Me"
   device_location_name: "Change Me"
   device_type_name: "Change Me"
   
@@ -64,7 +65,7 @@ output:
 binary_sensor:
   - platform: gpio
     device_class: door
-    name: "${device_name}"
+    name: "${device_type_name}"
     pin:
       number: "${sub_binary_sensor_gpio}"
       allow_other_uses: true
