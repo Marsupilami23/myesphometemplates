@@ -61,11 +61,12 @@ output:
     frequency: 1000 Hz
     pin:
       number: "${sub_activity_led_gpio}"
+      inverted: true
 
 binary_sensor:
   - platform: gpio
     device_class: door
-    name: "${device_name}"
+    name: "${device_type_name}"
     pin:
       number: "${sub_binary_sensor_gpio}"
       allow_other_uses: true
