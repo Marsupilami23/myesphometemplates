@@ -7,15 +7,24 @@
 # https://github.com/arendst/Tasmota/issues/6914
 
 substitutions:
-  api_key: "Change me"
-  # Required import substitutions
+substitutions:
+  api_key: ""
   device_site: "home"
+  # Device Location Codes: front yard (fy), Front Porch (fp), Garage (grg),
+  # Laundry Room (laurm), Small Bathroom (smlbr) Living Room (lvrm), Family Room (fmrm),
+  # Dining Room (dngrm), Kitchen (ktcn), Office Space (offspc), Hallway (hlwy),
+  # Craftroom (cftrm), Guest Room (gstrm), Middle Bathroom (mdlbr), Master Bedroom (mstrbdrm),
+  # Master Bathroom (mstrbr)
+  device_room_code: "changeme"
+  # Device location code: Door (dr), Window (wdw), Bedside (bdsd), Floor (flr), pendant (pndnt) 
   device_location_code: "changeme"
-  device_location_name: "Change Me"
+  # Device type codes: Sensor (snsr), Window Sensor (wdwsnr), RGBWW Light Bulb (rgbwwblb),
+  # Warm/Cold Light Bulb (wclb), Light Switch (ltswtch)
   device_type_code: "changeme"
+  # Used for Friendly Name
+  device_room_name: "Change Me"
+  device_location_name: "Change Me"
   device_type_name: "Change Me"
-  device_number: "000"
-  device_ip: "0.0.0.0"
 
   disable_entities: "true"
   disable_webserver: "false"
