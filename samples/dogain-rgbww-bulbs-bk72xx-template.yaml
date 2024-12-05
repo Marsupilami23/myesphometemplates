@@ -1,7 +1,6 @@
 
 # DOGAIN RGBWW Bulb Sample YAML file.
 substitutions:
-substitutions:
   api_key: ""
   device_site: "home"
   # Device Location Codes: front yard (fy), Front Porch (fp), Garage (grg),
