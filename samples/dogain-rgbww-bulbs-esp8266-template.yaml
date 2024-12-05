@@ -19,7 +19,7 @@ substitutions:
   device_type_name: "Change Me"
 
 packages:
-  DOGAIN_RGBWW_packages:
+  dogain_esp8266_packages:
     url: https://github.com/Marsupilami23/myesphometemplates
     ref: main
     refresh: always
