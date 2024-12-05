@@ -1,4 +1,4 @@
- # DOGAIN ESP8266 Bulbs Sample YAML file.
+ # DOGAIN RGBWW ESP8266 Bulbs Sample YAML file.
 substitutions:
   api_key: ""
   device_site: "home"
