@@ -1,5 +1,4 @@
-
-# DOGAIN RGBWW Bulb Sample YAML file.
+# DOGAIN RGBWW bk72xx Bulb Sample YAML file.
 substitutions:
   api_key: ""
   device_site: "home"
