@@ -8,7 +8,12 @@ substitutions:
   sub_ota_num_attempts: '15'
   sub_api_reboot_timeout: 0s
 
+# Enable Home Assistant API
 api:
+  id: kauf_api
+  reboot_timeout: "${sub_api_reboot_timeout}"
+  encryption:
+    key: "${api_key}"
 
 # mqtt:
 #  broker: !secret hassio_mqtt_broker
