@@ -140,8 +140,6 @@ sensor:
     name: "Battery Level (%)"
     unit_of_measurement: '%'
     update_interval: 86400s
-    device_class: "battery"
-    state_class: measurement
     id: battery_level
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
