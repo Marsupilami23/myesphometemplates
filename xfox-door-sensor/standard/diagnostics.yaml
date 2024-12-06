@@ -17,7 +17,7 @@ text_sensor:
     name: "Current Time"
     lambda: |-
       char str[17];
-      time_t currTime = id(local_time).now().timestamp;
+      time_t currTime = id(homeassistant_time).now().timestamp;
       strftime(str, sizeof(str), "%Y-%m-%d %H:%M", localtime(&currTime));
       return { str };
     icon: "mdi:clock"
