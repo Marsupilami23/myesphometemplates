@@ -54,6 +54,10 @@ wifi:
   fast_connect: true
   ssid: "${wifi_ssid}"
   password: "${wifi_password}"
+  manual_ip:
+    static_ip: "${sub_static_ip}"
+    gateway: !secret sub_gateway
+    subnet: !secret sub_subnet
   ap:
     ap_timeout: "${sub_wifi_ap_timeout}"
     ssid: "${device_code}-setup"
