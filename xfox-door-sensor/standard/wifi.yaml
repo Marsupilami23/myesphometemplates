@@ -43,15 +43,7 @@ ota:
     on_begin:
       then:
         - output.turn_on: activity_led_output
-        - mqtt.publish:
-            topic: begining/update
-            payload: "Begining Firmware Update!"
         - deep_sleep_libretiny.prevent: deep_sleep_lt
-    on_end:
-      then:
-        - mqtt.publish:
-            topic: finished/update
-            payload: "Updating Firmware Has Been Completed!"
           
 safe_mode:
   num_attempts: "${sub_ota_num_attempts}"
