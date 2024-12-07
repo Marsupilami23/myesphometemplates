@@ -28,7 +28,7 @@ text_sensor:
     reset_reason:
       name: "Reset Reason"
 
-degug:
+debug:
   update_intervals: 10s
 
 sensor:
