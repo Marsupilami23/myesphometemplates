@@ -123,7 +123,7 @@ switch:
 sensor:
   - platform: adc
     pin: $sub_batt_lvl_gpio
-    id: "VCC"
+    id: "vcc"
     name: "Battery Level"
     filters:
       - multiply: 2.4
