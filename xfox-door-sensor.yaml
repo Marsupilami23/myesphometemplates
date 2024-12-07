@@ -142,7 +142,7 @@ sensor:
     update_interval: 86400s
     id: battery_level
     lambda: |-
-      return ((id(VCC).state /3.0) * 100.00);
+      return ((id(vcc).state /3.0) * 100.00);
     icon: mdi:battery
 
   - platform: template
