@@ -16,7 +16,6 @@ mqtt:
   username: !secret xfox_mqtt_username
   password: !secret xfox_mqtt_password
   discovery: true
-  topic_prefix: "${sub_topic_prefix}"
   birth_message:
     topic: 
     payload:
