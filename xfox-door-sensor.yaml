@@ -124,7 +124,7 @@ sensor:
   - platform: adc
     pin: $sub_batt_lvl_gpio
     id: "VCC"
-    name: "Batt Level"
+    name: "Battery Level"
     filters:
       - multiply: 2.4
       - clamp:
@@ -137,7 +137,7 @@ sensor:
     icon: mdi:battery
 
   - platform: template
-    name: "Batt Level (%)"
+    name: "Battery Level (%)"
     unit_of_measurement: '%'
     update_interval: 86400s
     id: battery_level
