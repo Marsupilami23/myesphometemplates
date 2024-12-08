@@ -44,9 +44,9 @@ packages:
     ref: main
     refresh: always
     files:
-      - xfox-door-sensor/standard/project.yaml
-      - xfox-door-sensor/standard/wifi.yaml
-      - xfox-door-sensor/standard/diagnostics.yaml
+      - xfox-door-sensor-tester/standard/project.yaml
+      - xfox-door-sensor-tester/standard/wifi.yaml
+      - xfox-door-sensor-tester/standard/diagnostics.yaml
   xfox_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
