@@ -8,8 +8,6 @@ substitutions:
   sub_ota_num_attempts: '15'
   sub_api_reboot_timeout: 0s
 
-api:
-
 mqtt:
   broker: !secret hassio_mqtt_broker
   port: 1883
