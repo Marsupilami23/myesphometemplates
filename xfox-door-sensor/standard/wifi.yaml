@@ -8,6 +8,8 @@ substitutions:
   sub_ota_num_attempts: '15'
   sub_api_reboot_timeout: 0s
 
+
+
 mqtt:
   broker: !secret hassio_mqtt_broker
   port: 1883
@@ -68,8 +70,13 @@ wifi:
     - component.update: first_connect_ms
 
 time:
-  - platform: homeassistant
-    id: homeassistant_time
+  - platform: sntp
+    id: local_time
+    timezone: America/Los_Angeles
+    servers:
+      - 0.pool.ntp.org
+      - 1.pool.ntp.org
+      - 2.pool.ntp.org
     on_time_sync:
       then:
         - component.update: update_time
