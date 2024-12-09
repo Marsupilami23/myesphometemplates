@@ -9,7 +9,8 @@ substitutions:
   sub_api_reboot_timeout: 0s
 
 api:
-
+  reboot_timeout: 0s
+  
 mqtt:
   broker: !secret hassio_mqtt_broker
   port: 1883
