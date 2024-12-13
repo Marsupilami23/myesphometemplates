@@ -125,6 +125,7 @@ sensor:
     pin: $sub_batt_lvl_gpio
     id: "VCC"
     name: "Battery Level"
+    device_class: battery
     filters:
       - multiply: 2.4
       - clamp:
@@ -134,6 +135,7 @@ sensor:
     on_value:
       then:
         - component.update: battery_level
+    entity_category: diagnostic
     icon: mdi:battery
 
   - platform: template
@@ -143,6 +145,7 @@ sensor:
     id: battery_level
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
+    entity_category: diagnostic
     icon: mdi:battery
 
   - platform: template
