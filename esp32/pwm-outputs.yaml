@@ -1,1 +1,4 @@
-
+output:
+  - platform: ledc
+    pin: $sub_green_pin
+    id: pwm_green
