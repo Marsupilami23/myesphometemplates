@@ -1,5 +1,5 @@
 substitutions:
-  sub_name: changeme
+  sub_name: "changeme"
   sub_friendly_name: "Change Me"
   sub_ap_timeout: 15s
 
