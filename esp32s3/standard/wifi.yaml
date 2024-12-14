@@ -4,7 +4,6 @@ substitutions:
   wifi_password: !secret wifi_password
   ota_password: !secret ota_password
   sub_ota_num_attempts: "15"
-  disable_webserver: "false"
 
 sensor:
   - platform: wifi_signal
@@ -35,7 +34,6 @@ wifi:
     password: "${wifi_password}"
 
 web_server:
-  disable: "${disable_webserver}"
   version: 3
   include_internal: true
   ota: true
