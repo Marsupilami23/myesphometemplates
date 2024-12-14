@@ -1,3 +1,6 @@
+# https://esphome.io/components/esphome.html
 esphome:
-    name: tester
-    comment: esp32 test board
+  name: "${sub_name}"
+  friendly_name: "${sub_friendly_name}"
+  name_add_mac_suffix: false
+  min_version: "2024.12.0"
