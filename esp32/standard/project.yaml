@@ -1,0 +1,3 @@
+esphome:
+    name: tester
+    comment: esp32 test board
