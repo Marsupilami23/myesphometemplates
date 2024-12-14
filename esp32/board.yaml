@@ -1,2 +1,4 @@
 esp32:
   board: seeed_xiao_esp32c3
+  flash_size: 4MB
+  variant: esp32s3
