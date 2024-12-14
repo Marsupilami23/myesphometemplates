@@ -27,5 +27,5 @@ packages:
 
 light:
   - platform: monochromatic
-    output: "${pwm_green}"
+    output: pwm_green
     name: "Green Light"
