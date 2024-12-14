@@ -18,12 +18,13 @@ packages:
     ref: main
     refresh: always
     files:
-      - esp32/standard/project.yaml
-      - esp32/standard/diagnostics.yaml
-      - esp32/standard/wifi.yaml
+      - esp32s3/standard/project.yaml
+      - esp32s3/standard/diagnostics.yaml
+      - esp32s3/standard/wifi.yaml
   dogain_rgbww_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
     ref: main
     refresh: always
     files:
-      - esp32/board.yaml
+      - esp32s3/board.yaml
+      - esp32s3/pwm-outputs.yaml
