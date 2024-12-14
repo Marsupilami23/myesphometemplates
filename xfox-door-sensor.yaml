@@ -92,6 +92,7 @@ binary_sensor:
       inverted: true
       allow_other_uses: true
     name: "Bottom Button"
+    entity_category: diagnostic
     icon: mdi:button-pointer
     on_state:
       - script.execute: script_check_deep_sleep
@@ -153,6 +154,7 @@ sensor:
   - platform: template
     name: first_connect_ms
     id: first_connect_ms
+    entity_category: diagnostic
     lambda: |-
       return id(first_connect_ms_int);
 
