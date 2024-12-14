@@ -1,0 +1,13 @@
+
+ # DOGAIN RGBWW ESP8266 Bulbs Sample YAML file.
+substitutions:
+  sub_name: "changeme"
+  sub_friendly_name: "Change Me"
+  
+packages:
+  esp32s3_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates
+    ref: main
+    refresh: always
+    files:
+      - esp32s3.yaml
