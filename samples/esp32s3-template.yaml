@@ -1,5 +1,4 @@
-
- # DOGAIN RGBWW ESP8266 Bulbs Sample YAML file.
+ # ESP32S3 Sample YAML file.
 substitutions:
   sub_name: "changeme"
   sub_friendly_name: "Change Me"
