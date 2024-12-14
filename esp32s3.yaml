@@ -1,6 +1,6 @@
 substitutions:
-  sub_name: esp32-tester
-  sub_friendly_name: "ESP32S3 Testing Chip"
+  sub_name: changeme
+  sub_friendly_name: "Change Me"
   sub_ap_timeout: 15s
 
   disable_entities: "true"
