@@ -3,7 +3,11 @@ substitutions:
   sub_friendly_name: "Change Me"
   sub_ap_timeout: 15s
 
+  sub_green_pin: GPIO03
+  
   disable_entities: "true"
+
+  
   package_url: "github://Marsupilami23/myesphometemplates/esp32s3.yaml@main"
 
 # Allow importing this package
