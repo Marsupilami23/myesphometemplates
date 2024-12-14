@@ -1,0 +1,2 @@
+substitutions:
+  sub_ap_timeout: 15s
