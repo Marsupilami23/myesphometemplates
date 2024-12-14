@@ -4,3 +4,4 @@ substitutions:
   sub_ap_timeout: 15s
 
   disable_entities: "true"
+  package_url: "github://Marsupilami23/myesphometemplates/esp32s3.yaml@main"
