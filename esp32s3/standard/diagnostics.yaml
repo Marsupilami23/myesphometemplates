@@ -68,3 +68,11 @@ sensor:
                 (minutes ? String(minutes) + "m " : "") +
                 (String(seconds) = "s")
               ).c_str();
+              
+# Provide a pre-built button for restart the device
+button:
+  - platform: restart
+    name: "Reboot Device"
+    id: button_restart
+    icon: mdi:power-cycle
+    entity_category: "diagnostic"
