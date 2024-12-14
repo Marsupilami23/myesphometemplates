@@ -3,7 +3,7 @@ wifi:
   password: !secret wifi_password
   ap:
     ap_timeout: "${sub_ap_timeout}"
-    ssid: "${device_name}-setup"
+    ssid: "${sub_name}-setup"
     password: !secret wifi_password
 
 web_server:
