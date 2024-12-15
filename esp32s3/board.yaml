@@ -1,4 +1,7 @@
 esp32:
+  framework:
+    type: arduino
+    platform_version: 6.3.2
+  variant: esp32s3
   board: seeed_xiao_esp32s3
   flash_size: 8MB
-  variant: esp32s3
