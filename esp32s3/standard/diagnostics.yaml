@@ -1,11 +1,15 @@
 substitutions:
-  log_level: INFO
+  log_level: DEBUG
   timezone: "America/Los_Angeles"
+
+uart:
+  tx: GPIO43
+  rx: GPIO44
 
 # Enable logging bia network and disable serial port
 logger:
   level: "${log_level}"
-  baud_rate: 0
+  baud_rate: 115200
 
 # Provide date and time
 time:
