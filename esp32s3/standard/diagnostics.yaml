@@ -35,11 +35,6 @@ binary_sensor:
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
-
-  - platform: template
-    name: "${sub_friendly_name) 4MiB"
-    id: sensor_4m
-    disabled_by_default: "${disable_entities}"
     
 sensor:
   # Captures the uptime and updates the human-readable
