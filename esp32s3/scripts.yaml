@@ -3,7 +3,7 @@ script:
     then:
       - lambda: |-
           import requests
-          from json
+          import json
 
           def get_burn_category(url):
             try:
