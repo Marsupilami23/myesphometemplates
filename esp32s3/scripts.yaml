@@ -1,5 +1,40 @@
-script:
-  - id: script_check_burn_category
-    then:
-      lambda: |-
-          
+lambda: |-
+  import requests
+  from json
+
+  def get_burn_category(url):
+    try:
+      response = requests.get(url)
+      response.raise_for_status()
+
+      if not response.text:
+        ESP_LOGW("burn_check", "Error: Empty response from the server.")
+        return None
+
+      json_data = response.text \
+        .replace("burncheckForecastCallback(", "") \
+        .rstrip(");") \
+        .lstript("(") \
+        .rstrip(")")
+
+      try:
+        data = json.loads(json_data)
+      except json.JSONDecodeError as e:
+        ESP_LOGW("burn_check", "Error decoding JSON: %s", e)
+        ESP_LOGW("burn_check", "Raw response content: %s", response.text)
+        return None
+
+      category = data['burn_forecast']['today']['category']
+      return category
+
+    except requests.exceptions.RequestException as e:
+      ESP_LOGW("burn_check", "Error fetching data: %s", e)
+      return None
+      
+  # --- Main Logic ---    
+  url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
+
+  if category is not None:
+    id(burn_status_category) = category
+
+  return id(burn_status_category)
