@@ -10,8 +10,13 @@ substitutions:
   disable_entities: "true"
 
 external_components:
-  - source: github:esphome/esphome
-      components:
+  - source:
+      type: git
+      url: https://github.com/esphome/esphome
+      ref: main
+    components: [ http_request, json ]
+    refresh: always
+    
 # Import packages:
 packages:
   standard_packages:
