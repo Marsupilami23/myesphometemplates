@@ -27,7 +27,7 @@ script:
                 ESP_LOGW("burn_check", "Raw response content: %s", response.text)
                 return None
         
-              category = data['burn_forecast']['today']['category']
+              category = data["burn_forecast"]["today"]["category"]
               return category
         
             except requests.exceptions.RequestException as e:
