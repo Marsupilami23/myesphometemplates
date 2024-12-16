@@ -2,3 +2,9 @@ output:
   - platform: ledc
     pin: $sub_green_pin
     id: pwm_green
+  - platform: ledc
+    pin: $sub_red_pin
+    id: pwm_red
+  - platform: ledc
+    pin: $sub_blue_pin
+    id: pwm_blue
