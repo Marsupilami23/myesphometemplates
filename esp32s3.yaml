@@ -8,7 +8,10 @@ substitutions:
   sub_green_pin: GPIO03
   
   disable_entities: "true"
-  
+
+external_components:
+  - source: github:esphome/esphome
+      components:
 # Import packages:
 packages:
   standard_packages:
