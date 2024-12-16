@@ -1,8 +1,3 @@
-esphome:
-  includes:
-    - json.h
-    - http.h
-    
 script:
   - id: get_burn_status
     then:
