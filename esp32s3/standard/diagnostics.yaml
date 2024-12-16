@@ -11,7 +11,7 @@ globals:
   - id: burn_status_category
     type: int
     restore_value: no
-    initial_value: 0
+    initial_value: '0'
 
 # Provide date and time
 time:
