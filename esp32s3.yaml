@@ -9,6 +9,9 @@ substitutions:
   
   disable_entities: "true"
 
+external_components:
+  - source: github://OttoWinter/esphome-lambda
+  
 # Import packages:
 packages:
   standard_packages:
