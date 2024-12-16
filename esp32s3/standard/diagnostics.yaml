@@ -91,4 +91,4 @@ button:
 interval:
   - interval: 1h
     then:
-      - lambda: !lambda 'return get_burn_category();'
+      - script.execute: get_burn_status
