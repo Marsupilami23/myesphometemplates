@@ -7,14 +7,59 @@ logger:
   level: "${log_level}"
   baud_rate: 115200
 
+globals:
+  - id: burn_status_category
+    type: int
+    restore_value: no
+    initial_value: 0
+
+lambda: |-
+  import requests
+  from json
+
+  def get_burn_category(url):
+    try:
+      response = requests.get(url)
+      response.raise_for_status()
+
+      if not response.text:
+        ESP_LOGW("burn_check", "Error: Empty response from the server.")
+        return None
+
+      json_data = response.text \
+        .replace("burncheckForecastCallback(", "") \
+        .rstrip(");") \
+        .lstript("(") \
+        .rstrip(")")
+
+      try:
+        data = json.loads(json_data)
+      except json.JSONDecodeError as e:
+        ESP_LOGW("burn_check", "Error decoding JSON: %s", e)
+        ESP_LOGW("burn_check", "Raw response content: %s", response.text)
+        return None
+
+      category = data['burn_forecast']['today']['category']
+      return category
+
+    except requests.exceptions.RequestException as e:
+      ESP_LOGW("burn_check", "Error fetching data: %s", e)
+      return None
+      
+  # --- Main Logic ---    
+  url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
+
+  if category is not None:
+    id(burn_status_category) = category
+
+  return id(burn_status_category)
+
+
 # Provide date and time
 time:
   - platform: sntp
     id: time_service
     timezone: "${timezone}"
-    - cron: '00 00 */1 * * *'
-      then:
-        - script.execute: script_check_burn_category
 
 # Diagostic output sensors
 text_sensor:
@@ -32,6 +77,11 @@ text_sensor:
     entity_category: "diagnostic"
     disabled_by_default: true
 
+  - platform: template
+    name: "Burn Status Text"
+    lambda: |-
+      return id(burn_status_category);
+      
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
@@ -66,6 +116,11 @@ sensor:
                 (minutes ? String(minutes) + "m " : "") +
                 (String(seconds) = "s")
               ).c_str();
+  
+  - plateform: template
+    name: "Burn Status"
+    lambda: |-
+      return id(burn_status_category);
       
 # Provide a pre-built button for restart the device
 button:
@@ -74,3 +129,8 @@ button:
     id: button_restart
     icon: mdi:power-cycle
     entity_category: "diagnostic"
+
+interval:
+  - interval: 1h
+    then:
+      - lambda: !lambda 'return get_burn_category();'
