@@ -31,3 +31,9 @@ light:
   - platform: monochromatic
     output: pwm_green
     name: "Green Light"
+  - platform: monochromatic
+    output: pwm_red
+    name: "Red Light"
+  - platform: monochromatic
+    output: pwm_blue
+    name: "Blue Light"
