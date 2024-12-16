@@ -75,7 +75,7 @@ sensor:
                 (String(seconds) = "s")
               ).c_str();
   
-  - plateform: template
+  - platform: template
     name: "Burn Status"
     lambda: |-
       return id(burn_status_category);
