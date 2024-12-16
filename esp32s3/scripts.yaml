@@ -1,1 +1,5 @@
-
+script:
+  - id: script_check_burn_category
+    then:
+      lambda: |-
+          
