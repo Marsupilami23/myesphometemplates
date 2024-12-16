@@ -1,5 +1,5 @@
 script:
-  - id: get_burn_category
+  - id: get_burn_status
     then:
       - lambda: |-
           import requests
