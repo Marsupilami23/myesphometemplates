@@ -35,11 +35,6 @@ text_sensor:
     entity_category: "diagnostic"
     disabled_by_default: true
 
-  - platform: template
-    name: "Burn Status Text"
-    lambda: |-
-      return id(burn_status_category);
-      
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
