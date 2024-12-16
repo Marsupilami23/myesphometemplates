@@ -34,7 +34,6 @@ script:
               ESP_LOGW("burn_check", "Error fetching data: %s", e)
               return None
               
-          # --- Main Logic ---    
           url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
         
           if category is not None:
