@@ -39,6 +39,7 @@ binary_sensor:
 http_request:
   useragent: esphome/esp32dev
   id: http_request_data
+  verify_ssl: false
 
 time:
   - platform: sntp
@@ -53,7 +54,6 @@ time:
               url: "ttps://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
               headers:
                 Content-Type: application/json
-              verify_ssl: false
               on_response:
                 then:
                   lambda: |-
