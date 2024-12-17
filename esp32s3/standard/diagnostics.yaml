@@ -48,8 +48,14 @@ binary_sensor:
     
 http_request:
   useragent: esphome/2024.11.0
-  id: http_request_data
-  verify_ssl: false
+  name: "Burncheck Forecast"
+  id: burncheck_forecast
+  url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
+  user_agent: "ESPHome-BurncheckForecast"
+  json_rest_of_document:
+    burn_forecast:
+      today:
+        category: int
 
 time:
   - platform: homeassistant
