@@ -87,15 +87,15 @@ sensor:
                 (String(seconds) = "s")
               ).c_str();
   
-    - platform: http_request
-      name: "Burncheck Forecast"
-      id: burncheck_forecast
-      url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
-      user_agent: "ESPHome-BurncheckForecast"
-      json_rest_of_document:
-        burn_forecast:
-          today:
-            category: int
+  - platform: http_request
+    name: "Burncheck Forecast"
+    id: burncheck_forecast
+    url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
+    user_agent: "ESPHome-BurncheckForecast"
+    json_rest_of_document:
+      burn_forecast:
+        today:
+          category: int
          
 # Provide a pre-built button for restart the device
 button:
