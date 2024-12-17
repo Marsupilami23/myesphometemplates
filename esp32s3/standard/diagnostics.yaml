@@ -41,43 +41,52 @@ binary_sensor:
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
-  - platform: http_status
-    id: burn_category_sensor
-    name: "Burn Category"
-    url: "ttps://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
-    on_success:
-      lambda: |-
-        # Fixed-size buffer (adjust as needed, might not be enough!)
-        const int buffer_size = 1024;
-        char response_buffer[buffer_size];
-
-        # Get the response (might truncate large responses)
-        int http_code = id(burn_category_sensor).http_code();
-        size_t response_size = id(burn_category_sensor).http_size();
-        if (http_code == 200 && response_size < buffer_size) {
-          response_size = id(burn_category_sensor).http_read_all(response_buffer, buffer_size);
-
-          // Attempt to parse JSON (limited functionality)
-          JsonObject root = json.parse_object(response_buffer);
-          if (root.has("burn_forecast") && root["burn_forecast"].is_object()) {
-            JsonObject burn_forecast = root["burn_forecast"];
-            if (burn_forecast.has("today") && burn_forecast["today"].is_object()) {
-              JsonObject today = burn_forecast["today"];
-              if (today.has("category") && today["category"].is_number()) {
-                int category = today["category"];
-                id(burn_category_sensor).publish_state(category);
+    
+http_request:
+  id: burn_status
+  on_time:
+    - seconds: 0
+    - minutes: 0
+    - hours: /1
+      then:
+        - http_request.get:
+          url: "ttps://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
+          headers:
+            Content-Type: application/json
+          on_success:
+            lambda: |-
+              # Fixed-size buffer (adjust as needed, might not be enough!)
+              const int buffer_size = 1024;
+              char response_buffer[buffer_size];
+      
+              # Get the response (might truncate large responses)
+              int http_code = id(burn_category_sensor).http_code();
+              size_t response_size = id(burn_category_sensor).http_size();
+              if (http_code == 200 && response_size < buffer_size) {
+                response_size = id(burn_category_sensor).http_read_all(response_buffer, buffer_size);
+      
+                // Attempt to parse JSON (limited functionality)
+                JsonObject root = json.parse_object(response_buffer);
+                if (root.has("burn_forecast") && root["burn_forecast"].is_object()) {
+                  JsonObject burn_forecast = root["burn_forecast"];
+                  if (burn_forecast.has("today") && burn_forecast["today"].is_object()) {
+                    JsonObject today = burn_forecast["today"];
+                    if (today.has("category") && today["category"].is_number()) {
+                      int category = today["category"];
+                      id(burn_category_sensor).publish_state(category);
+                    } else {
+                      logger.error("Failed to find 'category' in 'today' object");
+                    }
+                  } else {
+                    logger.error("Failed to find 'today' object in 'burn_forecast'";
+                  }
+                } else {
+                  logger.error("Failed to find 'burn_forecast' object in JSON");
+                }
               } else {
-                logger.error("Failed to find 'category' in 'today' object");
+                logger.error(F("HTTP request failed, code: {http_code}"));
               }
-            } else {
-              logger.error("Failed to find 'today' object in 'burn_forecast'";
-            }
-          } else {
-            logger.error("Failed to find 'burn_forecast' object in JSON");
-          }
-        } else {
-          logger.error(F("HTTP request failed, code: {http_code}"));
-        }
+
 sensor:
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
