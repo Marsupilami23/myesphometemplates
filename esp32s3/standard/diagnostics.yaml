@@ -57,17 +57,14 @@ time:
               on_response:
                 then:
                   lambda: |-
-                    # Fixed-size buffer (adjust as needed, might not be enough!)
                     const int buffer_size = 1024;
                     char response_buffer[buffer_size];
             
-                    # Get the response (might truncate large responses)
                     int http_code = id(burn_category_sensor).http_code();
                     size_t response_size = id(burn_category_sensor).http_size();
                     if (http_code == 200 && response_size < buffer_size) {
                       response_size = id(burn_category_sensor).http_read_all(response_buffer, buffer_size);
             
-                      // Attempt to parse JSON (limited functionality)
                       JsonObject root = json.parse_object(response_buffer);
                       if (root.has("burn_forecast") && root["burn_forecast"].is_object()) {
                         JsonObject burn_forecast = root["burn_forecast"];
