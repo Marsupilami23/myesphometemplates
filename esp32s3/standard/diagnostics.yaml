@@ -13,12 +13,6 @@ globals:
     restore_value: no
     initial_value: '0'
 
-# Provide date and time
-time:
-  - platform: sntp
-    id: time_service
-    timezone: "${timezone}"
-
 # Diagostic output sensors
 text_sensor:
   - platform: wifi_info
@@ -49,6 +43,7 @@ http_request:
 time:
   - platform: sntp
     id: sntp_time
+    timezone: "${timezone}"
     on_time:
       - seconds: 0
       - minutes: 0
