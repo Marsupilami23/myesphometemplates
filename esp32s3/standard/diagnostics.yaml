@@ -1,4 +1,4 @@
-substitutions:
+esubstitutions:
   log_level: DEBUG
   timezone: "America/Los_Angeles"
 
@@ -47,8 +47,8 @@ time:
     timezone: "${timezone}"
     on_time:
       - seconds: 0
-      - minutes: 0
-      - hours: /1
+        minutes: 0
+        hours: /1
         then:
           - http_request.get:
               url: "ttps://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
