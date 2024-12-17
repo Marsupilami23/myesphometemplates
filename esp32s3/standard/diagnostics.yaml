@@ -1,4 +1,4 @@
-esubstitutions:
+substitutions:
   log_level: DEBUG
   timezone: "America/Los_Angeles"
 
