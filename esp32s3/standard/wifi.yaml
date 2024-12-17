@@ -12,6 +12,8 @@ sensor:
     update_interval: 60s
     entity_category: "diagnostic"
 
+api:
+
 # Enable OTA
 ota:
   - platform: esphome
