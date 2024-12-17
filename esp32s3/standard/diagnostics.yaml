@@ -119,9 +119,8 @@ sensor:
   
   - platform: template
     name: "Burn Status"
-    lambda: |-
-      return id(burn_status_category);
-      
+    id: burn_category
+         
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
