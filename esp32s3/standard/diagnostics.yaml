@@ -37,7 +37,7 @@ binary_sensor:
     disabled_by_default: true
     
 http_request:
-  useragent: esphome/esp32dev
+  useragent: esphome/2024.11.0
   id: http_request_data
   verify_ssl: false
 
@@ -50,42 +50,14 @@ time:
         minutes: 0
         hours: /1
         then:
-          - http_request.get:
-              url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
-              headers:
-                Content-Type: application/json
-              on_response:
-                then:
-                  lambda: |-
-                    const int buffer_size = 1024;
-                    char response_buffer[buffer_size];
-            
-                    int http_code = id(burn_category_sensor).http_code();
-                    size_t response_size = id(burn_category_sensor).http_size();
-                    if (http_code == 200 && response_size < buffer_size) {
-                      response_size = id(burn_category_sensor).http_read_all(response_buffer, buffer_size);
-            
-                      JsonObject root = json.parse_object(response_buffer);
-                      if (root.has("burn_forecast") && root["burn_forecast"].is_object()) {
-                        JsonObject burn_forecast = root["burn_forecast"];
-                        if (burn_forecast.has("today") && burn_forecast["today"].is_object()) {
-                          JsonObject today = burn_forecast["today"];
-                          if (today.has("category") && today["category"].is_number()) {
-                            int category = today["category"];
-                            id(burn_category_sensor).publish_state(category);
-                          } else {
-                            logger.error("Failed to find 'category' in 'today' object");
-                          }
-                        } else {
-                          logger.error("Failed to find 'today' object in 'burn_forecast'";
-                        }
-                      } else {
-                        logger.error("Failed to find 'burn_forecast' object in JSON");
-                      }
-                    } else {
-                      logger.error(F("HTTP request failed, code: {http_code}"));
-                    }
-
+         - lambda: |-
+             HTTPClient http;
+             http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
+             http.GET();
+             DynamicJsonBuffer doc(31000);
+             JsonObject& root = doc.parseObject(http.getStream());
+             id(burn_status).pulish_state(bs);
+             
 sensor:
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
@@ -116,10 +88,7 @@ sensor:
   
   - platform: template
     name: "Burn Status"
-    id: burn_category_sensor
-  - platform: template
-    name: "HTTP Code"
-    id: http_code
+    id: burn_status
          
 # Provide a pre-built button for restart the device
 button:
