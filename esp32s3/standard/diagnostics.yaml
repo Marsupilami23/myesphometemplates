@@ -29,6 +29,16 @@ text_sensor:
     entity_category: "diagnostic"
     disabled_by_default: true
 
+  - platform: template
+    name: "Today's Burn Status"
+    id: todays_burn_category
+    lambda: |-
+      if (id(burncheck_forecast).has_value()) {
+        return String(id(burncheck_forecast).state["burn_forecast"]["today"]["category"].as<int>());
+      } else {
+        return "Unknown";
+      }
+
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
@@ -42,21 +52,12 @@ http_request:
   verify_ssl: false
 
 time:
-  - platform: sntp
-    id: sntp_time
-    timezone: "${timezone}"
+  - platform: homeassistant
     on_time:
-      - seconds: 0
-        minutes: 0
-        hours: /1
+      - minutes: 0
         then:
-         - lambda: |-
-             HTTPClient http;
-             http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
-             http.GET();
-             DynamicJsonBuffer doc(31000);
-             JsonObject& root = doc.parseObject(http.getStream());
-             id(burn_status).pulish_state(bs);
+          - http_request.update: burncheck_forecast
+
              
 sensor:
   # Captures the uptime and updates the human-readable
@@ -86,9 +87,16 @@ sensor:
                 (String(seconds) = "s")
               ).c_str();
   
-  - platform: template
-    name: "Burn Status"
-    id: burn_status
+  sensor:
+    - platform: http_request
+      name: "Burncheck Forecast"
+      id: burncheck_forecast
+      url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
+      user_agent: "ESPHome-BurncheckForecast"
+      json_rest_of_document:
+        burn_forecast:
+          today:
+            category: int
          
 # Provide a pre-built button for restart the device
 button:
