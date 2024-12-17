@@ -87,7 +87,6 @@ sensor:
                 (String(seconds) = "s")
               ).c_str();
   
-  sensor:
     - platform: http_request
       name: "Burncheck Forecast"
       id: burncheck_forecast
