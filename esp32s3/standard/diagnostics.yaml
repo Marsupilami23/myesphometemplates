@@ -48,7 +48,7 @@ time:
           - lambda: |-
               HTTPClient http;
               http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
-              http.Get();
+              http.GET();
               DynamicJsonDocument doc(2048);
               JsonObject root = doc.parseObject(http.getRead());
               float bc = atof(root["burn_forecast"]["today"]["category"].as<int>());
