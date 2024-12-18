@@ -46,6 +46,7 @@ time:
       - minutes: 0
         then:
           - lambda: |-
+              const char* json;
               HTTPClient http;
               http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
               http.GET();
