@@ -46,24 +46,23 @@ time:
       - minutes: /5
         then:
           - lambda: |-
-              char payload[100];
+              DynamicJsonDocument doc(2048);
               HTTPClient http;
                 http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
                 int httpCode = http.GET();
                 if (httpCode > 0 && httpCode == HTTP_CODE_OK) {
-                  String payload = http.getString();
+                  String doc = http.getString();
                 } else {
-                  Serial.println("Something went wrong with payload: ");
-                  Serial.println(payload);
+                  Serial.println("Something went wrong with doc: ");
+                  Serial.println(doc);
                 }
-              DynamicJsonDocument paylod2048);
-              DeserializationError error = deserializeJson(payload, const char* input);
+              DeserializationError error = deserializeJson(doc, const char* input);
               if (error) {
                 Serial.print("deserializeJson() returned ");
                 Serial.println(error.c_str());
                 return;
               }
-              JsonObject burn_forecast = payload["burn_forecast"];
+              JsonObject burn_forecast = doc["burn_forecast"];
               float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<char*>());
               id(burn_category).publish_state(bc);
             
