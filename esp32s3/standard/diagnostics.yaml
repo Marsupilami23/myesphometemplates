@@ -39,19 +39,29 @@ binary_sensor:
 http_request:
   useragent: esphome/2024.11.0
   verify_ssl: false
-  headers:
-    Content-Type: application/json
 
 time:
   - platform: homeassistant
     on_time:
-      - minutes: 0
+      - minutes: /5
         then:
           - lambda: |-
               const char* json;
-              HTTPClient http;
-              http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
-              http.GET();
+              const char* url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
+              void loop();
+                HTTPClient http;
+                if (http.begin(url)) {
+                  int httpCode = http.GET();
+
+                  if (httpCode > 0) {
+                    if (httpCode == HTTP_CODE_OK) {
+                      String doc = http.getString();
+                      ESP_LOGD("doc", "Received payload: %s");
+                      ESP_LOGD(doc);
+                    } else {
+                      ESP_LOGD("GET request failed, code ");
+                      ESP_LOGD(httpCode);
+                    }
               DynamicJsonDocument doc(2048);
               DeserializationError error = deserializeJson(doc, json);
               if (error) {
