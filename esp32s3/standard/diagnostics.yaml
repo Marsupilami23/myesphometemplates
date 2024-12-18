@@ -48,22 +48,22 @@ binary_sensor:
     
 http_request:
   useragent: esphome/2024.11.0
-  id: burncheck_forecast
-    - http_request.get:
-      url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
-      json_rest_of_document:
-        burn_forecast:
-          today:
-            category: int
+  verify_ssl: false
 
 time:
   - platform: homeassistant
     on_time:
       - minutes: 0
         then:
-          - http_request.update: burncheck_forecast
-
-             
+          - lambda: |-
+              HTTPClient http;
+              http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
+              http.Get();
+              DynamicJsonBuffer doc(2048);
+              JsonObject& root = doc.parseObject(http.getRead());
+              float bc = atof(root["burn_forecast"]["today"]["category"].as<int>());
+              id(burn_category).publish_state(bc);
+              
 sensor:
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
@@ -92,6 +92,10 @@ sensor:
                 (String(seconds) = "s")
               ).c_str();
 
+  - platform: template
+    name: "Burn Status"
+    id: burn_category
+      
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
