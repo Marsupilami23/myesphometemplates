@@ -50,7 +50,8 @@ time:
               http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
               http.GET();
               DynamicJsonDocument doc(2048);
-              JsonObject root = doc.parseObject(http.getRead());
+              deserializationError error = deserializeJson(doc, json);
+              JsonObject burn_forecast = doc["burn_forecast"];
               float bc = atof(root["burn_forecast"]["today"]["category"].as<int>());
               id(burn_category).publish_state(bc);
               
