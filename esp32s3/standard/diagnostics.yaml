@@ -46,31 +46,24 @@ time:
       - minutes: /5
         then:
           - lambda: |-
-              const char* json;
-              const char* url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-                HTTPClient http;
-                if (http.begin(url)) {
-                  int httpCode = http.GET();
-
-                  if (httpCode > 0) {
-                    if (httpCode == HTTP_CODE_OK) {
-                      String doc = http.getString();
-                      Serial.parintln("Received doc:");
-                      Serial.println(doc);
-                    } else {
-                      Serial.print("GET request failed, code ");
-                      Serial.println(httpCode);
-                    }
-              DynamicJsonDocument doc(2048);
-              DeserializationError error = deserializeJson(doc, json);
-              if (error) {
-                ESP_LOGE("burncheck", "deserializeJson() failed: %s", error.c_str());
-                return;
-              }
-              JsonObject burn_forecast = doc["burn_forecast"];
-              float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<char*>());
-              id(burn_category).publish_state(bc);
-              
+              HTTPClient http;
+              http.begin(https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt)
+                int httpCode = http.GET();
+                if (httpCode > 0 && httpCode == HTTP_CODE_OK) {
+                  String payload = http.getString();
+                } else {
+                  Serial.println("Something went wrong with payload: ");
+                  Serial.println(payload);
+            DynamicJsonDocument payload(2048);
+            DeserializationError error = deserializeJson(doc, json);
+            if (error) {
+              ESP_LOGE("burncheck", "deserializeJson() failed: %s", error.c_str());
+              return;
+            }
+            JsonObject burn_forecast = payload["burn_forecast"];
+            float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<char*>());
+            id(burn_category).publish_state(bc);
+            
 sensor:
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
