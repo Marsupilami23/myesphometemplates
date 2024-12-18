@@ -55,16 +55,16 @@ time:
                   Serial.println("Something went wrong with payload: ");
                   Serial.println(payload);
                 }
-            DynamicJsonDocument payload(2048);
-            DeserializationError error = deserializeJson(payload, json);
-            if (error) {
-              Serial.print("deserializeJson() returned ");
-              Serial.println(error.c_str());
-              return;
-            }
-            JsonObject burn_forecast = payload["burn_forecast"];
-            float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<char*>());
-            id(burn_category).publish_state(bc);
+              DynamicJsonDocument payload(2048);
+              DeserializationError error = deserializeJson(payload, json);
+              if (error) {
+                Serial.print("deserializeJson() returned ");
+                Serial.println(error.c_str());
+                return;
+              }
+              JsonObject burn_forecast = payload["burn_forecast"];
+              float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<char*>());
+              id(burn_category).publish_state(bc);
             
 sensor:
   # Captures the uptime and updates the human-readable
