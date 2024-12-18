@@ -50,10 +50,10 @@ time:
               http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
                 int httpCode = http.GET();
                 if (httpCode > 0 && httpCode == HTTP_CODE_OK) {
-                  String doc = http.getString();
+                  String payload = http.getString();
                 } else {
-                  Serial.println("Something went wrong with doc: ");
-                  Serial.println(doc);
+                  Serial.println("Something went wrong with payload: ");
+                  Serial.println(payload);
                 }
               DynamicJsonDocument doc(2048);
               DeserializationError error = deserializeJson(doc, const char* input);
