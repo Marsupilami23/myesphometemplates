@@ -50,13 +50,13 @@ time:
               http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
               http.GET();
               DynamicJsonDocument doc(2048);
-              DeserializationError error = deserializeJson(doc, input);
+              DeserializationError error = deserializeJson(doc, json);
               if (error) {
                 ESP_LOGE("burncheck", "deserializeJson() failed: %s", error.c_str());
                 return;
               }
               JsonObject burn_forecast = doc["burn_forecast"];
-              float bc = atof(root["burn_forecast"]["today"]["category"].as<int>());
+              float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<int>());
               id(burn_category).publish_state(bc);
               
 sensor:
