@@ -39,6 +39,8 @@ binary_sensor:
 http_request:
   useragent: esphome/2024.11.0
   verify_ssl: false
+  headers:
+    Content-Type: application/json
 
 time:
   - platform: homeassistant
