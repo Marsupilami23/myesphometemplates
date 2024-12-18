@@ -56,9 +56,10 @@ time:
                   Serial.println(payload);
                 }
             DynamicJsonDocument payload(2048);
-            DeserializationError error = deserializeJson(doc, json);
+            DeserializationError error = deserializeJson(payload, json);
             if (error) {
-              ESP_LOGE("burncheck", "deserializeJson() failed: %s", error.c_str());
+              Serial.print("deserializeJson() returned ");
+              Serial.println(error.c_str());
               return;
             }
             JsonObject burn_forecast = payload["burn_forecast"];
