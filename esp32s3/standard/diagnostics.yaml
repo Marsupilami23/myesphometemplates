@@ -56,14 +56,14 @@ time:
                   Serial.println("Something went wrong with payload: ");
                   Serial.println(payload);
                 }
-              DynamicJsonDocument doc(2048);
+              DynamicJsonDocument paylod2048);
               DeserializationError error = deserializeJson(payload, const char* input);
               if (error) {
                 Serial.print("deserializeJson() returned ");
                 Serial.println(error.c_str());
                 return;
               }
-              JsonObject burn_forecast = doc["burn_forecast"];
+              JsonObject burn_forecast = payload["burn_forecast"];
               float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<char*>());
               id(burn_category).publish_state(bc);
             
