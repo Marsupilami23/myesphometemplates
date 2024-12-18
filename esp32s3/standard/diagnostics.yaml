@@ -56,7 +56,7 @@ time:
                 return;
               }
               JsonObject burn_forecast = doc["burn_forecast"];
-              float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<int>());
+              float bc = atof(burn_forecast["burn_forecast"]["today"]["category"].as<char*>());
               id(burn_category).publish_state(bc);
               
 sensor:
