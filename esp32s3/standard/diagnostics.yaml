@@ -48,7 +48,6 @@ time:
           - lambda: |-
               const char* json;
               const char* url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-              void loop();
                 HTTPClient http;
                 if (http.begin(url)) {
                   int httpCode = http.GET();
