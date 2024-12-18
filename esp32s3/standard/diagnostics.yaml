@@ -56,7 +56,7 @@ time:
                 Serial.println("Something went wrong with doc: ");
                 Serial.println(doc);
               }
-              DynamicJsonDocument doc(2048);
+              JsonDocument doc(2048);
               DeserializationError error = deserializeJson(doc, httpResponse);
               if (error) {
                 Serial.print("deserializeJson() returned ");
