@@ -46,7 +46,6 @@ time:
       - minutes: /5
         then:
           - lambda: |-
-              DynamicJsonDocument doc(2048);
               HTTPClient http;
                 http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
                 int httpCode = http.GET();
@@ -56,6 +55,7 @@ time:
                   Serial.println("Something went wrong with doc: ");
                   Serial.println(doc);
                 }
+              DynamicJsonDocument doc(2048);
               DeserializationError error = deserializeJson(doc, const char* input);
               if (error) {
                 Serial.print("deserializeJson() returned ");
