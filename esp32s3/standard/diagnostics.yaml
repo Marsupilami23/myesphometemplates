@@ -47,15 +47,15 @@ time:
         then:
           - lambda: |-
               HTTPClient http;
-                http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
-                int httpCode = http.GET();
-                String httpResponse;
-                if (httpCode > 0 && httpCode == HTTP_CODE_OK) {
-                  httpResponse = http.getString();
-                } else {
-                  Serial.println("Something went wrong with doc: ");
-                  Serial.println(doc);
-                }
+              http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
+              int httpCode = http.GET();
+              String httpResponse;
+              if (httpCode > 0 && httpCode == HTTP_CODE_OK) {
+                httpResponse = http.getString();
+              } else {
+                Serial.println("Something went wrong with doc: ");
+                Serial.println(doc);
+              }
               DynamicJsonDocument doc(2048);
               DeserializationError error = deserializeJson(doc, httpResponse);
               if (error) {
