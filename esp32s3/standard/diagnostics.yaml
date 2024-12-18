@@ -29,16 +29,6 @@ text_sensor:
     entity_category: "diagnostic"
     disabled_by_default: true
 
-  - platform: template
-    name: "Today's Burn Status"
-    id: todays_burn_category
-    lambda: |-
-      if (id(burncheck_forecast).has_value()) {
-        return String(id(burncheck_forecast).state["burn_forecast"]["today"]["category"].as<int>());
-      } else {
-        return "Unknown";
-      }
-
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
