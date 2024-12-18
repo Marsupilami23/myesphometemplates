@@ -50,7 +50,7 @@ time:
               http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
               http.GET();
               DynamicJsonDocument doc(2048);
-              deserializationError error = deserializeJson(doc, json);
+              DeserializationError error = deserializeJson(doc, json);
               if (error) {
                 ESP_LOGE("burncheck", "deserializeJson() failed: %s", error.c_str());
                 return;
