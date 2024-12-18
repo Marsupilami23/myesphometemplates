@@ -56,11 +56,11 @@ time:
                   if (httpCode > 0) {
                     if (httpCode == HTTP_CODE_OK) {
                       String doc = http.getString();
-                      ESP_LOGD("doc", "Received payload: %s");
-                      ESP_LOGD(doc);
+                      Serial.parintln("Received doc:");
+                      Serial.println(doc);
                     } else {
-                      ESP_LOGD("GET request failed, code ");
-                      ESP_LOGD(httpCode);
+                      Serial.print("GET request failed, code ");
+                      Serial.println(httpCode);
                     }
               DynamicJsonDocument doc(2048);
               DeserializationError error = deserializeJson(doc, json);
