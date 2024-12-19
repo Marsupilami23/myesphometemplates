@@ -51,26 +51,16 @@ time:
               on_response:
                 then:
                   - lambda: |
-                      // Get the JSON object
-                      auto root = id(json).parse_json(x); 
-
-                      if (root.is_object()) {
-                        auto burn_forecast = root["burn_forecast"].as_object();
-
-                        if (burn_forecast.is_object()) {
-                          // Extract today's category
-                          auto today_category = burn_forecast["today"].as_object()["category"].as_int();
-
-                          // Publish the value to the sensor
-                          id(burn_category).publish_state(today_category); 
-
-                        } else {
-                          ESP_LOGW("burn_check", "Invalid JSON: 'burn_forecast' is not an object");
-                        }
-                      } else {
-                        ESP_LOGW("burn_check", "Invalid JSON: root is not an object");
+                      json::parse_json(body, [](JsonObject root) -> bool {
+                      if (root["burncheckForecastCallback"]["burn_forecast"]["today"]["category"]) {
+                          id(burn_status).publish_state(root["category"]);
+                          return true;
                       }
-                      return {};
+                      else {
+                        ESP_LOGD(TAG,"No 'vol' key in this json!");
+                        return false;
+                      }
+                      });
             
 sensor:
   # Captures the uptime and updates the human-readable
