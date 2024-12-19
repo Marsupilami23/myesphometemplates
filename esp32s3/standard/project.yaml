@@ -5,4 +5,4 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   libraries:
-    - ArduinoJson=https://https://github.com/bblanchon/ArduinoJson/releases/tag/v7.2.1
+    - ArduinoJson=https://https://github.com/bblanchon/ArdruinoJson
