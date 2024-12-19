@@ -92,7 +92,7 @@ sensor:
 
   - platform: template
     name: "Burn Status"
-    id: burn_category
+    id: burn_status
       
 # Provide a pre-built button for restart the device
 button:
