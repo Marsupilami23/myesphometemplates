@@ -50,7 +50,7 @@ time:
               capture_response: true
               on_response:
                 then:
-                  - lambda: |-
+                  - lambda: |
                       // Get the JSON object
                       auto root = id(json).parse_json(x); 
 
