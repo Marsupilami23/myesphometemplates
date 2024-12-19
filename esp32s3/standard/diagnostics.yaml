@@ -51,7 +51,6 @@ time:
               on_response:
                 then:
                   - lambda: |
-                      [body](JsonObject root) -> bool {
                           ESP_LOGD("burn_status", "Raw JSON: %s", body.c_str()); 
                           json::parse_json(body, [](JsonObject root) -> bool {
                           if (root["burn_forecast"]) {
@@ -63,7 +62,6 @@ time:
                             return false;
                           }
                           });
-                      };
             
 sensor:
   # Captures the uptime and updates the human-readable
