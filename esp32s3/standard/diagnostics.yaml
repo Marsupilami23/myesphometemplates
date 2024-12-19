@@ -57,7 +57,7 @@ time:
                           return true;
                       }
                       else {
-                        ESP_LOGD(TAG,"No 'vol' key in this json!");
+                        ESP_LOGD("burn_status","No 'category' key in this json!");
                         return false;
                       }
                       });
