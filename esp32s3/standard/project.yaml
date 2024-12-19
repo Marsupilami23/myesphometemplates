@@ -5,4 +5,4 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   libraries:
-    - ArduinoJson=ottowinter/ArduinoJson-esphomelib@^6.15.2
+    - ottowinter/ArduinoJson-esphomelib@^6.15.2
