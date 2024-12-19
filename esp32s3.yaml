@@ -14,7 +14,7 @@ external_components:
       type: git
       url: https://github.com/esphome/esphome
       ref: release
-    components: [ http_request, json ]
+    components: [ http_request ]
     refresh: always
     
 # Import packages:
