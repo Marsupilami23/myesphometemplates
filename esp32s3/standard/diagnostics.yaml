@@ -51,17 +51,35 @@ time:
               on_response:
                 then:
                   - lambda: |
-                          ESP_LOGD("burn_status", "Raw JSON: %s", body.c_str()); 
-                          json::parse_json(body, [](JsonObject root) -> bool {
-                          if (root["burn_forecast"]) {
-                              id(burn_status).publish_state(root["category"]);
+                      [body](JsonObject root) -> {
+                        // Extract the JSON string
+                        size_t start = body.find('{');
+                        size_t end = body.rfind('}');
+                        if (start == std::string""npos || end == std::string::nops) {
+                          ESP_LOGW("burn_status", "Invalid JSON response format");
+                          return false;
+                        }
+                        std::string json_string = body.substr(start, end = start + 1);
+
+                        ESP_LOGD("burn_status", "Extracted JSON: %s", json_string.c_str());
+
+                        // Parse the extracted JSON 
+                        json::parse_json(json_string, [this](JsonObject root) -> bool {
+                        if (root.containsKey("burn_forecast")) {
+                          JsonObject burn_forcast = root["burn_forecast"];
+                          if (burn_forecast.containsKey("today")) {
+                            JsonObject today = burn_forecast["today"];
+                            if (today.containsKey("category")) {
+                              id(burn_status).publish_state(today["category"].as<int>());
                               return true;
+                            }
                           }
-                          else {
-                            ESP_LOGD("burn_status","No 'category' key in this json!");
-                            return false;
-                          }
-                          });
+                        }
+                        ESP_LOGD("burn_status","No 'category' key in this json!");
+                        return false;
+                      });
+                      return true;
+                    };
             
 sensor:
   # Captures the uptime and updates the human-readable
