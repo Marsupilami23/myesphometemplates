@@ -51,7 +51,7 @@ time:
               on_response:
                 then:
                   - lambda: |
-                      [body](JsonObject root) -> {
+                      [body](JsonObject root) -> bool {
                         // Extract the JSON string
                         size_t start = body.find('{');
                         size_t end = body.rfind('}');
