@@ -8,7 +8,9 @@ substitutions:
   sub_green_pin: GPIO03
   
   disable_entities: "true"
-    
+
+
+
 # Import packages:
 packages:
   standard_packages:
