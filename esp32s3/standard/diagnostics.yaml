@@ -2,6 +2,10 @@ substitutions:
   log_level: DEBUG
   timezone: "America/Los_Angeles"
 
+external_components:
+  - souce: github://bblanchon/ArduinoJson
+    version: 6.18.5
+    
 # Enable logging bia network and disable serial port
 logger:
   level: "${log_level}"
