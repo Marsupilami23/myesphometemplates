@@ -65,21 +65,21 @@ time:
 
                         // Parse the extracted JSON 
                         json::parse_json(json_string, [this](JsonObject root) -> bool {
-                        if (root.containsKey("burn_forecast")) {
-                          JsonObject burn_forcast = root["burn_forecast"];
-                          if (burn_forecast.containsKey("today")) {
-                            JsonObject today = burn_forecast["today"];
-                            if (today.containsKey("category")) {
-                              id(burn_status).publish_state(today["category"].as<int>());
-                              return true;
+                          if (root.containsKey("burn_forecast")) {
+                            JsonObject burn_forcast = root["burn_forecast"];
+                            if (burn_forecast.containsKey("today")) {
+                              JsonObject today = burn_forecast["today"];
+                              if (today.containsKey("category")) {
+                                id(burn_status).publish_state(today["category"].as<int>());
+                                return true;
+                              }
                             }
                           }
-                        }
-                        ESP_LOGD("burn_status","No 'category' key in this json!");
-                        return false;
-                      });
-                      return true;
-                    };
+                          ESP_LOGD("burn_status","No 'category' key in this json!");
+                          return false;
+                        });
+                        return true;
+                      };
             
 sensor:
   # Captures the uptime and updates the human-readable
