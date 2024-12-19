@@ -9,3 +9,9 @@ esphome:
     board_build.arduino.memory_type: qio_opi
     board_build.f_flash: 80000000L
     board_build.flash_mode: qio 
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/esphome/esphome
+      
