@@ -55,7 +55,7 @@ time:
                         // Extract the JSON string
                         size_t start = body.find('{');
                         size_t end = body.rfind('}');
-                        if (start == std::string""npos || end == std::string::nops) {
+                        if (start == std::string::npos || end == std::string::nops) {
                           ESP_LOGW("burn_status", "Invalid JSON response format");
                           return false;
                         }
