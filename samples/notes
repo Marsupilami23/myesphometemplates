@@ -1,0 +1,38 @@
+# Define the sensor
+sensor:
+  - platform: template
+    id: burn_category
+    name: "Burn Category"
+
+time:
+  - platform: homeassistant
+    on_time:
+      - minutes: /5
+        then:
+          - http_request.get:
+              id: burn_check_request
+              url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
+              capture_response: true
+              on_response:
+                then:
+                  - lambda: |
+                      // Get the JSON object
+                      auto root = id(json).parse_json(x); 
+
+                      if (root.is_object()) {
+                        auto burn_forecast = root["burn_forecast"].as_object();
+
+                        if (burn_forecast.is_object()) {
+                          // Extract today's category
+                          auto today_category = burn_forecast["today"].as_object()["category"].as_int();
+
+                          // Publish the value to the sensor
+                          id(burn_category).publish_state(today_category); 
+
+                        } else {
+                          ESP_LOGW("burn_check", "Invalid JSON: 'burn_forecast' is not an object");
+                        }
+                      } else {
+                        ESP_LOGW("burn_check", "Invalid JSON: root is not an object");
+                      }
+                      return {};
