@@ -50,7 +50,7 @@ time:
               capture_response: true
               on_response:
                 then:
-                  - lambda: |-
+                  - lambda: |
                       [body](JsonObject root) -> bool {
                           ESP_LOGD("burn_status", "Raw JSON: %s", body.c_str()); 
                           json::parse_json(body, [](JsonObject root) -> bool {
