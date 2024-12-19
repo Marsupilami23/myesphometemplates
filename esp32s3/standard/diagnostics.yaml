@@ -1,4 +1,4 @@
-substitutions:
+esubstitutions:
   log_level: DEBUG
   timezone: "America/Los_Angeles"
 
@@ -51,17 +51,19 @@ time:
               on_response:
                 then:
                   - lambda: |-
-                      ESP_LOGD("burn_status", "Raw JSON: %s", body.c_str()); 
-                      json::parse_json(body, [](JsonObject root) -> bool {
-                      if (root["burn_forecast"]) {
-                          id(burn_status).publish_state(root["category"]);
-                          return true;
-                      }
-                      else {
-                        ESP_LOGD("burn_status","No 'category' key in this json!");
-                        return false;
-                      }
-                      });
+                      [body](JsonObject root) -> bool {
+                          ESP_LOGD("burn_status", "Raw JSON: %s", body.c_str()); 
+                          json::parse_json(body, [](JsonObject root) -> bool {
+                          if (root["burn_forecast"]) {
+                              id(burn_status).publish_state(root["category"]);
+                              return true;
+                          }
+                          else {
+                            ESP_LOGD("burn_status","No 'category' key in this json!");
+                            return false;
+                          }
+                          });
+                      };
             
 sensor:
   # Captures the uptime and updates the human-readable
