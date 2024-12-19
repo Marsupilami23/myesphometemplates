@@ -8,14 +8,6 @@ substitutions:
   sub_green_pin: GPIO03
   
   disable_entities: "true"
-
-external_components:
-  - source:
-      type: git
-      url: https://github.com/esphome/esphome
-      ref: release
-    components: [ http_request ]
-    refresh: always
     
 # Import packages:
 packages:
