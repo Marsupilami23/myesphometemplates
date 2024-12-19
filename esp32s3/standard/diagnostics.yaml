@@ -3,7 +3,7 @@ substitutions:
   timezone: "America/Los_Angeles"
 
 external_components:
-  - souce: github://bblanchon/ArduinoJson
+  - source: github://bblanchon/ArduinoJson
     version: 6.18.5
     
 # Enable logging bia network and disable serial port
