@@ -1,5 +1,5 @@
 esp32:
-  baord: seed_xiao_esp32s3
+  board: seed_xiao_esp32s3
   framework:
     type: arduino
     version: recommended
