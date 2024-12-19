@@ -51,18 +51,26 @@ time:
               on_response:
                 then:
                   - lambda: |-
-                      json::parse_json(body, [](JsonObject root) -> bool {
-                          // Navigate to the "today" object within the "burn_forecast" object
-                          JsonObject burn_forecast = root["burn_forecast"];
-                          JsonObject today = burn_forecast["today"];
-  
-                          if (today["category"]) {
-                            id(burn_category).publish_state(today["category"].as<int>()); // Assuming category is an interger sensor
-                          } else {
-                            ESP_LOGD("http_request", "No 'category' key in today's forecast!");
-                            return false;
-                          }
-                      });
+                      // Get the JSON object
+                      auto root = id(json).parse_json(x); 
+
+                      if (root.is_object()) {
+                        auto burn_forecast = root["burn_forecast"].as_object();
+
+                        if (burn_forecast.is_object()) {
+                          // Extract today's category
+                          auto today_category = burn_forecast["today"].as_object()["category"].as_int();
+
+                          // Publish the value to the sensor
+                          id(burn_category).publish_state(today_category); 
+
+                        } else {
+                          ESP_LOGW("burn_check", "Invalid JSON: 'burn_forecast' is not an object");
+                        }
+                      } else {
+                        ESP_LOGW("burn_check", "Invalid JSON: root is not an object");
+                      }
+                      return {};
             
 sensor:
   # Captures the uptime and updates the human-readable
