@@ -50,7 +50,8 @@ time:
               capture_response: true
               on_response:
                 then:
-                  - lambda: |
+                  - lambda: |-
+                      ESP_LOGD("burn_status", "Raw JSON: %s", body.c_str()); 
                       json::parse_json(body, [](JsonObject root) -> bool {
                       if (root["burn_forecast"]) {
                           id(burn_status).publish_state(root["category"]);
