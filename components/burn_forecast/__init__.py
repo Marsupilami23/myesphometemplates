@@ -10,7 +10,7 @@ CODEOWNERS = ["Marsupilami23"]  # Replace with your GitHub username
 CONF_URL = "url"
 
 burn_forecast_ns = cg.esphome_ns.namespace("burn_forecast")
-BurnForecast = burn_forecast_ns.class_("BurnForecast", cg.Component, sensor.Sensor)
+BurnForecast = burn_forecast_ns.class_("BurnForecast", sensor.Sensor, cg.Component)
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(BurnForecast),
