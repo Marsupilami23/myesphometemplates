@@ -70,7 +70,7 @@ time:
                             if (burn_forecast.containsKey("today")) {
                               JsonObject today = burn_forecast["today"];
                               if (today.containsKey("category")) {
-                                id(burn_status).publish_state(today["category"].as<int>());
+                                burn_status) = today["category"].as<int>();
                                 return true;
                               }
                             }
