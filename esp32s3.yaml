@@ -25,15 +25,3 @@ packages:
     refresh: always
     files:
       - esp32s3/board.yaml
-      - esp32s3/pwm-outputs.yaml
-
-light:
-  - platform: monochromatic
-    output: pwm_green
-    name: "Green Light"
-  - platform: monochromatic
-    output: pwm_red
-    name: "Red Light"
-  - platform: monochromatic
-    output: pwm_blue
-    name: "Blue Light"
