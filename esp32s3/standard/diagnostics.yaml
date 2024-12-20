@@ -13,7 +13,16 @@ binary_sensor:
     id: sensor_status
     disabled_by_default: true
     
-     
+sensor:
+  - platform: burn_forecast
+    name: "Burn Status"
+    id: burn_status
+    unit_of_measurement: ""
+    state_class: measurement
+    icon: mdi:fire
+    update_interval: 300s # every 5 minutes
+    url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
+    
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
