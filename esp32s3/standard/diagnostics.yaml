@@ -51,7 +51,7 @@ time:
               on_response:
                 then:
                   - lambda: |
-                      [burn_status, body](JsonObject root, int& burn_status) -> bool {
+                      [burn_status](JsonObject root, int& burn_status) -> bool {
                         // Extract the JSON string
                         size_t start = body.find('{');
                         size_t end = body.rfind('}');
