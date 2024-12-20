@@ -22,6 +22,9 @@ void BurnForecast::update() {
     }
 
     std::string body = response->get_body();
-    ESP_LOGD("burn_forecast", "HTTP Response Body: %s", body.c_str()); // Log the body
+    ESP_LOGD("burn_forecast", "HTTP Response Body Length: %d", body.length()); // Log the body
+    if (body.length() > 0 {
+      ESP_LOGD("burn_forecast", "First char: %c", body[0]);
+    }
     this->publish_state(0); // Publish a dummy value
 });
