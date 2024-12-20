@@ -1,3 +1,4 @@
+#include <string>
 #include "burn_forecast.h"
 #include "esphome/core/application.h"
 #include <ArduinoJson.h>
