@@ -51,36 +51,13 @@ time:
               on_response:
                 then:
                   - lambda: |
-                      [burn_status, body](JsonObject root, int& burn_status) -> bool {
-                        // Extract the JSON string
-                        size_t start = body.find('{');
-                        size_t end = body.rfind('}');
-                        if (start == std::string::npos || end == std::string::npos) {
-                          ESP_LOGW("burn_status", "Invalid JSON response format");
+                      [burn_status, body](int& burn_status) -> bool {
+                        std::string json_string = extract_json_string(body);
+                        if (json_string.empty()) {
                           return false;
                         }
-                        std::string json_string = body.substr(start, end - start + 1);
-
-                        ESP_LOGD("burn_status", "Extracted JSON: %s", json_string.c_str());
-
-                        // Parse the extracted JSON 
-                        json::parse_json(json_string, [&burn_status](JsonObject root) -> bool {
-                          if (root.containsKey("burn_forecast")) {
-                            JsonObject burn_forecast = root["burn_forecast"];
-                            if (burn_forecast.containsKey("today")) {
-                              JsonObject today = burn_forecast["today"];
-                              if (today.containsKey("category")) {
-                                burn_status = today["category"].as<int>();
-                                return true;
-                              }
-                            }
-                          }
-                          ESP_LOGD("burn_status","No 'category' key in this json!");
-                          return false;
-                        });
-                        return true;
+                        return parse_json(json_string, burn_status);
                       };
-            
 sensor:
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
