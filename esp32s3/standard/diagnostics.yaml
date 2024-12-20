@@ -64,7 +64,7 @@ time:
                         ESP_LOGD("burn_status", "Extracted JSON: %s", json_string.c_str());
 
                         // Parse the extracted JSON 
-                        json::parse_json(json_string, [this](JsonObject root) -> bool {
+                        json::parse_json(json_string, [&burn_status](JsonObject root) -> bool {
                           if (root.containsKey("burn_forecast")) {
                             JsonObject burn_forecast = root["burn_forecast"];
                             if (burn_forecast.containsKey("today")) {
