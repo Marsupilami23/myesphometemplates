@@ -19,7 +19,7 @@ external_components:
     refresh: always
   - source:
       type: git
-      url: https://github.com/Marsupilami23/myesphometemplates
+      url: https://github.com/Marsupilami23/myesphometemplates/
       ref: main
     components: [ burn_status_parser ]
     refresh: always
