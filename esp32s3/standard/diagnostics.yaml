@@ -40,24 +40,6 @@ http_request:
   useragent: esphome/2024.11.0
   verify_ssl: false
 
-time:
-  - platform: homeassistant
-    on_time:
-      - minutes: /5
-        then:
-          - http_request.get:
-              url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
-              capture_response: true
-              on_response:
-                then:
-                  - lambda: |
-                      [burn_status, body](int& burn_status) -> bool {
-                        std::string json_string = extract_json_string(body);
-                        if (json_string.empty()) {
-                          return false;
-                        }
-                        return parse_json(json_string, burn_status);
-                      };
 sensor:
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
@@ -86,9 +68,14 @@ sensor:
                 (String(seconds) = "s")
               ).c_str();
 
-  - platform: template
+  - platform: burn_forecast
     name: "Burn Status"
     id: burn_status
+    unit_of_measurement: ""
+    state_class: measurement
+    icon: mdi:fire
+    update_interval: 300s # every 5 minutes
+    url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
       
 # Provide a pre-built button for restart the device
 button:
