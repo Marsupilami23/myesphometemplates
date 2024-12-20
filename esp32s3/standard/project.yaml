@@ -19,5 +19,5 @@ external_components:
     refresh: always
   - source:
       type: local
-      - source: .esphome/packages/4111c2bb/components
+      path: .esphome/packages/4111c2bb/components
       
