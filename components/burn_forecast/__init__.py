@@ -2,7 +2,7 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import sensor
 from esphome.const import CONF_ID
-from esphome.core import unit_constants
+from esphome.core import const
 
 DEPENDENCIES = ["http_request"]
 AUTO_LOAD = ["json"]
