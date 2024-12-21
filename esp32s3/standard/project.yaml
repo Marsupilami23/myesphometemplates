@@ -18,6 +18,9 @@ external_components:
     components: [ "http_request", "json" ]
     refresh: always
   - source:
-      type: local
-      path: .esphome/packages/4111c2bb/components
+      type: git
+      url: https://github.com/Marsupilami23/myesphometemplates
+      ref: main
+    components: [ burn_forecast ]
+    refresh: always
       
