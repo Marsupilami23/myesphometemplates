@@ -17,5 +17,7 @@ external_components:
       ref: release
     components: [ "http_request", "json" ]
     refresh: always
-  - source: github://Marsupilami23/myesphometemplates/components/burn_forecast
+  - source: github://Marsupilami23/myesphometemplates
       ref: main
+    components: [ "burn_forecast" ]
+    refresh: always
