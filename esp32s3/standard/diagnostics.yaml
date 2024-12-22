@@ -12,20 +12,7 @@ http_request:
 
 time:
   - platform: homeassistant
-  
-binary_sensor:
-  # Diagnostic sensor for connection
-  - platform: status
-    name: "API Status"
-    id: sensor_status
-    disabled_by_default: true
-
-sensor:
-  - platform: template
-    id: burn_status
-    name: "Burn Status"
-    icon: mdi:fire
-    on_time:
+        on_time:
       - minutes: /5
         then:
           - http_request.get:
@@ -83,7 +70,19 @@ sensor:
                                   id(blue_led.turn_off();
                                   break;
                               }
-                            
+  
+binary_sensor:
+  # Diagnostic sensor for connection
+  - platform: status
+    name: "API Status"
+    id: sensor_status
+    disabled_by_default: true
+
+sensor:
+  - platform: template
+    id: burn_status
+    name: "Burn Status"
+    icon: mdi:fire                            
 
 # Provide a pre-built button for restart the device
 button:
