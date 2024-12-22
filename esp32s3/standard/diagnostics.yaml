@@ -45,7 +45,7 @@ time:
                             });
                       else:
                         - logger.log:
-                          format: "Error: Sometimg went wrong!"
+                            format: "Error: Sometimg went wrong!"
 
                             switch (burn_status) {
                               case 6: // Green
