@@ -23,53 +23,53 @@ time:
                 then:
                   - if:
                       condition:
-                          lambda: return response->status_code == 200;
+                        lambda: return response->status_code == 200;
                       then:
-                          - logger.log:
-                              format: "Raw Response %s"
-                              args: [body.c_str()]
-                          - lambda: |-
-                              // Remove "burncheckForecastCallback(" and ")" from the response
-                              std::string cleaned_body = body;
-                              cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
-                              cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
-                              
-                              json::parse_json(cleaned_body, [](JsonObject root) -> bool {
-                                if (root["burn_forecast"]["today"]["category"].as<int>()) {
-                                  id(burn_status).publish_state(root["burn_forecast"]["today"]["category"].as<int>());
-                                  return true;
-                                } else {
-                                  ESP_LOGD("burn_category", "No burn status found!");
-                                  return false;
-                                }
-                              });
-                              else:
-                                - logger.log:
-                                  format: "Error: Sometimg went wrong!"
-
-                              switch (burn_status) {
-                                case 6: // Green
-                                  id(green_led).turn_on();
-                                  id(red_led).turn_off();
-                                  id(blue_led).turn_off();
-                                  break;
-                                case 7: // Yellow
-                                case 8: // Yellow
-                                  id(green_led).turn_on();
-                                  id(red_led).turn_on();
-                                  id(blue_led).turn_off();
-                                  break;
-                                case 9: // Red
-                                  id(green_led).turn_off();
-                                  id(red_led).turn_on();
-                                  id(blue_led).turn_off();
-                                  break;
-                                default: // Turn off all LEDs
-                                  id(green_led).turn_off();
-                                  id(red_led).turn_off();
-                                  id(blue_led.turn_off();
-                                  break;
+                        - logger.log:
+                            format: "Raw Response %s"
+                            args: [body.c_str()]
+                        - lambda: |-
+                            // Remove "burncheckForecastCallback(" and ")" from the response
+                            std::string cleaned_body = body;
+                            cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
+                            cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
+                            
+                            json::parse_json(cleaned_body, [](JsonObject root) -> bool {
+                              if (root["burn_forecast"]["today"]["category"].as<int>()) {
+                                id(burn_status).publish_state(root["burn_forecast"]["today"]["category"].as<int>());
+                                return true;
+                              } else {
+                                ESP_LOGD("burn_category", "No burn status found!");
+                                return false;
                               }
+                            });
+                      else:
+                        - logger.log:
+                          format: "Error: Sometimg went wrong!"
+
+                            switch (burn_status) {
+                              case 6: // Green
+                                id(green_led).turn_on();
+                                id(red_led).turn_off();
+                                id(blue_led).turn_off();
+                                break;
+                              case 7: // Yellow
+                              case 8: // Yellow
+                                id(green_led).turn_on();
+                                id(red_led).turn_on();
+                                id(blue_led).turn_off();
+                                break;
+                              case 9: // Red
+                                id(green_led).turn_off();
+                                id(red_led).turn_on();
+                                id(blue_led).turn_off();
+                                break;
+                              default: // Turn off all LEDs
+                                id(green_led).turn_off();
+                                id(red_led).turn_off();
+                                id(blue_led.turn_off();
+                                break;
+                            }
   
 binary_sensor:
   # Diagnostic sensor for connection
