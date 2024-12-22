@@ -11,6 +11,7 @@ output:
 
 light:
   - platform: rgb
+    id: burn_status_rgb
     name: "Burn_Status_LEDs"
     red: red_led
     green: green_led
