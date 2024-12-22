@@ -1,3 +1,4 @@
+
 substitutions:
   log_level: DEBUG
 
@@ -70,7 +71,7 @@ time:
                                 id(blue_led.turn_off();
                                 break;
                             }
-  
+                            return burn_status;
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
