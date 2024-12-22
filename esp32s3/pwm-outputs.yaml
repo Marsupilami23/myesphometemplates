@@ -1,10 +1,10 @@
 output:
-  - platform: ledc
+  - platform: rgb
     pin: $sub_green_pin
     id: green_led
-  - platform: ledc
+  - platform: rgb
     pin: $sub_blue_pin
     id: blue_led
-  - platform: ledc
+  - platform: rgb
     pin: $sub_red_pin
     id: red_led
