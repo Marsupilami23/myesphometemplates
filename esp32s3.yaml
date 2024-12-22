@@ -5,7 +5,7 @@ substitutions:
 
   sub_red_pin: GPIO02
   sub_blue_pin: GPIO01
-  sub_green_pin: GPIO03
+  sub_green_pin: 
   
   disable_entities: "true"
 
