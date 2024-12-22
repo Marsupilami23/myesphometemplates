@@ -5,7 +5,14 @@ substitutions:
 logger:
   level: "${log_level}"
   baud_rate: 115200
+  
+http_request:
+  id: burn_check_request
+  verify_ssl: false
 
+time:
+  - platform: homeassistant
+  
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
@@ -18,13 +25,6 @@ sensor:
     id: burn_status
     name: "Burn Status"
     icon: mdi:fire
-
-http_request:
-  id: burn_check_request
-  verify_ssl: false
-
-time:
-  - platform: homeassistant
     on_time:
       - minutes: /5
         then:
@@ -56,10 +56,35 @@ time:
                                   return false;
                                 }
                               });
-                      else:
-                          - logger.log:
-                              format: "Error: Sometimg went wrong!"
-                              
+                              else:
+                                - logger.log:
+                                  format: "Error: Sometimg went wrong!"
+
+                              switch (burn_status) {
+                                case 6: // Green
+                                  id(green_led).turn_on();
+                                  id(red_led).turn_off();
+                                  id(blue_led).turn_off();
+                                  break;
+                                case 7: // Yellow
+                                case 8: // Yellow
+                                  id(green_led).turn_on();
+                                  id(red_led).turn_on();
+                                  id(blue_led).turn_off();
+                                  break;
+                                case 9: // Red
+                                  id(green_led).turn_off();
+                                  id(red_led).turn_on();
+                                  id(blu_led).turn_off();
+                                  break;
+                                default: // Turn off all LEDs
+                                  id(green_led).turn_off();
+                                  id(red_led).turn_off();
+                                  id(blue_led.turn_off();
+                                  break;
+                              }
+                            
+
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
