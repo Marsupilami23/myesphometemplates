@@ -44,32 +44,6 @@ time:
                                 return false;
                               }
                               });
-                              
-                            switch (burn_status) {
-                              case 6: // Green
-                                id(green_led)->turn_on();
-                                id(red_led)->turn_off();
-                                id(blue_led)->turn_off();
-                                break;
-                              case 7: // Yellow
-                              case 8: // Yellow
-                                id(green_led)->turn_on();
-                                id(red_led)->turn_on();
-                                id(blue_led)->turn_off();
-                                break;
-                              case 9: // Red
-                                id(green_led)->turn_off();
-                                id(red_led)->turn_on();
-                                id(blue_led)->turn_off();
-                                break;
-                              default: // Turn off all LEDs
-                                id(green_led)->turn_off();
-                                id(red_led)->turn_off();
-                                id(blue_led->turn_off();
-                                break;
-                            }
-                            return burn_status;
-
                       else:
                         - logger.log:
                             format: "Error: Sometimg went wrong!"
@@ -86,7 +60,14 @@ sensor:
   - platform: template
     id: burn_status
     name: "Burn Status"
-    icon: mdi:fire                            
+    icon: mdi:fire
+    on_value:
+      - lambda: |-
+          if (id(burn_status).state == 6) {
+            id(green_led).turn_on();
+            id(red_led).turn_off();
+            id(blue_led).turn_off();
+          }
 
 # Provide a pre-built button for restart the device
 button:
