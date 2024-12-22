@@ -68,6 +68,16 @@ sensor:
             id(red_led).turn_off();
             id(blue_led).turn_off();
           }
+          if (id(burn_status).state == 7 || id(burn_status).state == 8) {
+            id(green_led).turn_on();
+            id(red_led).turn_on();
+            id(blue_led).turn_off();
+          }
+          if (id(burn_status).state == 9) {
+            id(green_led).turn_off();
+            id(red_led).turn_on();
+            id(blue_led).turn_off();
+          }
 
 # Provide a pre-built button for restart the device
 button:
