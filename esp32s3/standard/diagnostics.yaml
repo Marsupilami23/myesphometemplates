@@ -46,7 +46,8 @@ time:
                               } else {
                                 ESP_LOGD("burn_category", "No burn status found!");
                               }
-                            
+                              return {};
+                              
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
