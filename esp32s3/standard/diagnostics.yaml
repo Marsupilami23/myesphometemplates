@@ -45,6 +45,10 @@ time:
                                 } else {
                                   ESP_LOGD("burn_category", "No burn status found!");
                                 });
+                      else:
+                          - logger.log
+                              format: "Error: Response status: %d, message %s"
+                              args: [response-status_code, body.c_str()];
                               
 # Provide a pre-built button for restart the device
 button:
