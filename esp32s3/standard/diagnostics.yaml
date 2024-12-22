@@ -43,12 +43,7 @@ time:
                                 ESP_LOGD("burn_category", "No burn status found!");
                                 return false;
                               }
-                            });
-                      else:
-                        - logger.log:
-                            format: "Error: Sometimg went wrong!"
-
-                            switch (burn_status) {
+                                                        switch (burn_status) {
                               case 6: // Green
                                 id(green_led).turn_on();
                                 id(red_led).turn_off();
@@ -72,6 +67,13 @@ time:
                                 break;
                             }
                             return burn_status;
+                            
+                            });
+                      else:
+                        - logger.log:
+                            format: "Error: Sometimg went wrong!"
+
+
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
