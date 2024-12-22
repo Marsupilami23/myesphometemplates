@@ -42,10 +42,12 @@ time:
                               json::parse_json(body, [](JsonObject root) -> bool {
                                 if (root["burn_forecast"]["today"]["category"].as<int>()) {
                                   id(burn_status).publish_state(root["burn_forecast"]["today"]["category"].as<int>());
+                                  return true;
                                 } else {
                                   ESP_LOGD("burn_category", "No burn status found!");
+                                  return false;
                                 }
-                                );
+                              });
                       else:
                           - logger.log:
                               format: "Error: Sometimg went wrong!"
