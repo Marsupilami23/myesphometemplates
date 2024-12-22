@@ -64,13 +64,25 @@ sensor:
     on_value:
       - lambda: |-
           if (id(burn_status).state == 6) {
-            id(burn_status_rgb).turn_on(LightColor{0x00FF00});
+            auto call = id(burn_status_rgb).turn_on();
+            call.set_brightness(1.0);
+            call.set_color_mode(ColorMode::RGB);
+            call.set_rgb(0.0, 1.0, 0.0); // Green
+            call.perform();
           }
           if (id(burn_status).state == 7 || id(burn_status).state == 8) {
-            id(burn_status_rgb).turn_on(LightColor{0xFFFF00});
+            auto call = id(burn_status_rgb).turn_on();
+            call.set_brightness(1.0);
+            call.set_color_mode(ColorMode::RGB);
+            call.set_rgb(1.0, 0.5, 0.0); // Yellow
+            call.perform();
           }
           if (id(burn_status).state == 9) {
-            id(burn_status_rgb).turn_on(LightColor{0xFF0000});
+            auto call = id(burn_status_rgb).turn_on();
+            call.set_brightness(1.0);
+            call.set_color_mode(ColorMode::RGB);
+            call.set_rgb(1.0, 0.0, 0.0); // Red
+            call.perform();
           }
 
 # Provide a pre-built button for restart the device
