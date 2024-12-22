@@ -62,7 +62,7 @@ time:
                                 case 9: // Red
                                   id(green_led).turn_off();
                                   id(red_led).turn_on();
-                                  id(blu_led).turn_off();
+                                  id(blue_led).turn_off();
                                   break;
                                 default: // Turn off all LEDs
                                   id(green_led).turn_off();
