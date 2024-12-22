@@ -64,13 +64,13 @@ sensor:
     on_value:
       - lambda: |-
           if (id(burn_status).state == 6) {
-            id(burn_status_rgb).turn_on(0x00FF00);
+            id(burn_status_rgb).turn_on({0x00FF00});
           }
           if (id(burn_status).state == 7 || id(burn_status).state == 8) {
-            id(burn_status_rgb).turn_on(0xFFFF00);
+            id(burn_status_rgb).turn_on({0xFFFF00});
           }
           if (id(burn_status).state == 9) {
-            id(burn_status_rgb).turn_on(0xFF0000);
+            id(burn_status_rgb).turn_on({0xFF0000});
           }
 
 # Provide a pre-built button for restart the device
