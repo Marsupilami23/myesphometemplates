@@ -34,13 +34,13 @@ time:
               capture_response: true
               on_response:
                 then:
-                  - logger.log:
-                      format: "Raw Response %s"
-                      args: [body.c_str()]
                   - if:
                       condition:
                           lambda: return response->status_code == 200;
                       then:
+                          - logger.log:
+                              format: "Raw Response %s"
+                              args: [body.c_str()]
                           - lambda: |-
                               json::parse_json(body, [](JsonObject root) -> bool {
                                 if (root["burn_forecast"]["today"]["category"].as<int>()) {
