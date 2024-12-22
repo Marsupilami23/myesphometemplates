@@ -46,7 +46,7 @@ time:
                                   ESP_LOGD("burn_category", "No burn status found!");
                                 });
                       else:
-                          - logger.log
+                          - logger.log:
                               format: "Error: Response status: %d, message %s"
                               args: [response-status_code, body.c_str()];
                               
