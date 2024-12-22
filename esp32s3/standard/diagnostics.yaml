@@ -13,11 +13,38 @@ binary_sensor:
     id: sensor_status
     disabled_by_default: true
 
+sensor:
+  - platform: template
+    id: burn_status
+    name: "Burn Status"
+    icon: mdi:fire
+
 http_request:
 
-
-  
-    
+time:
+  - platform: homeassistant
+    on_time:
+      - minutes: /5
+        then:
+          - http_request.get:
+              id: burn_check_request
+              url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
+              capture_response: true
+              on_response:
+                then:
+                  - if:
+                    condition:
+                        lambda: return response->status_code == 200;
+                    then:
+                        - lambda: |-
+                            json::parse_json(body, [](JsonObject root) -> bool {
+                            if (root["burn_forecast"]["today"]["category"].as<int>()) {
+                              int category = root["burn_forecast"]["today"]["category"].as<int>();
+                              id(burn_status).publish_state(category);
+                            } else {
+                              ESP_LOGD("burn_category", "No burn status found!");
+                            }
+                            
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
