@@ -61,14 +61,6 @@ sensor:
     id: burn_status
     name: "Burn Status"
     icon: mdi:fire
-
-light:
-  - platform: rgb
-    id: burn_status_rgb
-    name: "Burn_Status_LEDs"
-    red: red_led
-    green: green_led
-    blue: blue_led
     on_value:
         - lambda: |-
             if (id(burn_status).state == 6) {
@@ -89,6 +81,14 @@ light:
               call.set_rgb(1.0, 0.0, 0.0); // Red
               call.perform();
             }
+light:
+  - platform: rgb
+    id: burn_status_rgb
+    name: "Burn_Status_LEDs"
+    red: red_led
+    green: green_led
+    blue: blue_led
+    
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
