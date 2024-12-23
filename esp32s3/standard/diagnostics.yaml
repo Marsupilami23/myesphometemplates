@@ -81,6 +81,7 @@ sensor:
               call.set_rgb(1.0, 0.0, 0.0); // Red
               call.perform();
             }
+            
 light:
   - platform: rgb
     id: burn_status_rgb
