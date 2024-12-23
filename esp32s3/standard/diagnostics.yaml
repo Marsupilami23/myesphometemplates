@@ -64,22 +64,13 @@ sensor:
     on_value:
         - lambda: |-
             if (id(burn_status).state == 6) {
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_color_mode(ColorMode::RGB);
-              call.set_rgb(1.0, 0.0, 0.0); // Green
-              call.perform();
+              ESP_LOGI("burn_status", "Burning allowed");
             }
             if (id(burn_status).state == 7 || id(burn_status).state == 8) {
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_color_mode(ColorMode::RGB);
-              call.set_rgb(1.0, 0.0, 0.0); // Yellow
-              call.perform();
+              ESP_LOGI("burn_status", "Burning discouraged OR with exemptions");
             }
             if (id(burn_status).state == 9) {
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_color_mode(ColorMode::RGB);
-              call.set_rgb(1.0, 0.0, 0.0); // Red
-              call.perform();
+              ESP_LOGI("burn_status", "Burning prohibited w/o exemptions");
             }
             
 light:
