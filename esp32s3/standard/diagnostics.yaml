@@ -63,7 +63,7 @@ sensor:
     icon: mdi:fire
     on_value:
         - lambda: |-
-            call auto = id(burn_status_rgb).turn_on();
+            auto call = id(burn_status_rgb).turn_on();
             if (id(burn_status).state == 6) {
               ESP_LOGI("burn_status", "Burning allowed");
               call.set_transition_length(1000);
