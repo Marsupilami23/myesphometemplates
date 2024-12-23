@@ -8,11 +8,3 @@ output:
   - platform: ledc
     pin: $sub_blue_pin
     id: blue_led
-
-light:
-  - platform: rgb
-    id: burn_status_rgb
-    name: "Burn_Status_LEDs"
-    red: red_led
-    green: green_led
-    blue: blue_led
