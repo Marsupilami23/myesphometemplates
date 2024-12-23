@@ -66,7 +66,7 @@ sensor:
             if (id(burn_status).state == 6) {
               auto call = id(burn_status_rgb).turn_on();
               call.set_color_mode(ColorMode::RGB);
-              call.set_rgb(0.0, 1.0, 0.0); // Green
+              call.set_rgb(1.0, 0.0, 0.0); // Green
               call.perform();
             }
             if (id(burn_status).state == 7 || id(burn_status).state == 8) {
