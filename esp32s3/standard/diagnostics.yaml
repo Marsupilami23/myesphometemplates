@@ -61,27 +61,30 @@ sensor:
     id: burn_status
     name: "Burn Status"
     icon: mdi:fire
-    on_value:
-      - lambda: |-
-          if (id(burn_status).state == 6) {
-            auto call = id(burn_status_rgb).turn_on();
-            call.set_color_mode(ColorMode::RGB);
-            call.set_rgb(0.0, 1.0, 0.0); // Green
-            call.perform();
-          }
-          if (id(burn_status).state == 7 || id(burn_status).state == 8) {
-            auto call = id(burn_status_rgb).turn_on();
-            call.set_color_mode(ColorMode::RGB);
-            call.set_rgb(1.0, 0.0, 0.0); // Yellow
-            call.perform();
-          }
-          if (id(burn_status).state == 9) {
-            auto call = id(burn_status_rgb).turn_on();
-            call.set_color_mode(ColorMode::RGB);
-            call.set_rgb(1.0, 0.0, 0.0); // Red
-            call.perform();
-          }
 
+light:
+  - platform: rgb
+    
+  on_value:
+        - lambda: |-
+            if (id(burn_status).state == 6) {
+              auto call = id(burn_status_rgb).turn_on();
+              call.set_color_mode(ColorMode::RGB);
+              call.set_rgb(0.0, 1.0, 0.0); // Green
+              call.perform();
+            }
+            if (id(burn_status).state == 7 || id(burn_status).state == 8) {
+              auto call = id(burn_status_rgb).turn_on();
+              call.set_color_mode(ColorMode::RGB);
+              call.set_rgb(1.0, 0.0, 0.0); // Yellow
+              call.perform();
+            }
+            if (id(burn_status).state == 9) {
+              auto call = id(burn_status_rgb).turn_on();
+              call.set_color_mode(ColorMode::RGB);
+              call.set_rgb(1.0, 0.0, 0.0); // Red
+              call.perform();
+            }
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
