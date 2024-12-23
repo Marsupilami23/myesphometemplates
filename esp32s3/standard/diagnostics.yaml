@@ -81,7 +81,6 @@ sensor:
               call.set_transition_length(1000);
               call.set_rgb(1.0, 0.0, 0.0);
             }
-            
 light:
   - platform: rgb
     id: burn_status_rgb
@@ -89,26 +88,6 @@ light:
     red: red_led
     green: green_led
     blue: blue_led
-    on_value:
-        - lambda: |-
-            if (id(burn_status).state == 6) {
-              ESP_LOGI("burn_status", "Burning allowed");
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_transition_length(1000);
-              call.set_rgb(0.0, 1.0, 0.0);
-            }
-            if (id(burn_status).state == 7 || id(burn_status).state == 8) {
-              ESP_LOGI("burn_status", "Burning discouraged OR with exemptions");
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_transition_length(1000);
-              call.set_rgb(1.0, 0.5, 0,0);
-            }
-            if (id(burn_status).state == 9) {
-              ESP_LOGI("burn_status", "Burning prohibited w/o exemptions");
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_transition_length(1000);
-              call.set_rgb(1.0, 0.0, 0.0);
-            }
             
 # Provide a pre-built button for restart the device
 button:
