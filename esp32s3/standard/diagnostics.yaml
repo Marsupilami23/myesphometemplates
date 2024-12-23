@@ -71,7 +71,7 @@ sensor:
             }
             if (id(burn_status).state == 7 || id(burn_status).state == 8) {
               ESP_LOGI("burn_status", "Burning discouraged OR with exemptions");
-              call.set_transition_lenth(1000);
+              call.set_transition_length(1000);
               call.set_rgb(1.0, 0.5, 0,0);
             }
             if (id(burn_status).state == 9) {
