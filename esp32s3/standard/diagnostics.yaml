@@ -93,8 +93,6 @@ sensor:
                 green: 0%
                 blue: 0%
     
-      - light.turn_off: burn_status_rgb
-          
 light:
   - platform: rgb
     id: burn_status_rgb
