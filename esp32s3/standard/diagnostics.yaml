@@ -93,9 +93,9 @@ sensor:
                 green: 0%
                 blue: 0%
     
-        else:
-          - light.turn_off:
-              id: burn_status_rgb
+          else:
+            - light.turn_off:
+                id: burn_status_rgb
           
 light:
   - platform: rgb
