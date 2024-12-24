@@ -14,7 +14,7 @@ http_request:
 time:
   - platform: homeassistant
     on_time:
-      - minutes: 1
+      - minutes: 01
         hour: 0
         then:
           - http_request.get:
