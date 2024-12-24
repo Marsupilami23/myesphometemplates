@@ -3,8 +3,8 @@ substitutions:
   sub_friendly_name: "Change Me"
   sub_ap_timeout: 15s
 
-  sub_red_pin: GPIO03
-  sub_blue_pin: GPIO02
+  sub_red_pin: GPIO02
+  sub_blue_pin: GPIO00
   sub_green_pin: GPIO01
   
   disable_entities: "true"
