@@ -111,6 +111,9 @@ button:
     entity_category: "diagnostic"
 
   - platform: template
-    name: "Show Burn Status"
-    id: show_burn_status
+    name: "Test button"
+    id: test_button
+    on_press:
+      then:
+        - logger.log: Button Pressed
     
