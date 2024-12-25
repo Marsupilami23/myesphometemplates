@@ -4,7 +4,7 @@ substitutions:
   sub_ap_timeout: 15s
 
   sub_red_pin:   GPIO01
-  sub_green_pin: GPIO02
+  sub_green_pin: GPIO04
   sub_blue_pin:  GPIO03
   
   disable_entities: "true"
