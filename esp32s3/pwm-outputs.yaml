@@ -8,6 +8,4 @@ output:
   - platform: ledc
     pin: $sub_blue_pin
     id: blue_led
-  - platform: ledc
-    pin: $sub_test_button
-    id: test_button
+
