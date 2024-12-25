@@ -109,3 +109,8 @@ button:
     id: button_restart
     icon: mdi:power-cycle
     entity_category: "diagnostic"
+
+  - platform: template
+    name: "Show Burn Status"
+    id: show_burn_status
+    
