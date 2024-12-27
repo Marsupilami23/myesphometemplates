@@ -58,7 +58,12 @@ binary_sensor:
     disabled_by_default: true
 
   - platform: gpio
+    id: "test_button"
     pin: "${sub_test_button}"
+    name: Test Button
+    on_press:
+      -logger.log: Button Pressed
+    
 
 sensor:
   - platform: template
