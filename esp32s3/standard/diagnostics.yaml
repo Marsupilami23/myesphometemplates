@@ -57,6 +57,9 @@ binary_sensor:
     id: sensor_status
     disabled_by_default: true
 
+  - platform: gpio
+    pin: "${sub_test_button}"
+
 sensor:
   - platform: template
     id: burn_status
@@ -109,11 +112,3 @@ button:
     id: button_restart
     icon: mdi:power-cycle
     entity_category: "diagnostic"
-
-  - platform: template
-    name: "Test button"
-    id: test_button
-    on_press:
-      then:
-        - logger.log: Button Pressed
-    
