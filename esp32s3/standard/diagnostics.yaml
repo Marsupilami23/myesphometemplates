@@ -18,18 +18,7 @@ binary_sensor:
   - platform: status
     name: "API Status"
     id: sensor_status
-    disabled_by_default: true
-
-  - platform: gpio
-    id: "test_button"
-    pin:
-      number: "${sub_test_button}"
-      inverted: true
-    name: Test Button
-    on_press:
-      then:
-        - logger.log: Button Pressed
-    
+    disabled_by_default: true    
 
 sensor:
   - platform: template
