@@ -23,7 +23,8 @@ binary_sensor:
   - platform: gpio
     id: "test_button"
     pin:
-      number: GPIO05
+      number: "${sub_test_button}"
+      inverted: true
       mode:
         input: true
         pullup: true
