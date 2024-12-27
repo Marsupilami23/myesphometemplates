@@ -34,6 +34,9 @@ wifi:
   ap:
     ssid: "${sub_name}-setup"
     password: "${wifi_password}"
+  on_connect:
+    then:
+      
 
 web_server:
   version: 3
