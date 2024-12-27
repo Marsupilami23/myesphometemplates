@@ -25,9 +25,6 @@ binary_sensor:
     pin:
       number: "${sub_test_button}"
       inverted: true
-      mode:
-        input: true
-        pullup: true
     name: Test Button
     on_press:
       then:
