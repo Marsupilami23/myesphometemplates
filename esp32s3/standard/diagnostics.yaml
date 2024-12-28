@@ -66,7 +66,7 @@ text_sensor:
         id(burn_status).publish_state("Burning Discouraged or Burning Prohibited with exceptions");
       } else if (burn_cat == 9) {
         call.set_rgb(1.0, 0.0, 0.0);
-        id(burn_status.publish_state("Burning Prohibited, no exceptions!");
+        id(burn_status).publish_state("Burning Prohibited, no exceptions!");
       }
       return "";
     
