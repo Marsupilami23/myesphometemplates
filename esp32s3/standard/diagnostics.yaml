@@ -57,17 +57,20 @@ text_sensor:
       call.set_color_mode(ColorMode::RGB);
 
       auto burn_cat = id(burn_category);
+
+      std::string burn_status_text = "Unknown";
       
       if (burn_cat == 6) {
         call.set_rgb(0.0, 1.0, 0.0);
-        id(burn_status).publish_state("Burning Allowed");
+        burn_status_text = "Burning Allowed";
       } else if (burn_cat == 7 || burn_cat == 8) {
         call.set_rgb(1.0, 0.5, 0.0);
-        id(burn_status).publish_state("Burning Discouraged or Burning Prohibited with exceptions");
+        burn_status_text = "Burning Discouraged or Burning Prohibited with exceptions";
       } else if (burn_cat == 9) {
         call.set_rgb(1.0, 0.0, 0.0);
-        id(burn_status).publish_state("Burning Prohibited, no exceptions!");
+        burn_status_text = "Burning Prohibited, no exceptions!";
       }
+      id(burn_status).publish_state(burn_status_text);
       return std::string("");
     
 light:
