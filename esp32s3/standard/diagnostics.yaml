@@ -11,8 +11,13 @@ http_request:
   verify_ssl: false
 
 time:
-  - platform: homeassistant    
+  - platform: homeassistant
+    id: homeassistant_time
 
+deep_sleep:
+  run_duration: 30s
+  sleep_duration: 10min
+  
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
