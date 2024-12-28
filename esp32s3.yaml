@@ -6,7 +6,7 @@ substitutions:
   sub_red_pin:   GPIO01
   sub_green_pin: GPIO03
   sub_blue_pin:  GPIO04
-  sub_test_button: GPIO05
+  sub_test_button: GPIO02
   sub_user_pin: GPIO21
   
   disable_entities: "true"
