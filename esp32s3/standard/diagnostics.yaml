@@ -52,7 +52,7 @@ sensor:
     on_value:
       - if:
           condition:
-            - lambda: return id(burn_category).state == 6;
+            - lambda: return id(burn_category) == 6;
           then:
             - light.turn_on:
                 id: burn_status_rgb
@@ -62,7 +62,7 @@ sensor:
                 blue: 0%
       - if:
           condition:
-            - lambda: return id(burn_category).state == 7 || id(burn_category).state == 8;
+            - lambda: return id(burn_category) == 7 || id(burn_category) == 8;
           then:
             - light.turn_on:
                 id: burn_status_rgb
@@ -72,7 +72,7 @@ sensor:
                 blue: 0%
       - if:
           condition:
-            - lambda: return id(burn_category).state == 9;
+            - lambda: return id(burn_category) == 9;
           then:
             - light.turn_on:
                 id: burn_status_rgb
