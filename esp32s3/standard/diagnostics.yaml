@@ -23,7 +23,10 @@ binary_sensor:
   - platform: gpio
     id: test_button
     name: Test Button
-    pin: "${sub_test_button}"
+    pin:
+      number: "${sub_test_button}"
+      mode:
+        input: true
     on_state:
       then:
         - logger.log: "Button Pressed"      
