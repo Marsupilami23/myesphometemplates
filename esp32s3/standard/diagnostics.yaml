@@ -24,7 +24,7 @@ binary_sensor:
     id: test_button
     name: Test Button
     pin: "${sub_test_button}"
-    on_press:
+    on_state:
       then:
         - logger.log: "Button Pressed"      
 
