@@ -1,4 +1,4 @@
-substitutions:
+esubstitutions:
   log_level: DEBUG
 
 # Enable logging bia network and disable serial port
@@ -33,7 +33,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    on_state:
+    on_press:
       then:
         - logger.log: "Button Pressed"      
 
