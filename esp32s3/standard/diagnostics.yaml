@@ -77,7 +77,11 @@ light:
     red: red_led
     green: green_led
     blue: blue_led
-            
+  - platform: monocromatic
+    id: user_led
+    name: "User LED"
+    output: user_led_pin
+    
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
