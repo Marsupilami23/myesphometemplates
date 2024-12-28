@@ -39,7 +39,7 @@ binary_sensor:
         - delay: 2min
         - deep_sleep.allow: deep_sleep_1
 
-switch:
+sensor:
   - platform: template
     id: burn_status
     name: "Burn Status"
