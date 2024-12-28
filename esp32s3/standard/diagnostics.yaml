@@ -32,10 +32,9 @@ binary_sensor:
       inverted: true
       mode:
         input: true
-        pullup: true
     on_press:
       then:
-        - logger.log: "Button Pressed"      
+        - logger.log: Button Pressed
 
 sensor:
   - platform: template
