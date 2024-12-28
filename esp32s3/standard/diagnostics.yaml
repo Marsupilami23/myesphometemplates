@@ -80,7 +80,7 @@ light:
   - platform: monocromatic
     id: user_led
     name: "User LED"
-    output: user_led_pin
+    output: pwm_user_led
     
 # Provide a pre-built button for restart the device
 button:
