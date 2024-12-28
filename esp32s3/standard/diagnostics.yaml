@@ -28,6 +28,7 @@ binary_sensor:
       inverted: true
       mode:
         input: true
+        pullup: true
     on_state:
       then:
         - logger.log: "Button Pressed"      
