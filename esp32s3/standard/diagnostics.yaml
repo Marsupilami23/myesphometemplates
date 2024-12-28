@@ -74,9 +74,9 @@ light:
   - platform: rgb
     id: burn_status_rgb
     name: "Burn_Status_LEDs"
-    red: red_led
-    green: green_led
-    blue: blue_led
+    red: pwm_red_led
+    green: pwm_green_led
+    blue: pwm_blue_led
   - platform: monocromatic
     id: user_led
     name: "User LED"
