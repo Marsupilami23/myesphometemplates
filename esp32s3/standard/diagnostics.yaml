@@ -58,16 +58,14 @@ text_sensor:
       if (id(burn_category).value == 6) {
         call.set_rgb(0.0, 1.0, 0.0);
         id(burn_status).publish_state("Burning Allowed");
-      }
-      if (id(burn_category)value == 7 || id(burn_category).value == 8) {
+      } else if (id(burn_category)value == 7 || id(burn_category).value == 8) {
         call.set_rgb(1.0, 0.5, 0.0);
         id(burn_status).publish_state("Burning Discouraged or Burning Prohibited with exceptions");
-      }
-      if (id(burn_category).value == 9) {
+      } else if (id(burn_category).value == 9) {
         call.set_rgb(1.0, 0.0, 0.0);
         id(burn_status.publish_state("Burning Prohibited, no exceptions!");
       }
-      return false;
+      return "";
     
 light:
   - platform: rgb
