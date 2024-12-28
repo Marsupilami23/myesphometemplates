@@ -57,7 +57,7 @@ wifi:
                         
                         json::parse_json(cleaned_body, [](JsonObject root) -> bool {
                           if (root["burn_forecast"]["today"]["category"].as<int>()) {
-                            id(burn_status).publish_state(root["burn_forecast"]["today"]["category"].as<int>());
+                            id(burn_category).publish_state(root["burn_forecast"]["today"]["category"].as<int>());
                             return true;
                           } else {
                             ESP_LOGD("burn_category", "No burn status found!");
