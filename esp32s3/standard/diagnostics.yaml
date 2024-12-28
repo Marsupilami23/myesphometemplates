@@ -36,7 +36,7 @@ binary_sensor:
       then:
         - logger.log: "Button Pressed"
         - deep_sleep.prevent: deep_sleep_1
-        - delay: 2m
+        - delay: 2min
         - deep_sleep.allow: deep_sleep_1
 
 sensor:
