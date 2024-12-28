@@ -26,6 +26,7 @@ binary_sensor:
     pin:
       number: "${sub_test_button}"
       mode:
+        pullup: true
         input: true
     on_state:
       then:
