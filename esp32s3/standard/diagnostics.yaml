@@ -34,7 +34,9 @@ binary_sensor:
         input: true
     on_press:
       then:
-        - logger.log: Button Pressed
+        - deep_sleep.prevent: deep_sleep_1
+        - delay: 30s
+        - deep_sleep.allow: deep_sleep_1
 
 sensor:
   - platform: template
