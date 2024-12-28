@@ -3,7 +3,7 @@ output:
     pin: "${sub_red_pin}"
     id: pwm_red_led
   - platform: ledc
-    pin: "${sub_green_pin"}
+    pin: "${sub_green_pin}"
     id: pwm_green_led
   - platform: ledc
     pin: "${sub_blue_pin}"
