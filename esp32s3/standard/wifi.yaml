@@ -64,13 +64,14 @@ wifi:
                             return false;
                           }
                           });
+                    - deep_sleep.enter:
+                      id: deep_sleep_1
+                      until: "00:00:01"
+                      time_id: homeassistant_time
+                      
                   else:
                     - logger.log:
                         format: "Error: Sometimg went wrong!"
-              - deep_sleep.enter:
-                id: deep_sleep_1
-                until: "00:00:01"
-                time_id: homeassistant_time
 
 web_server:
   version: 3
