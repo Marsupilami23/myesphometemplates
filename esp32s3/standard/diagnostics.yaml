@@ -77,7 +77,7 @@ light:
     red: pwm_red_led
     green: pwm_green_led
     blue: pwm_blue_led
-  - platform: monocromatic
+  - platform: monochromatic
     id: user_led
     name: "User LED"
     output: pwm_user_led
