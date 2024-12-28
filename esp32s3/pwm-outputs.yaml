@@ -10,4 +10,4 @@ output:
     id: blue_led
   - platform: ledc
     pin: "${sub_user_pin}"
-    id: user_led
+    id: pwm_user_led
