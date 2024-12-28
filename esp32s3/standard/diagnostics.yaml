@@ -14,6 +14,9 @@ time:
   - platform: homeassistant
     id: homeassistant_time
 
+deep_sleep:
+  id: deep_sleep_1
+
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
