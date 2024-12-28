@@ -24,6 +24,9 @@ binary_sensor:
     id: test_button
     name: Test Button
     pin: "${sub_test_button}"
+    on_press:
+      then:
+        - logger.log: "Button Pressed"      
 
 sensor:
   - platform: template
