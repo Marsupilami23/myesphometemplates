@@ -68,7 +68,7 @@ text_sensor:
         call.set_rgb(1.0, 0.0, 0.0);
         id(burn_status).publish_state("Burning Prohibited, no exceptions!");
       }
-      return "";
+      return std::string("");
     
 light:
   - platform: rgb
