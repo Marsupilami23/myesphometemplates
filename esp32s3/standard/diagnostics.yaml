@@ -51,18 +51,17 @@ text_sensor:
     name: "Burn Status"
     icon: mdi:fire
     lambda: |-
-      auto burn_status = id(burn_category).value;
       auto call = id(burn_status_rgb).turn_on();
       call.set_transition_length(1000);
       call.set_brightness(.25);
       call.set_color_mode(ColorMode::RGB);
-      if (id(burn_category).value == 6) {
+      if (id(burn_category) == 6) {
         call.set_rgb(0.0, 1.0, 0.0);
         id(burn_status).publish_state("Burning Allowed");
-      } else if (id(burn_category)value == 7 || id(burn_category).value == 8) {
+      } else if (id(burn_category) == 7 || id(burn_category) == 8) {
         call.set_rgb(1.0, 0.5, 0.0);
         id(burn_status).publish_state("Burning Discouraged or Burning Prohibited with exceptions");
-      } else if (id(burn_category).value == 9) {
+      } else if (id(burn_category) == 9) {
         call.set_rgb(1.0, 0.0, 0.0);
         id(burn_status.publish_state("Burning Prohibited, no exceptions!");
       }
