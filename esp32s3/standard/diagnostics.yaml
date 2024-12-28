@@ -49,7 +49,6 @@ sensor:
     id: burn_status
     name: "Burn Status"
     icon: mdi:fire
-    restore_value: true
     on_value:
       - if:
           condition:
