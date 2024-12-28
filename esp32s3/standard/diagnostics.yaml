@@ -44,42 +44,29 @@ binary_sensor:
         - delay: 2min
         - deep_sleep.allow: deep_sleep_1
 
-sensor:
+text_sensor:
   - platform: template
     id: burn_status
     name: "Burn Status"
     icon: mdi:fire
-    on_value:
-      - if:
-          condition:
-            - lambda: return id(burn_category) == 6;
-          then:
-            - light.turn_on:
-                id: burn_status_rgb
-                brightness: 25%
-                red: 0%
-                green: 100%
-                blue: 0%
-      - if:
-          condition:
-            - lambda: return id(burn_category) == 7 || id(burn_category) == 8;
-          then:
-            - light.turn_on:
-                id: burn_status_rgb
-                brightness: 25%
-                red: 100%
-                green: 50%
-                blue: 0%
-      - if:
-          condition:
-            - lambda: return id(burn_category) == 9;
-          then:
-            - light.turn_on:
-                id: burn_status_rgb
-                brightness: 25%
-                red: 100%
-                green: 0%
-                blue: 0%
+    lambda: |-
+      auto burn_status = id(burn_category).state;
+      auto call = id(burn_status_rgb).turn_on();
+      call.set_transition_length(1000);
+      call.set_brightness(.25);
+      call.set_color_mode(ColorMode::RGB);
+      if (burn_category) == 6 {
+        call.set_rgb(0.0, 1.0, 0.0);
+        id(burn_status).publish_state("Burning Allowed");
+      }
+      if (burn_category) == 7 || (burn_category) == 8 {
+        call.set_rgb(1.0, 0.5, 0.0);
+        id(burn_status).publish_state("Burning Discouraged or Burning Prohibited with exceptions");
+      }
+      if (burn_category) == 9 {
+        call.set_rgb(1.0, 0.0, 0.0);
+        id(burn_status.publish_state("Burning Prohibited, no exceptions!");
+      }
     
 light:
   - platform: rgb
