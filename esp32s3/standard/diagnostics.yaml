@@ -58,7 +58,7 @@ text_sensor:
 
       auto burn_cat = id(burn_category);
       
-      if (burn_cat) == 6) {
+      if (burn_cat == 6) {
         call.set_rgb(0.0, 1.0, 0.0);
         id(burn_status).publish_state("Burning Allowed");
       } else if (burn_cat == 7 || burn_cat == 8) {
