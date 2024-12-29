@@ -27,9 +27,6 @@ time:
           - lambda: |-
               id(wifi_brg95758).start();
 
-#deep_sleep:
-#  id: deep_sleep_1
-
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
