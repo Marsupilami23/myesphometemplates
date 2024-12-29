@@ -75,33 +75,36 @@ light:
     red: pwm_red_led
     green: pwm_green_led
     blue: pwm_blue_led
-    effects:
-      - lambda:
-          name: "Burn Status Light"
-          lambda: |-
-            auto burn_cat = id(burn_category);
-            auto call = id(burn_status_rgb).make_call();
 
-            if (burn_cat == 6) {
-              id(burn_status_rgb)->turn_on();
-              call.set_red(1.0f);
-              call.set_green(0.0f);
-              call.set_blue(1.0);
-            } else if (burn_cat == 7 || burn_cat == 8) {
-              id(burn_status_rgb)->turn_on();
-              call.set_red(1.0f);
-              call.set_green(0.0f);
-              call.set_blue(0.0);
-            } else if (burn_cat == 9) {
-              id(burn_status_rgb)->turn_on();
-              call.set_red(0.0f);
-              call.set_green(1.0f);
-              call.set_blue(1.0);
-            } else {
-              id(burn_status_rgb)->turn_off();
-            }
+sensor:
+  - platform: template
+    id: burn_status_sensor
+    name: "Burn Status"
+    icon: "mdi:fire"
+    lambda: |-
+      auto burn_cat = id(burn_category);
+      auto call = id(burn_status_rgb).make_call();
 
-            call.perform();
+      call.set_state(true);
+
+      if (burn_cat == 6) {
+#        id(burn_status_rgb)->turn_on();
+        call.set_red(1.0f);
+        call.set_green(0.0f);
+        call.set_blue(1.0);
+      } else if (burn_cat == 7 || burn_cat == 8) {
+#        id(burn_status_rgb)->turn_on();
+        call.set_red(1.0f);
+        call.set_green(0.0f);
+        call.set_blue(0.0);
+      } else if (burn_cat == 9) {
+#        id(burn_status_rgb)->turn_on();
+        call.set_red(0.0f);
+        call.set_green(1.0f);
+        call.set_blue(1.0);
+      } else {
+      }
+      call.perform();
     
 # Provide a pre-built button for restart the device
 button:
