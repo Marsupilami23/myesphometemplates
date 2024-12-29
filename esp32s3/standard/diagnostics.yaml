@@ -40,10 +40,10 @@ binary_sensor:
         input: true
     on_press:
       then:
-        - logger.log: "Button Pressed"
-#        - deep_sleep.prevent: deep_sleep_1
-#        - delay: 2min
-#        - deep_sleep.allow: deep_sleep_1
+        - lambda: |-
+            id(deep_sleep).prevent();
+            delay(1200000);
+            id(deep_sleep).allow();
 
 text_sensor:
   - platform: template
