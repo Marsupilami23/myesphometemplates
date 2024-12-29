@@ -110,7 +110,6 @@ sensor:
       call.set_state(false);
       }
       call.perform();
-      // Publish the burn_cat value to the sensor
       return 0.0f;
     
 # Provide a pre-built button for restart the device
