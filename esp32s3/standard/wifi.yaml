@@ -69,11 +69,8 @@ wifi:
                             return false;
                           }
                           });
-                      
-                  else:
-                    - logger.log:
-                        format: "Error: Sometimg went wrong!"
-
+                        // Putting to deep sleep
+                        id(deep_sleep).allow();
 web_server:
   version: 3
   include_internal: true
