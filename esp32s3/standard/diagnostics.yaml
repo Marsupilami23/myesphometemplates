@@ -77,25 +77,25 @@ light:
     blue: pwm_blue_led
     effects:
       - addressable_lambda:
-        name: "Burn Status Light"
-        lambda: |-
-          auto burn_cat = id(burn_category);
-          auto call = id(burn_status_rgb).turn_on();
-          call.set_transition_length(1000);
-          call.set_brightness(.50);
-          call.set_color_mode(ColorMode::RGB);
-    
-          if (burn_cat == 6) {
-            call.set_rgb(0.0, 1.0, 0.0);
-            call.perform();
-          } else if (burn_cat == 7 || burn_cat == 8) {
-            call.set_rgb(1.0, 0.5, 0.0);
-            call.perform();
-          } else if (burn_cat == 9) {
-            call.set_rgb(1.0, 0.0, 0.0);
-            call.perform();
-          }
-          return {};
+          name: "Burn Status Light"
+          lambda: |-
+            auto burn_cat = id(burn_category);
+            auto call = id(burn_status_rgb).turn_on();
+            call.set_transition_length(1000);
+            call.set_brightness(.50);
+            call.set_color_mode(ColorMode::RGB);
+      
+            if (burn_cat == 6) {
+              call.set_rgb(0.0, 1.0, 0.0);
+              call.perform();
+            } else if (burn_cat == 7 || burn_cat == 8) {
+              call.set_rgb(1.0, 0.5, 0.0);
+              call.perform();
+            } else if (burn_cat == 9) {
+              call.set_rgb(1.0, 0.0, 0.0);
+              call.perform();
+            }
+            return {};
     
 # Provide a pre-built button for restart the device
 button:
