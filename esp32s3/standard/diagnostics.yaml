@@ -83,16 +83,16 @@ light:
             auto call = id(burn_status_rgb); // Get a reference to the light
       
             if (burn_cat == 6) {
-              call.turn_on(); // Turn on the light first
-              call.set_rgb(0.0f, 1.0f, 0.0f); // Then set the color to Green
+              call->turn_on(); // Turn on the light first
+              call->set_rgb(0.0f, 1.0f, 0.0f); // Then set the color to Green
             } else if (burn_cat == 7 || burn_cat == 8) {
-              call.turn_on();
-              call.set_rgb(1.0f, 1.0f, 0.0f); // Yellow
+              call->turn_on();
+              call->set_rgb(1.0f, 1.0f, 0.0f); // Yellow
             } else if (burn_cat == 9) {
-              call.turn_on();
-              call.set_rgb(1.0f, 0.0f, 0.0f); // Red
+              call->turn_on();
+              call->set_rgb(1.0f, 0.0f, 0.0f); // Red
             } else {
-              call.turn_off();
+              call->turn_off();
             }
     
 # Provide a pre-built button for restart the device
