@@ -22,6 +22,9 @@ ota:
     on_error:
       then:
         - button.press: button_restart
+    on_begin:
+      then:
+        - 
 safe_mode:
   num_attempts: "${sub_ota_num_attempts}"
   
