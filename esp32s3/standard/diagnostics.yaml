@@ -1,6 +1,7 @@
 substitutions:
   log_level: DEBUG
-    
+  sub_baud_rate: "115200"
+  
 globals:
   - id: burn_category
     type: int
