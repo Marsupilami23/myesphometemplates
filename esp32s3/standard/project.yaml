@@ -19,25 +19,6 @@ external_components:
     refresh: always
 
 deep_sleep:
-  on_wake:
-    - lambda: |-
-        // Get the current time
-        auto now = id(homeassistant_time).now();
-
-        // Check if it's 12:01:00 AM
-        if (now.hour == 0 && now.minute == 1) {
-          // Trigger the http_request to update the burn category
-          id(burn_check_request).start();
-        }
-
-        // Check if wakeup was caused by the button
-        if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0) {
-          // Prevent immediate deep sleep
-          id(deep_sleep).prevent();
-
-          // Delay 2 minutes
-          delay(1200000); // 2 minutes in milliseconds
-
-          // Allow deep sleep again;
-          id(deep_sleep).allow();
-        }
+ wakeup_pin:
+   number: "${sub_test_button}"
+   mode: WAKEUP_PIN_MODE_KEEP_AWAKE
