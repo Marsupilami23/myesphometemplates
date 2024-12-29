@@ -85,7 +85,7 @@ light:
 sensor:
   - platform: template
     id: burn_status_sensor
-    name: "Burn Status"
+    name: "Burn Status Sensor"
     icon: "mdi:fire"
     lambda: |-
       auto burn_cat = id(burn_category_num);
