@@ -69,11 +69,6 @@ wifi:
                             return false;
                           }
                           });
-#                    - delay: 2min
-#                    - deep_sleep.enter:
-#                        id: deep_sleep_1
-#                        until: "00:00:01"
-#                        time_id: homeassistant_time
                       
                   else:
                     - logger.log:
