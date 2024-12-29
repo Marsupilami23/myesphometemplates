@@ -30,4 +30,5 @@ deep_sleep:
         // Check if it's 12:01:00 AM
         if (now.hour == 0 && now.minute == 1) {
           // Trigger the http_request to update the burn category
-          id(burn_category
+          id(burn_check_request).start();
+        }
