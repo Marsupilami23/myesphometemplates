@@ -82,6 +82,8 @@ light:
             auto burn_cat = id(burn_category);
             auto call = id(burn_status_rgb).make_call();
 
+            call.set_state(true);
+            
             if (burn_cat == 6) {
               call.set_red(1.0f);
               call.set_green(0.0f);
