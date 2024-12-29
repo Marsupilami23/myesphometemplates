@@ -2,7 +2,7 @@ substitutions:
   log_level: DEBUG
 
 globals:
-  - id: burn_category_num
+  - id: burn_category
     type: int
     restore_value: true
     initial_value: "0"
@@ -57,7 +57,7 @@ text_sensor:
     name: "Burn Status"
     icon: mdi:fire
     lambda: |-
-      auto burn_cat = id(burn_category_num);
+      auto burn_cat = id(burn_category);
       std::string burn_status_text = "Unknown";
       
       if (burn_cat == 6) {
@@ -88,7 +88,7 @@ sensor:
     name: "Burn Status Category"
     icon: "mdi:fire"
     lambda: |-
-      auto burn_cat = id(burn_category_num);
+      auto burn_cat = id(burn_category);
       auto call = id(burn_status_rgb).make_call();
 
       call.set_state(true);
