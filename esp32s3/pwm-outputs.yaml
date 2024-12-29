@@ -10,6 +10,5 @@ output:
     id: pwm_blue_led
   - platform: ledc
     pin: "${sub_user_pin}"
-    allow_other_uses: true
     id: pwm_user_led
     inverted: true
