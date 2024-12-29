@@ -83,7 +83,7 @@ light:
             auto call = id(burn_status_rgb); // Get a reference to the light
 
             // Get the underlying RGBLightOutput
-            auto* rgb_light = static_cast<rgb::RGBLightOutput*>(call.get());
+            auto* rgb_light = static_cast<rgb::RGBLightOutput*>(call->get());
       
             if (burn_cat == 6) {
               rgb_light->set_red(1.0f);
