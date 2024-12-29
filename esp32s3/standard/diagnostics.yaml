@@ -80,9 +80,6 @@ light:
           name: "Burn Status Light"
           lambda: |-
             auto burn_cat = id(burn_category);
-            call.set_transition_length(1000);
-            call.set_brightness(.50);
-            call.set_color_mode(ColorMode::RGB);
       
             if (burn_cat == 6) {
               id(burn_status_rgb).turn_on({0.0f, 1.0f, 0.0f}); // Green
