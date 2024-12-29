@@ -103,6 +103,7 @@ sensor:
       call.set_state(false);
       }
       call.perform();
+      return "Updated";
     
 # Provide a pre-built button for restart the device
 button:
