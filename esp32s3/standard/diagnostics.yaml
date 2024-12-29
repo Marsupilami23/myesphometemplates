@@ -20,8 +20,8 @@ time:
   - platform: homeassistant
     id: homeassistant_time
 
-deep_sleep:
-  id: deep_sleep_1
+#deep_sleep:
+#  id: deep_sleep_1
 
 binary_sensor:
   # Diagnostic sensor for connection
@@ -41,9 +41,9 @@ binary_sensor:
     on_press:
       then:
         - logger.log: "Button Pressed"
-        - deep_sleep.prevent: deep_sleep_1
-        - delay: 2min
-        - deep_sleep.allow: deep_sleep_1
+#        - deep_sleep.prevent: deep_sleep_1
+#        - delay: 2min
+#        - deep_sleep.allow: deep_sleep_1
 
 text_sensor:
   - platform: template
