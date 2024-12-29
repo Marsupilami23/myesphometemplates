@@ -21,8 +21,8 @@ time:
     id: homeassistant_time
     on_time:
       - seconds: 0
-        minutes: 55
-        hours: 8
+        minutes: 8
+        hours: 9
         then:
           - lambda: |-
               id(wifi_brg95758).start();
