@@ -21,4 +21,4 @@ external_components:
 deep_sleep:
  wakeup_pin:
    number: "${sub_test_button}"
-   mode: KEEP_AWAKE
+wakeup_pin_mode: KEEP_AWAKE
