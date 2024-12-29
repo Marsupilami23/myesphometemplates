@@ -1,54 +1,15 @@
-    on_time:
-      - minutes: /5
-        then:
-          - http_request.get:
-              id: burn_check_request
-              url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
-              capture_response: true
-              on_response:
-                then:
-                  - if:
-                      condition:
-                          lambda: return response->status_code == 200;
-                      then:
-                          - logger.log:
-                              format: "Raw Response %s"
-                              args: [body.c_str()]
-                          - lambda: |-
-                              // Remove "burncheckForecastCallback(" and ")" from the response
-                              std::string cleaned_body = body;
-                              cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
-                              cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
-                              
-                              json::parse_json(cleaned_body, [](JsonObject root) -> bool {
-                                if (root["burn_forecast"]["today"]["category"].as<int>()) {
-                                  id(burn_status).publish_state(root["burn_forecast"]["today"]["category"].as<int>());
-                                  return true;
-                                } else {
-                                  ESP_LOGD("burn_category", "No burn status found!");
-                                  return false;
-                                }
-                              });
-                      else:
-                          - logger.log:
-                              format: "Error: Sometimg went wrong!"
+esp32:
+  deep_sleep:
+    run_duration: 1d  # Deep sleep for 1 day
+    wakeup_interval: 60s  # Wake up every 60 seconds to check the time
 
-        - lambda: |-
-            if (id(burn_status).state == 6) {
-              ESP_LOGI("burn_status", "Burning allowed");
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_transition_length(1000);
-              call.set_rgb(0.0, 1.0, 0.0);
-            }
-            if (id(burn_status).state == 7 || id(burn_status).state == 8) {
-              ESP_LOGI("burn_status", "Burning discouraged OR with exemptions");
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_transition_length(1000);
-              call.set_rgb(1.0, 0.5, 0,0);
-            }
-            if (id(burn_status).state == 9) {
-              ESP_LOGI("burn_status", "Burning prohibited w/o exemptions");
-              auto call = id(burn_status_rgb).turn_on();
-              call.set_transition_length(1000);
-              call.set_rgb(1.0, 0.0, 0.0);
-            }
+    on_wake:
+      - lambda: |-
+          // Get the current time
+          auto now = id(time).now();
+
+          // Check if it's 12:01:00 AM 
+          if (now.hour == 0 && now.minute == 1 && now.second == 0) {
+            // Trigger the http_request to update the burn category
+            id(burn_check_request).start();
+          }
