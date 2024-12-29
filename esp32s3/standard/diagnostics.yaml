@@ -1,6 +1,8 @@
 substitutions:
   log_level: DEBUG
-
+  sub_tx_pin: GPIO43
+  sub_rx_pin: GPIO44
+  
 globals:
   - id: burn_category
     type: int
