@@ -2,6 +2,7 @@ substitutions:
   log_level: DEBUG
   sub_tx_pin: GPIO43
   sub_rx_pin: GPIO44
+  sub_baud_rate: 115200
   
 globals:
   - id: burn_category
@@ -12,7 +13,7 @@ globals:
 # Enable logging bia network and disable serial port
 logger:
   level: "${log_level}"
-  baud_rate: 115200
+  baud_rate: 0
 
 uart:
   tx_pin: "${sub_tx_pin}"
