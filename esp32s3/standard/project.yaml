@@ -21,7 +21,7 @@ external_components:
 deep_sleep:
   id: deep_sleep_1
   sleep_duration:
-    - days: 1
+    days: 1
   wakeup_pin:
     number: "${sub_test_button}"
   wakeup_pin_mode: KEEP_AWAKE
