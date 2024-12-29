@@ -88,17 +88,14 @@ sensor:
       call.set_state(true);
 
       if (burn_cat == 6) {
-#        id(burn_status_rgb)->turn_on();
         call.set_red(1.0f);
         call.set_green(0.0f);
         call.set_blue(1.0);
       } else if (burn_cat == 7 || burn_cat == 8) {
-#        id(burn_status_rgb)->turn_on();
         call.set_red(1.0f);
         call.set_green(0.0f);
         call.set_blue(0.0);
       } else if (burn_cat == 9) {
-#        id(burn_status_rgb)->turn_on();
         call.set_red(0.0f);
         call.set_green(1.0f);
         call.set_blue(1.0);
