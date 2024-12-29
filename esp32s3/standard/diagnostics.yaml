@@ -1,9 +1,6 @@
 substitutions:
   log_level: DEBUG
-  sub_tx_pin: GPIO43
-  sub_rx_pin: GPIO44
-  sub_baud_rate: "115200"
-  
+    
 globals:
   - id: burn_category
     type: int
@@ -15,11 +12,6 @@ logger:
   level: "${log_level}"
   baud_rate: "${sub_baud_rate}"
 
-uart:
-  tx_pin: "${sub_tx_pin}"
-  rx_pin: "${sub_rx_pin}"
-  baud_rate: "${sub_baud_rate}"
-  
 http_request:
   id: burn_check_request
   verify_ssl: false
