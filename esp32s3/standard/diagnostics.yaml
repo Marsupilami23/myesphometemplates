@@ -86,17 +86,17 @@ light:
             auto* rgb_light = static_cast<rgb::RGBLightOutput*>(call.get());
       
             if (burn_cat == 6) {
-              rgb_light->set_red(0.0f);
-              rgb_light->set_green(1.0f);
-              rgb_light->set_blue(0.0);
-            } else if (burn_cat == 7 || burn_cat == 8) {
               rgb_light->set_red(1.0f);
-              rgb_light->set_green(1.0f);
-              rgb_light->set_blue(0.0);
-            } else if (burn_cat == 9) {
+              rgb_light->set_green(0.0f);
+              rgb_light->set_blue(1.0);
+            } else if (burn_cat == 7 || burn_cat == 8) {
               rgb_light->set_red(1.0f);
               rgb_light->set_green(0.0f);
               rgb_light->set_blue(0.0);
+            } else if (burn_cat == 9) {
+              rgb_light->set_red(0.0f);
+              rgb_light->set_green(1.0f);
+              rgb_light->set_blue(1.0);
             } else {
               call->turn_off();
             }
