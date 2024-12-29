@@ -19,9 +19,6 @@ external_components:
     refresh: always
 
 deep_sleep:
-  run_duration: 1d
-  wakeup_interval: 60s 
-
   on_wake:
     - lambda: |-
         // Get the current time
@@ -31,4 +28,16 @@ deep_sleep:
         if (now.hour == 0 && now.minute == 1) {
           // Trigger the http_request to update the burn category
           id(burn_check_request).start();
+        }
+
+        // Check if wakeup was caused by the button
+        if (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0) {
+          // Prevent immediate deep sleep
+          id(deep_sleep).prevent();
+
+          // Delay 2 minutes
+          delay(1200000); // 2 minutes in milliseconds
+
+          // Allow deep sleep again;
+          id(deep_sleep).allow();
         }
