@@ -83,14 +83,17 @@ light:
             auto call = id(burn_status_rgb); // Get a reference to the light
       
             if (burn_cat == 6) {
-              call->turn_on(); // Turn on the light first
-              call->set_rgb(0.0f, 1.0f, 0.0f); // Then set the color to Green
+              call->set_red(0.0f);
+              call->set_green(1.0f);
+              call->set_blue(0.0);
             } else if (burn_cat == 7 || burn_cat == 8) {
-              call->turn_on();
-              call->set_rgb(1.0f, 1.0f, 0.0f); // Yellow
+              call->set_red(1.0f);
+              call->set_green(1.0f);
+              call->set_blue(0.0);
             } else if (burn_cat == 9) {
-              call->turn_on();
-              call->set_rgb(1.0f, 0.0f, 0.0f); // Red
+              call->set_red(1.0f);
+              call->set_green(0.0f);
+              call->set_blue(0.0);
             } else {
               call->turn_off();
             }
