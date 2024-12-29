@@ -89,6 +89,7 @@ sensor:
     icon: "mdi:fire"
     lambda: |-
       auto burn_cat = id(burn_category);
+      id(burn_status_sensor).publish_state(burn_cat);
       auto call = id(burn_status_rgb).make_call();
 
       call.set_state(true);
@@ -110,7 +111,6 @@ sensor:
       }
       call.perform();
       // Publish the burn_cat value to the sensor
-      id(burn_status_sensor).publish_state(burn_cat);
       return 0.0f;
     
 # Provide a pre-built button for restart the device
