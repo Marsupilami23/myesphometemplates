@@ -82,7 +82,7 @@ sensor:
     name: "Burn Status"
     icon: "mdi:fire"
     lambda: |-
-      auto burn_cat = id(burn_category);
+      auto burn_cat = id(burn_category).state;
       auto call = id(burn_status_rgb).make_call();
 
       call.set_state(true);
@@ -103,6 +103,7 @@ sensor:
         call.set_green(1.0f);
         call.set_blue(1.0);
       } else {
+      call.set_state(false);
       }
       call.perform();
     
