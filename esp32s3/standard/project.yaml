@@ -25,5 +25,3 @@ deep_sleep:
   wakeup_pin:
     number: "${sub_test_button}"
     allow_other_uses: true
-  wakeup_pin_mode: KEEP_AWAKE
-
