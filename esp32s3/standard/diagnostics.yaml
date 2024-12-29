@@ -11,6 +11,11 @@ globals:
 logger:
   level: "${log_level}"
   baud_rate: 115200
+
+uart:
+  tx_pin: "${sub_tx_pin}"
+  rx_pin: "${sub_rx_pin}"
+  baud_rate: "${sub_baud_rate}"
   
 http_request:
   id: burn_check_request
