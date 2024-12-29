@@ -80,6 +80,7 @@ light:
           name: "Burn Status Light"
           lambda: |-
             auto burn_cat = id(burn_category);
+            auto call = id(burn_status_rgb).make_call();
 
             if (burn_cat == 6) {
               call.set_red(1.0f);
