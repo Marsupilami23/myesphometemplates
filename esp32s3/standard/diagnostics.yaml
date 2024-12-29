@@ -71,6 +71,7 @@ text_sensor:
         burn_status_text = "Burning Prohibited, no exceptions!";
       }
       id(burn_status).publish_state(burn_status_text);
+      return {};
     
 light:
   - platform: rgb
