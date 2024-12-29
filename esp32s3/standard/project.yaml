@@ -24,5 +24,6 @@ deep_sleep:
     days: 1
   wakeup_pin:
     number: "${sub_test_button}"
+    allow_other_uses: true
   wakeup_pin_mode: KEEP_AWAKE
 
