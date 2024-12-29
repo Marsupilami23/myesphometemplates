@@ -46,6 +46,7 @@ binary_sensor:
       then:
         - lambda: |-
             id(deep_sleep).prevent();
+            ESP_LOGI("deep_sleep", "Wake button was pressed, preventing deep_sleep for 2 minutes");
             delay(1200000);
             id(deep_sleep).allow();
 
