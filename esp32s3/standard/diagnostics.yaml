@@ -86,7 +86,7 @@ light:
             } else if (burn_cat == 7 || burn_cat == 8) {
               id(burn_status_rgb).turn_on({1.0f, 1.0f, 0.0f}); // Yellow
             } else if (burn_cat == 9) {
-              id(burn_status_rgb).turn_on({1.0f, 0.0f, 0.0f}); Red
+              id(burn_status_rgb).turn_on({1.0f, 0.0f, 0.0f}); / Red
             } else {
               id(burn_status_rgb).turn_off();
             }
