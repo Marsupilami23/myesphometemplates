@@ -70,7 +70,7 @@ wifi:
                           }
                           });
                         // Putting to deep sleep
-                        id(deep_sleep).allow();
+                        id(deep_sleep_1).allow();
 web_server:
   version: 3
   include_internal: true
