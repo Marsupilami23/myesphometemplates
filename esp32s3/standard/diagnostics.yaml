@@ -95,8 +95,10 @@ light:
               call.set_green(1.0f);
               call.set_blue(1.0);
             } else {
-              call.turn_off();
+              id(burn_status_rgb)->turn_off();
             }
+
+            call.perform();
     
 # Provide a pre-built button for restart the device
 button:
