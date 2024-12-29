@@ -13,7 +13,7 @@ globals:
 # Enable logging bia network and disable serial port
 logger:
   level: "${log_level}"
-  baud_rate: 0
+  baud_rate: "${sub_baud_rate}"
 
 uart:
   tx_pin: "${sub_tx_pin}"
