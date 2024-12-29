@@ -111,6 +111,8 @@ sensor:
       call.perform();
       id(burn_status_sensor).publish_state(burn_cat);
       return {};
+      delay(1000);
+      id(burn_status_rgb).allow_deep_sleep(deep_sleep_1);
     
 # Provide a pre-built button for restart the device
 button:
