@@ -24,7 +24,13 @@ ota:
         - button.press: button_restart
     on_begin:
       then:
-        - output.turn_on: 
+        - output.turn_on: user_led
+        - logger.log: "Begining Firmware Update!"
+        - deep_sleep.prevent: deep_sleep_1
+    on_end:
+      then:
+        - output.turn_off: user_led
+        - logger.log: "Update completed!"
 safe_mode:
   num_attempts: "${sub_ota_num_attempts}"
   
