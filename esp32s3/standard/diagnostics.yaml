@@ -75,6 +75,7 @@ light:
     red: pwm_red_led
     green: pwm_green_led
     blue: pwm_blue_led
+    always_on: true
     effects:
       - lambda:
           name: "Burn Status Light"
