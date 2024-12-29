@@ -85,7 +85,7 @@ light:
 sensor:
   - platform: template
     id: burn_status_sensor
-    name: "Burn Status Sensor"
+    name: "Burn Status Category"
     icon: "mdi:fire"
     lambda: |-
       auto burn_cat = id(burn_category_num);
@@ -109,6 +109,7 @@ sensor:
       call.set_state(false);
       }
       call.perform();
+      id(burn_status).publish_state(burn_status_sensor);
       return 0.0f;
     
 # Provide a pre-built button for restart the device
