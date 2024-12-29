@@ -63,7 +63,6 @@ wifi:
                               root["burn_forecast"]["today"]["category"].is<int>()) {
                               
                              id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
-                             id(burn_category).publish_state(burn_status_sensor);
                              return true;
                           } else {
                             ESP_LOGD("burn_category", "No burn status found!");
