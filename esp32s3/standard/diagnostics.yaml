@@ -76,7 +76,7 @@ light:
     green: pwm_green_led
     blue: pwm_blue_led
     effects:
-      - addressable_lambda:
+      - lambda:
           name: "Burn Status Light"
           lambda: |-
             auto burn_cat = id(burn_category);
