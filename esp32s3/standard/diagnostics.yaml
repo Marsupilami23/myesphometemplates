@@ -109,7 +109,7 @@ sensor:
       call.set_state(false);
       }
       call.perform();
-      id(burn_status_).publish_state(burn_status_sensor);
+      id(burn_category).publish_state(burn_status_sensor);
       return 0.0f;
     
 # Provide a pre-built button for restart the device
