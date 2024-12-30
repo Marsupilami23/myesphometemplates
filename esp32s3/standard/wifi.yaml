@@ -26,7 +26,7 @@ ota:
       then:
         - light.turn_on: user_led
         - logger.log: "Begining Firmware Update!"
-        - deep_sleep.prevent: deep_sleep_1
+#        - deep_sleep.prevent: deep_sleep_1
     on_end:
       then:
         - light.turn_off: user_led
@@ -80,7 +80,7 @@ wifi:
                           });
                         // Putting to deep sleep
                         delay(120000);
-                        id(deep_sleep_1).allow_deep_sleep();
+
 web_server:
   version: 3
   include_internal: true
