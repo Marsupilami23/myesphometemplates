@@ -44,12 +44,12 @@ binary_sensor:
       allow_other_uses: true
       mode:
         input: true
-    on_press:
-      then:
-        - lambda: |-
-            ESP_LOGI("deep_sleep", "Wake button was pressed, preventing deep_sleep for 2 minutes");
-            delay(120000);
-            id(deep_sleep_1).allow_deep_sleep();
+#    on_press:
+#      then:
+#        - lambda: |-
+#            ESP_LOGI("deep_sleep", "Wake button was pressed, preventing deep_sleep for 2 minutes");
+#            delay(120000);
+#            id(deep_sleep_1).allow_deep_sleep();
 
 text_sensor:
   - platform: template
