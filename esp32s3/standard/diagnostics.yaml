@@ -41,7 +41,7 @@ binary_sensor:
     pin:
       number: "${sub_test_button}"
       inverted: true
-      allow_other_uses: true
+#      allow_other_uses: true
       mode:
         input: true
 #    on_press:
