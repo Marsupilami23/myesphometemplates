@@ -24,9 +24,6 @@ time:
       - seconds: 0
         minutes: 8
         hours: 9
-        then:
-          - lambda: |-
-              id(wifi_brg95758).start();
 
 binary_sensor:
   # Diagnostic sensor for connection
