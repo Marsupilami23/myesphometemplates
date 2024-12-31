@@ -45,42 +45,42 @@ wifi:
   ap:
     ssid: "${sub_name}-setup"
     password: "${wifi_password}"
-  on_connect:
-    then:
-      - http_request.get:
-          id: burn_check_request
-          url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
-          capture_response: true
-          on_response:
-            then:
-              - if:
-                  condition:
-                    lambda: return response->status_code == 200;
-                  then:
-                    - logger.log:
-                        format: "Raw Response %s"
-                        args: [body.c_str()]
-                    - lambda: |-
-                        // Remove "burncheckForecastCallback(" and ")" from the response
-                        std::string cleaned_body = body;
-                        cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
-                        cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
-                        
-                        json::parse_json(cleaned_body, [](JsonObject root) -> bool {
-                          if (root.containsKey("burn_forecast") &&
-                              root["burn_forecast"].containsKey("today") &&
-                              root["burn_forecast"]["today"].containsKey("category") &&
-                              root["burn_forecast"]["today"]["category"].is<int>()) {
-                              
-                             id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
-                             return true;
-                          } else {
-                            ESP_LOGD("burn_category", "No burn status found!");
-                            return false;
-                          }
-                          });
-                        // Putting to deep sleep
-                        delay(120000);
+#  on_connect:
+#    then:
+#      - http_request.get:
+#          id: burn_check_request
+#          url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
+#          capture_response: true
+#          on_response:
+#            then:
+#              - if:
+#                  condition:
+#                    lambda: return response->status_code == 200;
+#                  then:
+#                    - logger.log:
+#                        format: "Raw Response %s"
+#                        args: [body.c_str()]
+#                    - lambda: |-
+#                        // Remove "burncheckForecastCallback(" and ")" from the response
+#                        std::string cleaned_body = body;
+#                        cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
+#                        cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
+#                        
+#                        json::parse_json(cleaned_body, [](JsonObject root) -> bool {
+#                          if (root.containsKey("burn_forecast") &&
+#                              root["burn_forecast"].containsKey("today") &&
+#                              root["burn_forecast"]["today"].containsKey("category") &&
+#                              root["burn_forecast"]["today"]["category"].is<int>()) {
+#                              
+#                             id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
+#                             return true;
+#                          } else {
+#                            ESP_LOGD("burn_category", "No burn status found!");
+#                            return false;
+#                          }
+#                          });
+#                        // Putting to deep sleep
+#                        delay(120000);
 
 web_server:
   version: 3
