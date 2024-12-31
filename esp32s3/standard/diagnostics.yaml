@@ -28,15 +28,15 @@ binary_sensor:
     id: sensor_status
     disabled_by_default: true
 
-  - platform: gpio
-    id: test_button
-    name: Test Button
-    pin:
-      number: "${sub_test_button}"
-      inverted: true
+#  - platform: gpio
+#    id: test_button
+#    name: Test Button
+#    pin:
+#      number: "${sub_test_button}"
+#      inverted: true
 #      allow_other_uses: true
-      mode:
-        input: true
+#      mode:
+#        input: true
 #    on_press:
 #      then:
 #        - lambda: |-
