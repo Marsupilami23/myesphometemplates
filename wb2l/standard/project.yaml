@@ -1,0 +1,14 @@
+# https://esphome.io/components/esphome.html
+esphome:
+  name: "${sub_name}"
+  friendly_name: "${sub_friendly_name}"
+  name_add_mac_suffix: false
+  min_version: "2024.11.0"
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/esphome/esphome
+      ref: release
+    components: [ "http_request", "json" ]
+    refresh: always
