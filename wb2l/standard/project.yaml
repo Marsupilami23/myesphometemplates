@@ -5,8 +5,9 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   libraries:
+    - Ardiono
     - ArdunioJson
-    - ArduinoHTTPClient
+    - HTTPClient
     - LibreTiny
 
 external_components:
