@@ -42,7 +42,7 @@ wifi:
             #include "ESPAsyncWebServer.h"
             
             HTTPClient http;
-            http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt")
+            http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
   
             int httpCode = http.GET();
             if (httpCode > 0) {
