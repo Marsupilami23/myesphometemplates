@@ -38,14 +38,17 @@ wifi:
     then:
         - lambda: |-
             // Include necessary headers
+            #include <HTTPClient>
+            #include <ArduinoJson>
             
             HTTPClient http();
             http.useHTTP10(true);
             http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
   
             int err = http.GET();
+            int httpCode = http.GET();
             if (err == 0) {
-              int len = http>getSize();
+              int len = http.getSize();
               uint8_t buff[128] = { 0 };
               WIFIClient * stream = http.getStreamPtr();
 
@@ -70,7 +73,7 @@ wifi:
                   int burn_category = doc["burn_forecast"]["today"]["category"].as<int>();
                 } else {
                   ESP_LOGD("burn_category", "[HTTP] GET... failed, error: %s", htttp.errorToString(httpCode).c_str());
-                }
+                } else {
                 http.end();
 
 web_server:
