@@ -37,7 +37,7 @@ wifi:
   on_connect:
     then:
         - lambda: |-
-            HTTPClient http:
+            HTTPClient http;
             http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt")
   
             int httpCode = http.GET();
