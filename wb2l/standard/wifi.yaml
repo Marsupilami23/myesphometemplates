@@ -44,7 +44,12 @@ wifi:
             if (httpCode > 0) {
               if (httpCode == HTTP_CODE_OK) {
                 String payload = http.getString();
-                
+              }
+           } else {
+             ESP_LOGD("burn_category", "[HTTP] GET... failed, error: %s");
+          }
+          http.end();
+          
            // Remove "burncheckForecastCallback(" and ")" from the response
            std::string cleaned_body = payload;
            cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
