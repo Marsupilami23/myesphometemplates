@@ -42,10 +42,21 @@ wifi:
             #include "ESPAsyncWebServer.h"
             
             HTTPClient http;
+            http.useHTTP10(true);
             http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
   
-            int httpCode = http.GET();
-            if (httpCode > 0) {
+            int err = http.GET();
+            if (err == 0) {
+              int len = http>getSize();
+              uint8_t buff[128] = { 0 };
+              WIFIClient * stream = http.getStreamPtr();
+
+              // Read the response chunks
+              while (http.connected() && (len > 0 || len == -1)) {
+                size_t size = stream->available();
+                if (size) {
+                  int c = stream->readBytes(buff, ((size > sizeof(buff)) ? sizeof(buff) : size));
+                  
               if (httpCode == HTTP_CODE_OK) {
                 String payload = http.getString();
                 // Remove "burncheckForecastCallback(" and ")" from the response
