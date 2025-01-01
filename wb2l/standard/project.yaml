@@ -9,7 +9,11 @@ esphome:
     - ArdunioJson
     - HTTPClient
     - LibreTiny
-
+  on_boot:
+    priority: -100
+      then:
+        - lambda: |-
+            
 external_components:
   - source:
       type: git
