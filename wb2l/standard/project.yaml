@@ -15,10 +15,10 @@ esphome:
     priority: -100
     then:
       - lambda: |-
+          #include <Arduino.h>
           #include <HTTPClient.h>
           #include <WiFi.h>
           #include <ArduinoJson.h>
-          #include <Arduino.h>
           
           HTTPClient http;
           ESP_LOGI("burn_category", "Starting HTTP request...");
