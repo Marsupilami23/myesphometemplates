@@ -37,9 +37,6 @@ wifi:
   on_connect:
     then:
         - lambda: |-
-            // Include necessary headers
-            #include <HTTPClient>
-            #include <ArduinoJson>
             
             HTTPClient http();
             ESP_LOGI("burn_category", "Starting HTTP request...");
@@ -64,7 +61,7 @@ wifi:
                 size_t size = stream->available();
                 if (size) {
                   int c = stream->readBytes(buff, ((size > sizeof(buff)) ? sizeof(buff) : size));
-                  if (c > 0 {
+                  if (c > 0) {
                     len -= c;
                   }
                 }
@@ -74,13 +71,13 @@ wifi:
               ESP_LOGI("burn_category", "Raw response: %s", payload.c_str());
               
               // Remove "burncheckForecastCallback(" and ")" from the response
-              payload.remove(0, strlen(burncheckForecastCallback("));
+              payload.remove(0, strlen("burncheckForecastCallback("));
               payload.remove(payload.length() - 1);
               ESP_LOGI("burn_category", "Cleaned response: %s", payload.c_str());
               
               // Use ArduinoJson to parse the JSON response
               DynamicJsonDocument doc(200); // Adjust size as needed
-              DeserializationError error = deserializeJson(doc, cleaned_body);
+              DeserializationError error = deserializeJson(doc, payload);
   
               if (!error) {
                 ESP_LOGI("burn_category", "JSON parsing successful.");
@@ -94,6 +91,8 @@ wifi:
             ESP_LOGE("burn_category", "[HTTP] GET... failed, error: %s", http.errorToString(httpCode).c_str());
             }
             http.end();
+            ESP_LOGI("burn_category", "HTTP connection closed.");
+            }
 
 web_server:
   version: 3
