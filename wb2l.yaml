@@ -22,4 +22,3 @@ packages:
     refresh: always
     files:
       - wb2l/board.yaml
-      - wb2l/pwm-outputs.yaml
