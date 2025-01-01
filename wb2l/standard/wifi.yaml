@@ -38,10 +38,8 @@ wifi:
     then:
         - lambda: |-
             // Include necessary headers
-            #include "HTTPClient.h"
-            #include "ESPAsyncWebServer.h"
             
-            HTTPClient http;
+            HTTPClient http();
             http.useHTTP10(true);
             http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
   
