@@ -4,6 +4,10 @@ esphome:
   friendly_name: "${sub_friendly_name}"
   name_add_mac_suffix: false
   min_version: "2024.11.0"
+  libraries:
+    - ArdunioJson
+    - HTTPClient
+    - ESPAsyncWebServer
 
 external_components:
   - source:
