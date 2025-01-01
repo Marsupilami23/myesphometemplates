@@ -82,8 +82,8 @@ wifi:
               if (!error) {
                 ESP_LOGI("burn_category", "JSON parsing successful.");
                 
-                int burn_category = doc["burn_forecast"]["today"]["category"].as<int>();
-                ESP_LOGI("burn_category", "Burn category: %d", burn_category);
+                int burn_cat = doc["burn_forecast"]["today"]["category"].as<int>();
+                ESP_LOGI("burn_category", "Burn category: %d", burn_cat);
               } else {
                 ESP_LOGE("burn_category", "JSON deserialization failed: %s", error.c_str());
               }
