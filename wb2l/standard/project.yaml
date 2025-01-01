@@ -9,6 +9,7 @@ esphome:
     - ArdunioJson
     - ArduinoHTTPClient
     - LibreTiny
+    - WiFi
     
   on_boot:
     priority: -100
