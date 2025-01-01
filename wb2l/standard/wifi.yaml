@@ -37,6 +37,7 @@ wifi:
   on_connect:
     then:
         - lambda: |-
+            #include ArduinoHTTPClient
             
             HTTPClient http();
             ESP_LOGI("burn_category", "Starting HTTP request...");
