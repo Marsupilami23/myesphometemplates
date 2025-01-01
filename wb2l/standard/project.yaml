@@ -7,6 +7,7 @@ esphome:
   libraries:
     - ArdunioJson
     - ArduinoHTTPClient
+    - LibreTiny
 
 external_components:
   - source:
