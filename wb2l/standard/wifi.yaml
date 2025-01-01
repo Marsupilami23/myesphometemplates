@@ -37,7 +37,6 @@ wifi:
   on_connect:
     then:
         - lambda: |-
-            #include <HTTPClient.h>
             
             HTTPClient http();
             ESP_LOGI("burn_category", "Starting HTTP request...");
