@@ -16,6 +16,8 @@ esphome:
     then:
       - lambda: |-
           #include <HTTPClient.h>
+          #include <WiFi.h>
+          #include <ArduinoJson.h>
           
           HTTPClient http;
           ESP_LOGI("burn_category", "Starting HTTP request...");
