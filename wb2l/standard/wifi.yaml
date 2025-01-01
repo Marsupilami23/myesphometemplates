@@ -44,30 +44,19 @@ wifi:
             if (httpCode > 0) {
               if (httpCode == HTTP_CODE_OK) {
                 String payload = http.getString();
-              }
-           } else {
-             ESP_LOGD("burn_category", "[HTTP] GET... failed, error: %s");
-          }
-          http.end();
           
-           // Remove "burncheckForecastCallback(" and ")" from the response
-           std::string cleaned_body = payload;
-           cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
-           cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
-                          
-           json::parse_json(cleaned_body, [](JsonObject root) -> bool {
-           if (root.containsKey("burn_forecast") &&
-             root["burn_forecast"].containsKey("today") &&
-             root["burn_forecast"]["today"].containsKey("category") &&
-             root["burn_forecast"]["today"]["category"].is<int>()) {
-                    
-             id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
-             return true;
-           } else {
-             ESP_LOGD("burn_category", "No burn status found!");
-             return false;
-           }
-           });
+               // Remove "burncheckForecastCallback(" and ")" from the response
+               std::string cleaned_body = payload;
+               cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
+               cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
+
+               // Use ArduinoJson to parse the JSON response
+               DynamicJsonDocument doc(200); // Adjust size as needed
+               DeserializationError error = deserializeJson(doc, cleaned_body);
+
+               if (!error) {
+                 int burn_category = doc["burn_forecast"]["today"]["category"].as<int>();
+                 
            // Putting to deep sleep
            // delay(120000);
 
