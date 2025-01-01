@@ -56,7 +56,7 @@ wifi:
                 if (!error) {
                   int burn_category = doc["burn_forecast"]["today"]["category"].as<int>();
                 } else {
-                  ESP_LOGD("burn_category", "[HTTP] GET... failed, error%s, htttp.errorToString(httpCode).c_str());
+                  ESP_LOGD("burn_category", "[HTTP] GET... failed, error: %s", htttp.errorToString(httpCode).c_str());
                 }
                 http.end();
 
