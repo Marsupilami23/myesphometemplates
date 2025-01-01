@@ -44,21 +44,21 @@ wifi:
             if (httpCode > 0) {
               if (httpCode == HTTP_CODE_OK) {
                 String payload = http.getString();
-          
-               // Remove "burncheckForecastCallback(" and ")" from the response
-               std::string cleaned_body = payload;
-               cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
-               cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
+                // Remove "burncheckForecastCallback(" and ")" from the response
+                std::string cleaned_body = payload;
+                cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
+                cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
 
-               // Use ArduinoJson to parse the JSON response
-               DynamicJsonDocument doc(200); // Adjust size as needed
-               DeserializationError error = deserializeJson(doc, cleaned_body);
+                // Use ArduinoJson to parse the JSON response
+                DynamicJsonDocument doc(200); // Adjust size as needed
+                DeserializationError error = deserializeJson(doc, cleaned_body);
 
-               if (!error) {
-                 int burn_category = doc["burn_forecast"]["today"]["category"].as<int>();
-                 
-           // Putting to deep sleep
-           // delay(120000);
+                if (!error) {
+                  int burn_category = doc["burn_forecast"]["today"]["category"].as<int>();
+                } else {
+                  ESP_LOGD("burn_category", "[HTTP] GET... failed, error%s, htttp.errorToString(httpCode).c_str());
+                }
+                http.end();
 
 web_server:
   version: 3
