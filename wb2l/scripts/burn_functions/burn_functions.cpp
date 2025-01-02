@@ -1,5 +1,4 @@
-#pragma once
-
+#include "burn_functions.h"
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
 
