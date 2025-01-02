@@ -5,10 +5,7 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   libraries:
-    - ArdunioJson
-    - ArduinoHTTPClient
     - LibreTiny
-    - WiFi
     
   on_boot:
     priority: -100
