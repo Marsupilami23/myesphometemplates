@@ -10,7 +10,6 @@ esphome:
       - http_request.get:
           id: burn_check_request
           url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
-          capture_response: true
           on_response:
             then:
               - if:
