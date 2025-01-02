@@ -1,7 +1,3 @@
-substitutions:
-  log_level: DEBUG
-  sub_baud_rate: "115200"
-
 globals:
   - id: burn_category
     type: int
@@ -16,11 +12,8 @@ globals:
   - id: global_burn_status_sensor
     type: sensor:Sensor*
     initial_value: "App.get_component<sensor::Sensor>(id(burn_status_sensor))"
-    
-# Enable logging via network and disable serial port
+
 logger:
-  level: "${log_level}"
-  baud_rate: "${sub_baud_rate}"
 
 time:
   - platform: homeassistant
@@ -44,10 +37,6 @@ sensor:
     id: burn_status_sensor
     name: "Burn Status Category"
     icon: "mdi:fire"
-    lambda: |-
-      auto burn_cat = id(burn_category);
-      id(burn_status_sensor).publish_state(burn_cat);
-      return {};
           
 # Provide a pre-built button for restart the device
 button:
