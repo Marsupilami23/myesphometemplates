@@ -4,7 +4,7 @@ esphome:
   friendly_name: "${sub_friendly_name}"
   name_add_mac_suffix: false
   min_version: "2024.11.0"
-  inlcudes: 
+  includes: 
     - github://Marsupilami23/myesphometemplates/wb2l/scripts/burn_fuctions/burn_functions.h
   libraries:
     - ArduinoJson
