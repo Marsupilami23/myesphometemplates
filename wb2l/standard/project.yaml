@@ -5,8 +5,8 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   includes: 
-    - https://github.com/Marsupilami23/myesphometemplates/tree/dev/components/burn_forecast/burn_forecast.h
-    - https://github.com/Marsupilami23/myesphometemplates/tree/dev/components/burn_forecast/burn_forecast.cpp
+    - https://github.com/Marsupilami23/burn_functions/burn_forecast.h?ref=main
+    - https://github.com/Marsupilami23/burn_forecast/burn_forecast.cpp?ref=main
   libraries:
     - ArduinoJson
   on_boot:
