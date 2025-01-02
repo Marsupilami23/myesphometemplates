@@ -13,6 +13,7 @@ esphome:
       - lambda: |-
           #include <libretiny.h>
           #include <HTTPClient.h>
+          #include <WiFi.h>
           
           HTTPClient http;
           ESP_LOGI("burn_category", "Starting HTTP request...");
