@@ -43,6 +43,6 @@ external_components:
   - source:
       type: git
       url: https://github.com/libretiny-eu/libretiny-esphome
-      ref: release
+      ref: dev
     components: [ "http_request", "json" ]
     refresh: always
