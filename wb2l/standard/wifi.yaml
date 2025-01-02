@@ -11,7 +11,7 @@ external_components:
       url: https://github.com/Marsupilami23/myesphometemplates
       ref: dev
     components:
-      [ "libretiny_web_server" ]
+      [ "my_web_server" ]
       
 sensor:
   - platform: wifi_signal
