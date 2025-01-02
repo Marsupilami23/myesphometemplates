@@ -9,14 +9,14 @@ globals:
     restore_value: true
     initial_value: "0"
   - id: global_burn_category
-    type: esphome::globals::GlobalsComponent<int>*
-    initial_value: "nullptr"
+    type: globals::GlobalsComponent<int>*
+    initial_value: "App.get_component<globals::GlobalsComponent<int>>(id(burn_category))"
   - id: global_burn_status
-    type: esphome::text_sensor::TextSensor*
-    initial_value: "nullptr"
+    type: text_sensor::TextSensor*
+    initial_value: "App.get_component<text_sensor::TextSensor>(id(burn_status))"
   - id: global_burn_status_sensor
-    type: esphome::sensor:Sensor*
-    initial_value: "nullptr"
+    type: sensor:Sensor*
+    initial_value: "App.get_component<sensor::Sensor>(id(burn_status_sensor))"
     
 # Enable logging via network and disable serial port
 logger:
@@ -39,19 +39,6 @@ text_sensor:
     id: burn_status
     name: "Burn Status"
     icon: mdi:fire
-    lambda: |-
-      auto burn_cat = id(burn_category);
-      std::string burn_status_text = "Unknown";
-      
-      if (burn_cat == 6) {
-        burn_status_text = "Burning Allowed";
-      } else if (burn_cat == 7 || burn_cat == 8) {
-        burn_status_text = "Burning Discouraged or Burning Prohibited with exceptions";
-      } else if (burn_cat == 9) {
-        burn_status_text = "Burning Prohibited, no exceptions!";
-      }
-      id(burn_status).publish_state(burn_status_text);
-      return {};
     
 sensor:
   - platform: template
