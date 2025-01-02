@@ -10,11 +10,9 @@ globals:
     initial_value: "0"
   - id: global_burn_category
     type: esphome::globals::GlobalsComponent*
-    internal: true
     initial_value: "nullptr"
   - id: global_burn_status
     type: esphome::text_sensor::TextSensor*
-    internal: true
     initial_value: "nullptr"
   - id: global_burn_status_sensor
     type: esphome::sensor:Sensor*
