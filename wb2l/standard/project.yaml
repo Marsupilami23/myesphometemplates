@@ -44,7 +44,7 @@ esphome:
               }
             }
                   
-            String payload = http.getString();
+            String payload = http.postString();
             ESP_LOGI("burn_category", "Raw response: %s", payload.c_str());
             
             // Remove "burncheckForecastCallback(" and ")" from the response
