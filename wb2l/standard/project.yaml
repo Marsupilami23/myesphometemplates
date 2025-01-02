@@ -65,3 +65,11 @@ esphome:
           }
           http.end();
           ESP_LOGI("burn_category", "HTTP connection closed.");
+
+external_components:
+  - source:
+    type: git
+    url: https://github.com/libretiny-eu/libretiny.git
+    ref: master
+  components:
+    - cores/common/arduino/libraries/ext/HTTPClient
