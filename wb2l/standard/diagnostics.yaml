@@ -15,17 +15,6 @@ globals:
 
 logger:
 
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-
-binary_sensor:
-  # Diagnostic sensor for connection
-  - platform: status
-    name: "API Status"
-    id: sensor_status
-    disabled_by_default: true
-
 text_sensor:
   - platform: template
     id: burn_status
