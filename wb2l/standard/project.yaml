@@ -72,4 +72,4 @@ external_components:
       url: https://github.com/libretiny-eu/libretiny-esphome.git
       ref: dev
     components:
-      - esphome/components/http_request
+      [ "http_request", "json" ]
