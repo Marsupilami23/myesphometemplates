@@ -12,6 +12,7 @@ esphome:
     then:
       - lambda: |-
           #include <libretiny.h>
+          #include <HTTPClient.h>
           
           HTTPClient http;
           ESP_LOGI("burn_category", "Starting HTTP request...");
