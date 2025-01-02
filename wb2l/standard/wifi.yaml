@@ -5,15 +5,6 @@ substitutions:
   ota_password: !secret ota_password
   sub_ota_num_attempts: "15"
 
-sensor:
-  - platform: wifi_signal
-    name: "RSSI"
-    id: sensor_rssi
-    update_interval: 60s
-    entity_category: "diagnostic"
-
-api:
-
 # Enable OTA
 ota:
   - platform: esphome
@@ -36,5 +27,4 @@ wifi:
     password: "${wifi_password}"
 
 web_server:
-
 captive_portal:
