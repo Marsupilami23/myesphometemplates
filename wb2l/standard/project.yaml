@@ -5,7 +5,7 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   includes: 
-    - https://github.com/Marsupilami23/myesphometemplates/wb2l/scripts/burn_fuctions/burn_functions.h
+    - burn_fucntions=https://github.com/Marsupilami23/myesphometemplates/wb2l/scripts/burn_fuctions/burn_functions.h
   libraries:
     - ArduinoJson
   on_boot:
