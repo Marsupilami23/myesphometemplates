@@ -8,7 +8,7 @@ substitutions:
 external_components:
   - source:
       type: git
-      url: github://Marsupilami23/myesphometemplates
+      url: https://github.com/Marsupilami23/myesphometemplates
       ref: dev
     components:
       [ "libretiny_web_server" ]
