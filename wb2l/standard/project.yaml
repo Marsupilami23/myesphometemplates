@@ -5,9 +5,9 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   libraries:
-    - LibreTiny
-    - Arduino
-    - ArduinoJson
+    - libretiny-eu/libretiny
+    - Arduino/Arduino
+    - Arduino/ArduinoJson
     
   on_boot:
     priority: -100
