@@ -8,10 +8,10 @@ substitutions:
 external_components:
   - source:
       type: git
-      url: https://github.com/Marsupilami23/myesphometemplates
+      url: https://github.com/libretiny-eu/libretiny-esphome
       ref: dev
     components:
-      [ "libretiny_web_server" ]
+      [ "web_server" ]
       
 sensor:
   - platform: wifi_signal
