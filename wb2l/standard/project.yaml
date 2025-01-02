@@ -63,7 +63,6 @@ esphome:
           }
           http.end();
           ESP_LOGI("burn_category", "HTTP connection closed.");
-          }
 
 external_components:
   - source:
