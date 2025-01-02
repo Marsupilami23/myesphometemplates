@@ -16,7 +16,7 @@ logger:
 
 http_request:
   id: burn_check_request
-  verify_ssl: "${sub_verify_ssl}"
+  verify_ssl: ""${sub_verify_ssl}""
 
 time:
   - platform: homeassistant
