@@ -7,7 +7,7 @@ esphome:
   libraries:
     - LibreTiny
     - Arduino
-    - ArduinoHTTPClient
+    - amcewen/HTTPClient
     - ArduinoJson
     
   on_boot:
