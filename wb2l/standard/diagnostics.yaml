@@ -14,10 +14,6 @@ logger:
   level: "${log_level}"
   baud_rate: "${sub_baud_rate}"
 
-http_request:
-  id: burn_check_request
-
-
 time:
   - platform: homeassistant
     id: homeassistant_time
