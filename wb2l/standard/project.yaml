@@ -32,6 +32,14 @@ esphome:
             
             uint8_t buff[128] = { 0 };
             WIFIClient * stream = http.getStreamPtr();
+            String payload;
+
+            // Read the data manually
+            while (stream->available()) {
+              payload += (char)stream->read();
+            }
+
+            ESP_LOGI("burn_category", "Raw response: %s", payload.c_str());
 
             // Read the response chunks
             while (http.connected() && (len > 0 || len == -1)) {
@@ -44,9 +52,6 @@ esphome:
               }
             }
                   
-            String payload = http.postString();
-            ESP_LOGI("burn_category", "Raw response: %s", payload.c_str());
-            
             // Remove "burncheckForecastCallback(" and ")" from the response
             payload.remove(0, strlen("burncheckForecastCallback("));
             payload.remove(payload.length() - 1);
