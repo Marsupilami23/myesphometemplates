@@ -32,4 +32,4 @@ async def to_code(config):
 
     cg.add_library("ArduinoJson", None)
 
-    cg.add_header("my_web_server.h")
+    cg.add_header("libretiny_web_server.h")
