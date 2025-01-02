@@ -13,5 +13,9 @@ esphome:
     priority: -100
     then:
       - lambda: |-
+          global_burn_category = App.get_component<esphome::globals::GlobalsComponent>(id(burn_category));
+          global_burn_status = App.get_component<esphome::text_sensor::TextSensor>(id(burn_status));
+          global_burn_status_sensor = App.get_component<esphome:sensor:Sensor>(id(burn_status_sensor));
+      - lambda: |-
            // Initial fetch on boot
            fetchAndParseBurnData();
