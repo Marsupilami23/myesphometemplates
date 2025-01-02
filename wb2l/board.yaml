@@ -2,4 +2,4 @@ bk72xx:
   board: wb2l
   framework:
     version: "1.7.0"
-    source: "https://github.com/libretiny-eu/libretiny"
+    source: "https://github.com/libretiny-eu/libretiny#master"
