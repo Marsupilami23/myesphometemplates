@@ -5,6 +5,14 @@ substitutions:
   ota_password: !secret ota_password
   sub_ota_num_attempts: "15"
 
+external_components:
+  - source:
+      type: git
+      url: github://Marsupilami23/myesphometemplates
+      ref: dev
+    components:
+      [ "libretiny_web_server" ]
+      
 sensor:
   - platform: wifi_signal
     name: "RSSI"
@@ -35,9 +43,8 @@ wifi:
     ssid: "${sub_name}-setup"
     password: "${wifi_password}"
 
-web_server:
-  version: 3
-  include_internal: true
-  ota: true
+libretiny_web_server:
+  id: burn_status_web_server
+  port: 80
 
 captive_portal:
