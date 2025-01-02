@@ -1,6 +1,7 @@
 substitutions:
   log_level: DEBUG
   sub_baud_rate: "115200"
+  sub_verify_ssl: false
   
 globals:
   - id: burn_category
@@ -15,7 +16,7 @@ logger:
 
 http_request:
   id: burn_check_request
-  verify_ssl: false
+  verify_ssl: "${sub_verify_ssl}"
 
 time:
   - platform: homeassistant
