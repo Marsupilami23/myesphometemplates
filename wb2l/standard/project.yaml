@@ -31,7 +31,7 @@ esphome:
             ESP_LOGI("burn_category", "Content Length: %d bytes", len);
             
             uint8_t buff[128] = { 0 };
-            WIFIClient * stream = http.getStreamPtr();
+            WiFiClient * stream = http.getStreamPtr();
             String payload;
 
             // Read the data manually
