@@ -9,7 +9,7 @@ globals:
     restore_value: true
     initial_value: "0"
   - id: global_burn_category
-    type: esphome::globals::GlobalsComponent*
+    type: esphome::globals::GlobalsComponent<int>*
     initial_value: "nullptr"
   - id: global_burn_status
     type: esphome::text_sensor::TextSensor*
