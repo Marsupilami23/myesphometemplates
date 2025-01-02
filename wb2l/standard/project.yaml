@@ -5,7 +5,8 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   includes: 
-    - fetchAndParseBurnData=https://github.com/Marsupilami23/burn_functions.git#v0.1
+    - burn_functions/burn_functions.h
+    - burn_functions/burn_functions.cpp
   libraries:
     - ArduinoJson
   on_boot:
