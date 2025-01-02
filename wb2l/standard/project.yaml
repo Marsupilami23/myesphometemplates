@@ -40,17 +40,6 @@ esphome:
             }
 
             ESP_LOGI("burn_category", "Raw response: %s", payload.c_str());
-
-            // Read the response chunks
-            while (http.connected() && (len > 0 || len == -1)) {
-              size_t size = stream->available();
-              if (size) {
-                int c = stream->readBytes(buff, ((size > sizeof(buff)) ? sizeof(buff) : size));
-                if (c > 0) {
-                  len -= c;
-                }
-              }
-            }
                   
             // Remove "burncheckForecastCallback(" and ")" from the response
             payload.remove(0, strlen("burncheckForecastCallback("));
