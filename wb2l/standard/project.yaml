@@ -7,7 +7,59 @@ esphome:
   on_boot:
     priority: -100
     then:
+      - lambda: |-
+          #include <libretiny.h>
+          #include <HTTPClient.h>
+          #include <WiFi.h>
+          
+          HTTPClient http;
+          ESP_LOGI("burn_category", "Starting HTTP request...");
+          
+          http.useHTTP10(true);
+          http.begin("https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
 
+          ESP_LOGI("burn_category", "Sending HTTP GET request...");
+          int httpCode = http.GET();
+          
+          if (httpCode == HTTP_CODE_OK) {
+            ESP_LOGI("burn_category", "HTTP GET request successful.");
+            
+            int len = http.getSize();
+            ESP_LOGI("burn_category", "Content Length: %d bytes", len);
+            
+            uint8_t buff[128] = { 0 };
+            WiFiClient * stream = http.getStreamPtr();
+            String payload;
+
+            // Read the data manually
+            while (stream->available()) {
+              payload += (char)stream->read();
+            }
+
+            ESP_LOGI("burn_category", "Raw response: %s", payload.c_str());
+                  
+            // Remove "burncheckForecastCallback(" and ")" from the response
+            payload.remove(0, strlen("burncheckForecastCallback("));
+            payload.remove(payload.length() - 1);
+            ESP_LOGI("burn_category", "Cleaned response: %s", payload.c_str());
+            
+            // Use ArduinoJson to parse the JSON response
+            DynamicJsonDocument doc(200); // Adjust size as needed
+            DeserializationError error = deserializeJson(doc, payload);
+
+            if (!error) {
+              ESP_LOGI("burn_category", "JSON parsing successful.");
+              
+              int burn_cat = doc["burn_forecast"]["today"]["category"].as<int>();
+              ESP_LOGI("burn_category", "Burn category: %d", burn_cat);
+            } else {
+              ESP_LOGE("burn_category", "JSON deserialization failed: %s", error.c_str());
+            }
+          } else {
+          ESP_LOGE("burn_category", "[HTTP] GET... failed, error: %s", http.errorToString(httpCode).c_str());
+          }
+          http.end();
+          ESP_LOGI("burn_category", "HTTP connection closed.");
 
 external_components:
   - source:
