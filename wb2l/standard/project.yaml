@@ -68,8 +68,8 @@ esphome:
 
 external_components:
   - source:
-    type: git
-    url: https://github.com/libretiny-eu/libretiny.git
-    ref: master
-  components:
-    - cores/common/arduino/libraries/ext/HTTPClient
+      type: git
+      url: https://github.com/libretiny-eu/libretiny.git
+      ref: master
+    components:
+      - cores/common/arduino/libraries/ext/HTTPClient
