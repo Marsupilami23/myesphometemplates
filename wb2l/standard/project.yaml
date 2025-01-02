@@ -5,8 +5,7 @@ esphome:
   name_add_mac_suffix: false
   min_version: "2024.11.0"
   includes: 
-    - github://Marsupilami23/burn_functions/burn_forecast.h?ref=main
-    - github://Marsupilami23/burn_forecast/burn_forecast.cpp?ref=main
+    - github://https://github.com/Marsupilami23/burn_functions.git
   libraries:
     - ArduinoJson
   on_boot:
