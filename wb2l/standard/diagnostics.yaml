@@ -5,7 +5,7 @@ substitutions:
 external_components:
   - source:
       type: local
-      path: libretiny-esphome/esphome
+      path: libretiny-esphome/esphome/components
     components:
         [ "http_request" ]
       
