@@ -3,6 +3,7 @@ esphome:
   name: "${sub_name}"
   friendly_name: "${sub_friendly_name}"
   name_add_mac_suffix: false
+  version: "2024.12.2"
   includes: 
     - burn_functions/burn_functions.h
     - burn_functions/burn_functions.cpp
