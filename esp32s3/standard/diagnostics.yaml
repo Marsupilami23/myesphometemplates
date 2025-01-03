@@ -44,24 +44,24 @@ binary_sensor:
 #            delay(120000);
 #            id(deep_sleep_1).allow_deep_sleep();
 
-#text_sensor:
-#  - platform: template
-#    id: burn_status
-#    name: "Burn Status"
-#    icon: mdi:fire
-#    lambda: |-
-#      auto burn_cat = id(burn_category);
-#      std::string burn_status_text = "Unknown";
-#      
-#      if (burn_cat == 6) {
-#        burn_status_text = "Burning Allowed";
-#      } else if (burn_cat == 7 || burn_cat == 8) {
-#        burn_status_text = "Burning Discouraged or Burning Prohibited with exceptions";
-#      } else if (burn_cat == 9) {
-#        burn_status_text = "Burning Prohibited, no exceptions!";
-#      }
-#      id(burn_status).publish_state(burn_status_text);
-#      return {};
+text_sensor:
+  - platform: template
+    id: burn_status
+    name: "Burn Status"
+    icon: mdi:fire
+    lambda: |-
+      auto burn_cat = id(burn_category);
+      std::string burn_status_text = "Unknown";
+      
+      if (burn_cat == 6) {
+        burn_status_text = "Burning Allowed";
+      } else if (burn_cat == 7 || burn_cat == 8) {
+        burn_status_text = "Burning Discouraged or Burning Prohibited with exceptions";
+      } else if (burn_cat == 9) {
+        burn_status_text = "Burning Prohibited, no exceptions!";
+      }
+      id(burn_status).publish_state(burn_status_text);
+      return {};
     
 light:
   - platform: monochromatic
@@ -75,35 +75,11 @@ light:
     green: pwm_green_led
     blue: pwm_blue_led
 
-#sensor:
-#  - platform: template
-#    id: burn_status_sensor
-#    name: "Burn Status Category"
-#    icon: "mdi:fire"
-#    lambda: |-
-#      auto burn_cat = id(burn_category);
-#      auto call = id(burn_status_rgb).make_call();
-#
-#      call.set_state(true);
-#
-#      if (burn_cat == 6) {
-#        call.set_red(0.0f);
-#        call.set_green(1.0f);
-#        call.set_blue(0.0f);
-#      } else if (burn_cat == 7 || burn_cat == 8) {
-#        call.set_red(0.0f);
-#        call.set_green(1.0f);
-#        call.set_blue(1.0f);
-#      } else if (burn_cat == 9) {
-#        call.set_red(1.0f);
-#        call.set_green(0.0f);
-#        call.set_blue(0.0f);
-#      } else {
-#      call.set_state(false);
-#      }
-#      call.perform();
-#      id(burn_status_sensor).publish_state(burn_cat);
-#      return {};
+sensor:
+  - platform: template
+    id: burn_status_sensor
+    name: "Burn Status Category"
+    icon: "mdi:fire"
           
 # Provide a pre-built button for restart the device
 button:
