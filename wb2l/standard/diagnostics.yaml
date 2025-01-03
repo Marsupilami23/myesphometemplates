@@ -6,6 +6,7 @@ external_components:
   - source:
       type: local
       path: libretiny-esphome/esphome/components
+        [ "http_request" ]
       
 globals:
   - id: burn_category
