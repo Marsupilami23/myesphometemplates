@@ -1,5 +1,5 @@
 bk72xx:
   board: wb2l
   framework:
-    version: "0.0.0"
+    version: "latest"
     source: "https://github.com/libretiny-eu/libretiny"
