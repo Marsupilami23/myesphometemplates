@@ -3,17 +3,26 @@ globals:
     type: int
     restore_value: true
     initial_value: "0"
-  - id: global_burn_category
-    type: globals::GlobalsComponent<int>*
-    initial_value: "App.get_component<globals::GlobalsComponent<int>>(id(burn_category))"
-  - id: global_burn_status
-    type: text_sensor::TextSensor*
-    initial_value: "App.get_component<text_sensor::TextSensor>(id(burn_status))"
-  - id: global_burn_status_sensor
-    type: sensor:Sensor*
-    initial_value: "App.get_component<sensor::Sensor>(id(burn_status_sensor))"
-
+ 
+# Enable logging bia network and disable serial port
 logger:
+  level: "${log_level}"
+  baud_rate: "${sub_baud_rate}"
+
+http_request:
+  id: burn_check_request
+  verify_ssl: false
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+binary_sensor:
+  # Diagnostic sensor for connection
+  - platform: status
+    name: "API Status"
+    id: sensor_status
+    disabled_by_default: true
 
 text_sensor:
   - platform: template
