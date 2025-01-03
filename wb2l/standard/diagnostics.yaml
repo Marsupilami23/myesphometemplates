@@ -4,8 +4,9 @@ substitutions:
 
 external_components:
   - source:
-      type: local
-      path: esphome/esphome/components
+      type: git
+      url: "https://github.com/Marsupilami23/esphome
+      ref: main
     components:
         [ "http_request" ]
       
