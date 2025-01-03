@@ -1,4 +1,4 @@
 bk72xx:
   board: wb2l
   framework:
-    version: dev
+    version: recommended
