@@ -1,10 +1,3 @@
-external_components:
-  - source:
-      type: git
-      url: https://github.com/Marsupilami23/esphome
-    components:
-      [ "globals" ]
-      
 # https://esphome.io/components/esphome.html
 esphome:
   name: "${sub_name}"
