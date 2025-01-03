@@ -10,6 +10,10 @@ external_components:
     refresh: always
     components:
         [ "http_request" ]
+  - source:
+      type: local
+      path: esphome/esphome/config_validation.py
+    refresh: always
       
 globals:
   - id: burn_category
