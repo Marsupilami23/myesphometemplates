@@ -1,4 +1,5 @@
 bk72xx:
   board: wb2l
   framework:
+    type: arduino
     version: "latest"
