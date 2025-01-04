@@ -26,5 +26,6 @@ wifi:
     ssid: "${sub_name}-setup"
     password: "${wifi_password}"
 
+api:
 web_server:
 captive_portal:
