@@ -15,6 +15,7 @@ logger:
 
 http_request:
   id: burn_check_request
+  verify_ssl: false
 
 time:
   - platform: homeassistant
