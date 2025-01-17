@@ -14,7 +14,7 @@ substitutions:
 # Import packages:
 packages:
   standard_packages:
-    url: https://github.com/Marsupilami23/myesphometemplates/
+    url: https://github.com/Marsupilami23/myesphometemplates
     ref: main
     refresh: always
     files:
@@ -22,7 +22,7 @@ packages:
       - esp32s3/standard/diagnostics.yaml
       - esp32s3/standard/wifi.yaml
   dogain_rgbww_packages:
-    url: https://github.com/Marsupilami23/myesphometemplates/
+    url: https://github.com/Marsupilami23/myesphometemplates
     ref: main
     refresh: always
     files:
