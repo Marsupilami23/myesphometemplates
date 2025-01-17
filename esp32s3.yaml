@@ -23,3 +23,4 @@ packages:
     refresh: always
     files:
       - esp32s3/board.yaml
+      - esp32s3/pwm-outputs.yaml
