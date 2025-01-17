@@ -4,6 +4,7 @@ substitutions:
   sub_ap_timeout: 15s
 
   sub_neopixelbus_pin: GPIO01
+  sub_user_pin: GPIO21
   
   disable_entities: "true"
 
