@@ -44,14 +44,6 @@ binary_sensor:
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
-
-  - platform: gpio
-    id: test_button
-    name: "Test Button"
-    pin: "${sub_test_button}"
-    inverted: true
-    on_press:
-      - logger.log: Button Pressed
     
 sensor:
   # Captures the uptime and updates the human-readable
