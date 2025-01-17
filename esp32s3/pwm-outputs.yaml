@@ -1,14 +1,5 @@
 output:
   - platform: ledc
-    pin: "${sub_red_pin}"
-    id: pwm_red_led
-  - platform: ledc
-    pin: "${sub_green_pin}"
-    id: pwm_green_led
-  - platform: ledc
-    pin: "${sub_blue_pin}"
-    id: pwm_blue_led
-  - platform: ledc
     pin: "${sub_user_pin}"
     id: pwm_user_led
     inverted: true
