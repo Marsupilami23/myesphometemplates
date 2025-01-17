@@ -64,16 +64,12 @@ text_sensor:
       return {};
     
 light:
-  - platform: monochromatic
-    id: user_led
-    name: "User LED"
-    output: pwm_user_led
-  - platform: rgb
-    id: burn_status_rgb
-    name: "Burn_Status_LEDs"
-    red: pwm_red_led
-    green: pwm_green_led
-    blue: pwm_blue_led
+  - neopixelbus:
+    type: RGB
+    variant: WS2812X
+    pin: 
+    num_leds: 64
+    name: "NeoPixel Lights"
 
 sensor:
   - platform: template
