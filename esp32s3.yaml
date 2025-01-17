@@ -15,7 +15,7 @@ substitutions:
 packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates
-    ref: main
+    ref: dev
     refresh: always
     files:
       - esp32s3/standard/project.yaml
@@ -23,7 +23,7 @@ packages:
       - esp32s3/standard/wifi.yaml
   dogain_rgbww_packages:
     url: https://github.com/Marsupilami23/myesphometemplates
-    ref: main
+    ref: dev
     refresh: always
     files:
       - esp32s3/board.yaml
