@@ -64,6 +64,10 @@ text_sensor:
       return {};
     
 light:
+  - platform: monochromatic
+    id: user_led
+    name: "User LED"
+    output: pwm_user_led
   - platform: neopixelbus
     type: RGB
     variant: WS2812X
