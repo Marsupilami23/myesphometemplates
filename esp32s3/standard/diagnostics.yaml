@@ -67,7 +67,7 @@ light:
   - platform: neopixelbus
     type: RGB
     variant: WS2812X
-    pin: 
+    pin: "${sub_neopixelbus_pin}"
     num_leds: 64
     name: "NeoPixel Lights"
 
