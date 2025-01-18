@@ -80,7 +80,35 @@ sensor:
     id: burn_status_sensor
     name: "Burn Status Category"
     icon: "mdi:fire"
-          
+  - platform: template
+    id: burn_status_sensor
+    name: "Burn Status Category"
+    icon: "mdi:fire"
+    lambda: |-
+      auto burn_cat = id(burn_category);
+      auto call = id(burn_status_rgb).make_call();
+
+      call.set_state(true);
+
+      if (burn_cat == 6) {
+        call.set_red(0.0f);
+        call.set_green(1.0f);
+        call.set_blue(0.0f);
+      } else if (burn_cat == 7 || burn_cat == 8) {
+        call.set_red(0.0f);
+        call.set_green(1.0f);
+        call.set_blue(1.0f);
+      } else if (burn_cat == 9) {
+        call.set_red(1.0f);
+        call.set_green(0.0f);
+        call.set_blue(0.0f);
+      } else {
+      call.set_state(false);
+      }
+      call.perform();
+      id(burn_status_sensor).publish_state(burn_cat);
+      return {};
+      
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
