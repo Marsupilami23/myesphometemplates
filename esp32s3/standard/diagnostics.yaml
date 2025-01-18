@@ -70,7 +70,7 @@ light:
     output: pwm_user_led
   - platform: neopixelbus
     id: burn_status_rgb
-    type: RGB
+    type: GRB
     variant: WS2812X
     pin: "${sub_neopixelbus_pin}"
     num_leds: 64
