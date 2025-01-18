@@ -92,9 +92,9 @@ sensor:
         call.set_green(1.0f);
         call.set_blue(0.0f);
       } else if (burn_cat == 7 || burn_cat == 8) {
-        call.set_red(0.0f);
+        call.set_red(1.0f);
         call.set_green(1.0f);
-        call.set_blue(1.0f);
+        call.set_blue(0.0f);
       } else if (burn_cat == 9) {
         call.set_red(1.0f);
         call.set_green(0.0f);
