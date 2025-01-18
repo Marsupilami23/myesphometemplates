@@ -2,19 +2,10 @@ substitutions:
   log_level: DEBUG
   sub_baud_rate: "115200"
 
-globals:
-  - id: burn_category
-    type: int
-    restore_value: true
-    initial_value: "0"
- 
 # Enable logging bia network and disable serial port
 logger:
   level: "${log_level}"
   baud_rate: "${sub_baud_rate}"
-
-http_request:
-  id: burn_check_request
 
 time:
   - platform: homeassistant
@@ -27,18 +18,6 @@ binary_sensor:
     id: sensor_status
     disabled_by_default: true
 
-text_sensor:
-  - platform: template
-    id: burn_status
-    name: "Burn Status"
-    icon: mdi:fire
-    
-sensor:
-  - platform: template
-    id: burn_status_sensor
-    name: "Burn Status Category"
-    icon: "mdi:fire"
-          
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
