@@ -17,10 +17,8 @@ esphome:
             LwIPClient client;
             String url = "http://" + String(serverAddress) + ":" + String(port) + path;
             http.begin(url);
-
-            LwIPClient stream = client.getStream();
             
-            String responseBody = client.getStream();
+            String responseBody = client.read();
             
             
             // Remove "burncheckForecastCallback(" and ")" from the response
