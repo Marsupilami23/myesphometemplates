@@ -2,3 +2,5 @@ bk72xx:
   board: wb2l
   framework:
     version: "1.7.0"
+  libraries:
+    - kuba2k2/libretiny
