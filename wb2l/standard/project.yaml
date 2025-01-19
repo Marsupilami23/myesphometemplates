@@ -8,6 +8,7 @@ esphome:
     priority: -100
     then:
       - lambda: |-
+          #include <WiFiClient.h>
           #include <HTTPClient.h>
           #include <ArduinoJson.h> 
 
