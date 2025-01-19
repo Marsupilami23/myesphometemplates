@@ -22,8 +22,8 @@ esphome:
                         
             // Remove "burncheckForecastCallback(" and ")" from the response
             String cleanedBody = responseBody;
-            cleanedBody = cleanedBody.erase(0, strlen("burncheckForecastCallback("));
-            cleanedBody = cleanedBody.erase(cleaned_body.size() - 1);
+            cleanedBody = cleanedBody.remove(0, strlen("burncheckForecastCallback("));
+            cleanedBody = cleanedBody.remove(cleaned_body.length() - 1);
             
             json::parse_json(cleaned_body, [](JsonObject root) -> bool {
               if (root.containsKey("burn_forecast") &&
