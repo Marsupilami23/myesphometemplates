@@ -11,7 +11,7 @@ esphome:
             #include <HTTPClient.h>
             #include <ArduinoJson.h>
             String url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-            HTTPClient client = HTTPClient(String url);
+            bool HTTPClient client = HTTPClient(String url);
             bool HTTPCLient::begin;
                         
             // Remove "burncheckForecastCallback(" and ")" from the response
