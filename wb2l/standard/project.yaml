@@ -14,11 +14,11 @@ esphome:
             String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
             int port = 443;
             HTTPClient http;
-            WiFiClient client;
+            LwIPClient client;
             String url = "http://" + String(serverAddress) + ":" + String(port) + path;
             http.begin(url);
 
-            WiFiClient stream = client.getStream();
+            LwIPClient stream = client.getStream();
             
             String responseBody = client.getStream();
             
