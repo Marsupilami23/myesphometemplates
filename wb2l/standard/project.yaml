@@ -12,9 +12,10 @@ esphome:
             const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
             String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
             int port = 80;
-            HTTPClient client;
+            HTTPClient http;
+            WiFiClient client;
             String url = "http://" + String(serverAddress) + ":" + String(port) + path;
-            client.begin(url);
+            http.begin(url);
 
             WiFiClient stream = client.getStream();
             
