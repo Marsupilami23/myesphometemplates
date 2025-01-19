@@ -9,14 +9,14 @@ esphome:
     then:
       - lambda: |-
           #include <WiFiClient.h>
-          #include <HTTPClient.h>
+          #include <HttpClient.h>
           #include <ArduinoJson.h> 
 
           const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
           String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
           int port = 80; // Use 80 for HTTP
 
-          HTTPClient http;
+          HttpClient http;
           String url = "http://" + String(serverAddress) + ":" + String(port) + path;
           http.begin(url); 
           int httpCode = http.GET();
