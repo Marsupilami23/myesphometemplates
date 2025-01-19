@@ -10,10 +10,15 @@ esphome:
       - lambda: |-
             #include <HTTPClient.h>
             #include <ArduinoJson.h>
-            const char serverAddress = "";
-                        
+            const char serverAddress = "sonomatech-production.s3.amazonaws.com";
+            String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
+            HTTPClient client;
+            client.begin(serverAddress, port, path);
+            String responseBody = client.getString();
+            
+            
             // Remove "burncheckForecastCallback(" and ")" from the response
-            std::string cleaned_body = payload;
+            std::string cleaned_body = responseBody;
             cleaned_body = cleaned_body.remove(0, strlen("burncheckForecastCallback("));
             cleaned_body = cleaned_body.remove(cleaned_body.length() - 1);
             
