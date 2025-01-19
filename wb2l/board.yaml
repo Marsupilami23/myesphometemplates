@@ -3,4 +3,4 @@ bk72xx:
   framework:
     version: "1.7.0"
   libraries:
-    - kuba2k2/libretiny
+    - kuba2k2/libretiny@1.8.0
