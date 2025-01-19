@@ -10,7 +10,7 @@ esphome:
       - lambda: |-
             #include <HTTPClient.h>
             #include <ArduinoJson.h>
-            const char serverAddress = "sonomatech-production.s3.amazonaws.com";
+            const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
             String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
             HTTPClient client;
             client.begin(serverAddress, port, path);
