@@ -4,8 +4,6 @@ esphome:
   friendly_name: "${sub_friendly_name}"
   name_add_mac_suffix: false
   min_version: "2024.12.2"
-  libraries:
-    - kuba2k2/libretiny@^1.8.0
   on_boot:
     priority: -100
     then:
