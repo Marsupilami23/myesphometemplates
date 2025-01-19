@@ -11,9 +11,9 @@ esphome:
             #include <HTTPClient.h>
             #include <ArduinoJson.h>
             const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
+            std::string path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
             int port = 80;
             HTTPClient::HTTPClient(serverAddress, port, path);
-            std::string path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
             bool HTTPCLient::begin;
                         
             // Remove "burncheckForecastCallback(" and ")" from the response
