@@ -16,7 +16,7 @@ esphome:
             String url = "http://" + String(serverAddress) + ":" + String(port) + path;
             client.begin(url);
 
-            WiFiClient stream - client.getStream();
+            WiFiClient stream = client.getStream();
             
             String responseBody = client.getStream();
             
