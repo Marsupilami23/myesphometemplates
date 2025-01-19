@@ -24,17 +24,8 @@ esphome:
             String cleanedBody = responseBody;
             cleanedBody.remove(0, strlen("burncheckForecastCallback("));
             cleanedBody.remove(cleanedBody.length() - 1);
-            
-            json::parse_json(cleanedBody, [](JsonObject root) -> bool {
-              if (root.containsKey("burn_forecast") &&
-                  root["burn_forecast"].containsKey("today") &&
-                  root["burn_forecast"]["today"].containsKey("category") &&
-                  root["burn_forecast"]["today"]["category"].is<int>()) {
-                  
-                 id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
-                 return true;
-              } else {
-                ESP_LOGD("burn_category", "No burn status found!");
-                return false;
-              }
-              });
+
+            JsonDocument doc;
+            DeserializationError error = deserializeJson(doc, cleanedBody);
+                 
+            id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
