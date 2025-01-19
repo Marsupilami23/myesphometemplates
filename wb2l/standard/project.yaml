@@ -13,7 +13,7 @@ esphome:
             String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
             int port = 80;
             HTTPClient client;
-            client.begin(wifi_brg95758, serverAddress, port, path);
+            client.begin(serverAddress, port, path);
             String responseBody = client.getStream();
             
             
