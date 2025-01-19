@@ -2,6 +2,12 @@ substitutions:
   log_level: DEBUG
   sub_baud_rate: "115200"
 
+globals:
+  - id: burn_category
+    type: int
+    restore_value: true
+    initial_value: "0"
+    
 # Enable logging bia network and disable serial port
 logger:
   level: "${log_level}"
