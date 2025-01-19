@@ -15,7 +15,7 @@ esphome:
             int port = 80;
             HTTPClient client;
             client.begin(serverAddress, port, path);
-            String responseBody = client.getString();
+            String responseBody = client.getStream();
             
             
             // Remove "burncheckForecastCallback(" and ")" from the response
