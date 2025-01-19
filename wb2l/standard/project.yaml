@@ -28,4 +28,4 @@ esphome:
             JsonDocument doc;
             DeserializationError error = deserializeJson(doc, cleanedBody);
                  
-            id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
+            id(burn_category) = doc["burn_forecast"]["today"]["category"];
