@@ -4,13 +4,13 @@ esphome:
   friendly_name: "${sub_friendly_name}"
   name_add_mac_suffix: false
   min_version: "2024.12.2"
+  libraries:
   on_boot:
     priority: -100
     then:
       - lambda: |-
-          #include <Arduino.h>
           #include <WiFiClient.h>
-          #include <HTTPClient.h>
+          #include "/home/malexander/.platformio/platforms/libretiny/cores/common/arduino/libraries/ext/HTTPClient/HTTPClient.h"
           #include <ArduinoJson.h> 
 
           const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
