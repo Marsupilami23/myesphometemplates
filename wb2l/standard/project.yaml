@@ -19,12 +19,20 @@ esphome:
             
             
             // Remove "burncheckForecastCallback(" and ")" from the response
-            String cleaned_body = responseBody;
-            cleaned_body.remove(0, strlen("burncheckForecastCallback("));
-            cleaned_body.remove(cleaned_body.length() - 1);
+            std::string cleanedBody = responseBody;
+            cleaned_body = cleanedBody.erase(0, strlen("burncheckForecastCallback("));
+            cleaned_body = cleanedBody.erase(cleaned_body.size() - 1);
             
-            JsonDocument doc;
-            
-            DeserializationError error = deserializeJson(doc, clean_body);
-            
-            int burnCategory = doc["burn_forecast"]["today"]["category"];
+            json::parse_json(cleaned_body, [](JsonObject root) -> bool {
+              if (root.containsKey("burn_forecast") &&
+                  root["burn_forecast"].containsKey("today") &&
+                  root["burn_forecast"]["today"].containsKey("category") &&
+                  root["burn_forecast"]["today"]["category"].is<int>()) {
+                  
+                 id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
+                 return true;
+              } else {
+                ESP_LOGD("burn_category", "No burn status found!");
+                return false;
+              }
+              });
