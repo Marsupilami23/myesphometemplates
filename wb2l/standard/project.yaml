@@ -24,6 +24,7 @@ esphome:
             cleaned_body.remove(cleaned_body.length() - 1);
             
             JsonDocument doc;
+            
             DeserializationError error = deserializeJson(doc, clean_body);
             
             int burnCategory = doc["burn_forecast"]["today"]["category"];
