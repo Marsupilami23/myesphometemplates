@@ -21,7 +21,7 @@ esphome:
             responseBody += char(client.read());
                         
             // Remove "burncheckForecastCallback(" and ")" from the response
-            std::string cleanedBody = responseBody;
+            String cleanedBody = responseBody;
             cleanedBody = cleanedBody.erase(0, strlen("burncheckForecastCallback("));
             cleanedBody = cleanedBody.erase(cleaned_body.size() - 1);
             
