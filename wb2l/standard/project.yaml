@@ -17,10 +17,9 @@ esphome:
             LwIPClient client;
             String url = "http://" + String(serverAddress) + ":" + String(port) + path;
             http.begin(url);
-            
+            String responseBody;
             responseBody += char(client.read());
-            
-            
+                        
             // Remove "burncheckForecastCallback(" and ")" from the response
             std::string cleanedBody = responseBody;
             cleanedBody = cleanedBody.erase(0, strlen("burncheckForecastCallback("));
