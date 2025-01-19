@@ -25,7 +25,7 @@ esphome:
             cleanedBody.remove(0, strlen("burncheckForecastCallback("));
             cleanedBody.remove(cleanedBody.length() - 1);
             
-            json::parse_json(cleaned_body, [](JsonObject root) -> bool {
+            json::parse_json(cleanedBody, [](JsonObject root) -> bool {
               if (root.containsKey("burn_forecast") &&
                   root["burn_forecast"].containsKey("today") &&
                   root["burn_forecast"]["today"].containsKey("category") &&
