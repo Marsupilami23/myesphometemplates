@@ -10,8 +10,8 @@ esphome:
       - lambda: |-
             #include <HTTPClient.h>
             #include <ArduinoJson.h>
-            std::string url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-            HTTPClient client = HTTPClient(url);
+            String url = "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
+            HTTPClient client = HTTPClient(String url);
             bool HTTPCLient::begin;
                         
             // Remove "burncheckForecastCallback(" and ")" from the response
