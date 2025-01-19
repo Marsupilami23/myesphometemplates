@@ -18,7 +18,7 @@ esphome:
             String url = "http://" + String(serverAddress) + ":" + String(port) + path;
             http.begin(url);
             
-            String responseBody = client.read();
+            responseBody += char(client.read());
             
             
             // Remove "burncheckForecastCallback(" and ")" from the response
