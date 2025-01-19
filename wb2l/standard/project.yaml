@@ -9,12 +9,13 @@ esphome:
     then:
       - lambda: |-
             #include <HTTPClient.h>
-            #include <WiFiClient.h>
+            #include <WiFiClientSecure.h>
+            #include <IWifiClient.h>
             const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
             String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-            int port = 80;
+            int port = 443;
             HTTPClient http;
-            WiFiClient client;
+            WiFiClientSecure client;
             String url = "http://" + String(serverAddress) + ":" + String(port) + path;
             http.begin(url);
 
