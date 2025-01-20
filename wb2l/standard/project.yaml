@@ -12,9 +12,9 @@ esphome:
        - lambda: |-
           #include <HttpClient.h>
           HttpClient http;
-          const char* aServerName = "sonomatech-production.s3.amazonaws.com";
-          const char* aURLPath = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-          uint16_t aServerPort = 443;
+          String aServerName = "sonomatech-production.s3.amazonaws.com";
+          String aURLPath = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
+          int aServerPort = 443;
           http.get(aServerName, aServerPort, aURLPath);
           http.stop();
           
