@@ -7,85 +7,50 @@ esphome:
   on_boot:
     priority: -100
     then:
-      - http_request.get:
-          id: burn_check_request
-          url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
-          capture_response: true
-          on_response:
-            then:
-              - if:
-                  condition:
-                    lambda: return response->status_code == 200;
-                  then:
-                    - logger.log:
-                        format: "Raw Response %s"
-                        args: [body.c_str()]
-                    - lambda: |-
-                        // Remove "burncheckForecastCallback(" and ")" from the response
-                        std::string cleaned_body = body;
-                        cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
-                        cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
-                        
-                        json::parse_json(cleaned_body, [](JsonObject root) -> bool {
-                          if (root.containsKey("burn_forecast") &&
-                              root["burn_forecast"].containsKey("today") &&
-                              root["burn_forecast"]["today"].containsKey("category") &&
-                              root["burn_forecast"]["today"]["category"].is<int>()) {
-                              
-                             id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
-                             return true;
-                          } else {
-                            ESP_LOGD("burn_category", "No burn status found!");
-                            return false;
-                          }
-                          });
-#  on_boot:
-#    priority: -100
-#    then:
-#       - lambda: |-
-#          #include <HTTPClient.h>
-#          const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
-#          String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-#          int port = 80; // Use 80 for HTTP
-#
-#          HTTPClient http;
-#          String url = "http://" + String(serverAddress) + ":" + String(port) + path;
-#          http.begin(url); 
-#          int httpCode = http.GET();
-#
-#          if (httpCode > 0) {
-#            if (httpCode == HTTP_CODE_OK) {
-#              WiFiClient client = http.getStream();
-#
-#              // Read the response
-#              String responseBody;
-#              while (client.available()) {
-#                responseBody += char(client.read()); 
-#              }
-#
-#              // Remove "burncheckForecastCallback(" and ")" from the response
-#              String cleanedBody = responseBody;
-#              cleanedBody.remove(0, strlen("burncheckForecastCallback("));
-#              cleanedBody.remove(cleanedBody.length() - 1);
-#
-#              // Parse the JSON response
-#              DynamicJsonDocument doc(1024); // Adjust capacity if needed
-#              DeserializationError error = deserializeJson(doc, cleanedBody);
-#
-#              if (error) {
-#                ESP_LOGD("burn_category", "deserializeJson() failed: %s", error.c_str());
-#                return;
-#              }
-#
-#              // Access and store the burn category
-#              int burnCategory = doc["burn_forecast"]["today"]["category"].as<int>(); // Access within the lambda
-#              id(burn_category) = burnCategory; // Assign to your ESPHome sensor
-#
-#            } else {
-#              ESP_LOGD("burn_category", "HTTP request failed with code: %d", httpCode);
-#            }
-#          } else {
-#            ESP_LOGD("burn_category", "Failed to connect to server");
-#          }
-#
-#          http.end(); 
+       - lambda: |-
+          #include <HTTPClient.h>
+          const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
+          String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
+          int port = 80; // Use 80 for HTTP
+
+          HTTPClient http;
+          String url = "http://" + String(serverAddress) + ":" + String(port) + path;
+          http.begin(url); 
+          int httpCode = http.GET();
+
+          if (httpCode > 0) {
+            if (httpCode == HTTP_CODE_OK) {
+              WiFiClient client = http.getStream();
+
+              // Read the response
+              String responseBody;
+              while (client.available()) {
+                responseBody += char(client.read()); 
+              }
+
+              // Remove "burncheckForecastCallback(" and ")" from the response
+              String cleanedBody = responseBody;
+              cleanedBody.remove(0, strlen("burncheckForecastCallback("));
+              cleanedBody.remove(cleanedBody.length() - 1);
+
+              // Parse the JSON response
+              DynamicJsonDocument doc(1024); // Adjust capacity if needed
+              DeserializationError error = deserializeJson(doc, cleanedBody);
+
+              if (error) {
+                ESP_LOGD("burn_category", "deserializeJson() failed: %s", error.c_str());
+                return;
+              }
+
+              // Access and store the burn category
+              int burnCategory = doc["burn_forecast"]["today"]["category"].as<int>(); // Access within the lambda
+              id(burn_category) = burnCategory; // Assign to your ESPHome sensor
+
+            } else {
+              ESP_LOGD("burn_category", "HTTP request failed with code: %d", httpCode);
+            }
+          } else {
+            ESP_LOGD("burn_category", "Failed to connect to server");
+          }
+
+          http.end(); 
