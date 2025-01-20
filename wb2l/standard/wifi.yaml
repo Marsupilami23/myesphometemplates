@@ -27,7 +27,6 @@ wifi:
     password: "${wifi_password}"
 
 http_request:
-  - name: "test"
     url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
     method: GET
     on_response:
