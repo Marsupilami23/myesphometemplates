@@ -4,14 +4,11 @@ esphome:
   friendly_name: "${sub_friendly_name}"
   name_add_mac_suffix: false
   min_version: "2024.12.2"
-  platformio_options:
-    lib_deps:
-      - HTTPClient=symlink:///home/malexander/.platformio/platforms/libretiny/cores/common/arduino/libraries/ext/HTTPClient
   on_boot:
     priority: -100
     then:
        - lambda: |-
-          #include "HTTPClient.h"
+          #include <HTTPClient.h>
           HTTPClient http;
           http.begin("http://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
           http.GET();
