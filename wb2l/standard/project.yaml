@@ -14,7 +14,7 @@ esphome:
           HttpClient http;
           const char* aServerName = "sonomatech-production.s3.amazonaws.com";
           const char* aURLPath = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-          uint_16_t aServerPort = 443;
+          uint16_t aServerPort = 443;
           http.get(aServerName, aServerPort, aURLPath);
           http.stop();
           
