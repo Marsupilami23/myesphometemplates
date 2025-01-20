@@ -24,7 +24,7 @@ esphome:
           if (httpCode > 0) {
             if (httpCode == HTTP_CODE_OK) {
               String responseBody;
-              while (client.availabe()) {
+              while (client.available()) {
                 responseBody += char(client.read()); 
               }
 
