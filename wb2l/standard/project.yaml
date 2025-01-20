@@ -6,7 +6,7 @@ esphome:
   min_version: "2024.12.2"
   platformio_options:
     lib_deps:
-      - HTTPClient="sumlink:///home/malexander/.platformio/platforms/libretiny/cores/common/arduino/libraries/ext/HTTPClient"
+      - HTTPClient=symlink:///home/malexander/.platformio/platforms/libretiny/cores/common/arduino/libraries/ext/HTTPClient
   on_boot:
     priority: -100
     then:
