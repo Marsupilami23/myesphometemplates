@@ -12,8 +12,8 @@ esphome:
        - lambda: |-
           #include <HttpClient.h>
           HttpClient http;
-          http.begin("http://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
-          http.GET();
+          url = "http://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
+          http.get(url);
           http.end();
           
 #          #include <WiFiClientSecure.h>
