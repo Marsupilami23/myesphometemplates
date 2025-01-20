@@ -27,11 +27,6 @@ wifi:
     password: "${wifi_password}"
 
 http_request:
-    url: "https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt"
-    method: GET
-    on_response:
-      - lambda: |-
-          ESP_LOGI("http_request", "Respose: %s,", x.as_string().c_str());
 
 api:
 web_server:
