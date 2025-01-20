@@ -10,6 +10,7 @@ esphome:
        - lambda: |-
           #include <Arduino.h>
           #include <HTTPClient.h>
+          #include <WiFiClient.h>
           WiFiClient client;
           HTTPClient http(client);
           http.begin("http://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
