@@ -14,7 +14,6 @@ esphome:
           #include <WiFiClient.h>
           const char kHostname[] = "sonomatech-production.s3.amazonaws.com";
           const char kPath[] = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-          int err = 0;
           WiFiClient client;
           HttpClient http(client);
           http.get(kHostname, kPath);
