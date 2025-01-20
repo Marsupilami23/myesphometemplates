@@ -39,7 +39,7 @@ esphome:
 
               if (error) {
                 ESP_LOGD("burn_category", "deserializeJson() failed: %s", error.c_str());
-                id(burn_category) = -1; Set error state
+                id(burn_category) = -1; // Set error state
                 return;
               }
 
