@@ -10,8 +10,8 @@ esphome:
     priority: -100
     then:
        - lambda: |-
-          #include <HTTPClient.h>
-          HTTPClient http;
+          #include <HttpClient.h>
+          HttpClient http;
           http.begin("http://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt");
           http.GET();
           http.end();
