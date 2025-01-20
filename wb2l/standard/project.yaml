@@ -10,6 +10,7 @@ esphome:
     priority: -100
     then:
       - lambda: |-
+          #include <HTTPClient.h>
           const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
           String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
           int port = 80; // Use 80 for HTTP
