@@ -12,10 +12,10 @@ esphome:
        - lambda: |-
           #include <HttpClient.h>
           HttpClient http;
-          String aServerName = "sonomatech-production.s3.amazonaws.com";
-          String aURLPath = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-          int aServerPort = 443;
-          http.get(aServerName, aServerPort, aURLPath);
+          const char* serverName = "sonomatech-production.s3.amazonaws.com";
+          const char* URLPath = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
+          int serverPort = 443;
+          http.get(serverName, serverPort, URLPath);
           http.stop();
           
 #          #include <WiFiClientSecure.h>
