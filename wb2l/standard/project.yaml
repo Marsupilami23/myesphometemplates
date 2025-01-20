@@ -9,22 +9,22 @@ esphome:
     then:
        - lambda: |-
           #include <HTTPClient.h>
+          #include <WiFiClientSecure.h>
           const char serverAddress[] = "sonomatech-production.s3.amazonaws.com";
           String path = "/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt";
-          int port = 80; // Use 80 for HTTP
+          int port = 443; // Use 80 for HTTP
 
+          WiFiClientSecure client;
+          client.setInsecure();
           HTTPClient http;
           String url = "http://" + String(serverAddress) + ":" + String(port) + path;
-          http.begin(url); 
+          http.begin(client, url); 
           int httpCode = http.GET();
 
           if (httpCode > 0) {
             if (httpCode == HTTP_CODE_OK) {
-              WiFiClient client = http.getStream();
-
-              // Read the response
               String responseBody;
-              while (client.available()) {
+              while (client.availabe()) {
                 responseBody += char(client.read()); 
               }
 
@@ -39,6 +39,7 @@ esphome:
 
               if (error) {
                 ESP_LOGD("burn_category", "deserializeJson() failed: %s", error.c_str());
+                id(burn_category) = -1; Set error state
                 return;
               }
 
@@ -48,9 +49,11 @@ esphome:
 
             } else {
               ESP_LOGD("burn_category", "HTTP request failed with code: %d", httpCode);
+              id(burn_category) = -1;
             }
           } else {
             ESP_LOGD("burn_category", "Failed to connect to server");
+            id(burn_category) = -1;
           }
 
           http.end(); 
