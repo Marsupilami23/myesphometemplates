@@ -45,7 +45,7 @@ esphome:
                           }
                           });
 #                        // Putting to deep sleep
-#                        delay(120000);
+                        delay(120000);
 
 external_components:
   - source:
