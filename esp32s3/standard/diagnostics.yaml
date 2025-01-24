@@ -167,7 +167,7 @@ switch:
     on_turn_on:
       - script.execute: script_check_deep_sleep
       - light.turn_on:
-          id: activity_led
+          id: user_led
           effect: pulse
     entity_category: config
     icon: mdi:sleep-off
