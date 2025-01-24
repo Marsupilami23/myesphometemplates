@@ -27,6 +27,13 @@ binary_sensor:
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
+  - platform: gpio
+    name: wake
+    pin: sub_wake_pin
+    inverted: true
+    on_press:
+      
+    
 
 #  - platform: gpio
 #    id: test_button
