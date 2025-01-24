@@ -34,6 +34,9 @@ binary_sensor:
     on_state:
       then:
         - logger.log: "Button Pressed"
+        - script.execute: get_burn_category
+        - script.execute: set_burn_category
+        - script.execute: set_burn_category_grb
 
 text_sensor:
   - platform: template
