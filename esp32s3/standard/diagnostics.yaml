@@ -20,6 +20,7 @@ http_request:
 deep_sleep:
   id: deep_sleep_1
   run_duration: 10s
+  sleep_duration: 86400
   wakeup_pin: "${sub_wake_pin}"
 
 time:
