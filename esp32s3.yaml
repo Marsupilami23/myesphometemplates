@@ -26,3 +26,4 @@ packages:
     files:
       - esp32s3/board.yaml
       - esp32s3/pwm-outputs.yaml
+      - esp32s3/scripts.yaml
