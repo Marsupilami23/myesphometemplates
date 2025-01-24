@@ -48,7 +48,6 @@ script:
             burn_status_text = "Burning Prohibited, no exceptions!";
           }
           id(burn_status).publish_state(burn_status_text);
-          return {};
 
   - id: set_burn_category_grb
     then:
