@@ -27,6 +27,13 @@ binary_sensor:
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
+  - platform: gpio
+    name: "Test Button"
+    id: test_button
+    pin: "${sub_wake_pin}"
+    on_state:
+      then:
+        - logger.log: "Button Pressed"
 
 text_sensor:
   - platform: template
