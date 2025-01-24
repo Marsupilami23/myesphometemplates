@@ -59,7 +59,7 @@ light:
     name: "User LED"
     output: pwm_user_led
   - platform: neopixelbus
-    id: burn_status_rgb
+    id: burn_status_grb
     type: GRB
     variant: WS2812X
     pin: "${sub_neopixelbus_pin}"
@@ -73,7 +73,7 @@ sensor:
     icon: "mdi:fire"
     lambda: |-
       auto burn_cat = id(burn_category);
-      auto call = id(burn_status_rgb).make_call();
+      auto call = id(burn_status_grb).make_call();
 
       call.set_state(true);
       call.set_brightness(.2); 
