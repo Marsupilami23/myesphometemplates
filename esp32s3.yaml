@@ -5,6 +5,7 @@ substitutions:
 
   sub_neopixelbus_pin: GPIO01
   sub_user_pin: GPIO21
+  sub_wake_pin: GPIO08
   
   disable_entities: "true"
 
