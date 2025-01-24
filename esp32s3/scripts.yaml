@@ -1,18 +1,18 @@
 script:
   - id: script_deep_sleep
     then:
-      - deep_sleep_libretiny.prevent
+      - deep_sleep.prevent
       - delay: 10s
       - script.execute: script_check_deep_sleep
     mode: restart
 
   - id: script_check_deep_sleep
     then:
-      - deep_sleep_libretiny.prevent
+      - deep_sleep.prevent
       - if:
           condition:
             - switch.is_off: manual_mode
           then:
             - output.turn_off: activity_led_output
-            - deep_sleep_libretiny.allow
+            - deep_sleep.allow
     mode: restart
