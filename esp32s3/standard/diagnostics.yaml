@@ -47,6 +47,7 @@ light:
     id: user_led
     name: "User LED"
     output: pwm_user_led
+    restore_mode: ALWAYS_ON
   - platform: neopixelbus
     id: burn_status_grb
     type: GRB
@@ -54,6 +55,7 @@ light:
     pin: "${sub_neopixelbus_pin}"
     num_leds: 64
     name: "NeoPixel Lights"
+    restore_mode: ALWAYS_OFF
 
 sensor:
   - platform: template
