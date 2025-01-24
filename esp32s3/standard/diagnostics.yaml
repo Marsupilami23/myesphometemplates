@@ -20,6 +20,7 @@ http_request:
 deep_sleep:
   id: deep_sleep_1
   run_duration: 10s
+  wakeup_pin: "${sub_wake_pin}"
 
 time:
   - platform: homeassistant
@@ -31,21 +32,6 @@ binary_sensor:
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
-  - platform: gpio
-    id: bottom_button
-    pin:
-      number: "${sub_wake_pin}"
-      inverted: true
-      allow_other_uses: true
-    name: "Bottom Button"
-    icon: mdi:button-pointer
-    on_state:
-      - script.execute: script_check_deep_sleep
-    on_click:
-      min_length: 50ms
-      max_length: 350ms
-      then:
-        - switch.toggle: manual_mode   
 
 text_sensor:
   - platform: template
