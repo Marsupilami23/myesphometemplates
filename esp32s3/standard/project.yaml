@@ -17,12 +17,3 @@ external_components:
       ref: release
     components: [ "http_request", "json" ]
     refresh: always
-
-#deep_sleep:
-#  id: deep_sleep_1
-#  sleep_duration: 1d
-#  run_duration: 60s
-#  wakeup_pin:
-#    number: "${sub_test_button}"
-#    allow_other_uses: true
-#  wakeup_pin_mode: KEEP_AWAKE
