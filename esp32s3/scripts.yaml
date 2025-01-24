@@ -13,6 +13,6 @@ script:
           condition:
             - switch.is_off: manual_mode
           then:
-            - output.turn_off: activity_led_output
+            - output.turn_off: user_led
             - deep_sleep.allow
     mode: restart
