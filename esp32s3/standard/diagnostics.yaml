@@ -39,19 +39,7 @@ text_sensor:
     id: burn_status
     name: "Burn Status"
     icon: mdi:fire
-    lambda: |-
-      auto burn_cat = id(burn_category);
-      std::string burn_status_text = "Unknown";
-      
-      if (burn_cat == 6) {
-        burn_status_text = "Burning Allowed";
-      } else if (burn_cat == 7 || burn_cat == 8) {
-        burn_status_text = "Burning Discouraged or Burning Prohibited with exceptions";
-      } else if (burn_cat == 9) {
-        burn_status_text = "Burning Prohibited, no exceptions!";
-      }
-      id(burn_status).publish_state(burn_status_text);
-      return {};
+ 
     
 light:
   - platform: monochromatic
@@ -71,31 +59,7 @@ sensor:
     id: burn_status_sensor
     name: "Burn Status Category"
     icon: "mdi:fire"
-    lambda: |-
-      auto burn_cat = id(burn_category);
-      auto call = id(burn_status_grb).make_call();
-
-      call.set_state(true);
-      call.set_brightness(.2); 
-      
-      if (burn_cat == 6) {
-        call.set_red(0.0f);
-        call.set_green(1.0f);
-        call.set_blue(0.0f);
-      } else if (burn_cat == 7 || burn_cat == 8) {
-        call.set_red(1.0f);
-        call.set_green(1.0f);
-        call.set_blue(0.0f);
-      } else if (burn_cat == 9) {
-        call.set_red(1.0f);
-        call.set_green(0.0f);
-        call.set_blue(0.0f);
-      } else {
-      call.set_state(false);
-      }
-      call.perform();
-      id(burn_status_sensor).publish_state(burn_cat);
-      return {};
+  
       
 # Provide a pre-built button for restart the device
 button:
@@ -109,41 +73,7 @@ button:
     id: get_burn_status
     icon: mdi:fire-alert
     entity_category: "diagnostic"
-    on_press:
-      then:
-        - http_request.get:
-            id: burn_check_request
-            url: https://sonomatech-production.s3.amazonaws.com/sacramento/airquality_org/cbyb-widget/burncheckForecast.txt
-            capture_response: true
-            on_response:
-              then:
-                - if:
-                    condition:
-                      lambda: return response->status_code == 200;
-                    then:
-                      - logger.log:
-                          format: "Raw Response %s"
-                          args: [body.c_str()]
-                      - lambda: |-
-                          // Remove "burncheckForecastCallback(" and ")" from the response
-                          std::string cleaned_body = body;
-                          cleaned_body = cleaned_body.erase(0, strlen("burncheckForecastCallback("));
-                          cleaned_body = cleaned_body.erase(cleaned_body.size() - 1);
-                          
-                          json::parse_json(cleaned_body, [](JsonObject root) -> bool {
-                            if (root.containsKey("burn_forecast") &&
-                                root["burn_forecast"].containsKey("today") &&
-                                root["burn_forecast"]["today"].containsKey("category") &&
-                                root["burn_forecast"]["today"]["category"].is<int>()) {
-                                
-                               id(burn_category) = (root["burn_forecast"]["today"]["category"].as<int>());
-                               return true;
-                            } else {
-                              ESP_LOGD("burn_category", "No burn status found!");
-                              return false;
-                            }
-                            });
-
+   
 switch:
   - platform: template
     optimistic: True
