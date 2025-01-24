@@ -67,18 +67,3 @@ button:
     id: get_burn_status
     icon: mdi:fire-alert
     entity_category: "diagnostic"
-   
-switch:
-  - platform: template
-    optimistic: True
-    name: Manual Mode
-    id: manual_mode
-    on_turn_off:
-      - script.execute: script_check_deep_sleep
-    on_turn_on:
-      - script.execute: script_check_deep_sleep
-      - light.turn_on:
-          id: user_led
-          effect: pulse
-    entity_category: config
-    icon: mdi:sleep-off
