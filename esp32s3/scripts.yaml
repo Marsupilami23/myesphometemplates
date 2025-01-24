@@ -14,5 +14,6 @@ script:
             - switch.is_off: manual_mode
           then:
             - light.turn_off: user_led
+            - light.turn_off: 
             - deep_sleep.allow
     mode: restart
