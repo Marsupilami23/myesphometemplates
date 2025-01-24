@@ -27,7 +27,7 @@ binary_sensor:
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
-- platform: gpio
+  - platform: gpio
     id: bottom_button
     pin:
       number: "${sub_reset_button_gpio}"
