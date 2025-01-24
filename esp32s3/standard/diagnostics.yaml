@@ -153,3 +153,17 @@ button:
                             }
                             });
 
+switch:
+  - platform: template
+    optimistic: True
+    name: Manual Mode
+    id: manual_mode
+    on_turn_off:
+      - script.execute: script_check_deep_sleep
+    on_turn_on:
+      - script.execute: script_check_deep_sleep
+      - light.turn_on:
+          id: activity_led
+          effect: pulse
+    entity_category: config
+    icon: mdi:sleep-off
