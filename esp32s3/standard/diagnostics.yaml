@@ -66,7 +66,6 @@ sensor:
     name: "Burn Status Category"
     icon: "mdi:fire"
   
-      
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
