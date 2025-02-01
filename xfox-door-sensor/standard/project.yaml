@@ -2,7 +2,6 @@ substitutions:
   # Generated name and unique device id for the device
   # Not intended for user substitutions
   device_name: "${device_room_name} ${device_location_name}"
-  device_code: "${device_room_code}-${device_location_code}-${device_type_code}"
   device_model: "Door Sensor"
   device_make: "XFOX"
   package_version: "2024.11.20"
@@ -26,6 +25,16 @@ esphome:
     - priority: 100.0
       then:
         - output.turn_on: activity_led_output
+    - priority: -99
+      then:
+        - globals.set:
+            id: device_code
+            value: !lambda |
+              // Construct the full device code string
+              std::string code = id(device_room_code).state + "-" + id(device_location_code).state+ "-" + id(device_type_code).state;
+              char* cstring = new char[code.length() + 1];
+              strcpy(cstring, code.c_str());
+              return cstring;
     - priority: -100 # 200.0: Network connections like MQTT/native API are set up at this priority.
       then:
         - component.update: VCC
@@ -37,3 +46,6 @@ globals:
   - id: first_connect_ms_int
     type: uint32_t
     initial_value: "0"
+  - id: device_code
+    type: const char*
+    initial_value: ""
