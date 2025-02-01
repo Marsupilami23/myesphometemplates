@@ -179,7 +179,7 @@ light:
 deep_sleep_libretiny:
   id: deep_sleep_lt
   sleep_duration: 24h
-  run_duration: 30s
+  run_duration: 120s
   wakeup_pins:
     - pin:
         number: "${sub_reset_button_gpio}"
