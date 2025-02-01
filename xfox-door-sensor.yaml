@@ -62,51 +62,6 @@ output:
     pin:
       number: "${sub_activity_led_gpio}"
       inverted: true
-
-binary_sensor:
-  - platform: gpio
-    device_class: door
-    name: "${device_type_name}"
-    pin:
-      number: "${sub_binary_sensor_gpio}"
-      allow_other_uses: true
-    on_state:
-      - if:
-          condition:
-            - switch.is_off: manual_mode
-          then:
-            - output.turn_on: activity_led_output
-            - delay: 5000ms
-            - output.turn_off: activity_led_output
-          else:
-            - light.turn_on:
-                id: activity_led
-                effect: pulse
-      - script.execute: PLACEHOLDER FOR NEW SCRIPT
-    icon: mdi:door
-
-  - platform: gpio
-    id: bottom_button
-    pin:
-      number: "${sub_reset_button_gpio}"
-      inverted: true
-      allow_other_uses: true
-    name: "Bottom Button"
-    entity_category: diagnostic
-    icon: mdi:button-pointer
-    on_state:
-      - script.execute: PLACEHOLDER FOR NEW SCRIPT
-    on_click:
-      min_length: 50ms
-      max_length: 350ms
-      then:
-        - switch.toggle: manual_mode
-        
-  // NEW BINARY SENSOR FOR NEW FUNCTION/SCRIPT
-  - platform: gpio
-    pin: 16 #dummy pin to hold the state
-    name: "all_data_received"
-    internal: true
     
 switch:
   - platform: gpio
