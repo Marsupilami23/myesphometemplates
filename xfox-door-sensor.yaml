@@ -102,6 +102,11 @@ binary_sensor:
       then:
         - switch.toggle: manual_mode
 
+  - platform: gpio
+    pin: 16 #dummy pin to hold the state
+    name: "all_data_received"
+    internal: true
+    
 switch:
   - platform: gpio
     id: batt_dv
@@ -140,6 +145,14 @@ sensor:
             args: ['id(VCC).state']
     entity_category: diagnostic
     icon: mdi:battery
+  - platform: template
+    name: "data_received"
+    lambda: |-
+      if (id(all_data_received).state) {
+        return true;
+      } else {
+        return false;
+      }
 
   - platform: template
     name: "Battery Level (%)"
