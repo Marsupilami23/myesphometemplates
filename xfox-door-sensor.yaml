@@ -127,56 +127,7 @@ switch:
     entity_category: config
     icon: mdi:sleep-off
 
-sensor:
-  - platform: adc
-    pin: $sub_batt_lvl_gpio
-    id: "VCC"
-    name: "Battery Level"
-    filters:
-      - multiply: 2.4
-      - clamp:
-          min_value: 0.0
-          max_value: 3.0
-          ignore_out_of_range: true
-    on_value:
-      then:
-        - component.update: battery_level
-        - logger.log:
-            format: "Received: %s"
-            args: ['id(VCC).state']
-    entity_category: diagnostic
-    icon: mdi:battery
 
-  // NEW SENSOR FOR NEW FUNCTION/SCRIPT
-  - platform: template
-    name: "data_received"
-    lambda: |-
-      if (id(all_data_received).state) {
-        return true;
-      } else {
-        return false;
-      }
-
-  - platform: template
-    name: "Battery Level (%)"
-    unit_of_measurement: '%'
-    update_interval: 86400s
-    id: battery_level
-    lambda: |-
-      return ((id(VCC).state /3.0) * 100.00);
-    entity_category: diagnostic
-    icon: mdi:battery
-
-  - platform: template
-    name: first_connect_ms
-    id: first_connect_ms
-    entity_category: diagnostic
-    lambda: |-
-      return id(first_connect_ms_int);
-
-  - platform: internal_temperature
-    name: Internal Temperature
-    icon: mdi:thermometer
 
 light:
   - platform: monochromatic
