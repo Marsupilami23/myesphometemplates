@@ -78,6 +78,6 @@ time:
     id: homeassistant_time
     on_time_sync:
       then:
-        - component.update: update_time
+        - lambda: 'id(update_time).update();'
         
 captive_portal:
