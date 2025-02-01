@@ -54,29 +54,6 @@ packages:
       - xfox-door-sensor/board.yaml
       - xfox-door-sensor/scripts.yaml
 
-# Adds Activity LED function and maps to GPIO pin.
-output:
-  - platform: libretiny_pwm
-    id: activity_led_output
-    frequency: 1000 Hz
-    pin:
-      number: "${sub_activity_led_gpio}"
-      inverted: true
-    
-light:
-  - platform: monochromatic
-    name: "Activity LED"
-    output: activity_led_output
-    id: activity_led
-    icon: mdi:lamp
-    effects:
-      - strobe:
-      - pulse:
-          transition_length:
-            on_length: 1s
-            off_length: 2s
-          update_interval: 3s
-
 deep_sleep_libretiny:
   id: deep_sleep_lt
   sleep_duration: 24h
