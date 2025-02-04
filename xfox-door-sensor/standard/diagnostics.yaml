@@ -13,14 +13,4 @@ text_sensor:
       entity_category: diagnostic
       disabled_by_default: "${disable_entities}"
 
-  - platform: template
-    id: update_time
-    name: "Current Time"
-    lambda: |-
-      char current_time_str[17];
-      time_t currTime = id(homeassistant_time).now().timestamp;
-      strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
-      return {current_time_str};
-    icon: mdi:clock
-
 logger:
