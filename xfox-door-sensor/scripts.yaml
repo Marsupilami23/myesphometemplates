@@ -1,1 +1,32 @@
+script:
+  - id: script_deep_sleep
+    then:
+      - deep_sleep_libretiny.prevent
 
+      - if:
+          condition:
+            - binary_sensor.is_on: ${device_type_name}
+          then:
+            - mqtt.publish:
+              topic: homeassistant/${device_code}/state
+              payload: "ON"
+          else:
+            - mqtt.publish:
+              topic: homeassistant/${device_code}/state
+              payload: "OFF"
+
+      - delay: 5s
+      - script.execute: script_check_deep_sleep
+    mode: restart
+
+  - id: script_check_deep_sleep
+    then:
+      - deep_sleep_libretiny.prevent
+      - if:
+          condition:
+            - switch.is_off: manual_mode
+          then:
+            - output.turn_off: activity_led_output
+            - delay: 1s
+            - deep_sleep_libretiny.allow
+    mode: restart
