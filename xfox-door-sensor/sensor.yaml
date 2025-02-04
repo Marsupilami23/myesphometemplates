@@ -2,7 +2,7 @@ sensor:
   - platform: adc
     pin: $sub_batt_lvl_gpio
     id: "VCC"
-    name: "Battery Capacity"
+    name: "Battery Voltage"
     filters:
       - multiply: 2.4
       - clamp:
@@ -13,7 +13,7 @@ sensor:
       then:
         - component.update: battery_percent
         - logger.log:
-            format: "Received: %s"
+            format: "Received VCC: %s"
             args: ['id(VCC).state']
     entity_category: diagnostic
     icon: mdi:battery
