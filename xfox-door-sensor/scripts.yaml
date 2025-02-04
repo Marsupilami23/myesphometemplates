@@ -31,7 +31,7 @@ script:
           topic: homeassistant/${device_code}/sensor/battery_level
           payload: !lambda |
             char battery_str;
-            snprintf(battery_str, sizeof(battery_str), id(battery_level).state);
+            snprintf(battery_str, sizeof(battery_str), "%.0f" id(battery_level).state);
             return std::string(battery_str);
 
       - mqtt.publish:
