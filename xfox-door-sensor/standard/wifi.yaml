@@ -72,9 +72,5 @@ wifi:
     - lambda: |-
         if (id(first_connect_ms_int) == 0) id(first_connect_ms_int) = esphome::millis();
     - component.update: first_connect_ms
-
-time:
-  - platform: homeassistant
-    id: homeassistant_time
         
 captive_portal:
