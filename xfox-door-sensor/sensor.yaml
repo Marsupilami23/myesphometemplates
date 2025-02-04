@@ -11,7 +11,7 @@ sensor:
           ignore_out_of_range: true
     on_value:
       then:
-        - component.update: battery_percent
+        - component.update: battery_level
         - logger.log:
             format: "Received VCC: %s"
             args: ['id(VCC).state']
@@ -22,7 +22,7 @@ sensor:
     name: "Battery Level (%)"
     unit_of_measurement: '%'
     update_interval: 300s
-    id: battery_percent
+    id: battery_level
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
     entity_category: diagnostic
