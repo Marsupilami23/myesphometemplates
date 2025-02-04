@@ -21,7 +21,7 @@ sensor:
   - platform: template
     name: "Battery Level (%)"
     unit_of_measurement: '%'
-    update_interval: 86400s
+    update_interval: 300s
     id: battery_percent
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
