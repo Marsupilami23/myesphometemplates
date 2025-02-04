@@ -76,8 +76,5 @@ wifi:
 time:
   - platform: homeassistant
     id: homeassistant_time
-    on_time_sync:
-      then:
-        - lambda: 'id(update_time).update();'
         
 captive_portal:
