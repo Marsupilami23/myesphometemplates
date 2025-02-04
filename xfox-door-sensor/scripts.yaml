@@ -23,12 +23,12 @@ script:
       - mqtt.publish:
           topic: homeassistant/${device_code}/sensor/battery_capacity
           payload: !lambda |
-            return String(id(VCC).state);
+            return std::to_string(id(VCC).state);
 
       - mqtt.publish:
           topic: homeassistant/${device_code}/sensor/battery_percent
           payload: !lambda |
-            return String(id(battery_percent).state);
+            return std::to_string(id(battery_percent).state);
 
       - mqtt.publish:
           topic: homeassistant/${device_code}/current_time/timestamp
@@ -36,7 +36,7 @@ script:
             time_t now = id(homeassistant_time).now().timestamp; // Get timestamp from Home Assistant Time
             char timestamp_str[20]; // Buffer for the timestamp string
             strftime(timestamp_str, sizeof(timestamp_str), "%Y-%m-%d %H:%M:%S", localtime(&now)); // Format the timestamp
-            return String(timestamp_str);
+            return std::to_string(timestamp_str);
 
       - delay: 5s
       - script.execute: script_check_deep_sleep
