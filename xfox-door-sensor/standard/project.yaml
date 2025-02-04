@@ -30,6 +30,7 @@ esphome:
       then:
         - component.update: VCC
         - component.update: homeassistant_time
+        - component.update: update_time
         - script.execute: script_deep_sleep
 
 globals:
