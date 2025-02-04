@@ -27,7 +27,7 @@ script:
 
       - mqtt.publish:
           topic: homeassistant/${device_code}/sensor/battery_percent
-          return String(id(battery_percent).state);
+            return String(id(battery_percent).state);
 
       - mqtt.publish:
           topic: homeassistant/${device_code}/current_time/timestamp
