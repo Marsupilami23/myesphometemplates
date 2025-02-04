@@ -22,7 +22,7 @@ sensor:
     name: "Battery Level (%)"
     unit_of_measurement: '%'
     update_interval: 86400s
-    id: battery_pecent
+    id: battery_percent
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
     entity_category: diagnostic
