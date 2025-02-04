@@ -29,6 +29,12 @@ sensor:
     icon: mdi:battery
 
   - platform: template
+    id: timestamp
+    name: "Time Stamp"
+    lambda: return{};
+    update_interval: never
+    
+  - platform: template
     name: first_connect_ms
     id: first_connect_ms
     entity_category: diagnostic
