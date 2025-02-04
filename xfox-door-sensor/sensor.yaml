@@ -2,7 +2,7 @@ sensor:
   - platform: adc
     pin: $sub_batt_lvl_gpio
     id: "VCC"
-    name: "Battery Level"
+    name: "Battery Capacity"
     filters:
       - multiply: 2.4
       - clamp:
