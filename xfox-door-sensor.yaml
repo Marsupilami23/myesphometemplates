@@ -40,7 +40,7 @@ external_components:
 packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
-    ref: main
+    ref: dev
     refresh: always
     files:
       - xfox-door-sensor/standard/project.yaml
@@ -48,7 +48,7 @@ packages:
       - xfox-door-sensor/standard/diagnostics.yaml
   xfox_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
-    ref: main
+    ref: dev
     refresh: always
     files:
       - xfox-door-sensor/deep_sleep.yaml
