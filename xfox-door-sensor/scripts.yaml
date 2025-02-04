@@ -29,7 +29,7 @@ script:
           topic: homeassistant/${device_code}/sensor/battery_percent
           return String(id(battery_percent).state);
 
-     - mqtt.publish:
+      - mqtt.publish:
           topic: homeassistant/${device_code}/current_time/timestamp
           payload: !lambda |
             time_t now = id(homeassistant_time).now().timestamp; // Get timestamp from Home Assistant Time
