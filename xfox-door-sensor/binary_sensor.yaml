@@ -1,6 +1,7 @@
 binary_sensor:
   - platform: gpio
     device_class: door
+    id: door
     name: "${device_type_name}"
     pin:
       number: "${sub_binary_sensor_gpio}"
