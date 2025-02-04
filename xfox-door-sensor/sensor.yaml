@@ -38,3 +38,9 @@ sensor:
   - platform: internal_temperature
     name: Internal Temperature
     icon: mdi:thermometer
+
+  - platform: template
+    id: current_time_sensor
+    name: "Timestamp"
+    lambda: return {};
+    update_interval: never
