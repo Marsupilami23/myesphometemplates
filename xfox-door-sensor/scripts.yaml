@@ -5,7 +5,7 @@ script:
       - mqtt.publish:
           topic: homeassistant/${device_code}/binary_sensor/door
           payload: !lambda |
-            if (id(door).state {
+            if (id(door).state) {
               return "OPEN";
             } else {
               return "CLOSED";
