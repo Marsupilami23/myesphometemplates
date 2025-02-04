@@ -8,9 +8,9 @@ switch:
     name: Manual Mode
     id: manual_mode
     on_turn_off:
-      - script.execute: PLACEHOLDER FOR NEW SCRIPT
+      - script.execute: script_check_deep_sleep
     on_turn_on:
-      - script.execute: PLACEHOLDER FOR NEW SCRIPT
+      - script.execute: script_check_deep_sleep
       - light.turn_on:
           id: activity_led
           effect: pulse
