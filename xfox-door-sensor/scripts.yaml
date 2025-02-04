@@ -21,7 +21,7 @@ script:
             }
             
       - mqtt.publish:
-          topic: homeassistant/${device_code}/sensor/battery_capacity
+          topic: homeassistant/${device_code}/sensor/battery_voltage
           payload: !lambda |
             return std::to_string(id(VCC).state);
 
