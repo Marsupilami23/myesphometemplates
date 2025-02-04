@@ -39,7 +39,6 @@ script:
             char timestamp_str[20]; // Buffer for the timestamp string
             strftime(timestamp_str, sizeof(timestamp_str), "%Y-%m-%d %H:%M:%S", localtime(&now)); // Format the timestamp
             return String(timestamp_str);
-          
 
       - delay: 5s
       - script.execute: script_check_deep_sleep
