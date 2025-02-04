@@ -38,13 +38,3 @@ sensor:
   - platform: internal_temperature
     name: Internal Temperature
     icon: mdi:thermometer
-
-  // NEW SENSOR FOR NEW FUNCTION/SCRIPT
-  - platform: template
-    name: "data_received"
-    lambda: |-
-      if (id(all_data_received).state) {
-        return true;
-      } else {
-        return false;
-      }
