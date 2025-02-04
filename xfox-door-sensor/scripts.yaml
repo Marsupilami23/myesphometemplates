@@ -8,15 +8,29 @@ script:
             - binary_sensor.is_on: ${device_type_name}
           then:
             - mqtt.publish:
-              topic: homeassistant/${device_code}/state
-              payload: "ON"
+                topic: homeassistant/${device_code}/state
+                payload: "ON"
           else:
             - mqtt.publish:
-              topic: homeassistant/${device_code}/state
-              payload: "OFF"
+                topic: homeassistant/${device_code}/state
+                payload: "OFF"
 
       - mqtt.publish:
-        topic: homeassistant/${device_code}/binary_sensor/bottom_button
+          topic: homeassistant/${device_code}/binary_sensor/bottom_button
+          payload: !lambda |
+            if (id(bottom_button).state) {
+              return "PRESSED";
+            } else {
+              return "RELEASED";
+            }
+      - mqtt.publish:
+          topic: homeassistant/${device_code}/sensor/battery_level
+          payload: !lambda |
+            return String(id(VCC).state);
+
+      - mqtt.publish:
+          topic: homeassistant/grg-dr-snsr/sensor/battery_percent
+          return String(id(battery_percent).state);
 
       - delay: 5s
       - script.execute: script_check_deep_sleep
