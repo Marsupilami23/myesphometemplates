@@ -38,7 +38,7 @@ script:
           topic: homeassistant/${device_code}/sensor/current_time
           payload: !lambda |
             time_t currTime = id(sntp_time).now().timestamp;
-            char current_time_str[17];
+            char current_time_str[20];
             strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
             return std::string(current_time_str);
 
