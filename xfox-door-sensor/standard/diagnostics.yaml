@@ -1,4 +1,3 @@
-
 button:
   - platform: restart
     id: restart_button
@@ -12,5 +11,14 @@ text_sensor:
       name: "${device_name} IP Address"
       entity_category: diagnostic
       disabled_by_default: "${disable_entities}"
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: America/Los_Angeles
+    servers:
+      - 0.pool.ntp.org
+      - 1.pool.ntp.org
+      - 2.pool.ntp.org
 
 logger:
