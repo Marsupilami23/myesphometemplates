@@ -21,4 +21,4 @@ time:
       - time.google.com
 
 logger:
-  level: DEBUG
+  level: VERY_VERBOSE
