@@ -21,3 +21,4 @@ time:
       - time.google.com
 
 logger:
+  level: DEBUG
