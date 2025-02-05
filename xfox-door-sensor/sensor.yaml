@@ -11,6 +11,14 @@ sensor:
           ignore_out_of_range: true
     on_value:
       then:
+        - mqtt.publish:
+            topic: homeassistant/${device_code}/binary_sensor/bottom_button/state
+            payload: !lambda |
+              if (id(bottom_button).state) {
+                return "PRESSED";
+              } else {
+                return "RELEASED";
+              }
         - component.update: battery_level
         - logger.log:
             format: "Received VCC: %s"
