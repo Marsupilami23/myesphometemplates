@@ -2,6 +2,7 @@ script:
   - id: script_deep_sleep
     then:
       - deep_sleep_libretiny.prevent
+      - component.update: homeassistant_time
       - mqtt.publish:
           topic: homeassistant/${device_code}/binary_sensor/door
           payload: !lambda |
