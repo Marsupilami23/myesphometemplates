@@ -40,7 +40,7 @@ sensor:
     icon: mdi:thermometer
 
   - platform: template
-    id: current_time_sensor
+    id: timestamp_sensor
     name: "Timestamp"
     lambda: return {};
     update_interval: never
