@@ -13,12 +13,8 @@ text_sensor:
       disabled_by_default: "${disable_entities}"
 
 time:
-  - platform: sntp
-    id: sntp_time
-    timezone: "America/Los_Angeles"
-    servers:
-      - pool.ntp.org
-      - time.google.com
+  - platform: homeassistant
+    id: homeassistant_time
 
 logger:
   level: VERY_VERBOSE
