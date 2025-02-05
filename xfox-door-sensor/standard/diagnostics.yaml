@@ -12,9 +12,5 @@ text_sensor:
       entity_category: diagnostic
       disabled_by_default: "${disable_entities}"
 
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-
 logger:
   level: VERY_VERBOSE
