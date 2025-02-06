@@ -2,14 +2,6 @@ script:
   - id: script_deep_sleep
     then:
       - deep_sleep_libretiny.prevent
-           
-      - mqtt.publish:
-          topic: homeassistant/${device_code}/sensor/battery_level/state
-          payload: !lambda |
-            char battery_str[5];
-            snprintf(battery_str, sizeof(battery_str), "%.0f", id(battery_level).state);
-            return std::string(battery_str);
-
       - delay: 5s
       - script.execute: script_check_deep_sleep
     mode: restart
