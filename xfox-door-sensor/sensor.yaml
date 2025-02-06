@@ -32,7 +32,7 @@ sensor:
     lambda: |-
       return ((id(VCC).state /3.0) * 100.00);
     on_value:
-      thne:
+      then:
         - mqtt.publish:
             topic: homeassistant/${device_code}/sensor/battery_level/state
             payload: !lambda |
