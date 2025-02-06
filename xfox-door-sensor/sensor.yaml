@@ -53,8 +53,7 @@ sensor:
     name: Internal Temperature
     icon: mdi:thermometer
 
-  - platform: template
-    id: timestamp_sensor
-    name: "Timestamp"
-    lambda: return {};
-    update_interval: never
+  - platform: mqtt
+    id: door_timestamp
+    name: "Door Timestamp"
+    state_topic: "homeassistant/${device_code}/door/timestamp"
