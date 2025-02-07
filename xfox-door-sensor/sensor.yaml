@@ -52,10 +52,3 @@ sensor:
   - platform: internal_temperature
     name: Internal Temperature
     icon: mdi:thermometer
-
-  - platform: template
-    id: door_timestamp
-    name: "Door Timestamp"
-    lambda: |-
-      return id(mqtt_door_timestamp).state;
-    update_interval: never
