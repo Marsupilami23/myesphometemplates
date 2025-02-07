@@ -57,9 +57,10 @@ sensor:
     id: door_timestamp
     name: "Door Timestamp"
     lambda: |-
-      return id(mqtt_door_timestamp).state;
-    update_interval: never
-
-mqtt:
-  - id: door_timestamp_mqtt
-    topic: "homeassistant/${device_code}/door/timestamp"
+      return "";
+    on_value:
+      - mqtt.subscribe:
+          topic: "homeassistant/${device_code}/door/timestamp"
+          then:
+              - lambda: |-
+                  id(door_timestamp).publish_state(x);
