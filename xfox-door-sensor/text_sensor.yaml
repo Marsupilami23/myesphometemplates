@@ -8,10 +8,5 @@ text_sensor:
   - platform: template
     name: "Current Time"
     id: current_time
-    lambda: |-
-      char current_time_str[17];
-      time_t currTime = id(sntp_time).now().timestamp;
-      strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
-      return std::string(current_time_str);
     icon: "mdi:calendar-clock"
     entity_category: diagnostic
