@@ -8,7 +8,6 @@ button:
 time:
   - platform: sntp
     id: sntp_time
-    timezone: "America/Los_Angeles"
     servers:
       - pool.ntp.org
       - time.google.com
