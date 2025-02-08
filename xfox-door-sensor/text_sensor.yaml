@@ -8,5 +8,6 @@ text_sensor:
   - platform: template
     name: "Current Time"
     id: current_time
+    type: timestamp
     icon: "mdi:calendar-clock"
     entity_category: diagnostic
