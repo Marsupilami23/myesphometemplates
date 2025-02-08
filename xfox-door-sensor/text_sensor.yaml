@@ -8,13 +8,3 @@ text_sensor:
   - platform: template
     name: "Current Time Sync"
     id: current_time_sync
-
-  - platform: template
-    name: "Current Time"
-    id: current_time
-    update_interval: 10s
-    icon: "mdi:calendar-clock"
-    entity_category: diagnostic
-    lambda: |-
-      auto currTime = id(homeassistant_time).now().strftime( "%Y-%m-%d %H:%M" );
-      return { currTime };
