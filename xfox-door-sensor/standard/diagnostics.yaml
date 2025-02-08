@@ -14,7 +14,10 @@ time:
       - time.google.com
     on_time_sync:
       then:
-        - component.update: current_time
+        - logger.log: "Synchronized sntp clock"
+        - text_sensor.template.publish:
+            id: current_time_sync
+            state: "Sync SNTP click"
 
 logger:
   level: VERY_VERBOSE
