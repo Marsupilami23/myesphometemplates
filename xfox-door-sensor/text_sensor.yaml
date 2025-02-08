@@ -11,6 +11,5 @@ text_sensor:
 
   - platform: template
     name: "Curent Time"
-    time_id: homeassistant_time
-    format: "%Y-%m-%d %H:%M"
+    device_class: timestamp
     id: current_time
