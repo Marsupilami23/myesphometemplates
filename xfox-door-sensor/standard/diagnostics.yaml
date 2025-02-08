@@ -6,17 +6,14 @@ button:
     disabled_by_default: $disable_entities
 
 time:
-  - platform: sntp
-    id: sntp_time
-    servers:
-      - pool.ntp.org
-      - time.google.com
+  - platform: homeassistant
+    id: homeassistant_time
     on_time_sync:
       then:
         - logger.log: "Synchronized sntp clock"
         - text_sensor.template.publish:
             id: current_time_sync
-            state: "Sync SNTP click"
+            state: "Sync Home Assistant clock"
 
 logger:
   level: VERY_VERBOSE
