@@ -38,17 +38,3 @@ sensor:
   - platform: internal_temperature
     name: "Internal Temperature"
     icon: mdi:thermometer
-
-  - platform: template
-    name: "Current Time"
-    id: current_time
-    update_interval: never
-    device_class: timestamp
-    icon: "mdi:calendar-clock"
-    entity_category: diagnostic
-    lambda: |-
-      char current_time_str[32];
-      time_t currTime = id(homeassistant_time).now().timestamp;
-      strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
-      return { current_time_str };
-    
