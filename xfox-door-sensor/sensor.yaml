@@ -15,12 +15,6 @@ sensor:
         - logger.log:
             format: "Received VCC: %s"
             args: ['id(VCC).state']
-        - mqtt.publish:
-            topic: homeassistant/${device_code}/sensor/battery_voltage/state
-            payload: !lambda |
-              char voltage_str[5];
-              snprintf(voltage_str, sizeof(voltage_str), "%.2f", id(VCC).state);
-              return std::string(voltage_str);
     entity_category: diagnostic
     icon: mdi:battery
 
