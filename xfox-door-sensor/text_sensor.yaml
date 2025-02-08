@@ -4,12 +4,3 @@ text_sensor:
       name: "${device_name} IP Address"
       entity_category: diagnostic
       disabled_by_default: "${disable_entities}"
-
-  - platform: template
-    name: "Current Time Sync'd"
-    id: current_time_sync
-
-  - platform: template
-    name: "Curent Time"
-    device_class: timestamp
-    id: current_time
