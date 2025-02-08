@@ -12,6 +12,13 @@ binary_sensor:
             - switch.is_off: manual_mode
           then:
             - component.update: homeassistant_time
+            - text_sensor.template.publish:
+                id: current_time
+                state: !lambda |-
+                    char current_time_str[17];
+                    time_t currTime = id(homeassistant_time).now().time;
+                    strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
+                    return { current_time_str };
             - output.turn_on: activity_led_output
             - delay: 5000ms
             - output.turn_off: activity_led_output
