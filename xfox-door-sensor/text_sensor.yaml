@@ -12,7 +12,7 @@ text_sensor:
   - platform: template
     name: "Current Time"
     id: current_time
-    update_interval: 5s
+    update_interval: 10s
     icon: "mdi:calendar-clock"
     entity_category: diagnostic
     lambda: |-
