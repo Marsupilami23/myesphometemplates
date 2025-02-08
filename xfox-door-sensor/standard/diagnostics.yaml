@@ -6,8 +6,9 @@ button:
     disabled_by_default: $disable_entities
 
 time:
-  - platform: homeassistant
-    id: homeassistant_time
+  - platform: sntp
+    id: sntp
+    timezone: America/Los_Angeles
     on_time_sync:
       then:
         - component.update: current_time
