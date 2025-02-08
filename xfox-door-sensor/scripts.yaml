@@ -10,7 +10,12 @@ script:
             } else {
               return "CLOSED";
             }
-
+      - mqtt.publish:
+            topic: homeassistant/${device_code}/sensor/battery_voltage/state
+            payload: !lambda |
+              char voltage_str[5];
+              snprintf(voltage_str, sizeof(voltage_str), "%.2f", id(VCC).state);
+              return std::string(voltage_str);
       
       - delay: 5s
       - script.execute: script_check_deep_sleep
