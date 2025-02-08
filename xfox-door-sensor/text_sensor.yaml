@@ -6,9 +6,11 @@ text_sensor:
       disabled_by_default: "${disable_entities}"
 
   - platform: template
-    name: "Current Time Sync"
+    name: "Current Time Sync'd"
     id: current_time_sync
 
   - platform: template
     name: "Curent Time"
+    time_id: homeassistant_time
+    format: "%Y-%m-%d %H:%M"
     id: current_time
