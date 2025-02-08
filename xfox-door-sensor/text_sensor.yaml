@@ -11,7 +11,7 @@ text_sensor:
     update_interval: never
     device_class: timestamp
     icon: "mdi:calendar-clock"
-    entity_category: sensor
+    entity_category: diagnostic
     lambda: |-
       char current_time_str[32];
       time_t currTime = id(homeassistant_time).now().timestamp;
