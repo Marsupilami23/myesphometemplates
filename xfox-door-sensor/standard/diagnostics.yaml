@@ -5,13 +5,6 @@ button:
     entity_category: diagnostic
     disabled_by_default: $disable_entities
 
-text_sensor:
-  - platform: wifi_info
-    ip_address:
-      name: "${device_name} IP Address"
-      entity_category: diagnostic
-      disabled_by_default: "${disable_entities}"
-
 time:
   - platform: homeassistant
     id: homeassistant_time
