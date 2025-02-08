@@ -14,12 +14,6 @@ text_sensor:
     entity_category: sensor
     lambda: |-
       char current_time_str[32];
-      time_t currTime = id(
-
-            - mqtt.publish:
-          topic: homeassistant/${device_code}/sensor/current_time
-          payload: !lambda |
-            time_t currTime = id(homeassistant_time).now().timestamp;
-            char current_time_str[17];
-            strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
-            return std::string(current_time_str);
+      time_t currTime = id(homeassistant_time).now().timestamp;
+      strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
+      return { current_time_str };
