@@ -36,5 +36,6 @@ sensor:
       return id(first_connect_ms_int);
 
   - platform: internal_temperature
-    name: Internal Temperature
+    name: "Internal Temperature"
     icon: mdi:thermometer
+    
