@@ -9,6 +9,6 @@ text_sensor:
     name: "Current Time Sync"
     id: current_time_sync
 
-- platform: template
-  name: "Cuurent Time"
-  id: current_time
+  - platform: template
+    name: "Cuurent Time"
+    id: current_time
