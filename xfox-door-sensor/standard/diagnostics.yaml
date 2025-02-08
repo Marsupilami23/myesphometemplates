@@ -9,6 +9,9 @@ time:
   - platform: sntp
     id: sntp_time
     timezone: "America/Los_Angeles"
+    servers:
+      - pool.ntp.org
+      - time.google.com
     on_time_sync:
       then:
         - component.update: current_time
