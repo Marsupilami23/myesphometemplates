@@ -11,7 +11,7 @@ binary_sensor:
           condition:
             - switch.is_off: manual_mode
           then:
-            - component.update: current_time
+            - component.update: homeassistant_time
             - output.turn_on: activity_led_output
             - delay: 5000ms
             - output.turn_off: activity_led_output
