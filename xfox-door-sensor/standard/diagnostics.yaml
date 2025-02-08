@@ -8,6 +8,9 @@ button:
 time:
   - platform: homeassistant
     id: homeassistant_time
+    on_time_sync:
+      then:
+        - component.update: current_time
 
 logger:
   level: VERY_VERBOSE
