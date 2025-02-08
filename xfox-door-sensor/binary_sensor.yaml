@@ -12,7 +12,7 @@ binary_sensor:
             - switch.is_off: manual_mode
           then:
             - component.update: homeassistant_time
-            - text_sensor.template.publish:
+            - sensor.template.publish:
                 id: current_time
                 state: !lambda |-
                     char current_time_str[17];
