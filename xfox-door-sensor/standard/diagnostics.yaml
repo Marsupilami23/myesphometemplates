@@ -8,7 +8,7 @@ button:
 time:
   - platform: sntp
     id: sntp_time
-    timezone: America/Los_Angeles
+    timezone: "America/Los_Angeles"
     on_time_sync:
       then:
         - component.update: current_time
