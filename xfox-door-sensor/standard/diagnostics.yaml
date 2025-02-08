@@ -7,7 +7,7 @@ button:
 
 time:
   - platform: sntp
-    id: sntp
+    id: sntp_time
     timezone: America/Los_Angeles
     on_time_sync:
       then:
