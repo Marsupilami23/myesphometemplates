@@ -11,9 +11,6 @@ time:
     on_time_sync:
       then:
         - logger.log: "Synchronized sntp clock"
-        - text_sensor.template.publish:
-            id: current_time_sync
-            state: "Sync Home Assistant clock"
 
 logger:
   level: VERY_VERBOSE
