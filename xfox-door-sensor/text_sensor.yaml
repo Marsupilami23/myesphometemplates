@@ -6,8 +6,15 @@ text_sensor:
       disabled_by_default: "${disable_entities}"
 
   - platform: template
+    name: "Current Time Sync"
+    id: current_time_sync
+
+  - platform: template
     name: "Current Time"
     id: current_time
-    device_class: timestamp
+    update_interval: 5s
     icon: "mdi:calendar-clock"
     entity_category: diagnostic
+    lambda: |-
+      auto currTime = id(sntp_time).now().strftime( %Y-%m-%d %H:%M");
+      return { currTime };
