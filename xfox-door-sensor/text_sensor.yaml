@@ -10,5 +10,5 @@ text_sensor:
     id: current_time_sync
 
   - platform: template
-    name: "Cuurent Time"
+    name: "Curent Time"
     id: current_time
