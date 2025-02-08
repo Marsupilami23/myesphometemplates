@@ -29,7 +29,7 @@ esphome:
     - priority: -100 # 200.0: Network connections like MQTT/native API are set up at this priority.
       then:
         - component.update: VCC
-        - component.update: sntp_time
+        - component.update: homeassistant_time
         - component.update: current_time
         - script.execute: script_deep_sleep
 
