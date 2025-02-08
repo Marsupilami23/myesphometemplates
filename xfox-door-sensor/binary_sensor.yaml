@@ -18,7 +18,7 @@ binary_sensor:
                     char current_time_str[17];
                     time_t currTime = id(homeassistant_time).now().timestamp;
                     strftime(current_time_str, sizeof(current_time_str), "%Y-%m-%d %H:%M", localtime(&currTime));
-                    return { current_time_str };
+                    return std::string(current_time_str);
             - output.turn_on: activity_led_output
             - delay: 5000ms
             - output.turn_off: activity_led_output
