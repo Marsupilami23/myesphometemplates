@@ -19,8 +19,7 @@ sensor:
     icon: mdi:battery
 
   - platform: template
-    name: "Battery Level (%)"
-    unit_of_measurement: '%'
+    name: "Battery Level"
     update_interval: 300s
     id: battery_level
     lambda: |-
