@@ -11,7 +11,6 @@ sensor:
           ignore_out_of_range: true
     on_value:
       then:
-        - component.update: battery_level
         - logger.log:
             format: "Received VCC: %s"
             args: ['id(VCC).state']
