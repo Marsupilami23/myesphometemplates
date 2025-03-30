@@ -52,7 +52,7 @@ substitutions:
   sub_ota_num_attempts: '15'
 
   sub_max_power: '0.8'
-  sub_default_transition_length: 250ms
+  sub_default_transition_length: 3s
   sub_api_reboot_timeout: 0s
   light_restore_mode: RESTORE_DEFAULT_ON
 
