@@ -69,7 +69,7 @@ external_components:
   - source:
       type: git
       url: https://github.com/KaufHA/common
-      ref: v2024.11.20
+      ref: v2025.10.15
     refresh: never
   - source:
       type: git
