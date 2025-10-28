@@ -26,6 +26,9 @@ sensor:
 
 # Enable OTA
 ota:
+  - platform: web_server
+    on_error:
+      - button.press: button_restart
   - platform: esphome
     id: my_ota
     password: "${ota_password}"
@@ -50,7 +53,6 @@ web_server:
   sensor_4m: "${sub_4m}"
   version: 3
   include_internal: true
-  ota: true
   js_url: https//kaufha.com/v2/www.js
 
 captive_portal:
