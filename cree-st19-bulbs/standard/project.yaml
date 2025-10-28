@@ -9,7 +9,7 @@ substitutions:
   device_code: "${device_room_code}-${device_location_code}-${device_type_code}"
   device_model: "ST19"
   device_make: "CREE"
-  package_version: "2024.11.20"
+  package_version: "2025.10.27"
 
 # Allow importing of this package
 dashboard_import:
