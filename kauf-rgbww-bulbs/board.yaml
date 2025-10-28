@@ -8,7 +8,7 @@ external_components:
     type: git
     url: https://github.com/KaufHA/common
     ref: v2025.10.15
-  refresh: never
+  refresh: always
 
 # https://esphome.io/components/esp8266.html
 esp8266:
