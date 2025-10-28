@@ -3,6 +3,14 @@ dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/kauf-rgbww-bulbs/board.yaml@main"
   import_full_config: false
 
+external_components:
+  - source:
+      type: git
+      url: https://github.com/KaufHA/common
+      ref: v2025.10.15
+    refresh: never
+
+
 # https://esphome.io/components/esp8266.html
 esp8266:
   board: esp01_1m
