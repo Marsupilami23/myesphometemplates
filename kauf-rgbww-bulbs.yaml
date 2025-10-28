@@ -70,7 +70,7 @@ external_components:
       type: git
       url: https://github.com/KaufHA/common
       ref: v2025.10.15
-    refresh: never
+    refresh: always
   - source:
       type: git
       url: https://github.com/KaufHA/kauf-rgbww-bulbs
