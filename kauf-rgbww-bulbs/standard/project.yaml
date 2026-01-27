@@ -35,4 +35,4 @@ esphome:
           id: sensor_4m
           state: $sub_4m
       - script.execute: script_quick_boot
-  min_version: $min_package_version
+  min_version: 2026.1.1
