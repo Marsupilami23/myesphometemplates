@@ -34,7 +34,7 @@ esphome:
   min_version: "2024.11.0"
   project:
     name: "${device_make}.${device_model}"
-    version: "${package_version}"
+    version: $project_ver_num($project_ver_let)
   on_boot:
     then:
         # set default values for template sensors, otherwise they are unknown.
