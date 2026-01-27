@@ -46,7 +46,7 @@ script:
 
             # wait until attempt to load credentials has been made, that way we know the new ones can be saved properly.
             - wait_until:
-                lambda: return ( wifi_wificomponent_id->tried_loading_creds );
+                lambda: return ( wifi_wificomponent_id->is_in_loop_state() );
 
             # the save_wifi_sta function reboots.
             - lambda: |-
