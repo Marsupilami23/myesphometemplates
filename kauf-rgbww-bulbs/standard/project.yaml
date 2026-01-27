@@ -5,7 +5,6 @@ substitutions:
   device_code: "${device_room_code}-${device_location_code}-${device_type_code}"
   device_model: "RGBWW"
   device_make: "KAUF"
-  min_package_version: "2026.1.1"
 
 # Allow importing this package
 dashboard_import:
