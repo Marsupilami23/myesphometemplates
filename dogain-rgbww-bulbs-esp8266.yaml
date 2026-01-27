@@ -110,7 +110,6 @@ light:
     name: "${device_name} Warm RGB"
     forced_hash: 4077116474
     forced_addr: 28
-    global_addr: global_forced_addr
     disabled_by_default: $disable_entities
     restore_mode: RESTORE_DEFAULT_OFF
 
@@ -124,7 +123,6 @@ light:
     name: "${device_name} Cold RGB"
     forced_hash: 301094535
     forced_addr: 40
-    global_addr: global_forced_addr
     disabled_by_default: $disable_entities
     restore_mode: RESTORE_DEFAULT_OFF
 
@@ -144,7 +142,6 @@ light:
     cold_white_color_temperature: $sub_cold_white_temp
     forced_hash: 2723974766
     forced_addr: 52
-    global_addr: global_forced_addr
     restore_mode: $light_restore_mode
     on_turn_on:
       - script.execute: $sub_on_turn_on
@@ -174,7 +171,6 @@ select:
     entity_category: config
     forced_hash: 5841966
     forced_addr: 66
-    global_addr: global_forced_addr
 
   - platform: template
     name: "${device_name} DDP Debug"
