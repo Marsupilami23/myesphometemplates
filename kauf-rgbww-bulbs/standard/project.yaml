@@ -27,9 +27,9 @@ esphome:
   friendly_name: "${device_name}"
   comment: "${device_model} bulb by ${device_make}"
   name_add_mac_suffix: false
-  project: $project_ver_num($project_ver_let)
+  project: 
     name: "${device_make}.${device_model}"
-    version: 
+    version: $project_ver_num($project_ver_let)
   on_boot:
     then:
         # set default values for template sensors, otherwise they are unknown.
