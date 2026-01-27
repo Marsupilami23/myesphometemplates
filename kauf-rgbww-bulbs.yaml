@@ -96,6 +96,8 @@ packages:
       - kauf-rgbww-bulbs/current-sensor.yaml
       - kauf-rgbww-bulbs/pwm-outputs.yaml
       - kauf-rgbww-bulbs/scripts.yaml
+kauf_rgbww:
+  id: global_forced_addr
 
 # https://esphome.io/components/light/index.html
 light:
