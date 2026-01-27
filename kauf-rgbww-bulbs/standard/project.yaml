@@ -14,10 +14,6 @@ dashboard_import:
 
 # https://esphome.io/guides/automations.html#global-variables
 globals:
-  - id: global_forced_addr
-    type: int
-    restore_value: no
-    initial_value: '12345'
   - id: global_quick_boot_count
     type: int
     restore_value: yes
@@ -41,3 +37,4 @@ esphome:
           id: sensor_4m
           state: $sub_4m
       - script.execute: script_quick_boot
+  min_version: 2026.1.1
