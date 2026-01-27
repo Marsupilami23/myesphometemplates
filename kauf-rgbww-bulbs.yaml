@@ -69,12 +69,13 @@ external_components:
   - source:
       type: git
       url: https://github.com/KaufHA/common
-      ref: v2025.10.15
-    refresh: never
+      ref: main
+    refresh: 1d
   - source:
       type: git
       url: https://github.com/KaufHA/kauf-rgbww-bulbs
-    refresh: always
+      ref: main
+    refresh: 1d
 
 # Import packages:
 packages:
