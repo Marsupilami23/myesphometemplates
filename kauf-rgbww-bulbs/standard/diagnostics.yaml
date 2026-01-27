@@ -85,7 +85,6 @@ button:
     id: restart_button
     icon: mdi:power-cycle
     entity_category: diagnostic
-    disabled_by_default: 
 
   # Provide a button to reset all defined flash settings.
   - platform: factory_reset
