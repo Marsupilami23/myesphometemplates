@@ -42,11 +42,11 @@ substitutions:
   sub_warm_white_temp: 2800 Kelvin
   sub_cold_white_temp: 6600 Kelvin
 
-  sub_red_freq:   200 hz
-  sub_green_freq: 200 hz
-  sub_blue_freq:  200 hz
-  sub_cw_freq:    400 hz
-  sub_ww_freq:    400 hz
+  sub_red_freq:   125 hz
+  sub_green_freq: 125 hz
+  sub_blue_freq:  125 hz
+  sub_cw_freq:    125 hz
+  sub_ww_freq:    125 hz
 
   sub_reboot_req: '9'
   sub_ota_num_attempts: '15'
@@ -96,6 +96,7 @@ packages:
       - kauf-rgbww-bulbs/current-sensor.yaml
       - kauf-rgbww-bulbs/pwm-outputs.yaml
       - kauf-rgbww-bulbs/scripts.yaml
+
 kauf_rgbww:
   id: global_forced_addr
 
