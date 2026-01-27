@@ -28,13 +28,13 @@ sensor:
 ota:
   - platform: web_server
     on_error:
-      - button.press: button_restart
+      - button.press: restart_button
   - platform: esphome
     id: my_ota
     password: "${ota_password}"
     on_error:
       then:
-        - button.press: button_restart
+        - button.press: restart_button
 safe_mode:
   num_attempts: "${sub_ota_num_attempts}"
   
@@ -44,9 +44,12 @@ wifi:
   power_save_mode: none
   ssid: "${wifi_ssid}"
   password: "${wifi_password}"
+  forced_addr: 0
   ap:
     ssid: "${device_code}-setup"
     password: "${wifi_password}"
+  min_auth_mode: WPA2
+  output_power: 14
 
 web_server:
   disable: "${disable_webserver}"
