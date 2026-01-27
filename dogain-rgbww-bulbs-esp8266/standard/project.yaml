@@ -5,8 +5,9 @@ substitutions:
   device_code: "${device_room_code}-${device_location_code}-${device_type_code}"
   device_model: "RGBWW"
   device_make: "DOGAIN"
-  package_version: "2024.11.20"
-
+  project_ver_num: "1.971"
+  project_ver_let: y
+  
 # Allow importing this package
 dashboard_import:
   package_import_url: "github://Marsupilami23/myesphometemplates/dogain-rgbww-bulbs-esp8266/standard/project.yaml@main"
