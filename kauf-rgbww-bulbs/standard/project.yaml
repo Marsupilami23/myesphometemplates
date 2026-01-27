@@ -5,7 +5,7 @@ substitutions:
   device_code: "${device_room_code}-${device_location_code}-${device_type_code}"
   device_model: "RGBWW"
   device_make: "KAUF"
-  package_version: "2024.11.20"
+  min_package_version: "2026.1.1"
 
 # Allow importing this package
 dashboard_import:
@@ -26,10 +26,8 @@ esphome:
   friendly_name: "${device_name}"
   comment: "${device_model} bulb by ${device_make}"
   name_add_mac_suffix: false
-  min_version: "2024.11.0"
   project:
     name: "${device_make}.${device_model}"
-    version: "${package_version}"
   on_boot:
     then:
         # set default values for template sensors, otherwise they are unknown.
@@ -37,4 +35,4 @@ esphome:
           id: sensor_4m
           state: $sub_4m
       - script.execute: script_quick_boot
-  min_version: 2026.1.1
+  min_version: "${min_package_version}"
