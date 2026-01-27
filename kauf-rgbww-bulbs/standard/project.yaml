@@ -27,6 +27,7 @@ esphome:
   name_add_mac_suffix: false
   project:
     name: "${device_make}.${device_model}"
+    version: 
   on_boot:
     then:
         # set default values for template sensors, otherwise they are unknown.
