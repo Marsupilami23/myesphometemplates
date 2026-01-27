@@ -8,4 +8,3 @@ esp8266:
   board: esp01_1m
   restore_from_flash: true
   start_free: 76
-  global_addr: global_forced_addr
