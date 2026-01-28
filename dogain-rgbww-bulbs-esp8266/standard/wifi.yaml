@@ -42,6 +42,10 @@ wifi:
   power_save_mode: none
   ssid: "${wifi_ssid}"
   password: "${wifi_password}"
+  manual_ip:
+    static_ip: $ip_address
+    gateway: $gateway_address
+    subnet: $subnet_address
   forced_addr: 0
   ap:
     ssid: "${device_code}-setup"
