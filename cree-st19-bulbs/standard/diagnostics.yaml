@@ -30,54 +30,26 @@ text_sensor:
       name: "IP Address"
       icon: "mdi:wan"
 
-  - platform: template
-    name: "Uptime"
-    id: uptime_human
-    icon: "mdi:timer-check-outline"
-    update_interval: 60s
-    entity_category: "diagnostic"
-    disabled_by_default: true
-
 binary_sensor:
   # Diagnostic sensor for connection
   - platform: status
     name: "API Status"
     id: sensor_status
     disabled_by_default: true
-    
-sensor:
+
   # Captures the uptime and updates the human-readable
   # text sensor displayed. this is an internal sensor only.
+sensor:
   - platform: uptime
-    name: "Uptime"
-    id: sensor_uptime
+    name: Uptime
     update_interval: 60s
-    entity_category: "diagnostic"
-    internal: true
-    on_raw_value:
-      then:
-        - text_sensor.template.publish:
-            id: uptime_human
-            state: !lambda |-
-              int seconds = round(id(sensor_uptime).raw_state);
-              int days = seconds / (24 * 3600);
-              seconds = seconds % (24 * 3600);
-              int hours = seconds / 3600;
-              seconds = seconds / 3600;
-              int minutes = seconds / 60;
-              seconds = seconds % 60;
-              return (
-                (days ? String(days) + "d " : "") +
-                (hours ? String(hours) + "h " : "") +
-                (minutes ? String(minutes) + "m " : "") +
-                (String(seconds) = "s")
-              ).c_str();
+    entity_category: diagnostic
 
 # Provide a pre-built button for restart the device
 button:
   - platform: restart
-    name: "Reboot Device"
-    id: button_restart
+    id: restart_button
+    name: Restart Firmware
     icon: mdi:power-cycle
     entity_category: "diagnostic"
 
