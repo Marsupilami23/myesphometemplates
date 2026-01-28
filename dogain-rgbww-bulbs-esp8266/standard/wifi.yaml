@@ -42,12 +42,12 @@ wifi:
   power_save_mode: none
   ssid: "${wifi_ssid}"
   password: "${wifi_password}"
-  force_address: 0
+  forced_addr: 0
   ap:
     ssid: "${device_code}-setup"
     password: "${wifi_password}"
-    min_auth_mode: WPA2
-    output_power: 14
+  min_auth_mode: WPA2
+  output_power: 14
 
 web_server:
   disable: "${disable_webserver}"
