@@ -33,7 +33,7 @@ esphome:
         - script.execute: script_deep_sleep
 
 deep_sleep:
-  run_duration: 9999h
+  run_duration: 1h
   sleep_duration: 1min
   
 globals:
