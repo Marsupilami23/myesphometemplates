@@ -29,14 +29,6 @@ substitutions:
   # Max power
   sub_max_power: "0.8"
 
-external_components:
-  - source:
-      type: git
-      url: https://github.com/Marsupilami23/myesphometemplates
-      ref: main
-    components: [ deep_sleep_libretiny ]
-    refresh: always
-
 packages:
   standard_packages:
     url: https://github.com/Marsupilami23/myesphometemplates/
