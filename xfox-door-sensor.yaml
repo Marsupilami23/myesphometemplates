@@ -167,6 +167,7 @@ light:
     name: "Activity LED"
     output: activity_led_output
     id: activity_led
+    internal: true
     icon: mdi:lamp
     effects:
       - strobe:
