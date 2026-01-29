@@ -70,7 +70,7 @@ wifi:
     password: "${wifi_password}"
   on_connect:
     - lambda: |-
-        if (id(first_connect_ms_int) == 0) id(first_connect_ms_int) = esphome::millis();
+        if (id(first_connect_ms_int) == 0) id(first_connect_ms_int) = millis();
     - component.update: first_connect_ms
         
 captive_portal:
