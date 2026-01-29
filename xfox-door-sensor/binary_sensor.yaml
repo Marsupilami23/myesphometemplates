@@ -5,7 +5,6 @@ binary_sensor:
     name: "${device_type_name}"
     pin:
       number: "${sub_binary_sensor_gpio}"
-      allow_other_uses: true
     on_state:
       - if:
           condition:
