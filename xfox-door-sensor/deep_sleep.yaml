@@ -6,3 +6,4 @@ deep_sleep:
     number: 8
     inverted: false
     mode: INPUT_PULLUP
+    allow_other_uses: true
