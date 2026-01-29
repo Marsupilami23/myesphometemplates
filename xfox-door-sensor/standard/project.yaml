@@ -32,10 +32,6 @@ esphome:
         - component.update: homeassistant_time
         - script.execute: script_deep_sleep
 
-deep_sleep:
-  run_duration: 1h
-  sleep_duration: 1min
-  
 globals:
   - id: first_connect_ms_int
     type: uint32_t
