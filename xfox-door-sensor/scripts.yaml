@@ -1,7 +1,7 @@
 script:
   - id: script_deep_sleep
     then:
-      - deep_sleep_libretiny.prevent
+      - deep_sleep.prevent
       - mqtt.publish:
           topic: homeassistant/${device_code}/binary_sensor/door/state
           payload: !lambda |
@@ -22,12 +22,12 @@ script:
 
   - id: script_check_deep_sleep
     then:
-      - deep_sleep_libretiny.prevent
+      - deep_sleep.prevent
       - if:
           condition:
             - switch.is_off: manual_mode
           then:
             - output.turn_off: activity_led_output
             - delay: 1s
-            - deep_sleep_libretiny.allow
+            - deep_sleep.enter
     mode: restart
