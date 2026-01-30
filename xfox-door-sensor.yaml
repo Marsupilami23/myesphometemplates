@@ -43,7 +43,7 @@ packages:
     ref: dev
     refresh: always
     files:
-      - xfox-door-sensor/deep_sleep.yaml
+#      - xfox-door-sensor/deep_sleep.yaml
       - xfox-door-sensor/binary_sensor.yaml
       - xfox-door-sensor/text_sensor.yaml
       - xfox-door-sensor/sensor.yaml
