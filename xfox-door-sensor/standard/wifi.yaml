@@ -45,7 +45,7 @@ ota:
         - mqtt.publish:
             topic: begining/update
             payload: "Begining Firmware Update!"
-        - deep_sleep.prevent: deep_sleep_lt
+#        - deep_sleep.prevent: deep_sleep_lt
     on_end:
       then:
         - mqtt.publish:
