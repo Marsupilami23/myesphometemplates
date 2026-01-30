@@ -50,4 +50,4 @@ packages:
       - xfox-door-sensor/light.yaml
       - xfox-door-sensor/switch.yaml
       - xfox-door-sensor/board.yaml
-      - xfox-door-sensor/scripts.yaml
+#      - xfox-door-sensor/scripts.yaml
