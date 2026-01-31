@@ -47,3 +47,9 @@ substitutions:
 
   # sub_default_disabled:
   sub_default_entities: true
+
+  # sub_device_make: 
+  sub_device_make: "XFOX"
+
+  # sub_device_model:
+  sub_device_model: "Door / Window Sensor"
