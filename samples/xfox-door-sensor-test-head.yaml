@@ -1,0 +1,15 @@
+# This is the HEAD file for the xfox-door-sensor-test project.
+# Edit the substitution values in this file, place in a root direct of /projects along with the secrets.yaml file
+# For information on the secrets.yaml file read samples/my_secrets_file.README.
+
+substitutions:
+  sub_device_name: door-sensor-test
+  sub_friendly_device_name: Door Sensor Test
+
+packages:
+  xfox_door_sensor_packages:
+    url: https://github.com/Marsupilami23/myesphometemplates/
+    ref: dev
+    refresh: always
+    files:
+      - xfox-door-sensor-test.yaml
