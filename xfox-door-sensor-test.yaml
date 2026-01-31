@@ -19,5 +19,6 @@ packages:
   refresh: 1d
   files:
     - xfox-door-sensor-test/substitutions.yaml
+    - xfox-door-sensor-test/diagnostics.yaml
     - xfox-door-sensor-test/led.yaml
     - xfox-door-sensor-test/wifi.yaml
