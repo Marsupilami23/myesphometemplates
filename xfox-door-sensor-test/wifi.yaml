@@ -10,7 +10,7 @@ wifi:
 #    gateway: ""
 #    subnet: ""
   ap:
-    ap_timeout:
+    ap_timeout: "${sub_wifi_ap_timeout}"
     ssid: "${sub_device_name}-setup"
 
 api:
