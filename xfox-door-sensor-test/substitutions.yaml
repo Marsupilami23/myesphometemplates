@@ -18,9 +18,6 @@ substitutions:
   # sub_package_ver_let: The letter version of this project within the package version:
   sub_package_ver_let: "a"
 
-  # sub_esphome_min_version: The minimal version of ESPHome this package will compile with.
-  sub_esphome_min_version: "2026.1.2"
-
   # The rest of these substitutions can be edited in the main head file, see head_example.yaml for more information.
 
   # sub_max_led_power: This is how bright you want the status LED to be. 
