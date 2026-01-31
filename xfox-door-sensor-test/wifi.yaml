@@ -12,6 +12,7 @@ wifi:
   ap:
     ap_timeout:
     ssid: "${sub_device_name}-setup"
+  min_auth_mode: WPA2
 
 api:
 
