@@ -5,4 +5,4 @@ button:
     id: restart_button
     name: "${sub_device_name} Restart Firmware"
     entity_category: diagnostic
-    disabled_by_default: $sub_disabled_entities
+    disabled_by_default: true
