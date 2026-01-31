@@ -17,7 +17,7 @@ packages:
     remote_packages:
       url: https://github.com/Marsupilami23/myesphometemplates/
       ref: dev
-      refresh: 1d
+      refresh: always
       files:
         - xfox-door-sensor-test/board.yaml
         - xfox-door-sensor-test/project.yaml
