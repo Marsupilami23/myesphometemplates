@@ -6,3 +6,6 @@ button:
     name: "${sub_device_name} Restart Firmware"
     entity_category: diagnostic
     disabled_by_default: true
+
+logger:
+  level: DEBUG
