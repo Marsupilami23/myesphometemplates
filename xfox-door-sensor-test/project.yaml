@@ -5,7 +5,7 @@ esphome:
   friendly_name: $sub_friendly_device_name
   comment: $sub_device_model by $sub_device_make
   name_add_mac_suffix: $sub_disable_entities
-  min_version: $sub_esphome_min_version
+  min_version: "2026.1.2"
   project:
     name: "${sub_device_make}.${sub_device_model}"
     version: "${sub_package_version}-${sub_package_ver_let}"
