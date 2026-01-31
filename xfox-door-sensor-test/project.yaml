@@ -7,5 +7,5 @@ esphome:
   name_add_mac_suffix: $sub_disable_entities
   min_version: "2026.1.2"
   project:
-    name: "${sub_device_make}.${sub_device_model}"
+    name: "${sub_device_make} ${sub_device_model}"
     version: "${sub_package_version}-${sub_package_ver_let}"
