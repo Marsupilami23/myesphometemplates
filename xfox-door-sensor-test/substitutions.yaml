@@ -7,7 +7,7 @@ substitutions:
 
   # GPIO Pin designations:
   sub_binary_sensor_gpio: GPIO08
-  sub_activity_led_GPIO:  GPIO26
+  sub_activity_led_gpio:  GPIO26
   sub_batt_dv_gpio:       GPIO14
   sub_batt_lvl_gpio:      GPIO23
   sub_reset_button_gpio:  GPIO20
