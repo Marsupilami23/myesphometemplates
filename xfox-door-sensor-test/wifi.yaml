@@ -2,7 +2,7 @@
 # This sets the WiFi, Over-The-Air update, Captive Portal, API for Home Assistant, and MQTT (currently not being used in testing).
 
 wifi:
-  fast_connect: $sub_default_disabled
+  fast_connect: true
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 #  manual_ip:
@@ -12,7 +12,6 @@ wifi:
   ap:
     ap_timeout:
     ssid: "${sub_device_name}-setup"
-  min_auth_mode: WPA2
 
 api:
 
