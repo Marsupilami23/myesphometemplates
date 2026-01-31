@@ -14,11 +14,13 @@
 
 packages:
   xfox_packages:
-  url: https://github.com/Marsupilami23/myesphometemplates/
-  ref: dev
-  refresh: 1d
-  files:
-    - xfox-door-sensor-test/substitutions.yaml
-    - xfox-door-sensor-test/diagnostics.yaml
-    - xfox-door-sensor-test/led.yaml
-    - xfox-door-sensor-test/wifi.yaml
+    remote_packages:
+      url: https://github.com/Marsupilami23/myesphometemplates/
+      ref: dev
+      refresh: 1d
+      files:
+        - xfox-door-sensor-test/board.yaml
+        - xfox-door-sensor-test/substitutions.yaml
+        - xfox-door-sensor-test/diagnostics.yaml
+        - xfox-door-sensor-test/led.yaml
+        - xfox-door-sensor-test/wifi.yaml
