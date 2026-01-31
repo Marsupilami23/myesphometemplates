@@ -45,3 +45,5 @@ substitutions:
   # is located at in Home Assistant.
   sub_friendly_device_name: xFox Window/Door Sensor
 
+  # sub_default_disabled:
+  sub_default_entities: true

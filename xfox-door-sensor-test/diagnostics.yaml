@@ -1,0 +1,8 @@
+# This file is used for diagnostic services
+
+button:
+  - platform: restart
+    id: restart_button
+    name: "${sub_device_name} Restart Firmware"
+    entity_category: diagnostic
+    disabled_by_default: $sub_disabled_entities
